@@ -1,0 +1,22 @@
+{
+ "id": "./index.html",
+ "name": "Job Application Tracker by davito",
+ "short_name": "Job Tracker",
+ "description": "Pantau lamaran kerja serta rencana skill, kursus, dan sertifikasi.",
+ "start_url": "./index.html",
+ "scope": "./",
+ "display": "standalone",
+ "orientation": "portrait",
+ "background_color": "#ffffff",
+ "theme_color": "#ffffff",
+ "lang": "id",
+ "icons": [
+  {"src": "icon-192.png", "sizes": "192x192", "type": "image/png"},
+  {"src": "icon-512.png", "sizes": "512x512", "type": "image/png"},
+  {"src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+ ],
+ "shortcuts": [
+  {"name": "Tambah Lamaran", "short_name": "Lamaran", "url": "./index.html?new=job", "icons": [{"src": "icon-192.png", "sizes": "192x192"}]},
+  {"name": "Tambah Skill / Kursus", "short_name": "Skill", "url": "./index.html?new=skill", "icons": [{"src": "icon-192.png", "sizes": "192x192"}]}
+ ]
+}
