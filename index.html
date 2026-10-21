@@ -136,6 +136,20 @@ input,select{font-size:16px}
  .sg{grid-template-columns:1fr}.sc{min-height:0}
 }
 @media(max-width:380px){.g4{grid-template-columns:1fr 1fr}.k b{font-size:24px}}
+
+.tl{max-height:210px;overflow:auto;margin:2px 0 10px}.tl .m{white-space:normal}
+.tli{display:grid;grid-template-columns:12px minmax(0,1fr) auto auto;gap:10px;align-items:start;padding:9px 0;border-bottom:1px solid #f1f3f9}.tli:last-child{border:0}
+.tli .dot{margin-top:6px}.tli b{font-weight:600}.tli small{color:var(--mut);margin-left:6px}.tli .m{color:var(--mut);font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tli>div{min-width:0}.tli>div>b,.tli>div>small{display:inline-block;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;vertical-align:bottom}
+.tli time{color:var(--mut);font-size:13px;white-space:nowrap;padding-top:2px}
+.mb{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;height:190px}.mb>div{display:flex;flex-direction:column;align-items:center;min-height:0}
+.mb .tr{flex:1;width:100%;display:flex;align-items:flex-end;justify-content:center;min-height:0}.mb .tr i{display:block;width:100%;max-width:46px;min-height:4px;border-radius:10px 10px 4px 4px;background:linear-gradient(180deg,var(--ac),var(--navy));transform-origin:bottom;animation:growy 1s var(--ease) both}
+.mb b{margin-top:6px}.mb span{font-size:12px;color:var(--mut)}
+@keyframes growy{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+.fn{display:grid;grid-template-columns:110px 1fr 70px;gap:10px;align-items:center;padding:6px 0;font-size:14px}.fn .bar{margin:0;height:12px}.fn em{font-style:normal;font-weight:600;text-align:right}
+.ln{flex-wrap:wrap}
+textarea.ta{width:100%;min-height:84px;font:16px/1.4 system-ui;border:1.5px solid var(--ln);border-radius:14px;padding:12px;resize:vertical;color:var(--ink)}textarea.ta:focus{outline:0;border-color:var(--ac);box-shadow:0 0 0 4px rgba(79,70,229,.12)}
+@media(max-width:760px){.fn{grid-template-columns:92px 1fr 62px}.mb{gap:6px}}
 </style>
 </head>
 <body>
@@ -180,7 +194,7 @@ const lg=k=>{try{return localStorage.getItem(k)}catch(e){return null}},ls=(k,v)=
 let cfg=rd('jt_cfg',{}),jobs=rd('jt_jobs',[]),skl=rd('jt_skills',[]),view='dash',flt={q:'',s:''},sq='',tmr;
 cfg.target=+cfg.target||300;
 /* ISI SEKALI: tempel URL Web App Apps Script (berakhiran /exec) di antara tanda kutip agar semua perangkat otomatis tersambung */
-const API_URL='https://script.google.com/macros/s/AKfycbx1GkNNUICpeqC7jfSWgjCmzlKbBnZS6tY7bSqE4foOMqfYuHZ4_mNvkm0dIepWVuVdpA/exec';
+const API_URL='';
 if(API_URL)cfg.url=API_URL;
 const uid=()=>Math.random().toString(36).slice(2,9),fmt=d=>d?d.split('-').reverse().join('/'):'',today=()=>new Date(Date.now()-new Date().getTimezoneOffset()*6e4).toISOString().slice(0,10);
 const rp=n=>'Rp '+new Intl.NumberFormat('id-ID').format(Math.round(n||0));
@@ -221,6 +235,36 @@ function stat(){
  const K=(l,v,c,sub,m)=>`<div class="card k rise"><i style="background:${c}"></i><span>${l}</span><b ${m?`data-m="${v}"`:`data-n="${v}"`}>0</b><small>${sub||'&nbsp;'}</small></div>`;
  const tc=skl.reduce((a,s)=>a+(+s.cost||0),0),tw=skl.reduce((a,s)=>a+wk(s),0),dn=skl.filter(s=>s.status==='Selesai').length;
  return {n,act,win,out,K,tc,tw,dn}}
+const MN=['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'],RK={Applied:1,'HR Interview':2,'User Interview':3,Assessment:4,Offer:5,Accepted:6},ACT=['Applied','HR Interview','User Interview','Assessment','Offer'];
+let wh=[];
+const hs=j=>{const h=(j.hist||[]).slice().sort((a,b)=>(a.d||'').localeCompare(b.d||''));return h.length?h:(j.date?[{d:j.date,s:j.status,n:'Tanggal posting lowongan',auto:1}]:[])};
+const lastD=j=>{const h=hs(j);return h.length?h[h.length-1].d:''};
+const dd=d=>d?Math.round((new Date(today()+'T00:00:00')-new Date(d+'T00:00:00'))/864e5):null;
+const reach=j=>{let m=0;[j.status].concat((j.hist||[]).map(x=>x.s)).forEach(t=>{m=Math.max(m,RK[t]||(['Rejected','Failed','Ghosted'].includes(t)?1:0))});return m};
+const top=(f,n)=>{const m={};jobs.forEach(j=>{const v=f(j);if(v)m[v]=(m[v]||0)+1});return Object.entries(m).sort((a,b)=>b[1]-a[1]).slice(0,n)};
+const tli=(c,t,sub,r,note)=>`<div class="tli"><span class="dot" style="background:${c}"></span><div><b>${esc(t)}</b>${sub?`<small>${esc(sub)}</small>`:''}${note?`<div class="m">${esc(note)}</div>`:''}</div><time>${esc(r)}</time></div>`;
+function tlh(){return wh.length?wh.map((x,i)=>`<div class="tli"><span class="dot" style="background:${CL[x.s]||'#94a3b8'}"></span><div><b>${esc(x.s)}</b>${x.n?`<div class="m">${esc(x.n)}</div>`:''}</div><time>${fmt(x.d)}</time><button class="x" type="button" data-act="delh" data-i="${i}" aria-label="Hapus" style="border:0;background:none;color:#be123c;cursor:pointer">✕</button></div>`).join(''):'<p class="hint" style="margin:6px 0">Belum ada riwayat. Setiap perubahan status akan tercatat otomatis.</p>'}
+function extra(){
+ const ev=[];jobs.forEach(j=>hs(j).forEach(x=>ev.push({d:x.d,t:j.company,p:j.position,s:x.s,n:x.n})));ev.sort((a,b)=>b.d.localeCompare(a.d));
+ const d1=jobs.filter(j=>reach(j)>=1).length,d2=jobs.filter(j=>reach(j)>=2).length,rate=d1?Math.round(d2*100/d1):0;
+ const stale=jobs.filter(j=>ACT.includes(j.status)&&lastD(j)&&dd(lastD(j))>14).sort((a,b)=>lastD(a).localeCompare(lastD(b)));
+ const a30=ev.filter(x=>x.d&&dd(x.d)<=30&&dd(x.d)>=0).length;
+ const K2=(l,v,c,sub)=>`<div class="card k rise"><i style="background:${c}"></i><span>${l}</span><b>${v}</b><small>${sub}</small></div>`;
+ const fs=['Dilamar','HR Interview','User Interview','Assessment','Offer','Diterima'].map((l,i)=>[l,jobs.filter(j=>reach(j)>=i+1).length]),fm=Math.max(1,fs[0][1]);
+ const mm={};jobs.forEach(j=>{const h=hs(j);if(h.length&&h[0].d)mm[h[0].d.slice(0,7)]=(mm[h[0].d.slice(0,7)]||0)+1});
+ const ms=[],t=new Date();for(let i=5;i>=0;i--){const x=new Date(t.getFullYear(),t.getMonth()-i,1);ms.push([MN[x.getMonth()],mm[x.getFullYear()+'-'+('0'+(x.getMonth()+1)).slice(-2)]||0])}
+ const mx=Math.max(1,...ms.map(m=>m[1]));
+ const ag=stale.slice(0,5).map(j=>tli('#d97706',j.company,j.position,dd(lastD(j))+' hari',j.status+', belum ada kabar'));
+ skl.filter(s=>s.date&&s.status!=='Selesai'&&s.status!=='Ditunda').sort((a,b)=>a.date.localeCompare(b.date)).slice(0,4).forEach(s=>{const L=-dd(s.date);ag.push(tli(L<0?'#dc2626':L<=14?'#d97706':'#2563eb',s.name,s.kind,L<0?'lewat '+(-L)+' hari':L===0?'hari ini':L+' hari lagi','Target selesai '+fmt(s.date)))});
+ const tb=(a,c)=>a.length?a.map(x=>`<div class="sr"><span class="dot" style="background:${c}"></span><span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(x[0])}</span><em>${x[1]}</em><div class="bar"><i style="width:${x[1]*100/a[0][1]}%;background:${c}"></i></div></div>`).join(''):'<p class="hint">Belum ada data.</p>';
+ const H=t=>`<h3 style="margin:0 0 12px;font:600 18px var(--serif)">${t}</h3>`;
+ return `<div class="sec rise"><h3>Perjalanan lamaran</h3></div>
+ <div class="g g4">${K2('Sudah dilamar',d1,'#2563eb','status Applied ke atas')}${K2('Dapat respons',rate+'%',rate>=20?'#059669':'#d97706',d2+' dari '+d1+' lamaran')}${K2('Perlu tindak lanjut',stale.length,'#d97706','tanpa kabar lebih dari 14 hari')}${K2('Aktivitas 30 hari',a30,'#7c3aed','kejadian tercatat')}</div>
+ <div class="g g2"><div class="card rise">${H('Funnel seleksi')}${fs.map((f,i)=>`<div class="fn"><span>${f[0]}</span><div class="bar"><i style="width:${f[1]*100/fm}%"></i></div><em>${f[1]}${i&&fs[0][1]?' · '+Math.round(f[1]*100/fs[0][1])+'%':''}</em></div>`).join('')}</div>
+ <div class="card rise">${H('Lamaran per bulan')}<div class="mb">${ms.map(m=>`<div><div class="tr"><i style="height:${m[1]*100/mx}%"></i></div><b>${m[1]}</b><span>${m[0]}</span></div>`).join('')}</div></div></div>
+ <div class="g g2"><div class="card rise">${H('Timeline terbaru')}${ev.length?ev.slice(0,8).map(x=>tli(CL[x.s]||'#94a3b8',x.t,x.p,fmt(x.d),(x.s==='Applied'&&!x.n?'':x.s)+(x.n?(x.s?' · ':'')+x.n:'')||x.s)).join(''):'<p class="hint">Belum ada riwayat. Ubah status atau tambah kejadian di tiap lamaran.</p>'}</div>
+ <div class="card rise">${H('Agenda & tindak lanjut')}${ag.length?ag.join(''):'<p class="hint">Tidak ada yang mendesak.</p>'}</div></div>
+ <div class="g g2"><div class="card rise">${H('Perusahaan terbanyak')}${tb(top(j=>j.company,6),'#4f46e5')}</div><div class="card rise">${H('Lokasi terbanyak')}${tb(top(j=>j.location,6),'#0f766e')}</div></div>`}
 const V={
 dash(){const {n,act,win,out,K,tc,tw,dn}=stat(),sp=skl.length?Math.round(dn*100/skl.length):0;
  return `<div class="hero rise"><div><h2 class="t">Ringkasan</h2><p class="sub" style="margin:0">Semua lamaran dan rencana belajarmu, satu layar.</p></div><div><button class="btn s" data-act="addskill">＋ Skill</button><button class="btn" data-act="addjob">＋ Lamaran</button></div></div>
@@ -230,7 +274,7 @@ dash(){const {n,act,win,out,K,tc,tw,dn}=stat(),sp=skl.length?Math.round(dn*100/s
   <div style="margin-top:8px">${ST.map(s=>`<div class="sr"><span class="dot" style="background:${CL[s]}"></span><span>${s}</span><em>${cnt(s)}</em><div class="bar" style="margin-top:0"><i style="width:${n?cnt(s)*100/n:0}%;background:${CL[s]}"></i></div></div>`).join('')}</div></div>
   <div class="dr"><div class="card rise"><span style="color:var(--mut);font-size:14px">Target lamaran</span><b style="display:block;font:600 28px var(--serif);color:var(--navy)">${n} / ${cfg.target}</b><div class="bar"><i style="width:${Math.min(100,n*100/cfg.target)}%"></i></div></div>
   <div class="card rise"><h3 style="margin:0 0 12px;font:600 18px var(--serif)">Skill & kursus</h3><div class="mt"><div><span>Total</span><b>${skl.length}</b></div><div><span>Selesai</span><b>${dn}</b></div><div><span>Biaya</span><b>${rp(tc)}</b></div><div><span>Durasi</span><b>${lama(tw)}</b></div></div><div class="bar"><i style="width:${sp}%;background:#059669"></i></div></div></div></div>
- ${n||skl.length?'':'<div class="card empty rise">Belum ada data. Tekan <b>＋ Lamaran</b> atau <b>＋ Skill</b> untuk mulai.</div>'}`},
+ ${extra()}${n||skl.length?'':'<div class="card empty rise">Belum ada data. Tekan <b>＋ Lamaran</b> atau <b>＋ Skill</b> untuk mulai.</div>'}`},
 job(){return `<div class="rise"><h2 class="t">Lamaran</h2><p class="sub">Ketuk baris untuk edit. Ubah status langsung dari pil berwarna.</p></div>
  <div class="tool rise"><input id="fq" placeholder="Cari perusahaan, posisi, lokasi…" value="${esc(flt.q)}"><button class="btn s" data-act="csv">Unduh CSV</button></div>
  <div class="chips rise" id="ch">${chips()}</div><div id="lst">${jlist()}</div>`},
@@ -242,7 +286,7 @@ const chips=()=>[['','Semua',jobs.length]].concat(ST.map(s=>[s,s,cnt(s)])).map(c
 function jlist(){const q=flt.q.toLowerCase(),a=jobs.filter(j=>(!flt.s||j.status===flt.s)&&(!q||(j.company+' '+j.position+' '+j.location).toLowerCase().includes(q)));
  if(!a.length)return `<div class="card empty rise">${jobs.length?'Tidak ada yang cocok.':'Belum ada lamaran. Tekan ＋ Tambah untuk mulai.'}</div>`;
  return a.slice().reverse().map(j=>`<div class="card row rise" data-id="${j.id}" data-act="editjob"><div class="av" style="background:color-mix(in srgb,${CL[j.status]} 14%,#fff)">${esc((j.company||'?')[0].toUpperCase())}</div>
- <div class="rm"><b>${esc(j.company)}</b><span>${esc(j.position)}</span></div><div class="mm"><span>${esc(j.location)||'-'}</span><small>${[j.type,fmt(j.date)].filter(Boolean).map(esc).join(' · ')||'-'}</small></div>
+ <div class="rm"><b>${esc(j.company)}</b><span>${esc(j.position)}</span></div><div class="mm"><span>${esc(j.location)||'-'}</span><small>${[j.type,fmt(j.date)].filter(Boolean).map(esc).join(' · ')||'-'}${j.note?' 📝':''}</small></div>
  <select class="ps" data-act="st" style="--c:${CL[j.status]}">${opts(ST,j.status)}</select>
  <div class="ra">${j.link?`<a href="${esc(j.link)}" target="_blank" rel="noopener" aria-label="Buka link">↗</a>`:''}<button class="dl" data-act="deljob" aria-label="Hapus">✕</button></div></div>`).join('')}
 function slist(){const q=sq.toLowerCase(),a=skl.filter(s=>!q||(s.name+' '+s.provider+' '+s.kind).toLowerCase().includes(q));
@@ -264,12 +308,15 @@ const list=(id,html)=>{const e=$(id);e.innerHTML=html;anim(e)};
 function modal(h){closeM(1);const m=document.createElement('div');m.className='mo';m.innerHTML=`<div class="sh">${h}<button class="cl" data-act="close" aria-label="Tutup">✕</button></div>`;document.body.appendChild(m);requestAnimationFrame(()=>m.classList.add('on'));const f=m.querySelector('input[autofocus]');if(f)setTimeout(()=>f.focus({preventScroll:true}),350)}
 function closeM(now){document.querySelectorAll('.mo').forEach(m=>{if(now)m.remove();else{m.classList.remove('on');setTimeout(()=>m.remove(),300)}})}
 const g=i=>$(i).value.trim();
-function openJob(id){const j=jobs.find(x=>x.id===id)||{status:'Applied',date:today()};
+function openJob(id){const j=jobs.find(x=>x.id===id)||{status:'Applied',date:today()};wh=(j.hist||[]).map(x=>Object.assign({},x));
  modal(`<h3>${id?'Edit lamaran':'Tambah lamaran'}</h3><p class="hint" style="margin:0 0 4px">Cukup isi perusahaan dan posisi, sisanya opsional.</p>
  <div class="f2"><div><label>Perusahaan</label><input id="jc" autofocus value="${esc(j.company)}" placeholder="mis. Google"></div><div><label>Posisi</label><input id="jp" value="${esc(j.position)}" placeholder="mis. Business Analyst"></div></div>
  <label>Status</label><div class="chips" style="flex-wrap:wrap" id="js">${ST.map(s=>`<button type="button" class="chip${s===j.status?' on':''}" data-act="pick" data-v="${s}">${s}</button>`).join('')}</div>
  <div class="f3"><div><label>Lokasi</label><input id="jl" value="${esc(j.location)}" placeholder="Jakarta"></div><div><label>Tipe</label><select id="jt"><option></option>${opts(TY,j.type)}</select></div><div><label>Tanggal</label><input id="jd" type="date" value="${esc(j.date)}"></div></div>
  <label>Link lowongan <small>(opsional)</small></label><div class="ln"><input id="jk" type="url" value="${esc(j.link)}" placeholder="https://…"><button class="btn s" data-act="fill">Isi otomatis</button></div>
+ <label>Catatan <small>(apa yang dialami: tes, pewawancara, hasil, kesan)</small></label><textarea class="ta" id="jn" placeholder="mis. Interview HR 30 menit, lanjut tes kasus">${esc(j.note)}</textarea>
+ <label>Riwayat / timeline</label><div class="tl" id="tl">${tlh()}</div>
+ <div class="ln"><input id="hd" type="date" value="${today()}" style="flex:1 1 140px"><input id="hn" placeholder="Tambah kejadian…" style="flex:2 1 200px"><button class="btn s" type="button" data-act="addh" style="flex:1 1 100%">Tambah ke riwayat</button></div>
  <div class="act"><button class="btn" data-act="savejob" data-id="${id||''}">Simpan</button></div>`)}
 function openSkill(id){const s=skl.find(x=>x.id===id)||{kind:'Kursus',status:'Rencana',unit:'Bulan',dur:'',cost:''};
  modal(`<h3>${id?'Edit skill':'Tambah skill'}</h3>
@@ -293,7 +340,8 @@ const A={
   try{const x=(await api('extract',{urls:[u]},60000)).items[0];const set=(i,v)=>{if(v&&!/^\(lengkapi\)/.test(v)&&!$(i).value)$(i).value=v};set('jc',x.company);set('jp',x.position);set('jl',x.location);set('jd',x.date);
    if(x.type&&TY.includes(x.type))$('jt').value=x.type;toast(x.ok?'Terisi otomatis':'Sebagian terisi, lengkapi sisanya')}catch(e){toast(e.message)}b.disabled=false;b.textContent='Isi otomatis'},
  savejob(b){const c=g('jc'),p=g('jp');if(!c&&!p)return toast('Isi perusahaan atau posisi');
-  const o={company:c,position:p,location:g('jl'),type:$('jt').value,date:$('jd').value,link:g('jk'),status:(document.querySelector('#js .on')||{dataset:{v:'Applied'}}).dataset.v};
+  const o={note:$('jn').value.trim(),company:c,position:p,location:g('jl'),type:$('jt').value,date:$('jd').value,link:g('jk'),status:(document.querySelector('#js .on')||{dataset:{v:'Applied'}}).dataset.v};
+  const pv=b.dataset.id&&jobs.find(x=>x.id===b.dataset.id),h=wh.slice(),lq=h.length?h[h.length-1].s:(pv?pv.status:null);if(lq!==o.status)h.push({d:today(),s:o.status,n:''});o.hist=h;
   if(b.dataset.id)Object.assign(jobs.find(x=>x.id===b.dataset.id),o);
   else{if(jobs.some(x=>key(x)===key(o)))return toast('Lamaran ini sudah ada');jobs.push(Object.assign({id:uid()},o))}
   persist();closeM();render();toast('Tersimpan')},
@@ -310,16 +358,32 @@ const A={
  cfgm(){modal(`<h3>Pengaturan</h3><label>URL Web App Apps Script</label><input id="cu" value="${esc(cfg.url||'')}" placeholder="https://script.google.com/macros/s/…/exec"><p class="hint">Password Apps Script otomatis memakai password login.</p>
   <label>Target lamaran</label><input id="ct" type="number" min="1" value="${cfg.target}">
   <div class="act"><button class="btn" data-act="savecfg">Simpan</button><button class="btn s" data-act="ping">Tes koneksi</button></div>
+  <div class="act" style="margin-top:10px"><button class="btn s" data-act="impm" style="flex:1">Impor dari Google Sheets</button></div>
   <div class="act" style="margin-top:10px"><button class="btn s" data-act="lock" style="flex:1">Kunci aplikasi</button><button class="btn s" data-act="wipe" style="flex:1;color:#be123c">Hapus data lokal</button></div>`)},
  savecfg(){cfg.url=g('cu');cfg.target=+$('ct').value||300;store();closeM();render();toast('Pengaturan disimpan');if(cfg.url)pull();else setSt('mode lokal')},
  ping(){cfg.url=g('cu');store();toast('Menguji…');api('ping').then(d=>toast('Terhubung, '+d.rows+' baris')).catch(e=>toast(e.message))},
+
+ addh(){const n=g('hn');if(!n)return toast('Tulis kejadiannya dulu');const st=(document.querySelector('#js .on')||{dataset:{v:'Applied'}}).dataset.v;wh.push({d:$('hd').value||today(),s:st,n});wh.sort((a,b)=>a.d.localeCompare(b.d));$('tl').innerHTML=tlh();$('hn').value=''},
+ delh(b){wh.splice(+b.dataset.i,1);$('tl').innerHTML=tlh()},
+ impm(){modal(`<h3>Impor dari Google Sheets</h3><p class="hint" style="margin:0 0 10px">Buka sheet lama, tekan Ctrl+A lalu Ctrl+C (di HP: pilih semua sel lalu salin), kemudian tempel di bawah. Judul kolom dan nomor otomatis dilewati. Data yang sudah ada tidak diduplikasi.</p>
+  <textarea id="imp" placeholder="Tempel di sini…" style="width:100%;min-height:200px;font:16px/1.4 system-ui;border:1.5px solid var(--ln);border-radius:14px;padding:12px;resize:vertical"></textarea>
+  <p class="hint">Urutan kolom: No, Company, Position, Location, Employment Type, Date Posted, Status, Link.</p>
+  <div class="act"><button class="btn" data-act="doimp">Impor</button></div>`)},
+ doimp(){const L=$('imp').value.split(/\r?\n/).filter(l=>l.trim()),R=L.map(l=>l.split('\t').map(x=>x.trim().replace(/^"|"$/g,'')));
+  let i=R.findIndex(r=>r.some(c=>/^company$/i.test(c)));R.splice(0,i+1);
+  const dash=x=>!x||x==='-'?'':x,pd=x=>{const m=String(x||'').match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);return m?m[3]+'-'+('0'+m[2]).slice(-2)+'-'+('0'+m[1]).slice(-2):(/^\d{4}-\d\d-\d\d/.test(x)?x.slice(0,10):'')};
+  const h=new Set(jobs.map(key));let n=0;
+  R.forEach(c=>{if(/^\d+$/.test(c[0]))c=c.slice(1);const o={id:uid(),company:c[0]||'',position:c[1]||'',location:dash(c[2]),type:dash(c[3]),date:pd(c[4]),status:norm(c[5]),link:c[6]||'',note:c[7]||'',hist:(()=>{try{const a=JSON.parse(c[8]);return Array.isArray(a)?a:[]}catch(e){return[]}})()};
+   if(!o.company&&!o.position)return;const k=key(o);if(h.has(k))return;h.add(k);jobs.push(o);n++});
+  if(!R.length||!$('imp').value.trim())return toast('Tempel datanya dulu');
+  persist();closeM();render();toast(n+' lamaran diimpor')},
  lock(){ls('jt_auth',null);try{sessionStorage.removeItem('jt_auth')}catch(e){}location.reload()},
  wipe(){if(confirm('Hapus semua data di browser ini? Data di spreadsheet tidak terhapus.')){jobs=[];skl=[];ls('jt_synced',null);store();closeM();render()}}
 };
 document.addEventListener('click',e=>{const b=e.target.closest('[data-act]');if(b&&A[b.dataset.act]){A[b.dataset.act](b,e);return}
  const n=e.target.closest('[data-go]');if(n)go(n.dataset.go);if(e.target.classList&&e.target.classList.contains('mo'))closeM()});
 document.addEventListener('change',e=>{const t=e.target,a=t.dataset.act;
- if(a==='st'){const j=jobs.find(x=>x.id===t.closest('.row').dataset.id);j.status=t.value;t.style.setProperty('--c',CL[j.status]);persist();$('ch').innerHTML=chips()}
+ if(a==='st'){const j=jobs.find(x=>x.id===t.closest('.row').dataset.id);j.status=t.value;(j.hist=j.hist||[]).push({d:today(),s:j.status,n:''});t.style.setProperty('--c',CL[j.status]);persist();$('ch').innerHTML=chips()}
  if(a==='sst'){const s=skl.find(x=>x.id===t.closest('.sc').dataset.id);s.status=t.value;t.style.setProperty('--c',SC[s.status]);persist()}});
 document.addEventListener('input',e=>{const t=e.target;
  if(t.id==='fq'){flt.q=t.value;list('lst',jlist())}if(t.id==='sqi'){sq=t.value;list('slst',slist())}
