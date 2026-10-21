@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <title>Job Application Tracker by davito</title>
-<meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#ffffff">
+<meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#f6f5ff">
 <link rel="icon" type="image/png" sizes="64x64" href="favicon.png?v=3">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=3">
 <link rel="shortcut icon" href="favicon.ico?v=3">
@@ -150,6 +150,74 @@ input,select{font-size:16px}
 .ln{flex-wrap:wrap}
 textarea.ta{width:100%;min-height:84px;font:16px/1.4 system-ui;border:1.5px solid var(--ln);border-radius:14px;padding:12px;resize:vertical;color:var(--ink)}textarea.ta:focus{outline:0;border-color:var(--ac);box-shadow:0 0 0 4px rgba(79,70,229,.12)}
 @media(max-width:760px){.fn{grid-template-columns:92px 1fr 62px}.mb{gap:6px}}
+
+/* ===== TEMA BARU: Aurora ===== */
+:root{--ink:#1b1a3a;--mut:#6a6f93;--ln:#e7e5f6;--navy:#2b2a6b;--ac:#7c3aed;--ac2:#06b6d4;--pk:#ec4899;
+--grad:linear-gradient(135deg,#4f46e5 0%,#7c3aed 55%,#c026d3 100%);--grad2:linear-gradient(90deg,#4f46e5,#06b6d4);
+--serif:"Plus Jakarta Sans","Inter","Segoe UI",system-ui,-apple-system,Roboto,sans-serif}
+::selection{background:#ddd6fe;color:#2b2a6b}
+body{background:#f6f5ff;letter-spacing:-.005em}
+.bg{background:
+ radial-gradient(900px 520px at 90% -8%,rgba(167,139,250,.35),transparent 62%),
+ radial-gradient(800px 560px at -8% 8%,rgba(34,211,238,.22),transparent 62%),
+ radial-gradient(760px 520px at 55% 112%,rgba(244,114,182,.22),transparent 62%),
+ radial-gradient(rgba(99,102,241,.16) 1px,transparent 1.4px) 0 0/26px 26px,#f6f5ff}
+.bg::before{background:#c4b5fd;opacity:.45}.bg::after{background:#a5f3fc;opacity:.45}
+h2.t,.lc h1{font-weight:800;letter-spacing:-.03em}
+h2.t{font-size:30px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block}
+.lc h1{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lc h1 span{-webkit-text-fill-color:var(--mut);font-style:normal;font-weight:500;font-size:16px}
+/* login */
+.lc{background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.9);border-radius:32px;box-shadow:0 40px 80px -30px rgba(79,70,229,.45),0 0 0 1px rgba(124,58,237,.08)}
+.lc img{width:80px;height:80px;border-radius:24px;box-shadow:0 18px 36px -12px rgba(124,58,237,.65)}
+/* inputs & buttons */
+input,select{border-color:var(--ln);background:rgba(255,255,255,.9)}
+input:focus,select:focus,textarea.ta:focus{border-color:#8b5cf6;box-shadow:0 0 0 4px rgba(139,92,246,.18)}
+.btn{background:var(--grad);box-shadow:0 14px 28px -14px rgba(124,58,237,.9)}
+.btn:hover{box-shadow:0 20px 32px -14px rgba(124,58,237,.9);filter:saturate(1.1)}
+.btn.s{background:rgba(255,255,255,.9);color:var(--navy);border:1.5px solid var(--ln);box-shadow:none}
+.btn.s:hover{border-color:#c4b5fd;box-shadow:0 10px 20px -14px rgba(124,58,237,.6)}
+/* header & tabs */
+.hd{background:rgba(255,255,255,.7);border-bottom:1px solid rgba(124,58,237,.12);box-shadow:0 10px 30px -22px rgba(79,70,229,.5)}
+.brand b{font-weight:800;color:var(--navy);letter-spacing:-.02em}.brand span{font-style:normal;font-family:inherit}
+.brand img{box-shadow:0 8px 18px -8px rgba(79,70,229,.7)}
+.tabs{background:rgba(124,58,237,.08)}
+.tabs button.on{background:var(--grad);color:#fff;box-shadow:0 8px 18px -8px rgba(124,58,237,.8)}
+.tabs button:not(.on):hover{color:var(--ac)}
+.sy,.ib{background:rgba(255,255,255,.85)}
+/* cards */
+.card{background:rgba(255,255,255,.78);border:1px solid rgba(255,255,255,.95);border-radius:22px;box-shadow:0 1px 2px rgba(79,70,229,.05),0 18px 36px -22px rgba(79,70,229,.35),inset 0 0 0 1px rgba(124,58,237,.05)}
+.card:hover{box-shadow:0 1px 2px rgba(79,70,229,.05),0 26px 44px -22px rgba(79,70,229,.5),inset 0 0 0 1px rgba(124,58,237,.1)}
+.sec h3,.card h3{font-weight:800;letter-spacing:-.02em;color:var(--navy)}
+/* KPI */
+.k{background:linear-gradient(145deg,rgba(255,255,255,.95),rgba(255,255,255,.65))}
+.k::after{content:"";position:absolute;right:-30px;top:-30px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(124,58,237,.16),transparent 70%);pointer-events:none}
+.k i{width:5px;box-shadow:0 0 14px currentColor}
+.k b{font-weight:800;letter-spacing:-.03em;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+/* bars */
+.bar i{background:var(--grad2)}
+.seg{height:16px;box-shadow:inset 0 1px 3px rgba(79,70,229,.12)}
+.mb .tr i{background:linear-gradient(180deg,#a78bfa,#4f46e5)}
+.bar{background:#ece9fb}
+/* chips */
+.chip{background:rgba(255,255,255,.9)}
+.chip.on{background:var(--grad);border-color:transparent;box-shadow:0 8px 16px -8px rgba(124,58,237,.8)}
+.chip:hover{border-color:#c4b5fd}
+/* list rows */
+.av{box-shadow:inset 0 0 0 1px rgba(124,58,237,.12)}
+.row:hover{border-color:#ddd6fe}
+.tag{background:linear-gradient(135deg,#ede9fe,#cffafe);color:#5b21b6}
+.sc h4{font-weight:700}
+.ra button:hover,.ra a:hover{background:#f1edff;color:var(--ac)}
+/* FAB, modal, toast */
+.fab{background:var(--grad);box-shadow:0 20px 36px -12px rgba(124,58,237,.8)}
+.mo{background:rgba(43,42,107,.28)}
+.sh{border-radius:28px;box-shadow:0 40px 90px -30px rgba(79,70,229,.6)}
+.sh h3{font-weight:800}
+.ts{background:linear-gradient(135deg,#2b2a6b,#4c1d95)}
+/* scrollbar */
+*{scrollbar-width:thin;scrollbar-color:#c4b5fd transparent}
+.dr .mt{grid-template-columns:repeat(4,1fr)}.dr .mt b{font-size:14px}
 </style>
 </head>
 <body>
@@ -241,7 +309,7 @@ const hs=j=>{const h=(j.hist||[]).slice().sort((a,b)=>(a.d||'').localeCompare(b.
 const lastD=j=>{const h=hs(j);return h.length?h[h.length-1].d:''};
 const dd=d=>d?Math.round((new Date(today()+'T00:00:00')-new Date(d+'T00:00:00'))/864e5):null;
 const reach=j=>{let m=0;[j.status].concat((j.hist||[]).map(x=>x.s)).forEach(t=>{m=Math.max(m,RK[t]||(['Rejected','Failed','Ghosted'].includes(t)?1:0))});return m};
-const top=(f,n)=>{const m={};jobs.forEach(j=>{const v=f(j);if(v)m[v]=(m[v]||0)+1});return Object.entries(m).sort((a,b)=>b[1]-a[1]).slice(0,n)};
+const topN=(f,n)=>{const m={};jobs.forEach(j=>{const v=f(j);if(v)m[v]=(m[v]||0)+1});return Object.entries(m).sort((a,b)=>b[1]-a[1]).slice(0,n)};
 const tli=(c,t,sub,r,note)=>`<div class="tli"><span class="dot" style="background:${c}"></span><div><b>${esc(t)}</b>${sub?`<small>${esc(sub)}</small>`:''}${note?`<div class="m">${esc(note)}</div>`:''}</div><time>${esc(r)}</time></div>`;
 function tlh(){return wh.length?wh.map((x,i)=>`<div class="tli"><span class="dot" style="background:${CL[x.s]||'#94a3b8'}"></span><div><b>${esc(x.s)}</b>${x.n?`<div class="m">${esc(x.n)}</div>`:''}</div><time>${fmt(x.d)}</time><button class="x" type="button" data-act="delh" data-i="${i}" aria-label="Hapus" style="border:0;background:none;color:#be123c;cursor:pointer">✕</button></div>`).join(''):'<p class="hint" style="margin:6px 0">Belum ada riwayat. Setiap perubahan status akan tercatat otomatis.</p>'}
 function extra(){
@@ -264,7 +332,7 @@ function extra(){
  <div class="card rise">${H('Lamaran per bulan')}<div class="mb">${ms.map(m=>`<div><div class="tr"><i style="height:${m[1]*100/mx}%"></i></div><b>${m[1]}</b><span>${m[0]}</span></div>`).join('')}</div></div></div>
  <div class="g g2"><div class="card rise">${H('Timeline terbaru')}${ev.length?ev.slice(0,8).map(x=>tli(CL[x.s]||'#94a3b8',x.t,x.p,fmt(x.d),(x.s==='Applied'&&!x.n?'':x.s)+(x.n?(x.s?' · ':'')+x.n:'')||x.s)).join(''):'<p class="hint">Belum ada riwayat. Ubah status atau tambah kejadian di tiap lamaran.</p>'}</div>
  <div class="card rise">${H('Agenda & tindak lanjut')}${ag.length?ag.join(''):'<p class="hint">Tidak ada yang mendesak.</p>'}</div></div>
- <div class="g g2"><div class="card rise">${H('Perusahaan terbanyak')}${tb(top(j=>j.company,6),'#4f46e5')}</div><div class="card rise">${H('Lokasi terbanyak')}${tb(top(j=>j.location,6),'#0f766e')}</div></div>`}
+ <div class="g g2"><div class="card rise">${H('Perusahaan terbanyak')}${tb(topN(j=>j.company,6),'#4f46e5')}</div><div class="card rise">${H('Lokasi terbanyak')}${tb(topN(j=>j.location,6),'#0f766e')}</div></div>`}
 const V={
 dash(){const {n,act,win,out,K,tc,tw,dn}=stat(),sp=skl.length?Math.round(dn*100/skl.length):0;
  return `<div class="hero rise"><div><h2 class="t">Ringkasan</h2><p class="sub" style="margin:0">Semua lamaran dan rencana belajarmu, satu layar.</p></div><div><button class="btn s" data-act="addskill">＋ Skill</button><button class="btn" data-act="addjob">＋ Lamaran</button></div></div>
