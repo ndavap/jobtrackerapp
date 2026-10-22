@@ -228,7 +228,7 @@ input:focus,select:focus,textarea.ta:focus{border-color:var(--ac);box-shadow:0 0
 .dt{margin:12px 0;border:1.5px solid var(--ln);border-radius:14px;padding:4px 14px 12px;background:#fffdf7}.dt summary{cursor:pointer;font-weight:700;padding:10px 0;color:var(--navy)}.dt summary small{font-weight:400;color:var(--mut)}
 .kb{display:flex;gap:12px;overflow-x:auto;align-items:flex-start;padding-bottom:10px}.kc{flex:0 0 230px;background:rgba(15,76,74,.05);border-radius:16px;padding:12px}.kc h4{margin:0 0 10px;font:800 14px var(--serif)}.kc h4 em{font-style:normal;color:var(--mut);margin-left:4px}
 .kk{padding:12px 14px;margin-bottom:8px;cursor:pointer}.kk b,.kk span,.kk small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.kk span{color:#334155;font-size:14px}.kk small{font-size:13px;color:var(--mut)}
-@media print{.hd,.fab,.ts,.bg,.nb,.hero>div:last-child{display:none!important}body{background:#fff}.rise{animation:none!important;opacity:1!important}.card{box-shadow:none;break-inside:avoid;transform:none!important}main{padding:0}}
+@media print{.hd,.lt,.fab,.ts,.bg,.nb,.hero>div:last-child{display:none!important}body{background:#fff}.rise{animation:none!important;opacity:1!important}.card{box-shadow:none;break-inside:avoid;transform:none!important}main{padding:0}}
 @media screen{
 html[data-theme=dark]{color-scheme:dark;--ink:#e6efee;--mut:#9fb3b5;--ln:#2d4144;--navy:#7ee0d2}
 html[data-theme=dark] body{background:#0e1819}
@@ -266,6 +266,35 @@ html[data-theme=dark] svg line{stroke:#2d4144}html[data-theme=dark] svg text{fil
 #cvp h1{font:700 17pt Arial,sans-serif;text-align:center;margin:0 0 3px;text-transform:uppercase}#cvp .cc{text-align:center;font-weight:700;font-size:9pt;margin-bottom:8px;word-break:break-all}
 #cvp h2{font:700 10.5pt Arial,sans-serif;text-transform:uppercase;border-bottom:1px solid #000;margin:10px 0 4px;padding-bottom:1px}
 #cvp .cl{display:flex;justify-content:space-between;gap:12px;break-after:avoid}#cvp p{margin:1px 0}#cvp ul{margin:2px 0 5px;padding-left:18px}#cvp li{margin:0 0 1px}}
+
+.k[data-act=kpi]{cursor:pointer;transition:transform .35s var(--ease),box-shadow .35s,border-color .25s}
+.k[data-act=kpi]:hover{transform:translateY(-3px);border-color:#5eead4;box-shadow:0 18px 34px -18px rgba(15,76,74,.45)}
+.k[data-act=kpi]:active{transform:scale(.98)}.k[data-act=kpi]:focus-visible{outline:3px solid rgba(13,148,136,.4);outline-offset:2px}
+.kg{position:absolute;right:16px;bottom:12px;font-style:normal;font-weight:700;font-size:13px;color:var(--ac);opacity:.85}
+
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(16,185,129,.55)}70%{box-shadow:0 0 0 7px rgba(16,185,129,0)}100%{box-shadow:0 0 0 0 rgba(16,185,129,0)}}
+.hero,.sec{scroll-margin-top:calc(var(--hh,64px) + 62px)}
+.lt{position:sticky;top:var(--hh,64px);z-index:5;display:flex;align-items:center;gap:8px;margin:0 -22px 14px;padding:9px 22px;overflow-x:auto;scrollbar-width:none;background:rgba(255,255,255,.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--ln)}
+.lt::-webkit-scrollbar{display:none}
+.lt button{flex:none;display:inline-flex;align-items:center;gap:7px;border:1.5px solid var(--ln);background:#fff;border-radius:99px;padding:7px 13px;font:600 13px inherit;color:#334155;cursor:pointer;white-space:nowrap;transition:transform .25s var(--ease),border-color .2s}
+.lt button:hover{transform:translateY(-2px);border-color:var(--c,#5eead4)}
+.lt button b{min-width:22px;text-align:center;border-radius:99px;padding:1px 7px;font-size:12px;background:#eef2f3;color:var(--navy)}
+.lt button.hot{border-color:var(--c);background:color-mix(in srgb,var(--c) 10%,#fff)}.lt button.hot b{background:var(--c);color:#fff}
+.lt .hubb{background:var(--navy);border-color:var(--navy);color:#fff}.lt .jb{border-style:dashed;color:var(--mut);background:transparent}
+.lt .lv{flex:none;display:inline-flex;align-items:center;gap:6px;font:700 12px inherit;color:#047857;padding-right:2px}.lt .lv i{width:8px;height:8px;border-radius:50%;background:#10b981;animation:pulse 1.8s infinite}
+.lt .ls{flex:none;width:1px;height:20px;background:var(--ln);margin:0 2px}
+.hg{display:grid;grid-template-columns:repeat(auto-fill,minmax(138px,1fr));gap:8px;margin:2px 0 6px}
+.ht{display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left;border:1.5px solid var(--ln);border-left:4px solid var(--c);background:#fff;border-radius:14px;padding:9px 12px;cursor:pointer;font:inherit;color:var(--ink);transition:transform .25s var(--ease)}
+.ht:hover{transform:translateY(-2px)}.ht b{font:800 22px/1.1 var(--serif);color:var(--navy)}.ht span{font-size:13px;color:var(--mut);line-height:1.25}
+.ht.hot{background:color-mix(in srgb,var(--c) 9%,#fff)}
+.hl{margin:14px 0 6px;font:700 12px inherit;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+.hj{display:flex;gap:8px;flex-wrap:wrap;margin:4px 0 0}.hj button{padding:8px 13px;min-height:38px;font-size:13px}
+html[data-theme=dark] .lt{background:rgba(14,24,25,.9)}
+html[data-theme=dark] .lt button,html[data-theme=dark] .ht{background:#172426;color:var(--ink);border-color:var(--ln)}
+html[data-theme=dark] .ht{border-left-color:var(--c)}html[data-theme=dark] .lt button b{background:#223335;color:var(--ink)}
+html[data-theme=dark] .lt button.hot{background:color-mix(in srgb,var(--c) 18%,#172426)}html[data-theme=dark] .ht.hot{background:color-mix(in srgb,var(--c) 16%,#172426)}
+html[data-theme=dark] .lt .hubb{background:#0f766e;border-color:#0f766e}
+@media(max-width:760px){.lt{margin:0 -14px 12px;padding:8px 14px}}
 </style>
 </head>
 <body>
@@ -287,7 +316,7 @@ html[data-theme=dark] svg line{stroke:#2d4144}html[data-theme=dark] svg text{fil
  <header class="hd">
   <div class="brand"><img src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 512 512%22%3E%3Crect width=%22512%22 height=%22512%22 rx=%22112%22 fill=%22%231a1a4b%22/%3E%3Crect x=%22198%22 y=%22118%22 width=%22116%22 height=%2284%22 rx=%2218%22 fill=%22none%22 stroke=%22%23fff%22 stroke-width=%2230%22/%3E%3Crect x=%2262%22 y=%22170%22 width=%22388%22 height=%22250%22 rx=%2242%22 fill=%22%23fff%22/%3E%3Cpath d=%22M172 306l64 60 112-120%22 fill=%22none%22 stroke=%22%231a1a4b%22 stroke-width=%2234%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E" alt="Logo"><div><b>Job Application Tracker</b><span>by davito</span></div></div>
   <nav class="tabs" id="nv"></nav>
-  <div class="hr"><button class="sy" id="sy" data-act="sync"><i></i><span id="st">mode lokal</span></button><button class="ib" id="tm" data-act="theme" aria-label="Mode gelap">🌙</button><button class="ib" data-act="cfgm" aria-label="Pengaturan">⚙</button><button class="lo" data-act="logout">Keluar</button></div>
+  <div class="hr"><button class="sy" id="sy" data-act="sync"><i></i><span id="st">mode lokal</span></button><button class="ib" data-act="hub" aria-label="Pusat pelacak" title="Pusat pelacak">📡</button><button class="ib" id="tm" data-act="theme" aria-label="Mode gelap">🌙</button><button class="ib" data-act="cfgm" aria-label="Pengaturan">⚙</button><button class="lo" data-act="logout">Keluar</button></div>
  </header>
  <main id="mn"></main>
  <button class="fab" id="fab" data-act="addnew">＋ Tambah</button>
@@ -304,7 +333,7 @@ const KD=['Kursus','Sertifikasi','Workshop','Bootcamp','Bahasa','Lainnya'],SS=['
 const SC={Rencana:'#64748b',Berjalan:'#2563eb',Selesai:'#059669',Ditunda:'#d97706'},UN={Jam:1/40,Hari:1/5,Minggu:1,Bulan:4.345};
 /* perkiraan kasar — selalu cek harga resmi penyedia */
 const PRE=[['IELTS: persiapan kelas','Bahasa','Lembaga kursus',4000000,2,'Bulan'],['IELTS: biaya ujian','Sertifikasi','IDP / British Council',3300000,1,'Hari'],['Google Data Analytics','Sertifikasi','Coursera',2500000,3,'Bulan'],['Excel & SQL untuk bisnis','Kursus','Udemy / Dicoding',350000,1,'Bulan'],['Digital Marketing','Kursus','Kursus online',3000000,2,'Bulan'],['Public Speaking','Workshop','Komunitas',1500000,2,'Hari'],['Brevet Pajak A & B','Sertifikasi','Lembaga resmi',2500000,2,'Bulan'],['PMP','Sertifikasi','PMI',10000000,3,'Bulan'],['Bootcamp Data / Product','Bootcamp','Bootcamp',15000000,4,'Bulan']];
-const NAV=[['dash','Dashboard'],['job','Lamaran'],['sch','Jadwal'],['prog','Progres'],['skill','Skill']];
+const NAV=[['dash','Dashboard'],['job','Lamaran'],['sch','Jadwal'],['skill','Skill']];
 const $=i=>document.getElementById(i),esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const rd=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}};
 const lg=k=>{try{return localStorage.getItem(k)}catch(e){return null}},ls=(k,v)=>{try{v===null?localStorage.removeItem(k):localStorage.setItem(k,v)}catch(e){}};
@@ -461,7 +490,7 @@ if(!lg('jt_snap')){jobs.concat(skl).forEach(x=>{x.u=x.u||1});snap();store();if(c
 /* ---------- Views ---------- */
 function stat(){
  const n=jobs.length,act=cnt('HR Interview')+cnt('User Interview')+cnt('Assessment'),win=cnt('Offer')+cnt('Accepted'),out=cnt('Rejected')+cnt('Failed')+cnt('Ghosted');
- const K=(l,v,c,sub,m)=>`<div class="card k rise"><i style="background:${c}"></i><span>${l}</span><b ${m?`data-m="${v}"`:`data-n="${v}"`}>0</b><small>${sub||'&nbsp;'}</small></div>`;
+ const K=(l,v,c,sub,m)=>`<div class="card k rise"${kcA(KXK[l])}><i style="background:${c}"></i><span>${l}</span><b ${m?`data-m="${v}"`:`data-n="${v}"`}>0</b><small>${sub||'&nbsp;'}</small>${kgA(KXK[l])}</div>`;
  const tc=skl.reduce((a,s)=>a+(+s.cost||0),0),tw=skl.reduce((a,s)=>a+wk(s),0),dn=skl.filter(s=>s.status==='Selesai').length;
  return {n,act,win,out,K,tc,tw,dn}}
 const MN=['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'],RK={Applied:1,'HR Interview':2,'User Interview':3,Assessment:4,Offer:5,Accepted:6},ACT=['Applied','HR Interview','User Interview','Assessment','Offer'];
@@ -469,7 +498,7 @@ const SK={'Psikotes':'#d97706','Assessment':'#ea580c','HR Interview':'#0891b2','
 const iso=x=>x.toLocaleDateString('sv-SE'),dl=d=>-dd(d),rel=n=>n<0?'lewat '+(-n)+' hari':n===0?'Hari ini':n===1?'Besok':n+' hari lagi',day=d=>new Date(d+'T00:00:00').toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
 const sev=()=>{const a=[];jobs.forEach(j=>(j.hist||[]).forEach(x=>{if(x.sc&&x.d)a.push(Object.assign({},x,{co:j.company,po:j.position,jid:j.id}))}));return a.sort((p,q)=>(p.d+(p.t||'')).localeCompare(q.d+(q.t||'')))};
 const wt=x=>fmt(x.d)+(x.t?' · '+x.t:'')+(x.n?' · '+x.n:'');
-const KK=(l,v,c,sub)=>`<div class="card k rise"><i style="background:${c}"></i><span>${l}</span><b>${v}</b><small>${sub}</small></div>`;
+const KK=(l,v,c,sub)=>`<div class="card k rise"${kcA(KXK[l])}><i style="background:${c}"></i><span>${l}</span><b>${v}</b><small>${sub}</small>${kgA(KXK[l])}</div>`;
 const NB='<div class="card nb rise"><b>Data belum tersambung ke Google Sheets</b><p>Data hanya tersimpan di perangkat ini, jadi HP dan web bisa berbeda atau tampak kosong. Hubungkan sekali di sini, lalu buka “Link sambung perangkat” di HP.</p><button class="btn" data-act="cfgm">Hubungkan sekarang</button></div>';
 function slh(){ws.sort((p,q)=>(p.d+(p.t||'')).localeCompare(q.d+(q.t||'')));return ws.length?ws.map((x,i)=>`<div class="tli"><span class="dot" style="background:${SK[x.k]||'#78858a'}"></span><div><b>${esc(x.k)}</b>${x.n?`<div class="m">${esc(x.n)}</div>`:''}</div><time>${fmt(x.d)}${x.t?' · '+x.t:''}</time><button class="x" type="button" data-act="dels" data-i="${i}" aria-label="Hapus" style="border:0;background:none;color:#be123c;cursor:pointer">✕</button></div>`).join(''):'<p class="hint" style="margin:6px 0">Belum ada jadwal. Tambahkan psikotes, assessment, atau interview di bawah.</p>'}
 function remind(){const t=today();if(lg('jt_pop')===t||$('app').hidden||document.querySelector('.mo'))return;const a=sev().filter(x=>{const n=dl(x.d);return n>=0&&n<=3});if(!a.length)return;ls('jt_pop',t);
@@ -492,7 +521,7 @@ function extra(){
  const d1=jobs.filter(j=>reach(j)>=1).length,d2=jobs.filter(j=>reach(j)>=2).length,rate=d1?Math.round(d2*100/d1):0;
  const stale=jobs.filter(j=>ACT.includes(j.status)&&lastD(j)&&dd(lastD(j))>14).sort((a,b)=>lastD(a).localeCompare(lastD(b)));
  const a30=ev.filter(x=>x.d&&dd(x.d)<=30&&dd(x.d)>=0).length;
- const K2=(l,v,c,sub)=>`<div class="card k rise"><i style="background:${c}"></i><span>${l}</span><b>${v}</b><small>${sub}</small></div>`;
+ const K2=(l,v,c,sub)=>`<div class="card k rise"${kcA(KXK[l])}><i style="background:${c}"></i><span>${l}</span><b>${v}</b><small>${sub}</small>${kgA(KXK[l])}</div>`;
  const fs=['Dilamar','HR Interview','User Interview','Assessment','Offer','Diterima'].map((l,i)=>[l,jobs.filter(j=>reach(j)>=i+1).length]),fm=Math.max(1,fs[0][1]);
  const mm={};jobs.forEach(j=>{const h=hs(j);if(h.length&&h[0].d)mm[h[0].d.slice(0,7)]=(mm[h[0].d.slice(0,7)]||0)+1});
  const ms=[],t=new Date();for(let i=5;i>=0;i--){const x=new Date(t.getFullYear(),t.getMonth()-i,1);ms.push([MN[x.getMonth()],mm[x.getFullYear()+'-'+('0'+(x.getMonth()+1)).slice(-2)]||0])}
@@ -505,10 +534,9 @@ function extra(){
   return `<div class="dw"><div class="donut" style="background:conic-gradient(${sg.join(',')})"><div><b>${n}</b><span>lamaran</span></div></div><div class="lgd">${ST.filter(cnt).map(t=>`<div class="lg"><span class="dot" style="background:${CL[t]}"></span>${t}<em>${cnt(t)} · ${pct(cnt(t))}</em></div>`).join('')}</div></div>`})();
  const rc=jobs.slice().sort((a,b)=>(lastD(b)||'').localeCompare(lastD(a)||'')).slice(0,6);
  const rt=rc.length?`<div class="ow"><table class="tb" style="min-width:560px"><thead><tr><th>Perusahaan</th><th>Posisi</th><th>Terakhir</th><th>Status</th></tr></thead><tbody>${rc.map(j=>`<tr><td><b>${esc(j.company)}</b></td><td>${esc(j.position)||'-'}</td><td>${fmt(lastD(j))||'-'}</td><td><span class="pill" style="--c:${CL[j.status]}">${j.status}</span></td></tr>`).join('')}</tbody></table></div>`:'<p class="hint">Belum ada data.</p>';
- return `<div class="sec rise"><h3>Perjalanan lamaran</h3></div>
+ return `<div class="sec rise" id="sc-trip"><h3>Perjalanan lamaran</h3></div>
  <div class="g g4">${K2('Sudah dilamar',d1,'#2563eb','status Applied ke atas')}${K2('Dapat respons',rate+'%',rate>=20?'#059669':'#d97706',d2+' dari '+d1+' lamaran')}${K2('Perlu tindak lanjut',stale.length,'#d97706','tanpa kabar lebih dari 14 hari')}${K2('Aktivitas 30 hari',a30,'#f59e0b','kejadian tercatat')}</div>
- <div class="g g2"><div class="card rise">${H('Funnel seleksi')}${fs.map((f,i)=>`<div class="fn"><span>${f[0]}</span><div class="bar"><i style="width:${f[1]*100/fm}%"></i></div><em>${f[1]}${i&&fs[0][1]?' · '+Math.round(f[1]*100/fs[0][1])+'%':''}</em></div>`).join('')}</div>
- <div class="card rise">${H('Lamaran per bulan')}<div class="mb">${ms.map(m=>`<div><div class="tr"><i style="height:${m[1]*100/mx}%"></i></div><b>${m[1]}</b><span>${m[0]}</span></div>`).join('')}</div></div></div>
+ <div class="g"><div class="card rise">${H('Lamaran per bulan')}<div class="mb">${ms.map(m=>`<div><div class="tr"><i style="height:${m[1]*100/mx}%"></i></div><b>${m[1]}</b><span>${m[0]}</span></div>`).join('')}</div></div></div>
  <div class="g g2"><div class="card rise">${H('Timeline terbaru')}${ev.length?ev.slice(0,8).map(x=>tli(CL[x.s]||'#94a3b8',x.t,x.p,fmt(x.d),(x.s==='Applied'&&!x.n?'':x.s)+(x.n?(x.s?' · ':'')+x.n:'')||x.s)).join(''):'<p class="hint">Belum ada riwayat. Ubah status atau tambah kejadian di tiap lamaran.</p>'}</div>
  <div class="card rise">${H('Agenda & tindak lanjut')}${ag.length?ag.join(''):'<p class="hint">Tidak ada yang mendesak.</p>'}</div></div>
  <div class="g g2"><div class="card rise">${H('Komposisi status')}${dn2}</div><div class="card rise">${H('Tipe pekerjaan')}${tb(topN(j=>j.type,5),'#f59e0b')}</div></div>
@@ -525,7 +553,7 @@ function ana(){
  const mx=Math.max(1,...mo.map(m=>m[1]+m[2]+m[3])),am=Math.max(1,...ag.map(z=>z[1])),H=s=>`<h3 style="margin:0 0 12px">${s}</h3>`,
  ty=TY.map(s=>{const a=jobs.filter(j=>j.type===s&&reach(j)>=1);return [s,a.length,a.filter(j=>reach(j)>=2).length]}).filter(r=>r[1]),
  lgd=[['#059669','Offer / diterima'],['#0891b2','Dalam proses'],['#dc2626','Tidak lanjut']].map(c=>`<span style="display:inline-flex;align-items:center;gap:6px;margin-right:14px;font-size:14px"><i class="dot" style="background:${c[0]}"></i>${c[1]}</span>`).join('');
- return `<div class="sec rise"><h3>Analitik lamaran</h3></div>
+ return `<div class="sec rise" id="sc-ana"><h3>Analitik lamaran</h3></div>
  <div class="g g4">${KK('Rata-rata respons',rs.length?av+' hari':'-','#0891b2',rs.length?'dari '+rs.length+' lamaran yang dibalas':'belum ada data')}${KK('Laju lamaran',pace+' / minggu','#2563eb','rata-rata 4 minggu terakhir')}${KK('Estimasi capai target',eta,'#f59e0b','sisa '+left+' dari target '+cfg.target)}${KK('Lamaran basi',ag[3][1],ag[3][1]?'#dc2626':'#059669','aktif, tanpa kabar lebih dari 30 hari')}</div>
  <div class="g g2"><div class="card rise">${H('Hasil lamaran per bulan')}<div class="sk">${mo.map(m=>`<div><div class="tr">${[[m[1],'#059669'],[m[3],'#0891b2'],[m[2],'#dc2626']].map(s=>s[0]?`<i title="${s[0]}" style="height:${s[0]*100/mx}%;background:${s[1]}"></i>`:'').join('')}</div><b>${m[1]+m[2]+m[3]}</b><span>${m[0]}</span></div>`).join('')}</div><div style="margin-top:12px">${lgd}</div></div>
  <div class="card rise">${H('Umur lamaran aktif')}${act.length?ag.map(a=>`<div class="fn"><span>${a[0]}</span><div class="bar"><i style="width:${a[1]*100/am}%;background:${a[2]}"></i></div><em>${a[1]}</em></div>`).join(''):'<p class="hint">Belum ada lamaran aktif.</p>'}<p class="hint">Dihitung sejak kabar terakhir. Merah berarti saatnya follow up.</p></div></div>
@@ -540,7 +568,7 @@ function ana2(){
  todo=due.map(j=>tli('#d97706',j.company,j.position,rel(dl(j.fu)),'Follow up'+(j.ct?' · '+j.ct:''))).concat(ddl.map(j=>tli('#dc2626',j.company,j.position,rel(dl(j.dlu)),'Deadline daftar'+(j.pr?' · '+'★'.repeat(j.pr):'')))),
  why=jobs.filter(j=>j.why).sort((a,b)=>(lastD(b)||'').localeCompare(lastD(a)||'')).slice(0,5).map(j=>tli('#dc2626',j.company,j.position,fmt(lastD(j)),j.why)),
  of=jobs.filter(j=>+j.go>0).sort((a,b)=>b.go-a.go).map(j=>tli('#059669',j.company,j.position,rp(j.go),'Harapan '+(+j.gx?rp(j.gx):'-')+' · '+j.status));
- return `<div class="sec rise"><h3>Tindak lanjut & strategi</h3></div>
+ return `<div class="sec rise" id="sc-todo"><h3>Tindak lanjut & strategi</h3></div>
  <div class="g g4">${KK('Follow up jatuh tempo',due.length,due.length?'#d97706':'#059669','aktif, tanggal follow up sudah tiba')}${KK('Deadline ≤ 7 hari',ddl.length,ddl.length?'#dc2626':'#059669','belum dilamar')}${KK('Target minggu ini',(wc[0]||0)+' / '+cfg.wt,(wc[0]||0)>=cfg.wt?'#059669':'#2563eb','lamaran 7 hari terakhir')}${KK('Streak',st+' minggu','#f59e0b','berturut-turut capai target mingguan')}</div>
  <div class="g g2"><div class="card rise">${H('Daftar tindakan')}${todo.length?todo.slice(0,8).join(''):'<p class="hint">Tidak ada follow up atau deadline mendesak. Isi tanggalnya di Detail tambahan.</p>'}</div>
  <div class="card rise">${H('Pelajaran dari penolakan')}${why.length?why.join(''):'<p class="hint">Catat alasan penolakan di Detail tambahan agar CV dan persiapan makin tajam.</p>'}</div></div>
@@ -555,7 +583,7 @@ sch(){const ev=sev(),up=ev.filter(x=>dl(x.d)>=0),ps=ev.filter(x=>dl(x.d)<0),n0=u
  <div class="g g4">${KK('Hari ini',n0,'#dc2626','jadwal hari ini')}${KK('7 hari ke depan',n7,'#f59e0b','termasuk hari ini')}${KK('Akan datang',up.length,'#0d9488','semua jadwal')}${KK('Sudah lewat',ps.length,'#78858a','riwayat jadwal')}</div>
  <div class="sec rise"><h3>Akan datang</h3></div>${up.length?grp(up):'<div class="card empty rise">Belum ada jadwal. Tekan ＋ Jadwal untuk menambah psikotes, assessment, atau interview.</div>'}
  ${ps.length?`<div class="sec rise"><h3>Sudah lewat</h3></div><div style="opacity:.8">${grp(ps,1)}</div>`:''}`},
-prog(){const n=jobs.length,R=jobs.map(reach),c=l=>R.filter(r=>r>=l).length,pc=(a,b)=>b?Math.round(a*100/b)+'%':'0%',D0=new Date(today()+'T00:00:00'),dm=k=>{const x=new Date(D0.getTime()-k*864e5);return x.getDate()+'/'+(x.getMonth()+1)};
+prog(part){const n=jobs.length,R=jobs.map(reach),c=l=>R.filter(r=>r>=l).length,pc=(a,b)=>b?Math.round(a*100/b)+'%':'0%',D0=new Date(today()+'T00:00:00'),dm=k=>{const x=new Date(D0.getTime()-k*864e5);return x.getDate()+'/'+(x.getMonth()+1)};
  const SG=['Dilamar','HR Interview','User Interview','Assessment','Offer','Diterima'],cn=SG.map((_,i)=>c(i+1)),mx=Math.max(1,cn[0]);
  const wb=Array(12).fill(0);jobs.forEach(j=>{const f=(hs(j)[0]||{}).d;if(!f)return;const w=Math.floor(dd(f)/7);if(w>=0&&w<12)wb[11-w]++});const wm=Math.max(1,...wb);
  const hc={};jobs.forEach(j=>hs(j).forEach(x=>{if(x.d)hc[x.d]=(hc[x.d]||0)+1}));const hx=Math.max(1,...Object.values(hc)),st=new Date(D0.getTime()-83*864e5);
@@ -568,28 +596,29 @@ prog(){const n=jobs.length,R=jobs.map(reach),c=l=>R.filter(r=>r>=l).length,pc=(a
   const xl=[0,Math.floor(N/2),N].map(i=>`<text x="${X(i)}" y="${Ht-8}" text-anchor="${i?i===N?'end':'middle':'start'}" font-size="12" fill="#56676c">${fmt(at(i)).slice(0,5)}</text>`).join('');
   return `<svg viewBox="0 0 ${W} ${Ht}" style="width:100%;height:auto"><defs><linearGradient id="ga" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0d9488" stop-opacity=".35"/><stop offset="1" stop-color="#0d9488" stop-opacity="0"/></linearGradient></defs>${gr}${xl}<path d="${pth} L${X(N)} ${Y(0)} L${X(0)} ${Y(0)}Z" fill="url(#ga)"/><path d="${pth}" fill="none" stroke="#0d9488" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><circle cx="${X(N)}" cy="${Y(Pt[N])}" r="5" fill="#f59e0b" stroke="#fff" stroke-width="2"/></svg>`})();
  const H=t=>`<h3 style="margin:0 0 12px">${t}</h3>`;
- const lst=jobs.slice().sort((a,b)=>reach(b)-reach(a)||(lastD(b)||'').localeCompare(lastD(a)||'')).map(j=>{const r=reach(j),col=CL[j.status];return `<div class="pt" data-id="${j.id}" data-act="editjob"><div class="pi"><b>${esc(j.company)}</b><small>${esc(j.position)||'-'}</small></div><div class="stp" style="--c:${col}">${SG.map((l,i)=>`<i title="${l}" class="${i<r?'d':''}${i<r-1?' l':''}${i===r-1?' c':''}"></i>`).join('')}</div><span class="pill" style="--c:${col}">${j.status}</span></div>`}).join('');
- return `<div class="rise"><h2 class="t">Progres lamaran</h2><p class="sub">Sejauh mana lamaranmu berjalan, dari kirim sampai hasil akhir.</p></div>
- <div class="g g4">${KK('Total lamaran',n,'#0f4c4a','target '+cfg.target+' · '+pc(n,cfg.target))}${KK('Dapat respons',pc(c(2),c(1)),'#0891b2',c(2)+' dari '+c(1)+' yang dikirim')}${KK('Sampai wawancara user',c(3),'#0d9488',pc(c(3),c(1))+' dari terkirim')}${KK('Offer / diterima',c(5),'#65a30d',pc(c(5),c(1))+' dari terkirim')}</div>
+ const lst=jobs.slice().sort((a,b)=>reach(b)-reach(a)||(lastD(b)||'').localeCompare(lastD(a)||'')).slice(0,15).map(j=>{const r=reach(j),col=CL[j.status];return `<div class="pt" data-id="${j.id}" data-act="editjob"><div class="pi"><b>${esc(j.company)}</b><small>${esc(j.position)||'-'}</small></div><div class="stp" style="--c:${col}">${SG.map((l,i)=>`<i title="${l}" class="${i<r?'d':''}${i<r-1?' l':''}${i===r-1?' c':''}"></i>`).join('')}</div><span class="pill" style="--c:${col}">${j.status}</span></div>`}).join('');
+ const jn=`<div class="card rise"><div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:6px">${H('Perjalanan tiap lamaran')}<span class="hint" style="margin:0">${SG.join(' → ')}</span></div>${lst||'<p class="hint">Belum ada lamaran.</p>'}${jobs.length>15?`<button class="btn s" data-go="job" style="margin-top:10px">Lihat semua ${jobs.length} lamaran</button>`:''}</div>`;if(part)return jn;
+ return `<div class="sec rise" id="sc-prog"><h3>Progres lamaran</h3></div>
+ <div class="g g4">${KK('Sudah dikirim',c(1),'#2563eb',pc(c(1),n)+' dari total lamaran')}${KK('Dapat respons',pc(c(2),c(1)),'#0891b2',c(2)+' dari '+c(1)+' yang dikirim')}${KK('Sampai wawancara user',c(3),'#0d9488',pc(c(3),c(1))+' dari terkirim')}${KK('Offer / diterima',c(5),'#65a30d',pc(c(5),c(1))+' dari terkirim')}</div>
  <div class="g g2"><div class="card rise">${H('Pertumbuhan lamaran (kumulatif)')}${lc}</div><div class="card rise">${H('Lamaran per minggu (12 minggu)')}<div class="mb w" style="grid-template-columns:repeat(12,1fr)">${wb.map((v,i)=>`<div><div class="tr"><i style="height:${v*100/wm}%"></i></div><b>${v}</b><span>${dm((11-i)*7)}</span></div>`).join('')}</div></div></div>
  <div class="g g2"><div class="card rise">${H('Funnel & konversi tahap')}${SG.map((l,i)=>`<div class="fn fn2"><span>${l}</span><div class="bar"><i style="width:${cn[i]*100/mx}%"></i></div><em>${cn[i]}${i?' · '+pc(cn[i],cn[i-1]):''}</em></div>`).join('')}<p class="hint">Angka persen = lolos dari tahap sebelumnya.</p></div>
- <div class="card rise">${H('Aktivitas 12 minggu terakhir')}<div class="hm">${hm}</div><p class="hint">Makin pekat, makin banyak aktivitas pada hari itu.</p></div></div>
- <div class="card rise"><div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:6px">${H('Perjalanan tiap lamaran')}<span class="hint" style="margin:0">${SG.join(' → ')}</span></div>${lst||'<p class="hint">Belum ada lamaran.</p>'}</div>`},
+ <div class="card rise">${H('Aktivitas 12 minggu terakhir')}<div class="hm">${hm}</div><p class="hint">Makin pekat, makin banyak aktivitas pada hari itu.</p></div></div>`},
 dash(){const {n,act,win,out,K,tc,tw,dn}=stat(),sp=skl.length?Math.round(dn*100/skl.length):0;
- return `<div class="hero rise"><div><h2 class="t">Ringkasan</h2><p class="sub" style="margin:0">Semua lamaran dan rencana belajarmu, satu layar.</p></div><div><button class="btn s" data-act="prt">Cetak / PDF</button><button class="btn s" data-act="addskill">＋ Skill</button><button class="btn s" data-act="addsch">＋ Jadwal</button><button class="btn" data-act="addjob">＋ Lamaran</button></div></div>
+ return `<div class="hero rise" id="sc-top"><div><h2 class="t">Ringkasan</h2><p class="sub" style="margin:0">Semua lamaran dan rencana belajarmu, satu layar.</p></div><div><button class="btn s" data-act="prt">Cetak / PDF</button><button class="btn s" data-act="addskill">＋ Skill</button><button class="btn s" data-act="addsch">＋ Jadwal</button><button class="btn" data-act="addjob">＋ Lamaran</button></div></div>
+ ${lts()}
  <div class="g g4">${K('Total lamaran',n,'#0f4c4a',`target ${cfg.target}`)}${K('Sedang proses',act,'#0891b2','HR, User, Assessment')}${K('Offer & diterima',win,'#059669',pct(win)+' dari total')}${K('Tidak lanjut',out,'#dc2626','Rejected, Failed, Ghosted')}</div>
  <div class="g g2"><div class="card rise"><h3 style="margin:0 0 12px;font:600 18px var(--serif)">Status lamaran</h3>
   ${n?`<div class="seg">${ST.filter(cnt).map(s=>`<i title="${s}" style="width:${cnt(s)*100/n}%;background:${CL[s]}"></i>`).join('')}</div>`:''}
   <div style="margin-top:8px">${ST.map(s=>`<div class="sr"><span class="dot" style="background:${CL[s]}"></span><span>${s}</span><em>${cnt(s)}</em><div class="bar" style="margin-top:0"><i style="width:${n?cnt(s)*100/n:0}%;background:${CL[s]}"></i></div></div>`).join('')}</div></div>
   <div class="dr"><div class="card rise"><span style="color:var(--mut);font-size:14px">Target lamaran</span><b style="display:block;font:600 28px var(--serif);color:var(--navy)">${n} / ${cfg.target}</b><div class="bar"><i style="width:${Math.min(100,n*100/cfg.target)}%"></i></div></div>
   <div class="card rise"><h3 style="margin:0 0 12px;font:600 18px var(--serif)">Skill & kursus</h3><div class="mt"><div><span>Total</span><b>${skl.length}</b></div><div><span>Selesai</span><b>${dn}</b></div><div><span>Biaya</span><b>${rp(tc)}</b></div><div><span>Durasi</span><b>${lama(tw)}</b></div></div><div class="bar"><i style="width:${sp}%;background:#059669"></i></div></div></div></div>
- ${extra()}${ana()}${ana2()}${n||skl.length?'':'<div class="card empty rise">Belum ada data. Tekan <b>＋ Lamaran</b> atau <b>＋ Skill</b> untuk mulai.</div>'}`},
+ ${V.prog(0)}${extra()}${ana()}${ana2()}${V.prog(1)}${n||skl.length?'':'<div class="card empty rise">Belum ada data. Tekan <b>＋ Lamaran</b> atau <b>＋ Skill</b> untuk mulai.</div>'}`},
 job(){return `<div class="rise"><h2 class="t">Lamaran</h2><p class="sub">Ketuk baris untuk edit. Ubah status langsung dari pil berwarna.</p></div>
  <div class="tool rise"><input id="fq" placeholder="Cari perusahaan, posisi, lokasi…" value="${esc(flt.q)}"><div class="vt"><button class="${lv==='tbl'?'on':''}" data-act="lv" data-v="tbl">Tabel</button><button class="${lv==='card'?'on':''}" data-act="lv" data-v="card">Kartu</button><button class="${lv==='kan'?'on':''}" data-act="lv" data-v="kan">Papan</button></div><button class="btn s" data-act="csv">Unduh CSV</button></div>
  <div class="chips rise" id="ch">${chips()}</div><div id="lst">${jlist()}</div>`},
 skill(){const {tc,tw,dn}=stat();
  return `<div class="rise"><h2 class="t">Skill & Kursus</h2><p class="sub">Les, kursus, sertifikasi: catat biaya dan lamanya, pantau sampai selesai.</p></div>
- <div class="g g4"><div class="card k rise"><i style="background:#0f4c4a"></i><span>Total rencana</span><b data-n="${skl.length}">0</b><small>${dn} selesai</small></div><div class="card k rise"><i style="background:#d97706"></i><span>Total biaya</span><b style="font-size:24px;line-height:1.6">${rp(tc)}</b><small>semua item</small></div><div class="card k rise"><i style="background:#2563eb"></i><span>Total durasi</span><b style="font-size:24px;line-height:1.6">${lama(tw)}</b><small>jika dijalankan berurutan</small></div><div class="card k rise"><i style="background:#059669"></i><span>Belum selesai</span><b style="font-size:24px;line-height:1.6">${rp(skl.filter(s=>s.status!=='Selesai').reduce((a,s)=>a+(+s.cost||0),0))}</b><small>perkiraan yang masih perlu</small></div></div>
+ <div class="g g4"><div class="card k rise" data-act="kpi" data-k="sk_all" role="button" tabindex="0" title="Ketuk untuk lihat daftar"><i style="background:#0f4c4a"></i><span>Total rencana</span><b data-n="${skl.length}">0</b><small>${dn} selesai</small><em class="kg">Lihat ›</em></div><div class="card k rise" data-act="kpi" data-k="sk_cost" role="button" tabindex="0" title="Ketuk untuk lihat daftar"><i style="background:#d97706"></i><span>Total biaya</span><b style="font-size:24px;line-height:1.6">${rp(tc)}</b><small>semua item</small><em class="kg">Lihat ›</em></div><div class="card k rise" data-act="kpi" data-k="sk_dur" role="button" tabindex="0" title="Ketuk untuk lihat daftar"><i style="background:#2563eb"></i><span>Total durasi</span><b style="font-size:24px;line-height:1.6">${lama(tw)}</b><small>jika dijalankan berurutan</small><em class="kg">Lihat ›</em></div><div class="card k rise" data-act="kpi" data-k="sk_todo" role="button" tabindex="0" title="Ketuk untuk lihat daftar"><i style="background:#059669"></i><span>Belum selesai</span><b style="font-size:24px;line-height:1.6">${rp(skl.filter(s=>s.status!=='Selesai').reduce((a,s)=>a+(+s.cost||0),0))}</b><small>perkiraan yang masih perlu</small><em class="kg">Lihat ›</em></div></div>
  <div class="tool rise"><input id="sqi" placeholder="Cari skill, penyedia…" value="${esc(sq)}"></div><div class="sg" id="slst">${slist()}</div>`}};
 const chips=()=>[['','Semua',jobs.length]].concat(ST.map(s=>[s,s,cnt(s)])).map(c=>`<button class="chip${flt.s===c[0]?' on':''}" data-act="flt" data-s="${c[0]}">${c[1]}<em>${c[2]}</em></button>`).join('');
 function tbl(a){const k=so.k,d=so.d,v=j=>String(j[k]||'').toLowerCase();
@@ -603,6 +632,65 @@ function jlist(){const q=flt.q.toLowerCase(),a=jobs.filter(j=>(!flt.s||j.status=
  <div class="rm"><b>${esc(j.company)}</b><span>${esc(j.position)}</span></div><div class="mm"><span>${esc(j.location)||'-'}</span><small>${[j.type,fmt(j.date)].filter(Boolean).map(esc).join(' · ')||'-'}${j.note?' 📝':''}</small></div>
  <select class="ps" data-act="st" style="--c:${CL[j.status]}">${opts(ST,j.status)}</select>
  <div class="ra"><button data-act="cvj" aria-label="CV ATS" title="CV ATS">📄</button>${j.link?`<a href="${esc(j.link)}" target="_blank" rel="noopener" aria-label="Buka link">↗</a>`:''}<button class="dl" data-act="deljob" aria-label="Hapus">✕</button></div></div>`).join('')}
+/* ---------- Semua kartu penting bisa diketuk: daftar tracking per kartu ---------- */
+const KXK={'Total lamaran':'all','Sedang proses':'act','Offer & diterima':'win','Tidak lanjut':'out','Sudah dilamar':'sent','Sudah dikirim':'sent','Dapat respons':'resp','Sampai wawancara user':'int3','Offer / diterima':'offr','Perlu tindak lanjut':'stale','Aktivitas 30 hari':'act30','Rata-rata respons':'avg','Laju lamaran':'pace','Estimasi capai target':'eta','Lamaran basi':'basi','Follow up jatuh tempo':'fu','Deadline ≤ 7 hari':'ddl','Target minggu ini':'wk7','Streak':'streak','Hari ini':'today','7 hari ke depan':'week','Akan datang':'up','Sudah lewat':'past'};
+const kcA=k=>k?` data-act="kpi" data-k="${k}" role="button" tabindex="0" title="Ketuk untuk lihat daftar"`:'',kgA=k=>k?'<em class="kg">Lihat ›</em>':'';
+const kxS=(j,n)=>ACT.includes(j.status)&&!!lastD(j)&&dd(lastD(j))>n,
+ kxR=j=>{const h=hs(j),a=h.find(x=>x.s==='Applied'),r=h.find(x=>!x.auto&&!['Applied','Not Applied','Ghosted'].includes(x.s));return a&&r&&a.d&&r.d?Math.round((new Date(r.d)-new Date(a.d))/864e5):-1},
+ kxW=j=>{const f=(hs(j)[0]||{}).d;return f?dd(f):-1},
+ kxE=()=>sev().map(x=>({id:x.jid,d:x.d,tm:x.t||'',t:x.k+' · '+x.co,p:(x.po||'-')+(x.n?' · '+x.n:''),col:SK[x.k]||'#78858a',pl:rel(dl(x.d)),s:x.k,n:dl(x.d)})),
+ kxA=(l)=>l.slice().sort((p,q)=>(lastD(q)||'').localeCompare(lastD(p)||''));
+const KX={
+ all:{t:'Total lamaran',c:'#0f4c4a',h:()=>'Target '+cfg.target+' lamaran.',f:()=>jobs},
+ act:{t:'Sedang proses',c:'#0891b2',h:'HR Interview, User Interview, dan Assessment.',f:()=>jobs.filter(j=>['HR Interview','User Interview','Assessment'].includes(j.status))},
+ win:{t:'Offer & diterima',c:'#059669',h:'Lamaran berstatus Offer atau Accepted.',f:()=>jobs.filter(j=>['Offer','Accepted'].includes(j.status))},
+ out:{t:'Tidak lanjut',c:'#dc2626',h:'Rejected, Failed, dan Ghosted.',f:()=>jobs.filter(j=>['Rejected','Failed','Ghosted'].includes(j.status))},
+ sent:{t:'Sudah dilamar',c:'#2563eb',h:'Lamaran berstatus Applied atau yang sudah lebih jauh.',f:()=>jobs.filter(j=>reach(j)>=1)},
+ resp:{t:'Dapat respons',c:'#0891b2',h:'Lamaran yang sudah lanjut melewati tahap Applied.',f:()=>jobs.filter(j=>reach(j)>=2)},
+ int3:{t:'Sampai wawancara user',c:'#0d9488',h:'Lamaran yang pernah mencapai User Interview atau lebih.',f:()=>jobs.filter(j=>reach(j)>=3)},
+ offr:{t:'Offer / diterima',c:'#65a30d',h:'Lamaran yang pernah mencapai Offer atau Accepted.',f:()=>jobs.filter(j=>reach(j)>=5)},
+ stale:{t:'Perlu tindak lanjut',c:'#d97706',h:'Lamaran aktif tanpa kabar lebih dari 14 hari. Yang paling lama di atas.',o:1,f:()=>kxA(jobs.filter(j=>kxS(j,14))).reverse()},
+ basi:{t:'Lamaran basi',c:'#dc2626',h:'Lamaran aktif tanpa kabar lebih dari 30 hari. Yang paling lama di atas.',o:1,f:()=>kxA(jobs.filter(j=>kxS(j,30))).reverse()},
+ avg:{t:'Rata-rata respons',c:'#0891b2',h:'Lamaran yang sudah dibalas, dari respons terlama.',o:1,x:j=>' · dibalas '+kxR(j)+' hari',f:()=>jobs.filter(j=>kxR(j)>=0).sort((p,q)=>kxR(q)-kxR(p))},
+ pace:{t:'Laju lamaran',c:'#2563eb',h:'Lamaran yang dikirim dalam 28 hari terakhir.',f:()=>jobs.filter(j=>{const n=kxW(j);return n>=0&&n<28})},
+ eta:{t:'Progres menuju target',c:'#f59e0b',h:()=>jobs.length+' dari target '+cfg.target+' lamaran.',f:()=>jobs},
+ wk7:{t:'Lamaran 7 hari terakhir',c:'#2563eb',h:()=>'Target mingguan '+cfg.wt+' lamaran.',f:()=>jobs.filter(j=>{const n=kxW(j);return n>=0&&n<7})},
+ streak:{t:'Streak mingguan',c:'#f59e0b',h:'Lamaran pada minggu-minggu beruntun yang mencapai target mingguan.',f:()=>{const wc={};jobs.forEach(j=>{const n=kxW(j);if(n>=0){const w=Math.floor(n/7);wc[w]=(wc[w]||0)+1}});let st=0,i=(wc[0]||0)>=cfg.wt?0:1;const a0=i;while((wc[i]||0)>=cfg.wt){st++;i++}return jobs.filter(j=>{const n=kxW(j);if(n<0)return false;const w=Math.floor(n/7);return st>0&&w>=a0&&w<a0+st})}},
+ fu:{t:'Follow up jatuh tempo',c:'#d97706',h:'Lamaran aktif yang tanggal follow up-nya sudah tiba.',o:1,x:j=>' · follow up '+fmt(j.fu)+(j.ct?' · '+j.ct:''),f:()=>jobs.filter(j=>ACT.includes(j.status)&&j.fu&&j.fu<=today()).sort((p,q)=>p.fu.localeCompare(q.fu))},
+ ddl:{t:'Deadline ≤ 7 hari',c:'#dc2626',h:'Lamaran yang belum dikirim dan deadline daftarnya dekat.',o:1,x:j=>' · deadline '+fmt(j.dlu),f:()=>jobs.filter(j=>j.status==='Not Applied'&&j.dlu&&dl(j.dlu)<=7).sort((p,q)=>p.dlu.localeCompare(q.dlu))},
+ act30:{t:'Aktivitas 30 hari',c:'#f59e0b',h:'Semua kejadian tercatat dalam 30 hari terakhir.',k:'e',f:()=>{const ev=[];jobs.forEach(j=>hs(j).forEach(x=>{if(x.d&&dd(x.d)>=0&&dd(x.d)<=30)ev.push({id:j.id,d:x.d,tm:'',t:j.company,p:(j.position||'-')+(x.n?' · '+x.n:''),col:CL[x.s]||'#94a3b8',pl:x.s,s:x.s})}));return ev.sort((p,q)=>q.d.localeCompare(p.d))}},
+ today:{t:'Jadwal hari ini',c:'#dc2626',k:'e',h:'Psikotes, assessment, dan interview hari ini.',f:()=>kxE().filter(x=>x.n===0)},
+ week:{t:'Jadwal 7 hari ke depan',c:'#f59e0b',k:'e',h:'Termasuk hari ini.',f:()=>kxE().filter(x=>x.n>=0&&x.n<=7)},
+ up:{t:'Jadwal akan datang',c:'#0d9488',k:'e',h:'Semua jadwal yang belum lewat.',f:()=>kxE().filter(x=>x.n>=0)},
+ past:{t:'Jadwal sudah lewat',c:'#78858a',k:'e',h:'Riwayat jadwal, dari yang terbaru.',f:()=>kxE().filter(x=>x.n<0).reverse()},
+ sk_all:{t:'Total rencana skill',c:'#0f4c4a',k:'s',h:'Semua skill, kursus, dan sertifikasi.',f:()=>skl},
+ sk_cost:{t:'Total biaya',c:'#d97706',k:'s',h:()=>'Total '+rp(skl.reduce((a,x)=>a+(+x.cost||0),0))+', dari yang termahal.',f:()=>skl.slice().sort((p,q)=>(+q.cost||0)-(+p.cost||0))},
+ sk_dur:{t:'Total durasi',c:'#2563eb',k:'s',h:()=>'Total '+lama(skl.reduce((a,x)=>a+wk(x),0))+' jika berurutan, dari yang terlama.',f:()=>skl.slice().sort((p,q)=>wk(q)-wk(p))},
+ sk_todo:{t:'Belum selesai',c:'#059669',k:'s',h:()=>'Perkiraan biaya yang masih perlu '+rp(skl.filter(x=>x.status!=='Selesai').reduce((a,x)=>a+(+x.cost||0),0))+'.',f:()=>skl.filter(x=>x.status!=='Selesai').sort((p,q)=>(+q.cost||0)-(+p.cost||0))}
+};
+let kp={k:'all',s:'',q:''};
+const kpb=()=>KX[kp.k].f(),kpg=x=>x.status||x.s||'',
+ kpt=(x,K)=>(K.k==='e'?x.t+' '+x.p:K.k==='s'?x.name+' '+x.provider+' '+x.kind:x.company+' '+x.position+' '+x.location).toLowerCase();
+const kpc=()=>{const b=kpb(),m={};b.forEach(x=>{const g=kpg(x);m[g]=(m[g]||0)+1});return [['','Semua',b.length]].concat(Object.entries(m).sort((p,q)=>q[1]-p[1]).map(([g,n])=>[g,g,n])).map(c=>`<button class="chip${kp.s===c[0]?' on':''}" data-act="kpf" data-s="${esc(c[0])}">${esc(c[1])}<em>${c[2]}</em></button>`).join('')};
+function kpr(x,K){
+ if(K.k==='e')return `<div class="se" data-id="${x.id}" data-act="editjob"><span class="dot" style="background:${x.col}"></span><div><b>${esc(x.t)}</b><small>${esc(x.p)}</small></div><time>${fmt(x.d)}${x.tm?' · '+esc(x.tm):''}</time><span class="pill" style="--c:${x.col}">${esc(x.pl)}</span></div>`;
+ if(K.k==='s')return `<div class="se" data-id="${x.id}" data-act="editskill"><span class="dot" style="background:${SC[x.status]||'#78858a'}"></span><div><b>${esc(x.name)}</b><small>${esc(x.provider||x.kind)} · ${rp(x.cost)}${x.dur?' · '+esc(x.dur)+' '+esc(x.unit):''}</small></div><time>${x.date?fmt(x.date):''}</time><span class="pill" style="--c:${SC[x.status]||'#78858a'}">${esc(x.status)}</span></div>`;
+ const d=dd(lastD(x));return `<div class="se" data-id="${x.id}" data-act="editjob"><span class="dot" style="background:${CL[x.status]}"></span><div><b>${esc(x.company)}</b><small>${esc(x.position)||'-'}${x.location?' · '+esc(x.location):''}${d===0?' · update hari ini':d>0?' · update '+d+' hari lalu':''}${K.x?esc(K.x(x)):''}${kxS(x,14)?' · ⚠ perlu follow up':''}</small></div><time>${fmt(lastD(x))}</time><span class="pill" style="--c:${CL[x.status]}">${x.status}</span></div>`}
+function kpl(){const K=KX[kp.k],q=kp.q.toLowerCase();let a=kpb().filter(x=>(!kp.s||kpg(x)===kp.s)&&(!q||kpt(x,K).includes(q)));
+ if(!K.k&&!K.o)a=kxA(a);
+ return a.length?a.map(x=>kpr(x,K)).join(''):'<p class="hint">'+(kpb().length?'Tidak ada yang cocok.':'Belum ada data untuk kartu ini.')+'</p>'}
+const HUB=[['Perlu aksi',['today','fu','ddl','stale','basi']],['Status lamaran',['all','act','win','out']],['Tahap seleksi',['sent','resp','int3','offr']],['Aktivitas & laju',['act30','pace','wk7','streak','avg','eta']],['Jadwal',['week','up','past']],['Skill & kursus',['sk_all','sk_cost','sk_dur','sk_todo']]],HOT=['today','fu','ddl','stale','basi'];
+const hh=()=>{const h=document.querySelector('.hd');if(h)document.documentElement.style.setProperty('--hh',h.offsetHeight+'px')};
+window.addEventListener('resize',hh);
+function lts(){const ch=(k,l,c,hot)=>{const v=KX[k].f().length;return `<button data-act="kpi" data-k="${k}" class="${hot&&v?'hot':''}" style="--c:${c}">${l}<b>${v}</b></button>`};
+ return `<div class="lt" role="toolbar" aria-label="Pelacak langsung"><span class="lv" title="${cfg.url?'Tersinkron dengan Google Sheets':'Mode lokal, belum tersambung'}"><i${cfg.url?'':' style="background:#94a3b8;animation:none"'}></i>${cfg.url?'Live':'Lokal'}</span><button data-act="hub" class="hubb">☰ Semua pelacak</button>${ch('today','Hari ini','#dc2626',1)}${ch('fu','Follow up','#d97706',1)}${ch('ddl','Deadline','#dc2626',1)}${ch('stale','Tanpa kabar','#d97706',1)}${ch('act','Proses','#0891b2')}${ch('win','Offer','#059669')}${ch('out','Tidak lanjut','#78858a')}${ch('up','Jadwal','#0d9488')}<span class="ls"></span>${[['sc-prog','Progres'],['sc-trip','Perjalanan'],['sc-ana','Analitik'],['sc-todo','Tindak lanjut']].map(j=>`<button data-act="jump" data-to="${j[0]}" class="jb">↓ ${j[1]}</button>`).join('')}</div>`}
+function hubm(){modal(`<h3>Pusat pelacak</h3><p class="hint" style="margin:0 0 4px">Semua daftar tracking di satu tempat. Ketuk kotak untuk melihat daftarnya; yang berwarna perlu perhatian.</p>
+ <div class="hl">Loncat ke bagian Dashboard</div><div class="hj"><button class="btn s" data-act="jump" data-to="sc-top">Ringkasan</button><button class="btn s" data-act="jump" data-to="sc-prog">Progres</button><button class="btn s" data-act="jump" data-to="sc-trip">Perjalanan</button><button class="btn s" data-act="jump" data-to="sc-ana">Analitik</button><button class="btn s" data-act="jump" data-to="sc-todo">Tindak lanjut</button></div>
+ ${HUB.map(g=>`<div class="hl">${g[0]}</div><div class="hg">${g[1].map(k=>{const K=KX[k],n=K.f().length;return `<button class="ht${HOT.includes(k)&&n?' hot':''}" data-act="kpi" data-k="${k}" style="--c:${K.c}"><b>${n}</b><span>${esc(K.t)}</span></button>`}).join('')}</div>`).join('')}`)}
+function kpm(k){if(!KX[k])return;kp={k,s:'',q:''};const K=KX[k],b=kpb(),h=typeof K.h==='function'?K.h():(K.h||''),stale=!K.k&&k!=='stale'?b.filter(j=>kxS(j,14)).length:0;
+ modal(`<h3>${esc(K.t)} <span style="color:${K.c}">(${b.length})</span></h3><p class="hint" style="margin:0 0 10px">${esc(h)} Ketuk baris untuk melihat detail dan mengubahnya.${stale?` <b style="color:#d97706">${stale} lamaran lebih dari 14 hari tanpa kabar.</b>`:''}</p>
+ <select id="kps" aria-label="Pindah ke daftar lain" style="margin:0 0 8px">${HUB.map(g=>`<optgroup label="${g[0]}">${g[1].map(x=>`<option value="${x}"${x===k?' selected':''}>${esc(KX[x].t)} (${KX[x].f().length})</option>`).join('')}</optgroup>`).join('')}</select>
+ <div class="chips" id="kpc">${kpc()}</div><input id="kpq" placeholder="Cari…" style="margin:2px 0 8px"><div id="kpl">${kpl()}</div>`)}
 function slist(){const q=sq.toLowerCase(),a=skl.filter(s=>!q||(s.name+' '+s.provider+' '+s.kind).toLowerCase().includes(q));
  if(!a.length)return `<div class="card empty rise" style="grid-column:1/-1">${skl.length?'Tidak ada yang cocok.':'Belum ada skill. Tekan ＋ Tambah, lalu pilih contoh cepat untuk perkiraan biaya dan durasi.'}</div>`;
  return a.map(s=>`<div class="card sc rise" data-id="${s.id}" data-act="editskill"><div style="display:flex;justify-content:space-between;gap:8px;align-items:start"><h4>${esc(s.name)}</h4><span class="tag">${esc(s.kind)}</span></div>
@@ -614,8 +702,9 @@ function anim(root){(root||document).querySelectorAll('.rise').forEach((e,i)=>e.
  (root||document).querySelectorAll('[data-n],[data-m]').forEach(e=>{const to=+(e.dataset.n||e.dataset.m),t0=performance.now();(function f(t){const p=Math.min(1,(t-t0)/900),v=Math.round(to*(1-Math.pow(1-p,3)));e.textContent=v;if(p<1)requestAnimationFrame(f)})(t0)})}
 function render(){
  $('nv').innerHTML=NAV.map(n=>`<button data-go="${n[0]}" class="${n[0]===view?'on':''}">${n[1]}</button>`).join('');
- $('mn').innerHTML=(cfg.url?'':NB)+V[view]();$('fab').hidden=view==='dash'||view==='prog';$('fab').textContent=view==='skill'?'＋ Skill':view==='sch'?'＋ Jadwal':'＋ Lamaran';anim($('mn'))}
-function go(v){view=v;render();window.scrollTo({top:0,behavior:'smooth'})}
+ if(view==='prog')view='dash';
+ $('mn').innerHTML=(cfg.url?'':NB)+V[view]();$('fab').hidden=view==='dash'||view==='prog';$('fab').textContent=view==='skill'?'＋ Skill':view==='sch'?'＋ Jadwal':'＋ Lamaran';anim($('mn'));hh()}
+function go(v){view=v==='prog'?'dash':v;render();window.scrollTo({top:0,behavior:'smooth'})}
 const list=(id,html)=>{const e=$(id);e.innerHTML=html;anim(e)};
 
 /* ---------- Modal ---------- */
@@ -685,6 +774,8 @@ const A={
  rest(){const f=document.createElement('input');f.type='file';f.accept='.json,application/json';f.onchange=()=>{const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result),h=new Set(jobs.map(key));let n=0;(d.jobs||[]).forEach(j=>{if(!h.has(key(j))){jobs.push(Object.assign({},j,{id:uid()}));h.add(key(j));n++}});const sn=new Set(skl.map(x=>x.name));(d.skills||[]).forEach(x=>{if(!sn.has(x.name)){skl.push(Object.assign({},x,{id:uid()}));sn.add(x.name)}});persist();closeM();render();toast(n+' lamaran dipulihkan')}catch(e){toast('File tidak valid')}};r.readAsText(f.files[0])};f.click()},
  cpl(){const v=$('cl').value;(navigator.clipboard?navigator.clipboard.writeText(v):Promise.reject()).then(()=>toast('Link disalin'),()=>{$('cl').select();toast('Salin manual dari kolom')})},
  addjob(){openJob()},addskill(){openSkill()},addnew(){view==='skill'?openSkill():view==='sch'?openSch():openJob()},addsch(){openSch()},
+ kpi(b){kpm(b.dataset.k)},hub(){hubm()},
+ jump(b){closeM();if(view!=='dash'){view='dash';render()}const id=b.dataset.to;setTimeout(()=>{const e=$(id);if(e)e.scrollIntoView({behavior:'smooth',block:'start'})},id==='sc-top'?320:340)},kpf(b){kp.s=b.dataset.s;$('kpc').innerHTML=kpc();$('kpl').innerHTML=kpl()},
  editjob(b,e){if(e.target.closest('select,a,.dl'))return;openJob(b.dataset.id)},editskill(b,e){if(e.target.closest('select,a,.dl'))return;openSkill(b.dataset.id)},
  pick(b){document.querySelectorAll('#js .chip').forEach(c=>c.classList.toggle('on',c===b))},
  preset(b){const p=PRE[+b.dataset.i];$('sn').value=p[0];$('sk').value=p[1];$('sp').value=p[2];$('sc').value=p[3];$('sd').value=p[4];$('su').value=p[5];$('sh').textContent=rp(p[3])+' (perkiraan kasar, cek harga resmi)'},
@@ -738,14 +829,17 @@ document.addEventListener('click',e=>{const b=e.target.closest('[data-act]');if(
  const n=e.target.closest('[data-go]');if(n)go(n.dataset.go);if(e.target.classList&&e.target.classList.contains('mo'))closeM()});
 document.addEventListener('change',e=>{const t=e.target,a=t.dataset.act;
  if(t.closest&&t.closest('#xh'))cvSoon();
+ if(t.id==='kps'){kpm(t.value);return}
  if(a==='st'){const j=jobs.find(x=>x.id===t.closest('.row,.trw').dataset.id);j.status=t.value;(j.hist=j.hist||[]).push({d:today(),s:j.status,n:''});t.style.setProperty('--c',CL[j.status]);persist();$('ch').innerHTML=chips()}
  if(a==='sst'){const s=skl.find(x=>x.id===t.closest('.sc').dataset.id);s.status=t.value;t.style.setProperty('--c',SC[s.status]);persist()}});
 document.addEventListener('input',e=>{const t=e.target;
  if(t.id==='fq'){flt.q=t.value;list('lst',jlist())}if(t.id==='sqi'){sq=t.value;list('slst',slist())}
   if(t.id==='sc')$('sh').textContent=rp(t.value);
  if(t.id==='xcx')cvDirty=true;
+ if(t.id==='kpq'){kp.q=t.value;$('kpl').innerHTML=kpl()}
  if(t.id==='xjd'||t.id==='xtt')cvSoon()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeM();
+ if((e.key==='Enter'||e.key===' ')&&e.target.dataset&&e.target.dataset.act==='kpi'){e.preventDefault();A.kpi(e.target)}
  if(e.key==='Enter'&&e.target.closest('.sh')&&e.target.tagName==='INPUT'){const b=document.querySelector('.sh [data-act^=save]');if(b&&e.target.type!=='url')b.click()}});
 
 /* ---------- Login ---------- */
