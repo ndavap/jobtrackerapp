@@ -350,16 +350,69 @@ function cvPrint(txt,name){$('cvp').innerHTML=cvHtml(txt);const t=document.title
  const done=()=>{document.body.classList.remove('pcv');document.title=t;window.removeEventListener('afterprint',done)};window.addEventListener('afterprint',done);setTimeout(()=>window.print(),150)}
 async function cvPull(){if(cvLoaded||!cfg.url)return;cvLoaded=1;try{const d=await api('cvget');if(d.cv){cvt=d.cv;ls('jt_cvt',cvt)}}catch(e){cvLoaded=0}}
 const cvHid=()=>[...document.querySelectorAll('#xh input')].filter(c=>!c.checked).map(c=>c.dataset.h);
+
+/* ---------- PDF asli: dibuat langsung di browser, tanpa pustaka dan tanpa dialog cetak ---------- */
+const PWR=('278 278 355 556 556 889 667 191 333 333 389 584 278 333 278 278 '+'556 '.repeat(10)+'278 278 584 584 584 556 1015 667 667 722 722 667 611 778 722 278 500 667 556 833 722 778 667 778 722 667 611 722 667 944 667 667 611 278 278 278 469 556 333 556 556 500 556 556 278 556 556 222 222 500 222 833 556 556 556 556 333 500 278 556 500 722 500 500 500 334 260 334 584').split(' ').map(Number);
+const PWB=('278 333 474 556 556 889 722 238 333 333 389 584 278 333 278 278 '+'556 '.repeat(10)+'333 333 584 584 584 611 975 722 722 722 722 667 611 778 722 278 556 722 611 833 722 778 667 778 722 667 611 722 667 944 667 667 611 333 278 333 584 556 333 556 611 556 611 556 333 611 611 278 278 556 278 889 611 611 611 611 389 556 333 611 556 778 556 556 500 389 280 389 584').split(' ').map(Number);
+const PWM={'\u2013':'\x96','\u2014':'\x97','\u2022':'\x95','\u2019':'\x92','\u2018':'\x91','\u201c':'\x93','\u201d':'\x94','\u2026':'\x85','\u20ac':'\x80','\u2122':'\x99'};
+function cvPdf(txt,title){
+ const P=cvParse(txt),W=595.28,HT=841.89,M=40,CW=W-2*M;
+ const enc=s=>Array.from(String(s).normalize('NFC')).map(ch=>{const c=ch.charCodeAt(0);if(c===9)return' ';if(c<32)return'';return c<127||(c>=160&&c<256)?ch:(PWM[ch]||'?')}).join('');
+ const cw=(ch,b)=>{const c=ch.charCodeAt(0);return(c>=32&&c<127?(b?PWB:PWR)[c-32]:c===149?350:556)/1000};
+ const tw=(s,b,z)=>{let w=0;for(const ch of s)w+=cw(ch,b);return w*z};
+ const wrap=(s,b,z,max)=>{const out=[];let cur='';
+  for(let w of s.split(/\s+/).filter(Boolean)){
+   while(tw(w,b,z)>max&&w.length>1){let k=1;while(k<w.length-1&&tw(w.slice(0,k+1),b,z)<=max)k++;if(cur){out.push(cur);cur=''}out.push(w.slice(0,k));w=w.slice(k)}
+   const t=cur?cur+' '+w:w;if(tw(t,b,z)<=max)cur=t;else{if(cur)out.push(cur);cur=w}}
+  if(cur)out.push(cur);return out.length?out:['']};
+ const pages=[];let pg,y;
+ const np=()=>{pg=[];pages.push(pg);y=HT-M},need=h=>{if(y-h<M)np()},es=s=>s.replace(/[\\()]/g,'\\$&');
+ const tx=(s,x,by,b,z)=>pg.push('BT /F'+(b?2:1)+' '+z+' Tf '+x.toFixed(2)+' '+by.toFixed(2)+' Td ('+es(s)+') Tj ET');
+ const base=(lh,z)=>y+(lh-z)/2+z*.2;
+ const L=(s,b,z,lh,al,x)=>{need(lh);y-=lh;const w=tw(s,b,z);tx(s,al==='c'?(W-w)/2:(x==null?M:x),base(lh,z),b,z)};
+ const row=(l,r)=>{const z=10.5,lh=14.5,rw=r?tw(r,0,z):0,ls=wrap(l,1,z,CW-(r?rw+12:0));need(lh*Math.max(2,ls.length));
+  ls.forEach((t,i)=>{L(t,1,z,lh);if(i===0&&r)tx(r,W-M-rw,base(lh,z),0,z)})};
+ np();
+ wrap(enc(P.n).toUpperCase(),1,17,CW).forEach(t=>L(t,1,17,20,'c'));y-=3;
+ if(P.c)wrap(enc(P.c),1,9,CW).forEach(t=>L(t,1,9,12,'c'));
+ P.S.forEach(s=>{y-=7;need(16+29);L(enc(s.t).toUpperCase(),1,10.5,15);const ry=(y-1.5).toFixed(2);pg.push('0.6 w '+M+' '+ry+' m '+(W-M)+' '+ry+' l S');y-=3;
+  s.it.forEach(it=>{it.forEach(l=>{
+   if(l.startsWith('- '))wrap(enc(l.slice(2)),0,10.5,CW-16).forEach((t,i)=>{L(t,0,10.5,13.6,'l',M+16);if(!i)tx(enc('\u2022'),M+5,base(13.6,10.5),0,10.5)});
+   else if(l[0]==='*'){const p=l.slice(1).split('|').map(x=>enc(x.trim()));row(p[0],p.slice(1).join(' | '))}
+   else wrap(enc(l),0,10.5,CW).forEach(t=>L(t,0,10.5,13.6))});y-=3})});
+ const objs=[null,'<</Type/Catalog/Pages 2 0 R>>',null,'<</Type/Font/Subtype/Type1/BaseFont/Helvetica/Encoding/WinAnsiEncoding>>','<</Type/Font/Subtype/Type1/BaseFont/Helvetica-Bold/Encoding/WinAnsiEncoding>>','<</Title ('+es(enc(title||'CV').replace(/[^\x20-\x7e]/g,''))+')/Producer (Job Tracker)>>'],kids=[];
+ pages.forEach((p,i)=>{const pn=6+2*i,cn=pn+1,st=p.join('\n');kids.push(pn+' 0 R');
+  objs[pn]='<</Type/Page/Parent 2 0 R/MediaBox [0 0 '+W+' '+HT+']/Resources<</Font<</F1 3 0 R/F2 4 0 R>>>>/Contents '+cn+' 0 R>>';
+  objs[cn]='<</Length '+st.length+'>>\nstream\n'+st+'\nendstream'});
+ objs[2]='<</Type/Pages/Kids ['+kids.join(' ')+']/Count '+kids.length+'>>';
+ let out='%PDF-1.4\n%\xE2\xE3\xCF\xD3\n';const off=[];
+ for(let i=1;i<objs.length;i++){off[i]=out.length;out+=i+' 0 obj\n'+objs[i]+'\nendobj\n'}
+ const xr=out.length;out+='xref\n0 '+objs.length+'\n0000000000 65535 f \n'+off.slice(1).map(o=>String(o).padStart(10,'0')+' 00000 n \n').join('')+'trailer\n<</Size '+objs.length+'/Root 1 0 R/Info 5 0 R>>\nstartxref\n'+xr+'\n%%EOF';
+ const u=new Uint8Array(out.length);for(let i=0;i<out.length;i++)u[i]=out.charCodeAt(i)&255;
+ return new Blob([u],{type:'application/pdf'})}
+const cvFile=(n,j)=>['CV',n,j&&j.company].map(x=>String(x||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^\w]+/g,'_').replace(/^_+|_+$/g,'')).filter(Boolean).join('_');
+function cvSave(blob,name){const u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=name;a.rel='noopener';document.body.appendChild(a);a.click();setTimeout(()=>{a.remove();URL.revokeObjectURL(u)},5000)}
+/* CV otomatis: dibuat ulang dari template + kualifikasi lowongan setiap input berubah, kecuali teks sudah diedit manual */
+let cvDirty=false,cvId='',cvT=0;
+function cvRefresh(j,force){const r=cvGen(j,$('xjd').value,g('xtt'),cvHid()),ms=r.T.filter(t=>!r.hit.includes(t));
+ if(force||!cvDirty){$('xcx').value=r.txt;cvDirty=false}
+ $('xr').innerHTML=r.T.length?`<div class="card" style="margin-top:12px"><b>Kecocokan kata kunci: ${Math.round(r.hit.length*100/r.T.length)}%</b> <small>(${r.hit.length} dari ${r.T.length} kata kunci teratas JD)</small><p class="hint">Sudah ada di CV:</p><div>${r.hit.map(t=>`<span class="tag">${esc(t)}</span>`).join(' ')||'-'}</div><p class="hint">Belum ada di CV (tambahkan hanya jika memang Anda miliki):</p><div>${ms.map(t=>`<span class="pill" style="--c:#d97706">${esc(t)}</span>`).join(' ')||'-'}</div></div>`:'';
+ $('xs').textContent=cvDirty?'Teks ini hasil edit atau versi tersimpan, jadi tidak ikut berubah otomatis. Tekan "Buat ulang otomatis" untuk membuatnya lagi dari template dan kualifikasi.':(r.T.length?'CV dibuat otomatis dan ikut diperbarui saat kualifikasi atau pilihan pengalaman diubah.':'Tempel kualifikasi lowongan agar CV disesuaikan dengan kata kunci.');
+ return r}
+const cvSoon=()=>{clearTimeout(cvT);cvT=setTimeout(()=>{const j=jobs.find(x=>x.id===cvId);if(j&&$('xcx')&&$('xs'))cvRefresh(j)},350)};
+
 function cvm(id){const j=jobs.find(x=>x.id===id);if(!j)return;const P=cvParse(cvt),hid=(j.cvh||'').split(','),ex=[];
  P.S.forEach((s,si)=>{if(/experience|pengalaman/i.test(s.t))s.it.forEach((it,ii)=>{const f=l=>(l||'').replace(/^\*/,'').split('|')[0].trim();ex.push(`<label class="lg" style="margin:2px 0"><input type="checkbox" style="width:18px;min-height:0" data-h="${si}.${ii}"${hid.includes(si+'.'+ii)?'':' checked'}> ${esc(f(it[0]))}${it[1]&&it[1][0]==='*'?' · '+esc(f(it[1])):''}</label>`)})});
- modal(`<h3>CV ATS</h3><p class="hint" style="margin:0 0 8px">${esc(j.company)} · ${esc(j.position)}. Tempel deskripsi lowongan agar kata kunci dicocokkan dengan CV Anda. Tidak ada skill atau pengalaman yang ditambahkan, hanya urutan butir dan ringkasan yang disesuaikan.</p>
+  modal(`<h3>CV ATS</h3><p class="hint" style="margin:0 0 8px">${esc(j.company)} · ${esc(j.position)}. CV dibuat otomatis dari template CV Anda dan kualifikasi lowongan di bawah: hanya urutan butir dan ringkasan yang disesuaikan, tidak ada skill atau pengalaman yang ditambahkan.</p>
  <label>Judul posisi target</label><input id="xtt" value="${esc(j.tt||j.position)}">
- <label>Deskripsi lowongan (JD)</label><textarea class="ta" id="xjd" style="min-height:130px" placeholder="Tempel kualifikasi dan tanggung jawab dari lowongan">${esc(j.jd)}</textarea>
+ <label>Kualifikasi / deskripsi lowongan (JD)</label><textarea class="ta" id="xjd" style="min-height:130px" placeholder="Tempel kualifikasi dan tanggung jawab dari lowongan">${esc(j.jd)}</textarea>
  ${ex.length?`<label>Pengalaman yang ditampilkan</label><div id="xh">${ex.join('')}</div>`:''}
- <div class="act"><button class="btn" data-act="cvgen" data-id="${j.id}">Buat CV tersesuaikan</button></div><div id="xr"></div>
- <label>Teks CV untuk lamaran ini <small>(boleh diedit)</small></label><textarea class="ta" id="xcx" style="min-height:220px;font:13px/1.4 ui-monospace,monospace">${esc(j.cvx)}</textarea>
- <div class="act"><button class="btn" data-act="cvpdf" data-id="${j.id}">Unduh PDF</button><button class="btn s" data-act="cvpr" data-id="${j.id}">Salin prompt Claude</button></div>
- <div class="act" style="margin-top:10px"><button class="btn s" data-act="cvsave" data-id="${j.id}" style="flex:1">Simpan untuk lamaran ini</button></div>`)}
+ <div id="xr"></div><p class="hint" id="xs" style="margin:10px 0 0"></p>
+ <label>Teks CV untuk lamaran ini <small>(boleh diedit)</small></label><textarea class="ta" id="xcx" style="min-height:220px;font:13px/1.4 ui-monospace,monospace"></textarea>
+ <div class="act"><button class="btn" data-act="cvpdf" data-id="${j.id}">Unduh PDF</button><button class="btn s" data-act="cvgen" data-id="${j.id}">Buat ulang otomatis</button></div>
+ <div class="act" style="margin-top:10px"><button class="btn s" data-act="cvsave" data-id="${j.id}" style="flex:1">Simpan untuk lamaran ini</button><button class="btn s" data-act="cvprint" data-id="${j.id}" style="flex:1">Cetak</button><button class="btn s" data-act="cvpr" data-id="${j.id}" style="flex:1">Salin prompt Claude</button></div>`);
+ cvId=id;cvDirty=false;const r0=cvRefresh(j,1),sv=(j.cvx||'').trim();if(sv&&sv!==r0.txt){$('xcx').value=sv;cvDirty=true;cvRefresh(j)}
+ cvPull().then(()=>{if($('xcx')&&cvId===id&&!cvDirty)cvRefresh(j)})}
 function undo(t,f){const e=$('ts');e.innerHTML=esc(t)+' <button id="tu" style="margin-left:10px;border:0;background:#fde68a;color:#1f2a2e;border-radius:99px;padding:4px 12px;font:700 13px inherit;cursor:pointer">Urungkan</button>';e.style.pointerEvents='auto';e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(()=>{e.classList.remove('on');e.style.pointerEvents=''},8000);$('tu').onclick=()=>{f();e.classList.remove('on');e.style.pointerEvents='';toast('Dikembalikan')}}
 function setSt(t,c){$('st').textContent=c==='ok'?t+' '+new Date().toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'}):t;$('sy').className='sy '+(c||'')}
 function store(){try{localStorage.setItem('jt_jobs',JSON.stringify(jobs));localStorage.setItem('jt_skills',JSON.stringify(skl));localStorage.setItem('jt_cfg',JSON.stringify(cfg))}catch(e){}}
@@ -592,9 +645,11 @@ const A={
  theme(){const d=document.documentElement.dataset.theme==='dark'?'light':'dark';ls('jt_theme',d);applyTheme(d)},
  prt(){window.print()},
  cvj(b){cvm(b.closest('.row,.trw').dataset.id)},cvj2(b){cvm(b.dataset.id)},
- cvgen(b){const j=jobs.find(x=>x.id===b.dataset.id),r=cvGen(j,$('xjd').value,g('xtt'),cvHid()),ms=r.T.filter(t=>!r.hit.includes(t));$('xcx').value=r.txt;
-  $('xr').innerHTML=r.T.length?`<div class="card" style="margin-top:12px"><b>Kecocokan kata kunci: ${Math.round(r.hit.length*100/r.T.length)}%</b> <small>(${r.hit.length} dari ${r.T.length} kata kunci teratas JD)</small><p class="hint">Sudah ada di CV:</p><div>${r.hit.map(t=>`<span class="tag">${esc(t)}</span>`).join(' ')||'-'}</div><p class="hint">Belum ada di CV (tambahkan hanya jika memang Anda miliki):</p><div>${ms.map(t=>`<span class="pill" style="--c:#d97706">${esc(t)}</span>`).join(' ')||'-'}</div></div>`:'<p class="hint">Tempel JD untuk melihat kecocokan kata kunci.</p>'},
- cvpdf(b){const j=jobs.find(x=>x.id===b.dataset.id),t=$('xcx').value.trim()||cvGen(j,$('xjd').value,g('xtt'),cvHid()).txt,n=cvParse(t).n||'CV';cvPrint(t,'CV_'+n.replace(/\s+/g,'_')+'_'+(j.company||'').replace(/[^\w]+/g,'_'))},
+  cvgen(b){const j=jobs.find(x=>x.id===b.dataset.id);if(!j||!$('xcx'))return;cvRefresh(j,1);toast('CV dibuat ulang dari template dan kualifikasi')},
+  cvpdf(b){const j=jobs.find(x=>x.id===b.dataset.id);if(!j)return;let t=$('xcx').value.trim();if(!t)t=cvRefresh(j,1).txt;
+   const n=cvParse(t).n;if(!n||/^nama anda$/i.test(n))return toast('Isi dulu nama dan data CV di Pengaturan > Template CV');
+   try{cvSave(cvPdf(t,cvFile(n,j)),cvFile(n,j)+'.pdf');toast('CV diunduh: '+cvFile(n,j)+'.pdf')}catch(e){toast('Gagal membuat PDF, membuka dialog cetak');cvPrint(t,cvFile(n,j))}},
+  cvprint(b){const j=jobs.find(x=>x.id===b.dataset.id);if(!j)return;const t=$('xcx').value.trim()||cvRefresh(j,1).txt;cvPrint(t,cvFile(cvParse(t).n||'CV',j))},
  cvpr(b){const j=jobs.find(x=>x.id===b.dataset.id),p='Sesuaikan CV ATS berikut untuk posisi '+g('xtt')+' di '+j.company+'. Aturan: jangan menambah pengalaman, skill, angka, atau tanggal yang tidak ada di CV; boleh menulis ulang ringkasan dan butir agar memakai kata kunci lowongan yang memang relevan; urutkan butir dari yang paling relevan; bahasa Inggris, singkat, format ATS. Pertahankan format penanda yang sama persis (# nama, baris kontak, ## bagian, *Judul | Kanan, - butir) dan keluarkan hanya teks CV-nya.\n\nCV:\n'+($('xcx').value.trim()||cvt)+'\n\nDeskripsi lowongan:\n'+$('xjd').value;
   (navigator.clipboard?navigator.clipboard.writeText(p):Promise.reject()).then(()=>toast('Prompt disalin, tempel ke Claude'),()=>toast('Gagal menyalin'))},
  cvsave(b){const j=jobs.find(x=>x.id===b.dataset.id);j.jd=$('xjd').value.trim();j.tt=g('xtt');j.cvx=$('xcx').value.trim();j.cvh=cvHid().join(',');persist();closeM();toast('CV lamaran tersimpan')},
@@ -667,17 +722,20 @@ const A={
 document.addEventListener('click',e=>{const b=e.target.closest('[data-act]');if(b&&A[b.dataset.act]){A[b.dataset.act](b,e);return}
  const n=e.target.closest('[data-go]');if(n)go(n.dataset.go);if(e.target.classList&&e.target.classList.contains('mo'))closeM()});
 document.addEventListener('change',e=>{const t=e.target,a=t.dataset.act;
+ if(t.closest&&t.closest('#xh'))cvSoon();
  if(a==='st'){const j=jobs.find(x=>x.id===t.closest('.row,.trw').dataset.id);j.status=t.value;(j.hist=j.hist||[]).push({d:today(),s:j.status,n:''});t.style.setProperty('--c',CL[j.status]);persist();$('ch').innerHTML=chips()}
  if(a==='sst'){const s=skl.find(x=>x.id===t.closest('.sc').dataset.id);s.status=t.value;t.style.setProperty('--c',SC[s.status]);persist()}});
 document.addEventListener('input',e=>{const t=e.target;
  if(t.id==='fq'){flt.q=t.value;list('lst',jlist())}if(t.id==='sqi'){sq=t.value;list('slst',slist())}
- if(t.id==='sc')$('sh').textContent=rp(t.value)});
+  if(t.id==='sc')$('sh').textContent=rp(t.value);
+ if(t.id==='xcx')cvDirty=true;
+ if(t.id==='xjd'||t.id==='xtt')cvSoon()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeM();
  if(e.key==='Enter'&&e.target.closest('.sh')&&e.target.tagName==='INPUT'){const b=document.querySelector('.sh [data-act^=save]');if(b&&e.target.type!=='url')b.click()}});
 
 /* ---------- Login ---------- */
 async function chk(p){try{const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(p));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')===H}catch(e){return false}}
-function enter(){$('lk').classList.add('out');setTimeout(()=>$('lk').hidden=true,500);$('app').hidden=false;render();
+function enter(){idleReset();$('lk').classList.add('out');setTimeout(()=>$('lk').hidden=true,500);$('app').hidden=false;render();
  if(cfg.url)sync();else setSt('mode lokal');deep()}
 async function login(){const p=$('lp').value;if(await chk(p)){cfg.pw=p;store();
   if($('lr').checked)ls('jt_auth',H);else try{sessionStorage.setItem('jt_auth',H)}catch(e){}enter()}
@@ -686,8 +744,29 @@ $('lb').onclick=login;$('lp').addEventListener('keydown',e=>{if(e.key==='Enter')
 $('lt').onclick=()=>{const i=$('lp'),s=i.type==='password';i.type=s?'text':'password';$('lt').textContent=s?'Sembunyi':'Lihat'};
 document.addEventListener('visibilitychange',()=>{if(!cfg.url||$('app').hidden)return;if(document.hidden){if(lg('jt_dirty'))push()}else if(!document.querySelector('.mo'))pull(true)});window.addEventListener('pageshow',()=>{if(cfg.url&&!$('app').hidden)pull(true)});window.addEventListener('focus',()=>{if(cfg.url&&!$('app').hidden&&!document.querySelector('.mo'))pull(true)});
 window.addEventListener('online',()=>{if(cfg.url&&!$('app').hidden)sync()});
+/* ---------- Logout otomatis: tidak ada aktivitas selama 3 menit ---------- */
+const IDLE=3*60*1000,WARN=20*1000;
+let lastAct=Date.now(),idleW=null,outing=0;
+const shared=()=>+lg('jt_last')||0;
+function mark(){if(idleW)return;const n=Date.now();lastAct=n;if(n-shared()>3000)ls('jt_last',String(n))}
+function hideIdle(){if(idleW){idleW.remove();idleW=null}}
+function idleReset(){lastAct=Date.now();ls('jt_last',String(lastAct));hideIdle()}
+function showIdle(s){if(!idleW){idleW=document.createElement('div');idleW.style.cssText='position:fixed;inset:0;z-index:99999;display:grid;place-items:center;padding:24px;background:rgba(15,23,42,.5)';
+  idleW.innerHTML='<div class="card" role="alertdialog" aria-live="assertive" style="width:min(380px,100%);text-align:center;backdrop-filter:blur(18px)"><h3 style="margin:0 0 8px">Sesi hampir berakhir</h3><p class="hint" style="margin:0 0 16px">Tidak ada aktivitas. Anda akan keluar otomatis dalam <b id="idc"></b> detik.</p><div class="act"><button class="btn" id="idk">Tetap masuk</button><button class="btn s" id="ido">Keluar sekarang</button></div></div>';
+  document.body.appendChild(idleW);$('idk').onclick=idleReset;$('ido').onclick=()=>autoOut(0)}
+ $('idc').textContent=s}
+async function autoOut(auto){if(outing)return;outing=1;hideIdle();
+ try{if(cfg.url&&lg('jt_dirty'))await Promise.race([run(),new Promise(r=>setTimeout(r,4000))])}catch(e){}
+ if(auto)ls('jt_idle','1');ls('jt_last',null);A.lock()}
+function idleTick(){if($('app').hidden||outing)return;const idle=Date.now()-Math.max(lastAct,shared());
+ if(idle>=IDLE)autoOut(1);else if(idle>=IDLE-WARN)showIdle(Math.ceil((IDLE-idle)/1000));else hideIdle()}
+setInterval(idleTick,1000);
+['pointerdown','pointermove','keydown','wheel','scroll','touchstart','input'].forEach(t=>document.addEventListener(t,mark,{capture:true,passive:true}));
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)idleTick()});
 let ok=lg('jt_auth')===H;try{ok=ok||sessionStorage.getItem('jt_auth')===H}catch(e){}
-if(ok&&cfg.pw){$('lk').hidden=true;$('app').hidden=false;render();if(cfg.url)sync();else setSt('mode lokal');deep()}else $('lp').focus();
+if(ok){const lt=+lg('jt_last')||0;if(lt&&Date.now()-lt>IDLE){ok=false;ls('jt_auth',null);try{sessionStorage.removeItem('jt_auth')}catch(e){}}}
+if(ok&&cfg.pw){idleReset();$('lk').hidden=true;$('app').hidden=false;render();if(cfg.url)sync();else setSt('mode lokal');deep()}else $('lp').focus();
+if(lg('jt_idle')){ls('jt_idle',null);$('le').textContent='Anda keluar otomatis karena tidak ada aktivitas selama 3 menit.'}
 
 function deep(){setTimeout(remind,800);const p=new URLSearchParams(location.search),n=p.get('new');if(!n)return;history.replaceState(null,'',location.pathname);
  if(n==='skill'){view='skill';render();openSkill()}else{view='job';render();openJob()}}
