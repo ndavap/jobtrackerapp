@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><script>try{var t=localStorage.getItem("jt_theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.dataset.theme=t}catch(e){}</script>
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <title>Job Application Tracker by davito</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -225,6 +225,47 @@ input:focus,select:focus,textarea.ta:focus{border-color:var(--ac);box-shadow:0 0
 @media(max-width:760px){.pt{grid-template-columns:minmax(0,1fr) auto}.pt .stp{grid-column:1/-1;order:3}.fn2{grid-template-columns:96px 1fr 104px!important;font-size:13px}.mb.w span{font-size:9px}.tabs button{font-size:13px;padding:9px 2px}}
 .sk{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;height:190px}.sk>div{display:flex;flex-direction:column;align-items:center;min-height:0}
 .sk .tr{flex:1;width:100%;max-width:46px;display:flex;flex-direction:column;justify-content:flex-end;gap:2px;min-height:0}.sk .tr i{display:block;min-height:4px;border-radius:5px;animation:growy 1s var(--ease) both}.sk b{margin-top:6px}.sk span{font-size:12px;color:var(--mut)}
+.dt{margin:12px 0;border:1.5px solid var(--ln);border-radius:14px;padding:4px 14px 12px;background:#fffdf7}.dt summary{cursor:pointer;font-weight:700;padding:10px 0;color:var(--navy)}.dt summary small{font-weight:400;color:var(--mut)}
+.kb{display:flex;gap:12px;overflow-x:auto;align-items:flex-start;padding-bottom:10px}.kc{flex:0 0 230px;background:rgba(15,76,74,.05);border-radius:16px;padding:12px}.kc h4{margin:0 0 10px;font:800 14px var(--serif)}.kc h4 em{font-style:normal;color:var(--mut);margin-left:4px}
+.kk{padding:12px 14px;margin-bottom:8px;cursor:pointer}.kk b,.kk span,.kk small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.kk span{color:#334155;font-size:14px}.kk small{font-size:13px;color:var(--mut)}
+@media print{.hd,.fab,.ts,.bg,.nb,.hero>div:last-child{display:none!important}body{background:#fff}.rise{animation:none!important;opacity:1!important}.card{box-shadow:none;break-inside:avoid;transform:none!important}main{padding:0}}
+@media screen{
+html[data-theme=dark]{color-scheme:dark;--ink:#e6efee;--mut:#9fb3b5;--ln:#2d4144;--navy:#7ee0d2}
+html[data-theme=dark] body{background:#0e1819}
+html[data-theme=dark] .bg{background:radial-gradient(800px 480px at 92% -8%,rgba(245,158,11,.10),transparent 62%),radial-gradient(800px 560px at -8% 6%,rgba(13,148,136,.16),transparent 62%),#0e1819}
+html[data-theme=dark] .bg::before,html[data-theme=dark] .bg::after{opacity:.1}
+html[data-theme=dark] input,html[data-theme=dark] select,html[data-theme=dark] textarea{background:#11201f;color:var(--ink);border-color:var(--ln)}
+html[data-theme=dark] label{color:#c5d3d4}
+html[data-theme=dark] .card,html[data-theme=dark] .lc{background:rgba(23,36,38,.94);border-color:var(--ln)}
+html[data-theme=dark] .hd{background:rgba(14,24,25,.88);border-color:var(--ln)}
+html[data-theme=dark] .tabs,html[data-theme=dark] .vt{background:rgba(255,255,255,.06)}
+html[data-theme=dark] .vt button.on{background:#223335;color:var(--navy)}
+html[data-theme=dark] .btn.s,html[data-theme=dark] .sy,html[data-theme=dark] .ib,html[data-theme=dark] .lo,html[data-theme=dark] .chip{background:#172426;color:var(--ink);border-color:var(--ln)}
+html[data-theme=dark] .btn.s{color:var(--navy)}
+html[data-theme=dark] .chip.on{background:#0f766e;border-color:#0f766e;color:#fff}
+html[data-theme=dark] .sh{background:#172426}html[data-theme=dark] .sh .cl{background:#223335;color:var(--mut)}
+html[data-theme=dark] .tb th{background:#1b2e30;color:var(--navy)}
+html[data-theme=dark] .tb td{border-color:var(--ln)}html[data-theme=dark] .tb tbody tr:nth-child(even){background:rgba(255,255,255,.03)}
+html[data-theme=dark] .tb tbody tr:hover,html[data-theme=dark] .se:hover,html[data-theme=dark] .pt:hover{background:#1f3436}
+html[data-theme=dark] .se,html[data-theme=dark] .pt,html[data-theme=dark] .tli{border-color:var(--ln)}
+html[data-theme=dark] .ps{background-color:color-mix(in srgb,var(--c) 22%,#172426);color:color-mix(in srgb,var(--c) 55%,#fff)}
+html[data-theme=dark] .pill{background:color-mix(in srgb,var(--c) 22%,#172426);color:color-mix(in srgb,var(--c) 55%,#fff)}
+html[data-theme=dark] .tag{background:#3a2e12;color:#fcd34d}
+html[data-theme=dark] .nb{background:#2c2410!important}html[data-theme=dark] .nb p{color:#d5c9a3}
+html[data-theme=dark] .donut>div{background:#172426}
+html[data-theme=dark] .seg,html[data-theme=dark] .bar,html[data-theme=dark] .hm i{background:#243639}
+html[data-theme=dark] .stp i:not(.d){background:#34494c}html[data-theme=dark] .stp i:not(:last-child):not(.l)::after{background:#34494c}
+html[data-theme=dark] .dt{background:#13211f}html[data-theme=dark] .kc{background:rgba(255,255,255,.04)}
+html[data-theme=dark] .av{background:rgba(255,255,255,.08)!important}
+html[data-theme=dark] .rm span,html[data-theme=dark] .mm span,html[data-theme=dark] .kk span{color:#cbd8d9}
+html[data-theme=dark] .ra button:hover,html[data-theme=dark] .ra a:hover{background:#223335;color:var(--ac)}
+html[data-theme=dark] svg line{stroke:#2d4144}html[data-theme=dark] svg text{fill:#9fb3b5}
+}
+#cvp{display:none}
+@media print{@page{margin:13mm}body.pcv{background:#fff!important}body.pcv>*{display:none!important}body.pcv>#cvp{display:block!important;font:10.5pt/1.38 Arial,Helvetica,sans-serif;color:#000}
+#cvp h1{font:700 17pt Arial,sans-serif;text-align:center;margin:0 0 3px;text-transform:uppercase}#cvp .cc{text-align:center;font-weight:700;font-size:9pt;margin-bottom:8px;word-break:break-all}
+#cvp h2{font:700 10.5pt Arial,sans-serif;text-transform:uppercase;border-bottom:1px solid #000;margin:10px 0 4px;padding-bottom:1px}
+#cvp .cl{display:flex;justify-content:space-between;gap:12px;break-after:avoid}#cvp p{margin:1px 0}#cvp ul{margin:2px 0 5px;padding-left:18px}#cvp li{margin:0 0 1px}}
 </style>
 </head>
 <body>
@@ -246,18 +287,19 @@ input:focus,select:focus,textarea.ta:focus{border-color:var(--ac);box-shadow:0 0
  <header class="hd">
   <div class="brand"><img src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 512 512%22%3E%3Crect width=%22512%22 height=%22512%22 rx=%22112%22 fill=%22%231a1a4b%22/%3E%3Crect x=%22198%22 y=%22118%22 width=%22116%22 height=%2284%22 rx=%2218%22 fill=%22none%22 stroke=%22%23fff%22 stroke-width=%2230%22/%3E%3Crect x=%2262%22 y=%22170%22 width=%22388%22 height=%22250%22 rx=%2242%22 fill=%22%23fff%22/%3E%3Cpath d=%22M172 306l64 60 112-120%22 fill=%22none%22 stroke=%22%231a1a4b%22 stroke-width=%2234%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E" alt="Logo"><div><b>Job Application Tracker</b><span>by davito</span></div></div>
   <nav class="tabs" id="nv"></nav>
-  <div class="hr"><button class="sy" id="sy" data-act="sync"><i></i><span id="st">mode lokal</span></button><button class="ib" data-act="cfgm" aria-label="Pengaturan">⚙</button><button class="lo" data-act="logout">Keluar</button></div>
+  <div class="hr"><button class="sy" id="sy" data-act="sync"><i></i><span id="st">mode lokal</span></button><button class="ib" id="tm" data-act="theme" aria-label="Mode gelap">🌙</button><button class="ib" data-act="cfgm" aria-label="Pengaturan">⚙</button><button class="lo" data-act="logout">Keluar</button></div>
  </header>
  <main id="mn"></main>
  <button class="fab" id="fab" data-act="addnew">＋ Tambah</button>
 </div>
-<div class="ts" id="ts"></div>
+<div class="ts" id="ts"></div><div id="cvp"></div>
 
 <script>
 const H='8bfc8b026805c88ee55b468f23b0792831c6c07d9e97d23bba0889386e2b7057';
 const ST=['Not Applied','Applied','HR Interview','User Interview','Assessment','Offer','Accepted','Rejected','Ghosted','Failed'];
 const CL={'Not Applied':'#78858a','Applied':'#2563eb','HR Interview':'#0891b2','User Interview':'#0d9488','Assessment':'#d97706','Offer':'#65a30d','Accepted':'#059669','Rejected':'#dc2626','Ghosted':'#8a7f72','Failed':'#9f1239'};
 const TY=['Full Time','Part Time','Internship','Contract','Freelance'];
+const SRC=['LinkedIn','JobStreet','Glints','Kalibrr','Situs perusahaan','Referral','Medsos','Lainnya'],WM=['Onsite','Hybrid','Remote'];
 const KD=['Kursus','Sertifikasi','Workshop','Bootcamp','Bahasa','Lainnya'],SS=['Rencana','Berjalan','Selesai','Ditunda'];
 const SC={Rencana:'#64748b',Berjalan:'#2563eb',Selesai:'#059669',Ditunda:'#d97706'},UN={Jam:1/40,Hari:1/5,Minggu:1,Bulan:4.345};
 /* perkiraan kasar — selalu cek harga resmi penyedia */
@@ -267,7 +309,7 @@ const $=i=>document.getElementById(i),esc=s=>String(s==null?'':s).replace(/[&<>"
 const rd=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}};
 const lg=k=>{try{return localStorage.getItem(k)}catch(e){return null}},ls=(k,v)=>{try{v===null?localStorage.removeItem(k):localStorage.setItem(k,v)}catch(e){}};
 let cfg=rd('jt_cfg',{}),jobs=rd('jt_jobs',[]),skl=rd('jt_skills',[]),view='dash',flt={q:'',s:''},sq='',tmr;
-cfg.target=+cfg.target||300;
+cfg.target=+cfg.target||300;cfg.wt=+cfg.wt||5;
 /* ISI SEKALI: tempel URL Web App Apps Script (berakhiran /exec) di antara tanda kutip agar semua perangkat otomatis tersambung */
 const API_URL='';
 if(API_URL)cfg.url=API_URL;
@@ -280,7 +322,45 @@ const cnt=s=>jobs.filter(j=>j.status===s).length,pct=n=>jobs.length?Math.round(n
 const key=j=>(j.company+'|'+j.position).toLowerCase().trim();
 const norm=v=>ST.find(x=>x.toLowerCase()===String(v||'').trim().toLowerCase())||'Not Applied';
 const opts=(a,v)=>a.map(x=>`<option${x===v?' selected':''}>${x}</option>`).join('');
-function toast(t){const e=$('ts');e.textContent=t;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('on'),3200)}
+function toast(t){const e=$('ts');e.style.pointerEvents='';e.textContent=t;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('on'),3200)}
+function applyTheme(d){document.documentElement.dataset.theme=d;const m=document.querySelector('meta[name=theme-color]');if(m)m.content=d==='dark'?'#0e1819':'#f8f6f1';const b=$('tm');if(b)b.textContent=d==='dark'?'☀️':'🌙'}
+const CVSKEL='# NAMA ANDA\nemail | telepon | linkedin\n## PROFESSIONAL SUMMARY\nTulis ringkasan profesional Anda.\n## WORK EXPERIENCE\n*Jabatan | Kota\n*Perusahaan | Periode\n- Butir pencapaian';
+let cvt=lg('jt_cvt')||CVSKEL,cvLoaded=0;
+const CVSTOP=new Set('the and for with you your our are will have has from that this their they them can able ability abilities including include such who what when where which while within without into over under more most other than then also but not any all each per via etc must should would could may might one two three new work working job role position candidate candidates company team teams years year minimum required requirement requirements responsible responsibilities preferred strong good excellent knowledge skills skill experience experienced understanding based well use using plus related relevant least dan yang untuk dengan atau pada dari dalam di ke serta oleh akan dapat adalah sebagai kami anda memiliki minimal pengalaman kemampuan bidang posisi kandidat tim lebih mampu tahun yg dll'.split(' '));
+const cvTk=t=>String(t||'').toLowerCase().replace(/[^a-z0-9+#&\/\s-]/g,' ').split(/\s+/).filter(Boolean),cvStem=x=>x.length>4&&x.endsWith('s')&&!/(ss|is|us)$/.test(x)?x.slice(0,-1):x;
+function cvKw(jd){const w=cvTk(jd).filter(x=>x.length>2&&!CVSTOP.has(x)&&!/^\d+$/.test(x)).map(cvStem),m={};w.forEach((x,i)=>{m[x]=(m[x]||0)+1;if(i){const b=w[i-1]+' '+x;m[b]=(m[b]||0)+1}});
+ const e=Object.entries(m);return e.filter(x=>!x[0].includes(' ')).sort((a,b)=>b[1]-a[1]).slice(0,30).concat(e.filter(x=>x[0].includes(' ')&&x[1]>=2).sort((a,b)=>b[1]-a[1]).slice(0,8)).map(x=>x[0])}
+const cvSc=(l,T)=>{const z=cvTk(l).map(cvStem),q=z.join(' ');return T.filter(t=>t.includes(' ')?q.includes(t):z.includes(t)).length};
+function cvParse(t){const o={n:'',c:'',S:[]};let c=null,it=null,ps=0;
+ String(t||'').split('\n').forEach(l0=>{const l=l0.trimEnd();if(!l.trim())return;
+  if(l.startsWith('# ')){o.n=l.slice(2).trim();return}
+  if(l.startsWith('## ')){c={t:l.slice(3).trim(),it:[]};o.S.push(c);it=null;ps=0;return}
+  if(!c){o.c+=(o.c?' ':'')+l.trim();return}
+  const st=l[0]==='*';if(!it||(st&&!ps)){it=[];c.it.push(it)}it.push(l);ps=st});return o}
+const cvText=P=>'# '+P.n+'\n'+P.c+'\n'+P.S.map(s=>'## '+s.t+'\n'+s.it.map(i=>i.join('\n')).join('\n')).join('\n');
+function cvGen(j,jd,tt,hid){const P=cvParse(cvt),T=jd?cvKw(jd):[],tk=cvTk(cvt).map(cvStem),cs=new Set(tk),cj=tk.join(' '),hit=T.filter(t=>t.includes(' ')?cj.includes(t):cs.has(t));
+ P.S.forEach((s,si)=>{s.it=s.it.filter((_,ii)=>!hid.includes(si+'.'+ii));
+  if(T.length)s.it.forEach(it=>{const bi=[];it.forEach((l,k)=>{if(l.startsWith('- '))bi.push(k)});const b=bi.map((k,o)=>[it[k],o]).sort((x,y)=>cvSc(y[0],T)-cvSc(x[0],T)||x[1]-y[1]);bi.forEach((k,o)=>it[k]=b[o][0])});
+  if(/summary/i.test(s.t)&&tt&&s.it[0]){const f=s.it[0],top=hit.filter(t=>!t.includes(' ')).slice(0,4);f[f.length-1]+=' Seeking the '+tt+(j.company?' position at '+j.company:' position')+(top.length?', with strengths in '+top.join(', ')+'.':'.')}});
+ return {txt:cvText(P),T,hit}}
+function cvHtml(t){const P=cvParse(t);let h=`<h1>${esc(P.n)}</h1><div class="cc">${esc(P.c)}</div>`;
+ P.S.forEach(s=>{h+=`<h2>${esc(s.t)}</h2>`;s.it.forEach(it=>{let ul=0;it.forEach(l=>{const b=l.startsWith('- ');if(b&&!ul){h+='<ul>';ul=1}if(!b&&ul){h+='</ul>';ul=0}
+  h+=b?`<li>${esc(l.slice(2))}</li>`:l[0]==='*'?(p=>`<div class="cl"><b>${esc(p[0])}</b><span>${esc(p[1]||'')}</span></div>`)(l.slice(1).split('|').map(x=>x.trim())):`<p>${esc(l)}</p>`});if(ul)h+='</ul>'})});return h}
+function cvPrint(txt,name){$('cvp').innerHTML=cvHtml(txt);const t=document.title;document.title=name;document.body.classList.add('pcv');
+ const done=()=>{document.body.classList.remove('pcv');document.title=t;window.removeEventListener('afterprint',done)};window.addEventListener('afterprint',done);setTimeout(()=>window.print(),150)}
+async function cvPull(){if(cvLoaded||!cfg.url)return;cvLoaded=1;try{const d=await api('cvget');if(d.cv){cvt=d.cv;ls('jt_cvt',cvt)}}catch(e){cvLoaded=0}}
+const cvHid=()=>[...document.querySelectorAll('#xh input')].filter(c=>!c.checked).map(c=>c.dataset.h);
+function cvm(id){const j=jobs.find(x=>x.id===id);if(!j)return;const P=cvParse(cvt),hid=(j.cvh||'').split(','),ex=[];
+ P.S.forEach((s,si)=>{if(/experience|pengalaman/i.test(s.t))s.it.forEach((it,ii)=>{const f=l=>(l||'').replace(/^\*/,'').split('|')[0].trim();ex.push(`<label class="lg" style="margin:2px 0"><input type="checkbox" style="width:18px;min-height:0" data-h="${si}.${ii}"${hid.includes(si+'.'+ii)?'':' checked'}> ${esc(f(it[0]))}${it[1]&&it[1][0]==='*'?' · '+esc(f(it[1])):''}</label>`)})});
+ modal(`<h3>CV ATS</h3><p class="hint" style="margin:0 0 8px">${esc(j.company)} · ${esc(j.position)}. Tempel deskripsi lowongan agar kata kunci dicocokkan dengan CV Anda. Tidak ada skill atau pengalaman yang ditambahkan, hanya urutan butir dan ringkasan yang disesuaikan.</p>
+ <label>Judul posisi target</label><input id="xtt" value="${esc(j.tt||j.position)}">
+ <label>Deskripsi lowongan (JD)</label><textarea class="ta" id="xjd" style="min-height:130px" placeholder="Tempel kualifikasi dan tanggung jawab dari lowongan">${esc(j.jd)}</textarea>
+ ${ex.length?`<label>Pengalaman yang ditampilkan</label><div id="xh">${ex.join('')}</div>`:''}
+ <div class="act"><button class="btn" data-act="cvgen" data-id="${j.id}">Buat CV tersesuaikan</button></div><div id="xr"></div>
+ <label>Teks CV untuk lamaran ini <small>(boleh diedit)</small></label><textarea class="ta" id="xcx" style="min-height:220px;font:13px/1.4 ui-monospace,monospace">${esc(j.cvx)}</textarea>
+ <div class="act"><button class="btn" data-act="cvpdf" data-id="${j.id}">Unduh PDF</button><button class="btn s" data-act="cvpr" data-id="${j.id}">Salin prompt Claude</button></div>
+ <div class="act" style="margin-top:10px"><button class="btn s" data-act="cvsave" data-id="${j.id}" style="flex:1">Simpan untuk lamaran ini</button></div>`)}
+function undo(t,f){const e=$('ts');e.innerHTML=esc(t)+' <button id="tu" style="margin-left:10px;border:0;background:#fde68a;color:#1f2a2e;border-radius:99px;padding:4px 12px;font:700 13px inherit;cursor:pointer">Urungkan</button>';e.style.pointerEvents='auto';e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(()=>{e.classList.remove('on');e.style.pointerEvents=''},8000);$('tu').onclick=()=>{f();e.classList.remove('on');e.style.pointerEvents='';toast('Dikembalikan')}}
 function setSt(t,c){$('st').textContent=c==='ok'?t+' '+new Date().toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'}):t;$('sy').className='sy '+(c||'')}
 function store(){try{localStorage.setItem('jt_jobs',JSON.stringify(jobs));localStorage.setItem('jt_skills',JSON.stringify(skl));localStorage.setItem('jt_cfg',JSON.stringify(cfg))}catch(e){}}
 const cs=x=>JSON.stringify(Object.keys(x).filter(k=>k!=='u').sort().map(k=>[k,x[k]]));
@@ -304,7 +384,7 @@ async function run(silent){if(!cfg.url)return;if(busy){again=1;return}busy=1;con
  try{const sent=JSON.stringify([jobs,skl]),d=await api('sync',{dirty,jobs:dirty?jobs:[],skills:dirty?skl:[],tomb:dirty?rd('jt_tomb',{}):{}});
   if(JSON.stringify([jobs,skl])!==sent)again=1;
   else{const before=lg('jt_snap');jobs=d.jobs.map(j=>Object.assign({},j,{status:norm(j.status)}));skl=d.skills;ls('jt_tomb',JSON.stringify(d.tomb||{}));snap();store();ls('jt_dirty',null);ls('jt_synced','1');if(lg('jt_snap')!==before||!silent)render()}
-  setSt('tersinkron','ok');remind()}
+  setSt('tersinkron','ok');remind();cvPull()}
  catch(e){setSt(e.message,'er')}
  finally{busy=0;if(again){again=0;setTimeout(()=>run(true),300)}}}
 const push=()=>run(),pull=s=>run(s),sync=()=>run();
@@ -382,11 +462,28 @@ function ana(){
  <div class="g g2"><div class="card rise">${H('Hasil lamaran per bulan')}<div class="sk">${mo.map(m=>`<div><div class="tr">${[[m[1],'#059669'],[m[3],'#0891b2'],[m[2],'#dc2626']].map(s=>s[0]?`<i title="${s[0]}" style="height:${s[0]*100/mx}%;background:${s[1]}"></i>`:'').join('')}</div><b>${m[1]+m[2]+m[3]}</b><span>${m[0]}</span></div>`).join('')}</div><div style="margin-top:12px">${lgd}</div></div>
  <div class="card rise">${H('Umur lamaran aktif')}${act.length?ag.map(a=>`<div class="fn"><span>${a[0]}</span><div class="bar"><i style="width:${a[1]*100/am}%;background:${a[2]}"></i></div><em>${a[1]}</em></div>`).join(''):'<p class="hint">Belum ada lamaran aktif.</p>'}<p class="hint">Dihitung sejak kabar terakhir. Merah berarti saatnya follow up.</p></div></div>
  <div class="card rise" style="margin-bottom:14px">${H('Lolos ke wawancara per tipe pekerjaan')}${ty.length?ty.map(r=>`<div class="fn fn2"><span>${r[0]}</span><div class="bar"><i style="width:${r[2]*100/r[1]}%"></i></div><em>${Math.round(r[2]*100/r[1])}% · ${r[2]}/${r[1]}</em></div>`).join(''):'<p class="hint">Belum ada data.</p>'}</div>`}
+function ana2(){
+ const t=today(),act=jobs.filter(j=>ACT.includes(j.status)),due=act.filter(j=>j.fu&&j.fu<=t).sort((a,b)=>a.fu.localeCompare(b.fu)),
+ ddl=jobs.filter(j=>j.status==='Not Applied'&&j.dlu&&dl(j.dlu)<=7).sort((a,b)=>a.dlu.localeCompare(b.dlu)),
+ wc={};jobs.forEach(j=>{const f=(hs(j)[0]||{}).d;if(f&&dd(f)>=0){const w=Math.floor(dd(f)/7);wc[w]=(wc[w]||0)+1}});
+ let st=0,i=(wc[0]||0)>=cfg.wt?0:1;while((wc[i]||0)>=cfg.wt){st++;i++}
+ const H=x=>`<h3 style="margin:0 0 12px">${x}</h3>`,
+ ef=f=>{const m={};jobs.forEach(j=>{const v=f(j);if(v&&reach(j)>=1){(m[v]=m[v]||[0,0]);m[v][0]++;if(reach(j)>=2)m[v][1]++}});const r=Object.entries(m).sort((a,b)=>b[1][0]-a[1][0]).slice(0,6);return r.length?r.map(([k,v])=>`<div class="fn fn2"><span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(k)}</span><div class="bar"><i style="width:${v[1]*100/v[0]}%"></i></div><em>${Math.round(v[1]*100/v[0])}% · ${v[1]}/${v[0]}</em></div>`).join(''):'<p class="hint">Isi kolom ini di Detail tambahan lamaran untuk melihat analisisnya.</p>'},
+ todo=due.map(j=>tli('#d97706',j.company,j.position,rel(dl(j.fu)),'Follow up'+(j.ct?' · '+j.ct:''))).concat(ddl.map(j=>tli('#dc2626',j.company,j.position,rel(dl(j.dlu)),'Deadline daftar'+(j.pr?' · '+'★'.repeat(j.pr):'')))),
+ why=jobs.filter(j=>j.why).sort((a,b)=>(lastD(b)||'').localeCompare(lastD(a)||'')).slice(0,5).map(j=>tli('#dc2626',j.company,j.position,fmt(lastD(j)),j.why)),
+ of=jobs.filter(j=>+j.go>0).sort((a,b)=>b.go-a.go).map(j=>tli('#059669',j.company,j.position,rp(j.go),'Harapan '+(+j.gx?rp(j.gx):'-')+' · '+j.status));
+ return `<div class="sec rise"><h3>Tindak lanjut & strategi</h3></div>
+ <div class="g g4">${KK('Follow up jatuh tempo',due.length,due.length?'#d97706':'#059669','aktif, tanggal follow up sudah tiba')}${KK('Deadline ≤ 7 hari',ddl.length,ddl.length?'#dc2626':'#059669','belum dilamar')}${KK('Target minggu ini',(wc[0]||0)+' / '+cfg.wt,(wc[0]||0)>=cfg.wt?'#059669':'#2563eb','lamaran 7 hari terakhir')}${KK('Streak',st+' minggu','#f59e0b','berturut-turut capai target mingguan')}</div>
+ <div class="g g2"><div class="card rise">${H('Daftar tindakan')}${todo.length?todo.slice(0,8).join(''):'<p class="hint">Tidak ada follow up atau deadline mendesak. Isi tanggalnya di Detail tambahan.</p>'}</div>
+ <div class="card rise">${H('Pelajaran dari penolakan')}${why.length?why.join(''):'<p class="hint">Catat alasan penolakan di Detail tambahan agar CV dan persiapan makin tajam.</p>'}</div></div>
+ <div class="g g2"><div class="card rise">${H('Lolos wawancara per sumber')}${ef(j=>j.src)}</div><div class="card rise">${H('Lolos wawancara per versi CV')}${ef(j=>j.cv)}</div></div>
+ <div class="g g2"><div class="card rise">${H('Lolos wawancara per industri')}${ef(j=>j.ind)}</div><div class="card rise">${H('Lolos wawancara per mode kerja')}${ef(j=>j.wm)}</div></div>
+ ${of.length?`<div class="card rise" style="margin-bottom:14px">${H('Perbandingan offer')}${of.join('')}</div>`:''}`}
 const V={
 sch(){const ev=sev(),up=ev.filter(x=>dl(x.d)>=0),ps=ev.filter(x=>dl(x.d)<0),n0=up.filter(x=>dl(x.d)===0).length,n7=up.filter(x=>dl(x.d)<=7).length;
  const sce=x=>`<div class="se" data-id="${x.jid}" data-act="editjob"><span class="dot" style="background:${SK[x.k]||'#78858a'}"></span><div><b>${esc(x.k)} · ${esc(x.co)}</b><small>${esc(x.po)}${x.n?' · '+esc(x.n):''}</small></div><time>${x.t||'Seharian'}</time><button class="dl" data-act="delsch" data-jid="${x.jid}" data-sid="${x.id}" aria-label="Hapus">✕</button></div>`;
  const grp=(a,r)=>{const m={};a.forEach(x=>(m[x.d]=m[x.d]||[]).push(x));let k=Object.keys(m).sort();if(r)k.reverse();return k.map(d=>{const n=dl(d);return `<div class="card dg rise"><div class="dh"><b>${day(d)}</b><span class="pill" style="--c:${n<0?'#78858a':n===0?'#dc2626':n<=3?'#d97706':'#0d9488'}">${rel(n)}</span></div>${m[d].map(sce).join('')}</div>`}).join('')};
- return `<div class="rise"><h2 class="t">Jadwal</h2><p class="sub">Timeline psikotes, assessment, dan interview berdasarkan tanggal. Pengingat muncul otomatis 3 hari sebelumnya.</p></div>
+ return `<div class="rise"><h2 class="t">Jadwal</h2><p class="sub">Timeline psikotes, assessment, dan interview berdasarkan tanggal. Pengingat muncul otomatis 3 hari sebelumnya.</p><button class="btn s" data-act="ics" style="margin-bottom:14px">Ekspor ke kalender (.ics)</button></div>
  <div class="g g4">${KK('Hari ini',n0,'#dc2626','jadwal hari ini')}${KK('7 hari ke depan',n7,'#f59e0b','termasuk hari ini')}${KK('Akan datang',up.length,'#0d9488','semua jadwal')}${KK('Sudah lewat',ps.length,'#78858a','riwayat jadwal')}</div>
  <div class="sec rise"><h3>Akan datang</h3></div>${up.length?grp(up):'<div class="card empty rise">Belum ada jadwal. Tekan ＋ Jadwal untuk menambah psikotes, assessment, atau interview.</div>'}
  ${ps.length?`<div class="sec rise"><h3>Sudah lewat</h3></div><div style="opacity:.8">${grp(ps,1)}</div>`:''}`},
@@ -411,16 +508,16 @@ prog(){const n=jobs.length,R=jobs.map(reach),c=l=>R.filter(r=>r>=l).length,pc=(a
  <div class="card rise">${H('Aktivitas 12 minggu terakhir')}<div class="hm">${hm}</div><p class="hint">Makin pekat, makin banyak aktivitas pada hari itu.</p></div></div>
  <div class="card rise"><div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:6px">${H('Perjalanan tiap lamaran')}<span class="hint" style="margin:0">${SG.join(' → ')}</span></div>${lst||'<p class="hint">Belum ada lamaran.</p>'}</div>`},
 dash(){const {n,act,win,out,K,tc,tw,dn}=stat(),sp=skl.length?Math.round(dn*100/skl.length):0;
- return `<div class="hero rise"><div><h2 class="t">Ringkasan</h2><p class="sub" style="margin:0">Semua lamaran dan rencana belajarmu, satu layar.</p></div><div><button class="btn s" data-act="addskill">＋ Skill</button><button class="btn s" data-act="addsch">＋ Jadwal</button><button class="btn" data-act="addjob">＋ Lamaran</button></div></div>
+ return `<div class="hero rise"><div><h2 class="t">Ringkasan</h2><p class="sub" style="margin:0">Semua lamaran dan rencana belajarmu, satu layar.</p></div><div><button class="btn s" data-act="prt">Cetak / PDF</button><button class="btn s" data-act="addskill">＋ Skill</button><button class="btn s" data-act="addsch">＋ Jadwal</button><button class="btn" data-act="addjob">＋ Lamaran</button></div></div>
  <div class="g g4">${K('Total lamaran',n,'#0f4c4a',`target ${cfg.target}`)}${K('Sedang proses',act,'#0891b2','HR, User, Assessment')}${K('Offer & diterima',win,'#059669',pct(win)+' dari total')}${K('Tidak lanjut',out,'#dc2626','Rejected, Failed, Ghosted')}</div>
  <div class="g g2"><div class="card rise"><h3 style="margin:0 0 12px;font:600 18px var(--serif)">Status lamaran</h3>
   ${n?`<div class="seg">${ST.filter(cnt).map(s=>`<i title="${s}" style="width:${cnt(s)*100/n}%;background:${CL[s]}"></i>`).join('')}</div>`:''}
   <div style="margin-top:8px">${ST.map(s=>`<div class="sr"><span class="dot" style="background:${CL[s]}"></span><span>${s}</span><em>${cnt(s)}</em><div class="bar" style="margin-top:0"><i style="width:${n?cnt(s)*100/n:0}%;background:${CL[s]}"></i></div></div>`).join('')}</div></div>
   <div class="dr"><div class="card rise"><span style="color:var(--mut);font-size:14px">Target lamaran</span><b style="display:block;font:600 28px var(--serif);color:var(--navy)">${n} / ${cfg.target}</b><div class="bar"><i style="width:${Math.min(100,n*100/cfg.target)}%"></i></div></div>
   <div class="card rise"><h3 style="margin:0 0 12px;font:600 18px var(--serif)">Skill & kursus</h3><div class="mt"><div><span>Total</span><b>${skl.length}</b></div><div><span>Selesai</span><b>${dn}</b></div><div><span>Biaya</span><b>${rp(tc)}</b></div><div><span>Durasi</span><b>${lama(tw)}</b></div></div><div class="bar"><i style="width:${sp}%;background:#059669"></i></div></div></div></div>
- ${extra()}${ana()}${n||skl.length?'':'<div class="card empty rise">Belum ada data. Tekan <b>＋ Lamaran</b> atau <b>＋ Skill</b> untuk mulai.</div>'}`},
+ ${extra()}${ana()}${ana2()}${n||skl.length?'':'<div class="card empty rise">Belum ada data. Tekan <b>＋ Lamaran</b> atau <b>＋ Skill</b> untuk mulai.</div>'}`},
 job(){return `<div class="rise"><h2 class="t">Lamaran</h2><p class="sub">Ketuk baris untuk edit. Ubah status langsung dari pil berwarna.</p></div>
- <div class="tool rise"><input id="fq" placeholder="Cari perusahaan, posisi, lokasi…" value="${esc(flt.q)}"><div class="vt"><button class="${lv==='tbl'?'on':''}" data-act="lv" data-v="tbl">Tabel</button><button class="${lv==='card'?'on':''}" data-act="lv" data-v="card">Kartu</button></div><button class="btn s" data-act="csv">Unduh CSV</button></div>
+ <div class="tool rise"><input id="fq" placeholder="Cari perusahaan, posisi, lokasi…" value="${esc(flt.q)}"><div class="vt"><button class="${lv==='tbl'?'on':''}" data-act="lv" data-v="tbl">Tabel</button><button class="${lv==='card'?'on':''}" data-act="lv" data-v="card">Kartu</button><button class="${lv==='kan'?'on':''}" data-act="lv" data-v="kan">Papan</button></div><button class="btn s" data-act="csv">Unduh CSV</button></div>
  <div class="chips rise" id="ch">${chips()}</div><div id="lst">${jlist()}</div>`},
 skill(){const {tc,tw,dn}=stat();
  return `<div class="rise"><h2 class="t">Skill & Kursus</h2><p class="sub">Les, kursus, sertifikasi: catat biaya dan lamanya, pantau sampai selesai.</p></div>
@@ -430,13 +527,14 @@ const chips=()=>[['','Semua',jobs.length]].concat(ST.map(s=>[s,s,cnt(s)])).map(c
 function tbl(a){const k=so.k,d=so.d,v=j=>String(j[k]||'').toLowerCase();
  a=a.slice().sort((x,y)=>(k==='status'?ST.indexOf(x.status)-ST.indexOf(y.status):v(x).localeCompare(v(y),'id'))*d);
  const th=(l,k2)=>`<th><button class="sb" data-act="sort" data-k="${k2}">${l}${so.k===k2?(so.d>0?' ▲':' ▼'):''}</button></th>`;
- return `<div class="card tw rise"><div class="ow"><table class="tb"><thead><tr><th>No</th>${th('Perusahaan','company')}${th('Posisi','position')}${th('Lokasi','location')}${th('Tipe','type')}${th('Tanggal','date')}${th('Status','status')}<th></th></tr></thead><tbody>${a.map((j,i)=>`<tr class="trw" data-id="${j.id}" data-act="editjob"><td>${i+1}</td><td><b>${esc(j.company)}</b>${j.note?'<small>📝 ada catatan</small>':''}</td><td>${esc(j.position)||'-'}</td><td>${esc(j.location)||'-'}</td><td>${esc(j.type)||'-'}</td><td>${fmt(j.date)||'-'}</td><td><select class="ps" data-act="st" style="--c:${CL[j.status]}">${opts(ST,j.status)}</select></td><td><div class="ra">${j.link?`<a href="${esc(j.link)}" target="_blank" rel="noopener" aria-label="Buka link">↗</a>`:''}<button class="dl" data-act="deljob" aria-label="Hapus">✕</button></div></td></tr>`).join('')}</tbody></table></div></div>`}
+ return `<div class="card tw rise"><div class="ow"><table class="tb"><thead><tr><th>No</th>${th('Perusahaan','company')}${th('Posisi','position')}${th('Lokasi','location')}${th('Tipe','type')}${th('Tanggal','date')}${th('Status','status')}<th></th></tr></thead><tbody>${a.map((j,i)=>`<tr class="trw" data-id="${j.id}" data-act="editjob"><td>${i+1}</td><td><b>${j.pr?'<span style="color:#f59e0b">'+'★'.repeat(j.pr)+'</span> ':''}${esc(j.company)}</b>${j.note?'<small>📝 ada catatan</small>':''}</td><td>${esc(j.position)||'-'}</td><td>${esc(j.location)||'-'}</td><td>${esc(j.type)||'-'}</td><td>${fmt(j.date)||'-'}</td><td><select class="ps" data-act="st" style="--c:${CL[j.status]}">${opts(ST,j.status)}</select></td><td><div class="ra"><button data-act="cvj" aria-label="CV ATS" title="CV ATS">📄</button>${j.link?`<a href="${esc(j.link)}" target="_blank" rel="noopener" aria-label="Buka link">↗</a>`:''}<button class="dl" data-act="deljob" aria-label="Hapus">✕</button></div></td></tr>`).join('')}</tbody></table></div></div>`}
+function kan(a){return `<div class="kb">${ST.map(s=>{const c=a.filter(j=>j.status===s);return `<div class="kc"><h4 style="color:${CL[s]}">${s} <em>${c.length}</em></h4>${c.map(j=>`<div class="card kk" data-id="${j.id}" data-act="editjob"><b>${esc(j.company)}</b><span>${esc(j.position)||'-'}</span>${j.pr?`<small style="color:#f59e0b">${'★'.repeat(j.pr)}</small>`:''}${j.fu?`<small>Follow up ${fmt(j.fu)}</small>`:''}</div>`).join('')||'<p class="hint">-</p>'}</div>`}).join('')}</div>`}
 function jlist(){const q=flt.q.toLowerCase(),a=jobs.filter(j=>(!flt.s||j.status===flt.s)&&(!q||(j.company+' '+j.position+' '+j.location).toLowerCase().includes(q)));
  if(!a.length)return `<div class="card empty rise">${jobs.length?'Tidak ada yang cocok.':'Belum ada lamaran. Tekan ＋ Tambah untuk mulai.'}</div>`;
- if(lv==='tbl')return tbl(a);return a.slice().reverse().map(j=>`<div class="card row rise" data-id="${j.id}" data-act="editjob"><div class="av" style="background:color-mix(in srgb,${CL[j.status]} 14%,#fff)">${esc((j.company||'?')[0].toUpperCase())}</div>
+ if(lv==='kan')return kan(a);if(lv==='tbl')return tbl(a);return a.slice().reverse().map(j=>`<div class="card row rise" data-id="${j.id}" data-act="editjob"><div class="av" style="background:color-mix(in srgb,${CL[j.status]} 14%,#fff)">${esc((j.company||'?')[0].toUpperCase())}</div>
  <div class="rm"><b>${esc(j.company)}</b><span>${esc(j.position)}</span></div><div class="mm"><span>${esc(j.location)||'-'}</span><small>${[j.type,fmt(j.date)].filter(Boolean).map(esc).join(' · ')||'-'}${j.note?' 📝':''}</small></div>
  <select class="ps" data-act="st" style="--c:${CL[j.status]}">${opts(ST,j.status)}</select>
- <div class="ra">${j.link?`<a href="${esc(j.link)}" target="_blank" rel="noopener" aria-label="Buka link">↗</a>`:''}<button class="dl" data-act="deljob" aria-label="Hapus">✕</button></div></div>`).join('')}
+ <div class="ra"><button data-act="cvj" aria-label="CV ATS" title="CV ATS">📄</button>${j.link?`<a href="${esc(j.link)}" target="_blank" rel="noopener" aria-label="Buka link">↗</a>`:''}<button class="dl" data-act="deljob" aria-label="Hapus">✕</button></div></div>`).join('')}
 function slist(){const q=sq.toLowerCase(),a=skl.filter(s=>!q||(s.name+' '+s.provider+' '+s.kind).toLowerCase().includes(q));
  if(!a.length)return `<div class="card empty rise" style="grid-column:1/-1">${skl.length?'Tidak ada yang cocok.':'Belum ada skill. Tekan ＋ Tambah, lalu pilih contoh cepat untuk perkiraan biaya dan durasi.'}</div>`;
  return a.map(s=>`<div class="card sc rise" data-id="${s.id}" data-act="editskill"><div style="display:flex;justify-content:space-between;gap:8px;align-items:start"><h4>${esc(s.name)}</h4><span class="tag">${esc(s.kind)}</span></div>
@@ -462,13 +560,21 @@ function openJob(id){const j=jobs.find(x=>x.id===id)||{status:'Applied',date:tod
  <label>Status</label><div class="chips" style="flex-wrap:wrap" id="js">${ST.map(s=>`<button type="button" class="chip${s===j.status?' on':''}" data-act="pick" data-v="${s}">${s}</button>`).join('')}</div>
  <div class="f3"><div><label>Lokasi</label><input id="jl" value="${esc(j.location)}" placeholder="Jakarta"></div><div><label>Tipe</label><select id="jt"><option></option>${opts(TY,j.type)}</select></div><div><label>Tanggal</label><input id="jd" type="date" value="${esc(j.date)}"></div></div>
  <label>Link lowongan <small>(opsional)</small></label><div class="ln"><input id="jk" type="url" value="${esc(j.link)}" placeholder="https://…"><button class="btn s" data-act="fill">Isi otomatis</button></div>
+ <details class="dt"${(j.src||j.cv||j.fu||j.why||j.ct||j.gx||j.go||j.dlu||j.pr||j.wm||j.ind||j.prep)?' open':''}><summary>Detail tambahan <small>(sumber, versi CV, follow up, gaji, kontak, persiapan)</small></summary>
+ <div class="f3"><div><label>Sumber</label><select id="jsr"><option></option>${opts(SRC,j.src)}</select></div><div><label>Mode kerja</label><select id="jwm"><option></option>${opts(WM,j.wm)}</select></div><div><label>Prioritas</label><select id="jpr">${[0,1,2,3].map(n=>`<option value="${n}"${(+j.pr||0)===n?' selected':''}>${n?'★'.repeat(n):'-'}</option>`).join('')}</select></div></div>
+ <div class="f2"><div><label>Versi CV / cover letter</label><input id="jcv" value="${esc(j.cv)}" placeholder="mis. CV Procurement v2"></div><div><label>Industri</label><input id="jin" value="${esc(j.ind)}" placeholder="mis. Perbankan"></div></div>
+ <div class="f2"><div><label>Deadline daftar</label><input id="jdu" type="date" value="${esc(j.dlu)}"></div><div><label>Follow up tanggal</label><input id="jfu" type="date" value="${esc(j.fu)}"></div></div>
+ <div class="f2"><div><label>Gaji diharapkan (Rp)</label><input id="jgx" type="number" inputmode="numeric" value="${esc(j.gx||'')}"></div><div><label>Gaji ditawarkan (Rp)</label><input id="jgo" type="number" inputmode="numeric" value="${esc(j.go||'')}"></div></div>
+ <label>Kontak recruiter / pewawancara</label><input id="jct" value="${esc(j.ct)}" placeholder="nama, email / WhatsApp">
+ <label>Alasan penolakan / pelajaran</label><input id="jwh" value="${esc(j.why)}" placeholder="mis. kurang pengalaman SQL">
+ <label>Persiapan wawancara</label><textarea class="ta" id="jpp" placeholder="riset perusahaan, jawaban STAR, pertanyaan untuk HR">${esc(j.prep)}</textarea></details>
  <label>Catatan <small>(apa yang dialami: tes, pewawancara, hasil, kesan)</small></label><textarea class="ta" id="jn" placeholder="mis. Interview HR 30 menit, lanjut tes kasus">${esc(j.note)}</textarea>
  <label>Jadwal & pengingat <small>(psikotes, assessment, interview)</small></label><div class="tl" id="xl">${slh()}</div>
  <div class="f3"><div><select id="xk">${opts(Object.keys(SK),'HR Interview')}</select></div><div><input id="xd" type="date"></div><div><input id="xt" type="time"></div></div>
  <div class="ln" style="margin-top:8px"><input id="xn" placeholder="Catatan (link meeting, lokasi)" style="flex:2 1 200px"><button class="btn s" type="button" data-act="adds" style="flex:1 1 120px">Tambah jadwal</button></div>
  <label>Riwayat / timeline</label><div class="tl" id="tl">${tlh()}</div>
  <div class="ln"><input id="hd" type="date" value="${today()}" style="flex:1 1 140px"><input id="hn" placeholder="Tambah kejadian…" style="flex:2 1 200px"><button class="btn s" type="button" data-act="addh" style="flex:1 1 100%">Tambah ke riwayat</button></div>
- <div class="act"><button class="btn" data-act="savejob" data-id="${id||''}">Simpan</button></div>`)}
+ <div class="act"><button class="btn" data-act="savejob" data-id="${id||''}">Simpan</button>${id?`<button class="btn s" data-act="cvj2" data-id="${id}">📄 CV ATS</button>`:''}</div>`)}
 function openSkill(id){const s=skl.find(x=>x.id===id)||{kind:'Kursus',status:'Rencana',unit:'Bulan',dur:'',cost:''};
  modal(`<h3>${id?'Edit skill':'Tambah skill'}</h3>
  ${id?'':`<p class="hint" style="margin:0 0 8px">Pilih contoh cepat untuk mengisi perkiraan biaya dan durasi, lalu sesuaikan.</p><div class="chips pre" style="flex-wrap:wrap">${PRE.map((p,i)=>`<button type="button" class="chip" data-act="preset" data-i="${i}">${p[0]}</button>`).join('')}</div>`}
@@ -483,6 +589,22 @@ function openSkill(id){const s=skl.find(x=>x.id===id)||{kind:'Kursus',status:'Re
 /* ---------- Actions ---------- */
 const A={
  close(){closeM()},
+ theme(){const d=document.documentElement.dataset.theme==='dark'?'light':'dark';ls('jt_theme',d);applyTheme(d)},
+ prt(){window.print()},
+ cvj(b){cvm(b.closest('.row,.trw').dataset.id)},cvj2(b){cvm(b.dataset.id)},
+ cvgen(b){const j=jobs.find(x=>x.id===b.dataset.id),r=cvGen(j,$('xjd').value,g('xtt'),cvHid()),ms=r.T.filter(t=>!r.hit.includes(t));$('xcx').value=r.txt;
+  $('xr').innerHTML=r.T.length?`<div class="card" style="margin-top:12px"><b>Kecocokan kata kunci: ${Math.round(r.hit.length*100/r.T.length)}%</b> <small>(${r.hit.length} dari ${r.T.length} kata kunci teratas JD)</small><p class="hint">Sudah ada di CV:</p><div>${r.hit.map(t=>`<span class="tag">${esc(t)}</span>`).join(' ')||'-'}</div><p class="hint">Belum ada di CV (tambahkan hanya jika memang Anda miliki):</p><div>${ms.map(t=>`<span class="pill" style="--c:#d97706">${esc(t)}</span>`).join(' ')||'-'}</div></div>`:'<p class="hint">Tempel JD untuk melihat kecocokan kata kunci.</p>'},
+ cvpdf(b){const j=jobs.find(x=>x.id===b.dataset.id),t=$('xcx').value.trim()||cvGen(j,$('xjd').value,g('xtt'),cvHid()).txt,n=cvParse(t).n||'CV';cvPrint(t,'CV_'+n.replace(/\s+/g,'_')+'_'+(j.company||'').replace(/[^\w]+/g,'_'))},
+ cvpr(b){const j=jobs.find(x=>x.id===b.dataset.id),p='Sesuaikan CV ATS berikut untuk posisi '+g('xtt')+' di '+j.company+'. Aturan: jangan menambah pengalaman, skill, angka, atau tanggal yang tidak ada di CV; boleh menulis ulang ringkasan dan butir agar memakai kata kunci lowongan yang memang relevan; urutkan butir dari yang paling relevan; bahasa Inggris, singkat, format ATS. Pertahankan format penanda yang sama persis (# nama, baris kontak, ## bagian, *Judul | Kanan, - butir) dan keluarkan hanya teks CV-nya.\n\nCV:\n'+($('xcx').value.trim()||cvt)+'\n\nDeskripsi lowongan:\n'+$('xjd').value;
+  (navigator.clipboard?navigator.clipboard.writeText(p):Promise.reject()).then(()=>toast('Prompt disalin, tempel ke Claude'),()=>toast('Gagal menyalin'))},
+ cvsave(b){const j=jobs.find(x=>x.id===b.dataset.id);j.jd=$('xjd').value.trim();j.tt=g('xtt');j.cvx=$('xcx').value.trim();j.cvh=cvHid().join(',');persist();closeM();toast('CV lamaran tersimpan')},
+ cvtm(){modal(`<h3>Template CV</h3><p class="hint" style="margin:0 0 8px">Format: <b># Nama</b>, baris kontak, <b>## Bagian</b>, <b>*Judul | Kanan</b> untuk baris dua kolom, <b>- butir</b>. Template ini dipakai semua lamaran dan tersimpan di spreadsheet.</p><textarea class="ta" id="xt" style="min-height:340px;font:13px/1.4 ui-monospace,monospace">${esc(cvt)}</textarea><div class="act"><button class="btn" data-act="cvtsave">Simpan template</button></div>`)},
+ cvtsave(){cvt=$('xt').value.trim();ls('jt_cvt',cvt);closeM();toast('Template tersimpan');if(cfg.url)api('cvset',{cv:cvt}).catch(e=>toast(e.message))},
+
+ ics(){const ev=sev().filter(x=>dl(x.d)>=0);if(!ev.length)return toast('Belum ada jadwal mendatang');const e=v=>String(v||'').replace(/([,;\\])/g,'\\$1'),ts=new Date().toISOString().replace(/[-:]/g,'').slice(0,15)+'Z',L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//JobTracker//ID'];
+  ev.forEach(x=>{const d=x.d.replace(/-/g,''),t=x.t?x.t.replace(':','')+'00':'';L.push('BEGIN:VEVENT','UID:'+x.id+'@jobtracker','DTSTAMP:'+ts,t?'DTSTART:'+d+'T'+t:'DTSTART;VALUE=DATE:'+d,'SUMMARY:'+e(x.k+' - '+x.co),'DESCRIPTION:'+e((x.po||'')+(x.n?' | '+x.n:'')),'END:VEVENT')});
+  L.push('END:VCALENDAR');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([L.join('\r\n')],{type:'text/calendar'}));a.download='jadwal-lamaran.ics';a.click()},
+
  adds(){const d=$('xd').value;if(!d)return toast('Pilih tanggalnya dulu');ws.push({sc:1,id:uid(),s:'Jadwal',d,t:$('xt').value,k:$('xk').value,n:g('xn')});$('xl').innerHTML=slh();$('xn').value=''},
  dels(b){ws.splice(+b.dataset.i,1);$('xl').innerHTML=slh()},
  savesch(){const d=$('xd').value;if(!d)return toast('Pilih tanggalnya dulu');const j=jobs.find(x=>x.id===$('zj').value);(j.hist=j.hist||[]).push({sc:1,id:uid(),s:'Jadwal',d,t:$('xt').value,k:$('xk').value,n:g('xn')});persist();closeM();render();toast('Jadwal tersimpan')},
@@ -500,16 +622,16 @@ const A={
   try{const x=(await api('extract',{urls:[u]},60000)).items[0];const set=(i,v)=>{if(v&&!/^\(lengkapi\)/.test(v)&&!$(i).value)$(i).value=v};set('jc',x.company);set('jp',x.position);set('jl',x.location);set('jd',x.date);
    if(x.type&&TY.includes(x.type))$('jt').value=x.type;toast(x.ok?'Terisi otomatis':'Sebagian terisi, lengkapi sisanya')}catch(e){toast(e.message)}b.disabled=false;b.textContent='Isi otomatis'},
  savejob(b){const c=g('jc'),p=g('jp');if(!c&&!p)return toast('Isi perusahaan atau posisi');
-  const o={note:$('jn').value.trim(),company:c,position:p,location:g('jl'),type:$('jt').value,date:$('jd').value,link:g('jk'),status:(document.querySelector('#js .on')||{dataset:{v:'Applied'}}).dataset.v};
+  const o={note:$('jn').value.trim(),company:c,position:p,location:g('jl'),type:$('jt').value,date:$('jd').value,link:g('jk'),src:$('jsr').value,wm:$('jwm').value,pr:+$('jpr').value||0,cv:g('jcv'),ind:g('jin'),dlu:$('jdu').value,fu:$('jfu').value,gx:+$('jgx').value||0,go:+$('jgo').value||0,ct:g('jct'),why:g('jwh'),prep:$('jpp').value.trim(),status:(document.querySelector('#js .on')||{dataset:{v:'Applied'}}).dataset.v};
   const pv=b.dataset.id&&jobs.find(x=>x.id===b.dataset.id),h=wh.slice(),lq=h.length?h[h.length-1].s:(pv?pv.status:null);if(lq!==o.status)h.push({d:today(),s:o.status,n:''});o.hist=h.concat(ws);
   if(b.dataset.id)Object.assign(jobs.find(x=>x.id===b.dataset.id),o);
-  else{if(jobs.some(x=>key(x)===key(o)))return toast('Lamaran ini sudah ada');jobs.push(Object.assign({id:uid()},o))}
+  else{if(jobs.some(x=>key(x)===key(o)||(o.link&&x.link===o.link)))return toast('Lamaran ini sudah ada (perusahaan+posisi atau link sama)');jobs.push(Object.assign({id:uid()},o))}
   persist();closeM();render();toast('Tersimpan')},
  saveskill(b){const n=g('sn');if(!n)return toast('Isi nama skill');
   const o={name:n,kind:$('sk').value,provider:g('sp'),cost:+$('sc').value||0,dur:+$('sd').value||0,unit:$('su').value,status:$('ss').value,date:$('sdt').value,link:g('sl')};
   if(b.dataset.id)Object.assign(skl.find(x=>x.id===b.dataset.id),o);else skl.push(Object.assign({id:uid()},o));
   persist();closeM();render();toast('Tersimpan')},
- deljob(b){const id=b.closest('.row,.trw').dataset.id;if(!confirm('Hapus lamaran ini?'))return;jobs=jobs.filter(j=>j.id!==id);persist();render()},
+ deljob(b){const id=b.closest('.row,.trw').dataset.id;if(!confirm('Hapus lamaran ini?'))return;const gone=jobs.find(j=>j.id===id);jobs=jobs.filter(j=>j.id!==id);persist();render();undo('Lamaran dihapus',()=>{jobs.push(gone);persist();render()})},
  delskill(b){const id=b.closest('.sc').dataset.id;if(!confirm('Hapus skill ini?'))return;skl=skl.filter(s=>s.id!==id);persist();render()},
  lv(b){lv=b.dataset.v;ls('jt_lv',lv);render()},
  sort(b){const k=b.dataset.k;so=so.k===k?{k,d:-so.d}:{k,d:k==='date'?-1:1};list('lst',jlist())},
@@ -518,11 +640,11 @@ const A={
   const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+t],{type:'text/csv'}));a.download='job-tracker.csv';a.click()},
  sync(){if(!cfg.url)return toast('Hubungkan dulu di ⚙ Pengaturan');sync()},
  cfgm(){modal(`<h3>Pengaturan</h3><label>URL Web App Apps Script</label><input id="cu" value="${esc(cfg.url||'')}" placeholder="https://script.google.com/macros/s/…/exec"><p class="hint">Password Apps Script otomatis memakai password login.</p>${cfg.url?`<label>Link sambung perangkat <small>(buka di HP sekali, data langsung ikut)</small></label><div class="ln"><input id="cl" readonly value="${esc(location.href.split('?')[0].split('#')[0]+'?sync='+encodeURIComponent(cfg.url))}"><button class="btn s" data-act="cpl">Salin</button></div>`:''}
-  <label>Target lamaran</label><input id="ct" type="number" min="1" value="${cfg.target}">
+  <label>Target lamaran</label><input id="ct" type="number" min="1" value="${cfg.target}"><label>Target lamaran per minggu</label><input id="cw" type="number" min="1" value="${cfg.wt}">
   <div class="act"><button class="btn" data-act="savecfg">Simpan</button><button class="btn s" data-act="ping">Tes koneksi</button></div>
-  <div class="act" style="margin-top:10px"><button class="btn s" data-act="impm" style="flex:1">Impor dari Google Sheets</button></div><div class="act" style="margin-top:10px"><button class="btn s" data-act="bak" style="flex:1">Cadangkan (.json)</button><button class="btn s" data-act="rest" style="flex:1">Pulihkan</button></div>
+  <div class="act" style="margin-top:10px"><button class="btn s" data-act="cvtm" style="flex:1">Template CV</button><button class="btn s" data-act="impm" style="flex:1">Impor dari Google Sheets</button></div><div class="act" style="margin-top:10px"><button class="btn s" data-act="bak" style="flex:1">Cadangkan (.json)</button><button class="btn s" data-act="rest" style="flex:1">Pulihkan</button></div>
   <div class="act" style="margin-top:10px"><button class="btn s" data-act="logout" style="flex:1">Keluar akun</button><button class="btn s" data-act="wipe" style="flex:1;color:#be123c">Hapus data lokal</button></div>`)},
- savecfg(){cfg.url=g('cu');cfg.target=+$('ct').value||300;store();closeM();render();toast('Pengaturan disimpan');if(cfg.url)pull();else setSt('mode lokal')},
+ savecfg(){cfg.url=g('cu');cfg.target=+$('ct').value||300;cfg.wt=+$('cw').value||5;store();closeM();render();toast('Pengaturan disimpan');if(cfg.url)pull();else setSt('mode lokal')},
  ping(){cfg.url=g('cu');store();toast('Menguji…');api('ping').then(d=>toast('Terhubung, '+d.rows+' baris')).catch(e=>toast(e.message))},
 
  addh(){const n=g('hn');if(!n)return toast('Tulis kejadiannya dulu');const st=(document.querySelector('#js .on')||{dataset:{v:'Applied'}}).dataset.v;wh.push({d:$('hd').value||today(),s:st,n});wh.sort((a,b)=>a.d.localeCompare(b.d));$('tl').innerHTML=tlh();$('hn').value=''},
@@ -577,6 +699,7 @@ document.addEventListener('touchmove',e=>{if(e.touches.length>1||(e.scale&&e.sca
 document.addEventListener('wheel',e=>{if(e.ctrlKey)e.preventDefault()},{passive:false});
 document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&['+','-','=','0','_'].includes(e.key))e.preventDefault()});
 let lt=0;document.addEventListener('touchend',e=>{const n=Date.now();if(n-lt<300)e.preventDefault();lt=n},{passive:false});
+applyTheme(document.documentElement.dataset.theme||'light');
 if('serviceWorker' in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('sw.js',{updateViaCache:'none'}).then(r=>r.update()).catch(()=>{});
 </script>
 </body>
