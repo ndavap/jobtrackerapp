@@ -223,6 +223,8 @@ input:focus,select:focus,textarea.ta:focus{border-color:var(--ac);box-shadow:0 0
 .stp{display:flex;align-items:center}.stp i{width:14px;height:14px;border-radius:50%;background:#ddd8c9;position:relative;margin-right:22px;flex:none}.stp i:last-child{margin-right:0}.stp i:not(:last-child)::after{content:"";position:absolute;left:14px;top:50%;width:22px;height:3px;background:#ddd8c9;transform:translateY(-50%)}.stp i.d{background:var(--c)}.stp i.l::after{background:var(--c)}.stp i.c{box-shadow:0 0 0 4px color-mix(in srgb,var(--c) 25%,transparent)}
 .mb.w{gap:4px}.mb.w b{font-size:12px}.mb.w span{font-size:11px}
 @media(max-width:760px){.pt{grid-template-columns:minmax(0,1fr) auto}.pt .stp{grid-column:1/-1;order:3}.fn2{grid-template-columns:96px 1fr 104px!important;font-size:13px}.mb.w span{font-size:9px}.tabs button{font-size:13px;padding:9px 2px}}
+.sk{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;height:190px}.sk>div{display:flex;flex-direction:column;align-items:center;min-height:0}
+.sk .tr{flex:1;width:100%;max-width:46px;display:flex;flex-direction:column;justify-content:flex-end;gap:2px;min-height:0}.sk .tr i{display:block;min-height:4px;border-radius:5px;animation:growy 1s var(--ease) both}.sk b{margin-top:6px}.sk span{font-size:12px;color:var(--mut)}
 </style>
 </head>
 <body>
@@ -252,7 +254,7 @@ input:focus,select:focus,textarea.ta:focus{border-color:var(--ac);box-shadow:0 0
 <div class="ts" id="ts"></div>
 
 <script>
-const H='8bfc8b026805c88ee55b468f23b0792831c6c07d9e97d23bba0889386e2b7057',B='UmVkZGV2aWwjMTI=';
+const H='8bfc8b026805c88ee55b468f23b0792831c6c07d9e97d23bba0889386e2b7057';
 const ST=['Not Applied','Applied','HR Interview','User Interview','Assessment','Offer','Accepted','Rejected','Ghosted','Failed'];
 const CL={'Not Applied':'#78858a','Applied':'#2563eb','HR Interview':'#0891b2','User Interview':'#0d9488','Assessment':'#d97706','Offer':'#65a30d','Accepted':'#059669','Rejected':'#dc2626','Ghosted':'#8a7f72','Failed':'#9f1239'};
 const TY=['Full Time','Part Time','Internship','Contract','Freelance'];
@@ -279,9 +281,14 @@ const key=j=>(j.company+'|'+j.position).toLowerCase().trim();
 const norm=v=>ST.find(x=>x.toLowerCase()===String(v||'').trim().toLowerCase())||'Not Applied';
 const opts=(a,v)=>a.map(x=>`<option${x===v?' selected':''}>${x}</option>`).join('');
 function toast(t){const e=$('ts');e.textContent=t;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('on'),3200)}
-function setSt(t,c){$('st').textContent=t;$('sy').className='sy '+(c||'')}
+function setSt(t,c){$('st').textContent=c==='ok'?t+' '+new Date().toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'}):t;$('sy').className='sy '+(c||'')}
 function store(){try{localStorage.setItem('jt_jobs',JSON.stringify(jobs));localStorage.setItem('jt_skills',JSON.stringify(skl));localStorage.setItem('jt_cfg',JSON.stringify(cfg))}catch(e){}}
-function persist(){store();if(cfg.url){ls('jt_dirty','1');clearTimeout(tmr);setSt('menyimpan…','bz');tmr=setTimeout(push,1200)}else setSt('mode lokal')}
+const cs=x=>JSON.stringify(Object.keys(x).filter(k=>k!=='u').sort().map(k=>[k,x[k]]));
+function stamp(){const sn=rd('jt_snap',{}),tb=rd('jt_tomb',{}),now=Date.now(),ns={};
+ [[jobs,'j'],[skl,'s']].forEach(([a,p])=>a.forEach(x=>{const k=p+x.id,c=cs(x);ns[k]=c;if(sn[k]!==c)x.u=now;delete tb[k]}));
+ Object.keys(sn).forEach(k=>{if(!(k in ns))tb[k]=now});ls('jt_snap',JSON.stringify(ns));ls('jt_tomb',JSON.stringify(tb))}
+function snap(){const s={};[[jobs,'j'],[skl,'s']].forEach(([a,p])=>a.forEach(x=>s[p+x.id]=cs(x)));ls('jt_snap',JSON.stringify(s))}
+function persist(){stamp();store();if(cfg.url){ls('jt_dirty','1');clearTimeout(tmr);setSt('menyimpan…','bz');tmr=setTimeout(push,800)}else setSt('mode lokal')}
 
 /* ---------- Apps Script ---------- */
 async function api(action,data,ms){
@@ -292,17 +299,16 @@ async function api(action,data,ms){
   if(d.error)throw new Error(d.error);return d}
  catch(e){if(e.name==='AbortError')throw new Error('Waktu habis, coba lagi');if(e instanceof TypeError)throw new Error('Tidak bisa terhubung ke internet / URL');throw e}
  finally{clearTimeout(t)}}
-async function push(){if(!cfg.url)return;setSt('menyimpan…','bz');
- try{const snap=JSON.stringify([jobs,skl]);await api('save',{jobs});await api('saveSkills',{skills:skl});if(JSON.stringify([jobs,skl])===snap)ls('jt_dirty',null);setSt('tersinkron','ok')}
- catch(e){setSt(e.message,'er')}}
-async function pull(silent){if(!silent)setSt('memuat…','bz');const old=JSON.stringify([jobs,skl].map(a=>a.map(({id,...r})=>r)));
- try{const d=await api('list'),first=!lg('jt_synced');let extra=[];
-  if(first||!d.jobs.length){const h=new Set(d.jobs.map(key));extra=jobs.filter(j=>!h.has(key(j)))}
-  jobs=d.jobs.map(j=>Object.assign({id:uid()},j,{status:norm(j.status)})).concat(extra);
-  try{const s=await api('skills');if(s.skills.length||!skl.length)skl=s.skills.map(x=>Object.assign({id:uid()},x));else extra=extra.concat([1])}catch(e){}
-  store();ls('jt_synced','1');if(extra.length)await push();else{ls('jt_dirty',null);setSt('tersinkron','ok')}
-  const nw=JSON.stringify([jobs,skl].map(a=>a.map(({id,...r})=>r)));if(!silent||old!==nw)render();remind()}catch(e){if(!silent)setSt(e.message,'er')}}
-const sync=()=>lg('jt_dirty')?push():pull();
+let busy=0,again=0;
+async function run(silent){if(!cfg.url)return;if(busy){again=1;return}busy=1;const dirty=!!lg('jt_dirty');if(dirty||!silent)setSt(dirty?'menyimpan…':'memuat…','bz');
+ try{const sent=JSON.stringify([jobs,skl]),d=await api('sync',{dirty,jobs:dirty?jobs:[],skills:dirty?skl:[],tomb:dirty?rd('jt_tomb',{}):{}});
+  if(JSON.stringify([jobs,skl])!==sent)again=1;
+  else{const before=lg('jt_snap');jobs=d.jobs.map(j=>Object.assign({},j,{status:norm(j.status)}));skl=d.skills;ls('jt_tomb',JSON.stringify(d.tomb||{}));snap();store();ls('jt_dirty',null);ls('jt_synced','1');if(lg('jt_snap')!==before||!silent)render()}
+  setSt('tersinkron','ok');remind()}
+ catch(e){setSt(e.message,'er')}
+ finally{busy=0;if(again){again=0;setTimeout(()=>run(true),300)}}}
+const push=()=>run(),pull=s=>run(s),sync=()=>run();
+if(!lg('jt_snap')){jobs.concat(skl).forEach(x=>{x.u=x.u||1});snap();store();if(cfg.url&&(jobs.length||skl.length))ls('jt_dirty','1')}
 
 /* ---------- Views ---------- */
 function stat(){
@@ -360,6 +366,22 @@ function extra(){
  <div class="g g2"><div class="card rise">${H('Komposisi status')}${dn2}</div><div class="card rise">${H('Tipe pekerjaan')}${tb(topN(j=>j.type,5),'#f59e0b')}</div></div>
  <div class="card rise" style="margin-bottom:14px"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px">${H('Lamaran terbaru')}<button class="btn s" data-go="job" style="min-height:40px;padding:8px 16px">Lihat semua</button></div>${rt}</div>
  <div class="g g2"><div class="card rise">${H('Perusahaan terbanyak')}${tb(topN(j=>j.company,6),'#0d9488')}</div><div class="card rise">${H('Lokasi terbanyak')}${tb(topN(j=>j.location,6),'#2563eb')}</div></div>`}
+function ana(){
+ const act=jobs.filter(j=>ACT.includes(j.status)),
+ ag=[['0–7 hari',0,7,'#059669'],['8–14 hari',8,14,'#0d9488'],['15–30 hari',15,30,'#d97706'],['Lebih 30 hari',31,1e5,'#dc2626']].map(b=>[b[0],act.filter(j=>{const a=dd(lastD(j));return a!==null&&a>=b[1]&&a<=b[2]}).length,b[3]]),
+ rs=jobs.map(j=>{const h=hs(j),a=h.find(x=>x.s==='Applied'),r=h.find(x=>!x.auto&&!['Applied','Not Applied','Ghosted'].includes(x.s));return a&&r&&a.d&&r.d?Math.round((new Date(r.d)-new Date(a.d))/864e5):-1}).filter(v=>v>=0),
+ av=rs.length?Math.round(rs.reduce((a,b)=>a+b,0)/rs.length):0,
+ f4=jobs.filter(j=>{const f=(hs(j)[0]||{}).d,n=f?dd(f):-1;return n>=0&&n<28}).length,pace=Math.round(f4/4*10)/10,left=Math.max(0,cfg.target-jobs.length),
+ eta=!left?'Tercapai':pace>0?Math.ceil(left/pace)+' minggu':'-';
+ const t=new Date(),mo=[];for(let i=5;i>=0;i--){const x=new Date(t.getFullYear(),t.getMonth()-i,1),k=x.getFullYear()+'-'+('0'+(x.getMonth()+1)).slice(-2),m=jobs.filter(j=>((hs(j)[0]||{}).d||'').slice(0,7)===k),w=m.filter(j=>['Offer','Accepted'].includes(j.status)).length,f=m.filter(j=>['Rejected','Failed','Ghosted'].includes(j.status)).length;mo.push([MN[x.getMonth()],w,f,m.length-w-f])}
+ const mx=Math.max(1,...mo.map(m=>m[1]+m[2]+m[3])),am=Math.max(1,...ag.map(z=>z[1])),H=s=>`<h3 style="margin:0 0 12px">${s}</h3>`,
+ ty=TY.map(s=>{const a=jobs.filter(j=>j.type===s&&reach(j)>=1);return [s,a.length,a.filter(j=>reach(j)>=2).length]}).filter(r=>r[1]),
+ lgd=[['#059669','Offer / diterima'],['#0891b2','Dalam proses'],['#dc2626','Tidak lanjut']].map(c=>`<span style="display:inline-flex;align-items:center;gap:6px;margin-right:14px;font-size:14px"><i class="dot" style="background:${c[0]}"></i>${c[1]}</span>`).join('');
+ return `<div class="sec rise"><h3>Analitik lamaran</h3></div>
+ <div class="g g4">${KK('Rata-rata respons',rs.length?av+' hari':'-','#0891b2',rs.length?'dari '+rs.length+' lamaran yang dibalas':'belum ada data')}${KK('Laju lamaran',pace+' / minggu','#2563eb','rata-rata 4 minggu terakhir')}${KK('Estimasi capai target',eta,'#f59e0b','sisa '+left+' dari target '+cfg.target)}${KK('Lamaran basi',ag[3][1],ag[3][1]?'#dc2626':'#059669','aktif, tanpa kabar lebih dari 30 hari')}</div>
+ <div class="g g2"><div class="card rise">${H('Hasil lamaran per bulan')}<div class="sk">${mo.map(m=>`<div><div class="tr">${[[m[1],'#059669'],[m[3],'#0891b2'],[m[2],'#dc2626']].map(s=>s[0]?`<i title="${s[0]}" style="height:${s[0]*100/mx}%;background:${s[1]}"></i>`:'').join('')}</div><b>${m[1]+m[2]+m[3]}</b><span>${m[0]}</span></div>`).join('')}</div><div style="margin-top:12px">${lgd}</div></div>
+ <div class="card rise">${H('Umur lamaran aktif')}${act.length?ag.map(a=>`<div class="fn"><span>${a[0]}</span><div class="bar"><i style="width:${a[1]*100/am}%;background:${a[2]}"></i></div><em>${a[1]}</em></div>`).join(''):'<p class="hint">Belum ada lamaran aktif.</p>'}<p class="hint">Dihitung sejak kabar terakhir. Merah berarti saatnya follow up.</p></div></div>
+ <div class="card rise" style="margin-bottom:14px">${H('Lolos ke wawancara per tipe pekerjaan')}${ty.length?ty.map(r=>`<div class="fn fn2"><span>${r[0]}</span><div class="bar"><i style="width:${r[2]*100/r[1]}%"></i></div><em>${Math.round(r[2]*100/r[1])}% · ${r[2]}/${r[1]}</em></div>`).join(''):'<p class="hint">Belum ada data.</p>'}</div>`}
 const V={
 sch(){const ev=sev(),up=ev.filter(x=>dl(x.d)>=0),ps=ev.filter(x=>dl(x.d)<0),n0=up.filter(x=>dl(x.d)===0).length,n7=up.filter(x=>dl(x.d)<=7).length;
  const sce=x=>`<div class="se" data-id="${x.jid}" data-act="editjob"><span class="dot" style="background:${SK[x.k]||'#78858a'}"></span><div><b>${esc(x.k)} · ${esc(x.co)}</b><small>${esc(x.po)}${x.n?' · '+esc(x.n):''}</small></div><time>${x.t||'Seharian'}</time><button class="dl" data-act="delsch" data-jid="${x.jid}" data-sid="${x.id}" aria-label="Hapus">✕</button></div>`;
@@ -396,7 +418,7 @@ dash(){const {n,act,win,out,K,tc,tw,dn}=stat(),sp=skl.length?Math.round(dn*100/s
   <div style="margin-top:8px">${ST.map(s=>`<div class="sr"><span class="dot" style="background:${CL[s]}"></span><span>${s}</span><em>${cnt(s)}</em><div class="bar" style="margin-top:0"><i style="width:${n?cnt(s)*100/n:0}%;background:${CL[s]}"></i></div></div>`).join('')}</div></div>
   <div class="dr"><div class="card rise"><span style="color:var(--mut);font-size:14px">Target lamaran</span><b style="display:block;font:600 28px var(--serif);color:var(--navy)">${n} / ${cfg.target}</b><div class="bar"><i style="width:${Math.min(100,n*100/cfg.target)}%"></i></div></div>
   <div class="card rise"><h3 style="margin:0 0 12px;font:600 18px var(--serif)">Skill & kursus</h3><div class="mt"><div><span>Total</span><b>${skl.length}</b></div><div><span>Selesai</span><b>${dn}</b></div><div><span>Biaya</span><b>${rp(tc)}</b></div><div><span>Durasi</span><b>${lama(tw)}</b></div></div><div class="bar"><i style="width:${sp}%;background:#059669"></i></div></div></div></div>
- ${extra()}${n||skl.length?'':'<div class="card empty rise">Belum ada data. Tekan <b>＋ Lamaran</b> atau <b>＋ Skill</b> untuk mulai.</div>'}`},
+ ${extra()}${ana()}${n||skl.length?'':'<div class="card empty rise">Belum ada data. Tekan <b>＋ Lamaran</b> atau <b>＋ Skill</b> untuk mulai.</div>'}`},
 job(){return `<div class="rise"><h2 class="t">Lamaran</h2><p class="sub">Ketuk baris untuk edit. Ubah status langsung dari pil berwarna.</p></div>
  <div class="tool rise"><input id="fq" placeholder="Cari perusahaan, posisi, lokasi…" value="${esc(flt.q)}"><div class="vt"><button class="${lv==='tbl'?'on':''}" data-act="lv" data-v="tbl">Tabel</button><button class="${lv==='card'?'on':''}" data-act="lv" data-v="card">Kartu</button></div><button class="btn s" data-act="csv">Unduh CSV</button></div>
  <div class="chips rise" id="ch">${chips()}</div><div id="lst">${jlist()}</div>`},
@@ -518,7 +540,7 @@ const A={
   if(!R.length||!$('imp').value.trim())return toast('Tempel datanya dulu');
   persist();closeM();render();toast(n+' lamaran diimpor')},
  lock(){ls('jt_auth',null);try{sessionStorage.removeItem('jt_auth')}catch(e){}location.reload()},
- wipe(){if(confirm('Hapus semua data di browser ini? Data di spreadsheet tidak terhapus.')){jobs=[];skl=[];ls('jt_synced',null);store();closeM();render()}}
+ wipe(){if(confirm('Hapus semua data di browser ini? Data di spreadsheet tidak terhapus.')){jobs=[];skl=[];ls('jt_synced',null);ls('jt_snap',null);ls('jt_tomb',null);ls('jt_dirty',null);store();closeM();render();if(cfg.url)pull()}}
 };
 document.addEventListener('click',e=>{const b=e.target.closest('[data-act]');if(b&&A[b.dataset.act]){A[b.dataset.act](b,e);return}
  const n=e.target.closest('[data-go]');if(n)go(n.dataset.go);if(e.target.classList&&e.target.classList.contains('mo'))closeM()});
@@ -532,7 +554,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeM();
  if(e.key==='Enter'&&e.target.closest('.sh')&&e.target.tagName==='INPUT'){const b=document.querySelector('.sh [data-act^=save]');if(b&&e.target.type!=='url')b.click()}});
 
 /* ---------- Login ---------- */
-async function chk(p){try{const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(p));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')===H}catch(e){return p===atob(B)}}
+async function chk(p){try{const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(p));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')===H}catch(e){return false}}
 function enter(){$('lk').classList.add('out');setTimeout(()=>$('lk').hidden=true,500);$('app').hidden=false;render();
  if(cfg.url)sync();else setSt('mode lokal');deep()}
 async function login(){const p=$('lp').value;if(await chk(p)){cfg.pw=p;store();
@@ -540,22 +562,22 @@ async function login(){const p=$('lp').value;if(await chk(p)){cfg.pw=p;store();
  else{$('le').textContent='Password salah, coba lagi.';const c=$('lc');c.classList.remove('bad');void c.offsetWidth;c.classList.add('bad');$('lp').select()}}
 $('lb').onclick=login;$('lp').addEventListener('keydown',e=>{if(e.key==='Enter')login()});
 $('lt').onclick=()=>{const i=$('lp'),s=i.type==='password';i.type=s?'text':'password';$('lt').textContent=s?'Sembunyi':'Lihat'};
-document.addEventListener('visibilitychange',()=>{if(!document.hidden&&!$('app').hidden&&cfg.url&&!lg('jt_dirty')&&!document.querySelector('.mo'))pull()});
+document.addEventListener('visibilitychange',()=>{if(!cfg.url||$('app').hidden)return;if(document.hidden){if(lg('jt_dirty'))push()}else if(!document.querySelector('.mo'))pull(true)});window.addEventListener('pageshow',()=>{if(cfg.url&&!$('app').hidden)pull(true)});window.addEventListener('focus',()=>{if(cfg.url&&!$('app').hidden&&!document.querySelector('.mo'))pull(true)});
 window.addEventListener('online',()=>{if(cfg.url&&!$('app').hidden)sync()});
 let ok=lg('jt_auth')===H;try{ok=ok||sessionStorage.getItem('jt_auth')===H}catch(e){}
 if(ok&&cfg.pw){$('lk').hidden=true;$('app').hidden=false;render();if(cfg.url)sync();else setSt('mode lokal');deep()}else $('lp').focus();
 
 function deep(){setTimeout(remind,800);const p=new URLSearchParams(location.search),n=p.get('new');if(!n)return;history.replaceState(null,'',location.pathname);
  if(n==='skill'){view='skill';render();openSkill()}else{view='job';render();openJob()}}
-/* perbarui otomatis tiap 60 detik bila ada perubahan dari perangkat lain atau dari spreadsheet */
-setInterval(()=>{const a=document.activeElement;if(document.hidden||$('app').hidden||!cfg.url||lg('jt_dirty')||document.querySelector('.mo')||(a&&/INPUT|SELECT/.test(a.tagName)))return;pull(true)},30000);
+/* perbarui otomatis tiap 30 detik bila ada perubahan dari perangkat lain atau dari spreadsheet */
+setInterval(()=>{const a=document.activeElement;if(document.hidden||$('app').hidden||!cfg.url||document.querySelector('.mo')||(a&&/INPUT|SELECT/.test(a.tagName)))return;pull(true)},30000);
 /* kunci zoom */
 ['gesturestart','gesturechange','gestureend'].forEach(t=>document.addEventListener(t,e=>e.preventDefault()));
 document.addEventListener('touchmove',e=>{if(e.touches.length>1||(e.scale&&e.scale!==1))e.preventDefault()},{passive:false});
 document.addEventListener('wheel',e=>{if(e.ctrlKey)e.preventDefault()},{passive:false});
 document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&['+','-','=','0','_'].includes(e.key))e.preventDefault()});
 let lt=0;document.addEventListener('touchend',e=>{const n=Date.now();if(n-lt<300)e.preventDefault();lt=n},{passive:false});
-if('serviceWorker' in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('sw.js').catch(()=>{});
+if('serviceWorker' in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('sw.js',{updateViaCache:'none'}).then(r=>r.update()).catch(()=>{});
 </script>
 </body>
 </html>
