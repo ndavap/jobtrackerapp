@@ -295,6 +295,16 @@ html[data-theme=dark] .ht{border-left-color:var(--c)}html[data-theme=dark] .lt b
 html[data-theme=dark] .lt button.hot{background:color-mix(in srgb,var(--c) 18%,#172426)}html[data-theme=dark] .ht.hot{background:color-mix(in srgb,var(--c) 16%,#172426)}
 html[data-theme=dark] .lt .hubb{background:#0f766e;border-color:#0f766e}
 @media(max-width:760px){.lt{margin:0 -14px 12px;padding:8px 14px}}
+/* filter minimalis */
+.fb{margin-bottom:12px}
+.fg{display:flex;flex-wrap:wrap;gap:8px}
+.fg .chip{padding:9px 15px}
+.fr{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:10px}
+#fsel{width:auto;min-height:42px;padding:8px 14px;font-size:15px;border-radius:12px;font-weight:600}
+.fc{color:var(--mut);font-size:14px}.fc b{color:var(--navy)}
+.fx{border:0;background:none;color:#be123c;font:700 14px inherit;cursor:pointer;padding:8px 4px;margin-left:auto}
+.lt .jsel{flex:none;width:auto;min-height:36px;padding:6px 12px;border-radius:99px;font-size:13px;font-weight:600}
+@media(max-width:760px){.fg{gap:6px}.fg .chip{padding:8px 12px;font-size:13px}#fsel{flex:1;min-width:0}}
 </style>
 </head>
 <body>
@@ -615,18 +625,25 @@ dash(){const {n,act,win,out,K,tc,tw,dn}=stat(),sp=skl.length?Math.round(dn*100/s
  ${V.prog(0)}${extra()}${ana()}${ana2()}${V.prog(1)}${n||skl.length?'':'<div class="card empty rise">Belum ada data. Tekan <b>＋ Lamaran</b> atau <b>＋ Skill</b> untuk mulai.</div>'}`},
 job(){return `<div class="rise"><h2 class="t">Lamaran</h2><p class="sub">Ketuk baris untuk edit. Ubah status langsung dari pil berwarna.</p></div>
  <div class="tool rise"><input id="fq" placeholder="Cari perusahaan, posisi, lokasi…" value="${esc(flt.q)}"><div class="vt"><button class="${lv==='tbl'?'on':''}" data-act="lv" data-v="tbl">Tabel</button><button class="${lv==='card'?'on':''}" data-act="lv" data-v="card">Kartu</button><button class="${lv==='kan'?'on':''}" data-act="lv" data-v="kan">Papan</button></div><button class="btn s" data-act="csv">Unduh CSV</button></div>
- <div class="chips rise" id="ch">${chips()}</div><div id="lst">${jlist()}</div>`},
+ <div class="fb rise" id="ch">${chips()}</div><div id="lst">${jlist()}</div>`},
 skill(){const {tc,tw,dn}=stat();
  return `<div class="rise"><h2 class="t">Skill & Kursus</h2><p class="sub">Les, kursus, sertifikasi: catat biaya dan lamanya, pantau sampai selesai.</p></div>
  <div class="g g4"><div class="card k rise" data-act="kpi" data-k="sk_all" role="button" tabindex="0" title="Ketuk untuk lihat daftar"><i style="background:#0f4c4a"></i><span>Total rencana</span><b data-n="${skl.length}">0</b><small>${dn} selesai</small><em class="kg">Lihat ›</em></div><div class="card k rise" data-act="kpi" data-k="sk_cost" role="button" tabindex="0" title="Ketuk untuk lihat daftar"><i style="background:#d97706"></i><span>Total biaya</span><b style="font-size:24px;line-height:1.6">${rp(tc)}</b><small>semua item</small><em class="kg">Lihat ›</em></div><div class="card k rise" data-act="kpi" data-k="sk_dur" role="button" tabindex="0" title="Ketuk untuk lihat daftar"><i style="background:#2563eb"></i><span>Total durasi</span><b style="font-size:24px;line-height:1.6">${lama(tw)}</b><small>jika dijalankan berurutan</small><em class="kg">Lihat ›</em></div><div class="card k rise" data-act="kpi" data-k="sk_todo" role="button" tabindex="0" title="Ketuk untuk lihat daftar"><i style="background:#059669"></i><span>Belum selesai</span><b style="font-size:24px;line-height:1.6">${rp(skl.filter(s=>s.status!=='Selesai').reduce((a,s)=>a+(+s.cost||0),0))}</b><small>perkiraan yang masih perlu</small><em class="kg">Lihat ›</em></div></div>
  <div class="tool rise"><input id="sqi" placeholder="Cari skill, penyedia…" value="${esc(sq)}"></div><div class="sg" id="slst">${slist()}</div>`}};
-const chips=()=>[['','Semua',jobs.length]].concat(ST.map(s=>[s,s,cnt(s)])).map(c=>`<button class="chip${flt.s===c[0]?' on':''}" data-act="flt" data-s="${c[0]}">${c[1]}<em>${c[2]}</em></button>`).join('');
+/* Filter sederhana: 5 grup cepat + dropdown untuk 10 status lengkap */
+const FG=[['g:todo','Belum dilamar',['Not Applied']],['g:sent','Dilamar',['Applied']],['g:proc','Proses',['HR Interview','User Interview','Assessment']],['g:win','Offer',['Offer','Accepted']],['g:out','Tidak lanjut',['Rejected','Ghosted','Failed']]];
+const fst=s=>{const g=FG.find(x=>x[0]===s);return g?g[2]:s?[s]:null};
+const jfil=()=>{const q=flt.q.toLowerCase(),a=fst(flt.s);return jobs.filter(j=>(!a||a.includes(j.status))&&(!q||(j.company+' '+j.position+' '+j.location).toLowerCase().includes(q)))};
+const chips=()=>{const pill=(s,l,n)=>`<button class="chip${flt.s===s?' on':''}" data-act="flt" data-s="${s}">${l}<em>${n}</em></button>`,
+ act=!!(flt.s||flt.q),isSt=ST.includes(flt.s);
+ return `<div class="fg">${pill('','Semua',jobs.length)}${FG.map(g=>pill(g[0],g[1],jobs.filter(j=>g[2].includes(j.status)).length)).join('')}</div>
+ <div class="fr"><select id="fsel" aria-label="Pilih status tertentu"><option value="">Status lengkap…</option>${ST.map(s=>`<option value="${s}"${flt.s===s?' selected':''}>${s} (${cnt(s)})</option>`).join('')}</select><span class="fc">Menampilkan <b>${jfil().length}</b> dari ${jobs.length}</span>${act?'<button class="fx" data-act="frs">Reset filter ✕</button>':''}</div>`};
 function tbl(a){const k=so.k,d=so.d,v=j=>String(j[k]||'').toLowerCase();
  a=a.slice().sort((x,y)=>(k==='status'?ST.indexOf(x.status)-ST.indexOf(y.status):v(x).localeCompare(v(y),'id'))*d);
  const th=(l,k2)=>`<th><button class="sb" data-act="sort" data-k="${k2}">${l}${so.k===k2?(so.d>0?' ▲':' ▼'):''}</button></th>`;
  return `<div class="card tw rise"><div class="ow"><table class="tb"><thead><tr><th>No</th>${th('Perusahaan','company')}${th('Posisi','position')}${th('Lokasi','location')}${th('Tipe','type')}${th('Tanggal','date')}${th('Status','status')}<th></th></tr></thead><tbody>${a.map((j,i)=>`<tr class="trw" data-id="${j.id}" data-act="editjob"><td>${i+1}</td><td><b>${j.pr?'<span style="color:#f59e0b">'+'★'.repeat(j.pr)+'</span> ':''}${esc(j.company)}</b>${j.note?'<small>📝 ada catatan</small>':''}</td><td>${esc(j.position)||'-'}</td><td>${esc(j.location)||'-'}</td><td>${esc(j.type)||'-'}</td><td>${fmt(j.date)||'-'}</td><td><select class="ps" data-act="st" style="--c:${CL[j.status]}">${opts(ST,j.status)}</select></td><td><div class="ra"><button data-act="cvj" aria-label="CV ATS" title="CV ATS">📄</button>${j.link?`<a href="${esc(j.link)}" target="_blank" rel="noopener" aria-label="Buka link">↗</a>`:''}<button class="dl" data-act="deljob" aria-label="Hapus">✕</button></div></td></tr>`).join('')}</tbody></table></div></div>`}
 function kan(a){return `<div class="kb">${ST.map(s=>{const c=a.filter(j=>j.status===s);return `<div class="kc"><h4 style="color:${CL[s]}">${s} <em>${c.length}</em></h4>${c.map(j=>`<div class="card kk" data-id="${j.id}" data-act="editjob"><b>${esc(j.company)}</b><span>${esc(j.position)||'-'}</span>${j.pr?`<small style="color:#f59e0b">${'★'.repeat(j.pr)}</small>`:''}${j.fu?`<small>Follow up ${fmt(j.fu)}</small>`:''}</div>`).join('')||'<p class="hint">-</p>'}</div>`}).join('')}</div>`}
-function jlist(){const q=flt.q.toLowerCase(),a=jobs.filter(j=>(!flt.s||j.status===flt.s)&&(!q||(j.company+' '+j.position+' '+j.location).toLowerCase().includes(q)));
+function jlist(){const a=jfil();
  if(!a.length)return `<div class="card empty rise">${jobs.length?'Tidak ada yang cocok.':'Belum ada lamaran. Tekan ＋ Tambah untuk mulai.'}</div>`;
  if(lv==='kan')return kan(a);if(lv==='tbl')return tbl(a);return a.slice().reverse().map(j=>`<div class="card row rise" data-id="${j.id}" data-act="editjob"><div class="av" style="background:color-mix(in srgb,${CL[j.status]} 14%,#fff)">${esc((j.company||'?')[0].toUpperCase())}</div>
  <div class="rm"><b>${esc(j.company)}</b><span>${esc(j.position)}</span></div><div class="mm"><span>${esc(j.location)||'-'}</span><small>${[j.type,fmt(j.date)].filter(Boolean).map(esc).join(' · ')||'-'}${j.note?' 📝':''}</small></div>
@@ -682,8 +699,8 @@ function kpl(){const K=KX[kp.k],q=kp.q.toLowerCase();let a=kpb().filter(x=>(!kp.
 const HUB=[['Perlu aksi',['today','fu','ddl','stale','basi']],['Status lamaran',['all','act','win','out']],['Tahap seleksi',['sent','resp','int3','offr']],['Aktivitas & laju',['act30','pace','wk7','streak','avg','eta']],['Jadwal',['week','up','past']],['Skill & kursus',['sk_all','sk_cost','sk_dur','sk_todo']]],HOT=['today','fu','ddl','stale','basi'];
 const hh=()=>{const h=document.querySelector('.hd');if(h)document.documentElement.style.setProperty('--hh',h.offsetHeight+'px')};
 window.addEventListener('resize',hh);
-function lts(){const ch=(k,l,c,hot)=>{const v=KX[k].f().length;return `<button data-act="kpi" data-k="${k}" class="${hot&&v?'hot':''}" style="--c:${c}">${l}<b>${v}</b></button>`};
- return `<div class="lt" role="toolbar" aria-label="Pelacak langsung"><span class="lv" title="${cfg.url?'Tersinkron dengan Google Sheets':'Mode lokal, belum tersambung'}"><i${cfg.url?'':' style="background:#94a3b8;animation:none"'}></i>${cfg.url?'Live':'Lokal'}</span><button data-act="hub" class="hubb">☰ Semua pelacak</button>${ch('today','Hari ini','#dc2626',1)}${ch('fu','Follow up','#d97706',1)}${ch('ddl','Deadline','#dc2626',1)}${ch('stale','Tanpa kabar','#d97706',1)}${ch('act','Proses','#0891b2')}${ch('win','Offer','#059669')}${ch('out','Tidak lanjut','#78858a')}${ch('up','Jadwal','#0d9488')}<span class="ls"></span>${[['sc-prog','Progres'],['sc-trip','Perjalanan'],['sc-ana','Analitik'],['sc-todo','Tindak lanjut']].map(j=>`<button data-act="jump" data-to="${j[0]}" class="jb">↓ ${j[1]}</button>`).join('')}</div>`}
+function lts(){const ch=(k,l,c,hot)=>{const v=KX[k].f().length;if(!v)return '';return `<button data-act="kpi" data-k="${k}" class="${hot&&v?'hot':''}" style="--c:${c}">${l}<b>${v}</b></button>`};
+ return `<div class="lt" role="toolbar" aria-label="Pelacak langsung"><span class="lv" title="${cfg.url?'Tersinkron dengan Google Sheets':'Mode lokal, belum tersambung'}"><i${cfg.url?'':' style="background:#94a3b8;animation:none"'}></i>${cfg.url?'Live':'Lokal'}</span><button data-act="hub" class="hubb">☰ Semua pelacak</button>${ch('today','Hari ini','#dc2626',1)}${ch('fu','Follow up','#d97706',1)}${ch('ddl','Deadline','#dc2626',1)}${ch('stale','Tanpa kabar','#d97706',1)}${ch('act','Proses','#0891b2')}${ch('win','Offer','#059669')}${ch('out','Tidak lanjut','#78858a')}${ch('up','Jadwal','#0d9488')}<span class="ls"></span><select id="jmp" class="jsel" aria-label="Loncat ke bagian"><option value="">Loncat ke…</option><option value="sc-prog">Progres</option><option value="sc-trip">Perjalanan</option><option value="sc-ana">Analitik</option><option value="sc-todo">Tindak lanjut</option></select></div>`}
 function hubm(){modal(`<h3>Pusat pelacak</h3><p class="hint" style="margin:0 0 4px">Semua daftar tracking di satu tempat. Ketuk kotak untuk melihat daftarnya; yang berwarna perlu perhatian.</p>
  <div class="hl">Loncat ke bagian Dashboard</div><div class="hj"><button class="btn s" data-act="jump" data-to="sc-top">Ringkasan</button><button class="btn s" data-act="jump" data-to="sc-prog">Progres</button><button class="btn s" data-act="jump" data-to="sc-trip">Perjalanan</button><button class="btn s" data-act="jump" data-to="sc-ana">Analitik</button><button class="btn s" data-act="jump" data-to="sc-todo">Tindak lanjut</button></div>
  ${HUB.map(g=>`<div class="hl">${g[0]}</div><div class="hg">${g[1].map(k=>{const K=KX[k],n=K.f().length;return `<button class="ht${HOT.includes(k)&&n?' hot':''}" data-act="kpi" data-k="${k}" style="--c:${K.c}"><b>${n}</b><span>${esc(K.t)}</span></button>`}).join('')}</div>`).join('')}`)}
@@ -797,6 +814,7 @@ const A={
  lv(b){lv=b.dataset.v;ls('jt_lv',lv);render()},
  sort(b){const k=b.dataset.k;so=so.k===k?{k,d:-so.d}:{k,d:k==='date'?-1:1};list('lst',jlist())},
  flt(b){flt.s=b.dataset.s;$('ch').innerHTML=chips();list('lst',jlist())},
+ frs(){flt={q:'',s:''};const f=$('fq');if(f)f.value='';$('ch').innerHTML=chips();list('lst',jlist())},
  csv(){const e=v=>'"'+String(v||'').replace(/"/g,'""')+'"',t=['No,Company,Position,Location,Employment Type,Date Posted,Status,Link'].concat(jobs.map((j,i)=>[i+1,j.company,j.position,j.location,j.type,fmt(j.date),j.status,j.link].map(e).join(','))).join('\n');
   const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+t],{type:'text/csv'}));a.download='job-tracker.csv';a.click()},
  sync(){if(!cfg.url)return toast('Hubungkan dulu di ⚙ Pengaturan');sync()},
@@ -830,10 +848,12 @@ document.addEventListener('click',e=>{const b=e.target.closest('[data-act]');if(
 document.addEventListener('change',e=>{const t=e.target,a=t.dataset.act;
  if(t.closest&&t.closest('#xh'))cvSoon();
  if(t.id==='kps'){kpm(t.value);return}
+ if(t.id==='fsel'){flt.s=t.value;$('ch').innerHTML=chips();list('lst',jlist());return}
+ if(t.id==='jmp'){const v=t.value;t.value='';if(v)A.jump({dataset:{to:v}});return}
  if(a==='st'){const j=jobs.find(x=>x.id===t.closest('.row,.trw').dataset.id);j.status=t.value;(j.hist=j.hist||[]).push({d:today(),s:j.status,n:''});t.style.setProperty('--c',CL[j.status]);persist();$('ch').innerHTML=chips()}
  if(a==='sst'){const s=skl.find(x=>x.id===t.closest('.sc').dataset.id);s.status=t.value;t.style.setProperty('--c',SC[s.status]);persist()}});
 document.addEventListener('input',e=>{const t=e.target;
- if(t.id==='fq'){flt.q=t.value;list('lst',jlist())}if(t.id==='sqi'){sq=t.value;list('slst',slist())}
+ if(t.id==='fq'){flt.q=t.value;$('ch').innerHTML=chips();list('lst',jlist())}if(t.id==='sqi'){sq=t.value;list('slst',slist())}
   if(t.id==='sc')$('sh').textContent=rp(t.value);
  if(t.id==='xcx')cvDirty=true;
  if(t.id==='kpq'){kp.q=t.value;$('kpl').innerHTML=kpl()}
