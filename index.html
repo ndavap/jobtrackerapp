@@ -327,10 +327,23 @@ function applyTheme(d){document.documentElement.dataset.theme=d;const m=document
 const CVSKEL='# NAMA ANDA\nemail | telepon | linkedin\n## PROFESSIONAL SUMMARY\nTulis ringkasan profesional Anda.\n## WORK EXPERIENCE\n*Jabatan | Kota\n*Perusahaan | Periode\n- Butir pencapaian';
 let cvt=lg('jt_cvt')||CVSKEL,cvLoaded=0;
 const CVSTOP=new Set('the and for with you your our are will have has from that this their they them can able ability abilities including include such who what when where which while within without into over under more most other than then also but not any all each per via etc must should would could may might one two three new work working job role position candidate candidates company team teams years year minimum required requirement requirements responsible responsibilities preferred strong good excellent knowledge skills skill experience experienced understanding based well use using plus related relevant least dan yang untuk dengan atau pada dari dalam di ke serta oleh akan dapat adalah sebagai kami anda memiliki minimal pengalaman kemampuan bidang posisi kandidat tim lebih mampu tahun yg dll'.split(' '));
-const cvTk=t=>String(t||'').toLowerCase().replace(/[^a-z0-9+#&\/\s-]/g,' ').split(/\s+/).filter(Boolean),cvStem=x=>x.length>4&&x.endsWith('s')&&!/(ss|is|us)$/.test(x)?x.slice(0,-1):x;
-function cvKw(jd){const w=cvTk(jd).filter(x=>x.length>2&&!CVSTOP.has(x)&&!/^\d+$/.test(x)).map(cvStem),m={};w.forEach((x,i)=>{m[x]=(m[x]||0)+1;if(i){const b=w[i-1]+' '+x;m[b]=(m[b]||0)+1}});
- const e=Object.entries(m);return e.filter(x=>!x[0].includes(' ')).sort((a,b)=>b[1]-a[1]).slice(0,30).concat(e.filter(x=>x[0].includes(' ')&&x[1]>=2).sort((a,b)=>b[1]-a[1]).slice(0,8)).map(x=>x[0])}
-const cvSc=(l,T)=>{const z=cvTk(l).map(cvStem),q=z.join(' ');return T.filter(t=>t.includes(' ')?q.includes(t):z.includes(t)).length};
+const cvTk=t=>String(t||'').toLowerCase().replace(/\//g,' ').replace(/[^a-z0-9+#&\/\s-]/g,' ').split(/\s+/).filter(Boolean),cvStem=x=>x.length>4&&x.endsWith('s')&&!/(ss|is|us)$/.test(x)?x.slice(0,-1):x;
+const CVSYN={analisis:'analysis',analisa:'analysis',analytical:'analysis',analyze:'analysis',analyse:'analysis',analyzing:'analysis',analyzed:'analysis',keuangan:'financial',finance:'financial',finansial:'financial',perencanaan:'planning',rencana:'planning',plan:'planning',anggaran:'budget',budgeting:'budget',penganggaran:'budget',laporan:'report',reporting:'report',pelaporan:'report',proyek:'project',pemasaran:'marketing',strategi:'strategy',strategic:'strategy',strategis:'strategy',bisnis:'business',pemangku:'stakeholder',manajemen:'management',manage:'management',managed:'management',managing:'management',kepemimpinan:'leadership',lead:'leadership',leading:'leadership',komunikasi:'communication',presentasi:'presentation',kinerja:'performance',penelitian:'research',riset:'research',evaluasi:'evaluation',evaluate:'evaluation',evaluated:'evaluation',evaluating:'evaluation',koordinasi:'coordination',coordinate:'coordination',coordinated:'coordination',coordinating:'coordination',kelayakan:'feasibility',pemantauan:'monitoring',memantau:'monitoring',monitor:'monitoring',monitored:'monitoring',pengadaan:'procurement',operasional:'operation',operational:'operation',operations:'operation',risiko:'risk',kepatuhan:'compliance',akuntansi:'accounting',pajak:'tax',investasi:'investment',konsultan:'consulting',consultant:'consulting',negosiasi:'negotiation',penjualan:'sales',pelanggan:'customer',klien:'client',kolaborasi:'collaboration',collaborate:'collaboration',berpikir:'thinking',masalah:'problem',pemecahan:'solving',solve:'solving',pengembangan:'development',develop:'development',developed:'development',developing:'development',pasar:'market',digital:'digital',data:'data',kebijakan:'policy',tata:'governance',pelatihan:'training',edukasi:'education',educational:'education'};
+const CVLEX=new Set('financial analysis,business analysis,data analysis,project management,stakeholder management,strategic planning,business development,corporate planning,feasibility,budget,forecasting,report,excel,power bi,sql,python,tableau,kpi,okr,presentation,communication,leadership,research,marketing,sales,procurement,supply chain,operation,risk,compliance,audit,accounting,tax,treasury,investment,consulting,analysis,planning,monitoring,evaluation,stakeholder,negotiation,crm,financial,project,strategy,business,management,performance,coordination,market,digital,feasibility analysis,cost control,financial analysis,business research,performance analysis,project planning,strategy planning,management report,decision making,problem solving,stakeholder management,cross-functional,google workspace,microsoft office,data analysis report'.split(','));
+const CVPH={'strategy planning':'strategic planning'},CVDISP={budget:'budgeting',report:'reporting',monitoring:'monitoring',operation:'operations'};
+'kualifikasi baik kepentingan menyusun penyusunan ekonomi seeking looking join opportunity apply salary benefit benefits office full time part day days week hours hour location equal opportunity bagi para juga mampu menguasai diutamakan lulusan semua sesuai berupa secara melakukan membuat membantu jawab tanggung fresh graduate graduates ideal bonus insurance asuransi gaji tunjangan fasilitas lokasi penempatan'.split(' ').forEach(w=>CVSTOP.add(w));
+const cvN=x=>{x=cvStem(x);return CVSYN[x]||x},cvTn=t=>cvTk(t).map(cvN),cvDisp=t=>CVPH[t]||t.split(' ').map(x=>CVDISP[x]||x).join(' ');
+function cvKw(jd){let wt=1;const m={};
+ String(jd||'').split(/\n+/).forEach(l=>{const s=l.trim();if(!s)return;
+  if(/^[-•*\d.\s]*(kualifikasi|qualifications?|requirements?|persyaratan|responsibilit(?:y|ies)|tanggung jawab|job desc\w*|deskripsi pekerjaan|what you.*|you will.*|yang kami cari|kriteria|skills?(?: required)?|keahlian)\s*:?\s*$/i.test(s)){wt=2;return}
+  if(/^[-•*\d.\s]*(benefits?|tunjangan|we offer|about us|about the company|tentang kami|tentang perusahaan|fasilitas|perks|equal opportunity)\s*:?\s*$/i.test(s)){wt=.3;return}
+  const w=cvTn(s).filter(x=>x.length>2&&!CVSTOP.has(x)&&!/^\d+$/.test(x));
+  w.forEach((x,i)=>{m[x]=(m[x]||0)+wt;if(i){let b=w[i-1]+' '+x;const r=x+' '+w[i-1];if(!CVLEX.has(b)&&CVLEX.has(r))b=r;m[b]=(m[b]||0)+wt}})});
+ const sc=k=>m[k]+(CVLEX.has(k)?3:0),e=Object.keys(m);
+ const U=e.filter(k=>!k.includes(' ')&&(CVLEX.has(k)||m[k]>=2)).sort((a,b)=>sc(b)-sc(a)).slice(0,24),
+  B=e.filter(k=>k.includes(' ')&&(m[k]>=2||CVLEX.has(k))).sort((a,b)=>sc(b)-sc(a)).slice(0,10),T=B.concat(U);
+ T.w={};T.forEach(k=>T.w[k]=Math.max(1,sc(k)));return T}
+const cvSc=(l,T)=>{const z=cvTn(l),q=z.join(' ');return T.reduce((a,t)=>a+((t.includes(' ')?q.includes(t):z.includes(t))?(T.w&&T.w[t])||1:0),0)};
 function cvParse(t){const o={n:'',c:'',S:[]};let c=null,it=null,ps=0;
  String(t||'').split('\n').forEach(l0=>{const l=l0.trimEnd();if(!l.trim())return;
   if(l.startsWith('# ')){o.n=l.slice(2).trim();return}
@@ -338,11 +351,13 @@ function cvParse(t){const o={n:'',c:'',S:[]};let c=null,it=null,ps=0;
   if(!c){o.c+=(o.c?' ':'')+l.trim();return}
   const st=l[0]==='*';if(!it||(st&&!ps)){it=[];c.it.push(it)}it.push(l);ps=st});return o}
 const cvText=P=>'# '+P.n+'\n'+P.c+'\n'+P.S.map(s=>'## '+s.t+'\n'+s.it.map(i=>i.join('\n')).join('\n')).join('\n');
-function cvGen(j,jd,tt,hid){const P=cvParse(cvt),T=jd?cvKw(jd):[],tk=cvTk(cvt).map(cvStem),cs=new Set(tk),cj=tk.join(' '),hit=T.filter(t=>t.includes(' ')?cj.includes(t):cs.has(t));
+function cvGen(j,jd,tt,hid){const P=cvParse(cvt),T=jd?cvKw(jd):[],tk=cvTn(cvt),cs=new Set(tk),cj=tk.join(' '),hit=T.filter(t=>t.includes(' ')?cj.includes(t):cs.has(t)),ms=T.filter(t=>!hit.includes(t)&&(CVLEX.has(t)||(T.w[t]||0)>=3)).slice(0,14),
+ tot=T.reduce((a,t)=>a+T.w[t],0),pct=tot?Math.round(hit.reduce((a,t)=>a+T.w[t],0)*100/tot):0;
  P.S.forEach((s,si)=>{s.it=s.it.filter((_,ii)=>!hid.includes(si+'.'+ii));
   if(T.length)s.it.forEach(it=>{const bi=[];it.forEach((l,k)=>{if(l.startsWith('- '))bi.push(k)});const b=bi.map((k,o)=>[it[k],o]).sort((x,y)=>cvSc(y[0],T)-cvSc(x[0],T)||x[1]-y[1]);bi.forEach((k,o)=>it[k]=b[o][0])});
-  if(/summary/i.test(s.t)&&tt&&s.it[0]){const f=s.it[0],top=hit.filter(t=>!t.includes(' ')).slice(0,4);f[f.length-1]+=' Seeking the '+tt+(j.company?' position at '+j.company:' position')+(top.length?', with strengths in '+top.join(', ')+'.':'.')}});
- return {txt:cvText(P),T,hit}}
+  if(/summary|profil|ringkasan/i.test(s.t)&&tt&&s.it[0]){const f=s.it[0];if(!/seeking the/i.test(f[f.length-1])){const ph=hit.filter(t=>t.includes(' ')&&CVLEX.has(t)).slice(0,3),pw=ph.join(' ').split(' '),top=ph.concat(hit.filter(t=>!t.includes(' ')&&CVLEX.has(t)&&!pw.includes(t)&&!['business','management','project','financial','strategy','analysis','planning'].includes(t))).slice(0,4).map(cvDisp);
+   f[f.length-1]=f[f.length-1].replace(/\s+$/,'')+' Seeking the '+tt+(j.company?' position at '+j.company:' position')+(top.length?', with strengths in '+top.join(', ')+'.':'.')}}});
+ return {txt:cvText(P),T,hit,ms,pct}}
 function cvHtml(t){const P=cvParse(t);let h=`<h1>${esc(P.n)}</h1><div class="cc">${esc(P.c)}</div>`;
  P.S.forEach(s=>{h+=`<h2>${esc(s.t)}</h2>`;s.it.forEach(it=>{let ul=0;it.forEach(l=>{const b=l.startsWith('- ');if(b&&!ul){h+='<ul>';ul=1}if(!b&&ul){h+='</ul>';ul=0}
   h+=b?`<li>${esc(l.slice(2))}</li>`:l[0]==='*'?(p=>`<div class="cl"><b>${esc(p[0])}</b><span>${esc(p[1]||'')}</span></div>`)(l.slice(1).split('|').map(x=>x.trim())):`<p>${esc(l)}</p>`});if(ul)h+='</ul>'})});return h}
@@ -394,9 +409,9 @@ const cvFile=(n,j)=>['CV',n,j&&j.company].map(x=>String(x||'').normalize('NFD').
 function cvSave(blob,name){const u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=name;a.rel='noopener';document.body.appendChild(a);a.click();setTimeout(()=>{a.remove();URL.revokeObjectURL(u)},5000)}
 /* CV otomatis: dibuat ulang dari template + kualifikasi lowongan setiap input berubah, kecuali teks sudah diedit manual */
 let cvDirty=false,cvId='',cvT=0;
-function cvRefresh(j,force){const r=cvGen(j,$('xjd').value,g('xtt'),cvHid()),ms=r.T.filter(t=>!r.hit.includes(t));
+function cvRefresh(j,force){const r=cvGen(j,$('xjd').value,g('xtt'),cvHid()),ms=r.ms;
  if(force||!cvDirty){$('xcx').value=r.txt;cvDirty=false}
- $('xr').innerHTML=r.T.length?`<div class="card" style="margin-top:12px"><b>Kecocokan kata kunci: ${Math.round(r.hit.length*100/r.T.length)}%</b> <small>(${r.hit.length} dari ${r.T.length} kata kunci teratas JD)</small><p class="hint">Sudah ada di CV:</p><div>${r.hit.map(t=>`<span class="tag">${esc(t)}</span>`).join(' ')||'-'}</div><p class="hint">Belum ada di CV (tambahkan hanya jika memang Anda miliki):</p><div>${ms.map(t=>`<span class="pill" style="--c:#d97706">${esc(t)}</span>`).join(' ')||'-'}</div></div>`:'';
+ $('xr').innerHTML=r.T.length?`<div class="card" style="margin-top:12px"><b>Kecocokan kata kunci: ${r.pct}%</b> <small>(berbobot: ${r.hit.length} dari ${r.T.length} kata kunci JD; istilah Indonesia dan Inggris dicocokkan)</small><p class="hint">Sudah ada di CV:</p><div>${r.hit.map(t=>`<span class="tag">${esc(cvDisp(t))}</span>`).join(' ')||'-'}</div><p class="hint">Belum ada di CV (tambahkan hanya jika memang Anda miliki):</p><div>${ms.map(t=>`<span class="pill" style="--c:#d97706">${esc(cvDisp(t))}</span>`).join(' ')||'-'}</div></div>`:'';
  $('xs').textContent=cvDirty?'Teks ini hasil edit atau versi tersimpan, jadi tidak ikut berubah otomatis. Tekan "Buat ulang otomatis" untuk membuatnya lagi dari template dan kualifikasi.':(r.T.length?'CV dibuat otomatis dan ikut diperbarui saat kualifikasi atau pilihan pengalaman diubah.':'Tempel kualifikasi lowongan agar CV disesuaikan dengan kata kunci.');
  return r}
 const cvSoon=()=>{clearTimeout(cvT);cvT=setTimeout(()=>{const j=jobs.find(x=>x.id===cvId);if(j&&$('xcx')&&$('xs'))cvRefresh(j)},350)};
@@ -464,7 +479,7 @@ function openSch(){if(!jobs.length)return toast('Tambah lamaran dulu');
  <div class="f3"><div><label>Jenis</label><select id="xk">${opts(Object.keys(SK),'HR Interview')}</select></div><div><label>Tanggal</label><input id="xd" type="date" value="${today()}"></div><div><label>Jam</label><input id="xt" type="time"></div></div>
  <label>Catatan <small>(link meeting, lokasi, dll)</small></label><input id="xn" placeholder="mis. Zoom, bawa KTP">
  <div class="act"><button class="btn" data-act="savesch">Simpan jadwal</button></div>`)}
-let wh=[],ws=[],lv=lg('jt_lv')||'tbl',so={k:'date',d:-1};
+let fillJd={u:'',t:''},wh=[],ws=[],lv=lg('jt_lv')||'tbl',so={k:'date',d:-1};
 const hs=j=>{const h=(j.hist||[]).filter(x=>!x.sc).sort((a,b)=>(a.d||'').localeCompare(b.d||''));return h.length?h:(j.date?[{d:j.date,s:j.status,n:'Tanggal posting lowongan',auto:1}]:[])};
 const lastD=j=>{const h=hs(j);return h.length?h[h.length-1].d:''};
 const dd=d=>d?Math.round((new Date(today()+'T00:00:00')-new Date(d+'T00:00:00'))/864e5):null;
@@ -674,11 +689,11 @@ const A={
  pick(b){document.querySelectorAll('#js .chip').forEach(c=>c.classList.toggle('on',c===b))},
  preset(b){const p=PRE[+b.dataset.i];$('sn').value=p[0];$('sk').value=p[1];$('sp').value=p[2];$('sc').value=p[3];$('sd').value=p[4];$('su').value=p[5];$('sh').textContent=rp(p[3])+' (perkiraan kasar, cek harga resmi)'},
  async fill(b){const u=g('jk');if(!/^https?:\/\//.test(u))return toast('Tempel link lowongan dulu');b.disabled=true;b.textContent='Membaca…';
-  try{const x=(await api('extract',{urls:[u]},60000)).items[0];const set=(i,v)=>{if(v&&!/^\(lengkapi\)/.test(v)&&!$(i).value)$(i).value=v};set('jc',x.company);set('jp',x.position);set('jl',x.location);set('jd',x.date);
-   if(x.type&&TY.includes(x.type))$('jt').value=x.type;toast(x.ok?'Terisi otomatis':'Sebagian terisi, lengkapi sisanya')}catch(e){toast(e.message)}b.disabled=false;b.textContent='Isi otomatis'},
+  try{const x=(await api('extract',{urls:[u]},60000)).items[0];const set=(i,v)=>{if(v&&!/^\(lengkapi\)/.test(v)&&!$(i).value)$(i).value=v};set('jc',x.company);set('jp',x.position);set('jl',x.location);set('jd',x.date);fillJd={u:u,t:x.jd||''};
+   if(x.type&&TY.includes(x.type))$('jt').value=x.type;toast(x.jd?'Terisi otomatis, JD ikut tersimpan untuk CV':x.ok?'Terisi otomatis':'Sebagian terisi, lengkapi sisanya')}catch(e){toast(e.message)}b.disabled=false;b.textContent='Isi otomatis'},
  savejob(b){const c=g('jc'),p=g('jp');if(!c&&!p)return toast('Isi perusahaan atau posisi');
   const o={note:$('jn').value.trim(),company:c,position:p,location:g('jl'),type:$('jt').value,date:$('jd').value,link:g('jk'),src:$('jsr').value,wm:$('jwm').value,pr:+$('jpr').value||0,cv:g('jcv'),ind:g('jin'),dlu:$('jdu').value,fu:$('jfu').value,gx:+$('jgx').value||0,go:+$('jgo').value||0,ct:g('jct'),why:g('jwh'),prep:$('jpp').value.trim(),status:(document.querySelector('#js .on')||{dataset:{v:'Applied'}}).dataset.v};
-  const pv=b.dataset.id&&jobs.find(x=>x.id===b.dataset.id),h=wh.slice(),lq=h.length?h[h.length-1].s:(pv?pv.status:null);if(lq!==o.status)h.push({d:today(),s:o.status,n:''});o.hist=h.concat(ws);
+  const pv=b.dataset.id&&jobs.find(x=>x.id===b.dataset.id),h=wh.slice(),lq=h.length?h[h.length-1].s:(pv?pv.status:null);if(lq!==o.status)h.push({d:today(),s:o.status,n:''});o.hist=h.concat(ws);if(fillJd.t&&fillJd.u===o.link&&!(pv&&pv.jd))o.jd=fillJd.t;
   if(b.dataset.id)Object.assign(jobs.find(x=>x.id===b.dataset.id),o);
   else{if(jobs.some(x=>key(x)===key(o)||(o.link&&x.link===o.link)))return toast('Lamaran ini sudah ada (perusahaan+posisi atau link sama)');jobs.push(Object.assign({id:uid()},o))}
   persist();closeM();render();toast('Tersimpan')},
