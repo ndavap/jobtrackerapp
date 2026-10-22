@@ -215,8 +215,11 @@ input:focus,select:focus,textarea.ta:focus{border-color:var(--ac);box-shadow:0 0
 .lo{border:1px solid var(--ln);background:#fff;border-radius:99px;padding:8px 14px;font:700 14px inherit;color:var(--navy);cursor:pointer;min-height:38px}.lo:hover{border-color:#fca5a5;color:#be123c}
 .nb{border-left:5px solid #f59e0b!important;background:#fffbeb!important;margin-bottom:14px}.nb p{margin:4px 0 12px;color:#44555a}
 .dg{margin-bottom:12px}.dh{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap}.dh b{font-size:17px;color:var(--navy)}
-.se{display:grid;grid-template-columns:12px minmax(0,1fr) auto auto;gap:10px;align-items:center;padding:10px 0;border-top:1px solid #efece3;cursor:pointer}.se:hover{background:#fff9e8}.se small{display:block;color:var(--mut);font-size:14px}.se time{font-weight:700;color:var(--navy);white-space:nowrap}
+.se{display:grid;grid-template-columns:12px minmax(0,1fr) auto auto auto;gap:10px;align-items:center;padding:10px 0;border-top:1px solid #efece3;cursor:pointer}.se:hover{background:#fff9e8}.se small{display:block;color:var(--mut);font-size:14px}.se time{font-weight:700;color:var(--navy);white-space:nowrap}
 .se .dl{border:0;background:none;color:var(--mut);cursor:pointer;width:34px;height:34px;border-radius:10px}.se .dl:hover{color:#e11d48;background:#fff1f2}
+.se .cal{border:0;background:none;color:var(--mut);cursor:pointer;width:34px;height:34px;border-radius:10px;font-size:16px}.se .cal:hover{color:var(--ac);background:#e6f7f5}
+.sb{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}.sb .btn{min-height:44px;padding:10px 16px;font-size:14px}
+.alc{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 4px}
 .fn2{grid-template-columns:120px 1fr 130px!important}
 .hm{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;grid-template-rows:repeat(7,auto);gap:4px}.hm i{display:block;aspect-ratio:1;border-radius:4px;background:#ece8dc;min-width:0}
 .pt{display:grid;grid-template-columns:minmax(0,1.4fr) auto 140px;gap:16px;align-items:center;padding:12px 4px;border-top:1px solid #efece3;cursor:pointer}.pt:hover{background:#fff9e8}.pi b,.pi small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.pi small{color:var(--mut);font-size:14px}
@@ -476,6 +479,63 @@ html[data-theme=dark] .tag{background:#1f3a4a;color:#9fd3e8}
 @media(max-width:860px){.lt{position:static}}
 @media(max-width:640px){.mb.w>div:nth-child(even) span{visibility:hidden}}
 @media(max-width:400px){.wl{font-size:18px}.ib{width:36px;height:36px}.hd .hr{gap:6px}.tg{width:50px}.tg[aria-pressed=true] i{transform:translateX(20px)}main{padding-left:12px;padding-right:12px}.lt{margin-left:-12px;margin-right:-12px}}
+
+
+/* papan: tanpa geser, kolom kosong disembunyikan, otomatis turun baris */
+.kb{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;align-items:start;overflow:visible;padding-bottom:0}
+.kc{flex:none;padding:0 12px 4px;border:1px solid var(--ln)}
+.kc>summary{list-style:none;display:flex;align-items:center;gap:8px;padding:12px 0;cursor:pointer;font:800 14px var(--serif);color:var(--c)}
+.kc>summary::-webkit-details-marker{display:none}
+.kc>summary em{font-style:normal;min-width:24px;padding:1px 8px;border-radius:99px;text-align:center;font-size:12px;font-weight:700;background:color-mix(in srgb,var(--c) 16%,transparent);color:var(--c)}
+.kc>summary::after{content:"▾";margin-left:auto;color:var(--mut);transition:transform .25s}
+.kc:not([open])>summary::after{transform:rotate(-90deg)}
+.kc:not([open])>summary{padding-bottom:12px}
+.kn{margin:12px 2px 0}
+/* ===== PERAPIAN LAYOUT: header, toolbar pelacak, filter, tombol ===== */
+.hero,.sec,[id^="sc-"]{scroll-margin-top:calc(var(--hh,64px) + 14px)}
+.hero{gap:12px}.hero>div{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.hero .btn{margin-left:0}
+/* toolbar pelacak */
+.lt{position:static;display:block;margin:0 0 16px;padding:12px;overflow:visible;border:1px solid var(--ln);border-radius:16px;background:var(--card);backdrop-filter:none;box-shadow:0 1px 2px rgba(31,78,102,.06)}
+.lt .lt-top{display:flex;align-items:center;gap:10px}
+.lt .lt-top .lv{flex:none;display:inline-flex;align-items:center;gap:6px;padding:0 4px 0 2px;font:700 13px inherit;color:#047857}
+.lt .lt-top .hubb,.lt .lt-top .jsel{flex:1 1 0;min-width:0;width:auto;min-height:42px;border-radius:12px;padding:8px 12px;font-size:14px;font-weight:600;justify-content:center}
+.lt .lt-top .jsel{margin:0}
+.lt .lt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-top:10px;padding-top:10px;border-top:1px dashed var(--ln)}
+.lt .lt-grid:empty{display:none}
+.lt .lt-grid button{width:100%;justify-content:space-between;min-height:40px;padding:6px 8px 6px 14px;border-radius:12px;font-size:13.5px}
+.lt .lt-grid button b{flex:none}
+/* filter halaman Lamaran */
+.tool{justify-content:space-between;align-items:center;flex-wrap:nowrap}
+.tool .vt{flex:0 1 auto}.tool .btn{flex:none;white-space:nowrap}.tool input{min-width:0}
+.fb{padding:14px;background:var(--card);border:1px solid var(--ln);border-radius:16px;margin-bottom:14px}
+.fg{display:grid;grid-template-columns:repeat(auto-fit,minmax(128px,1fr));gap:8px}
+.fg .chip{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;min-height:42px;padding:8px 10px;border-radius:12px;font-size:13.5px;white-space:nowrap}
+.fg .chip em,.fg .chip.on em{margin:0;min-width:22px;padding:1px 7px;border-radius:99px;font-size:12px;font-weight:700;text-align:center;background:#e1eef4;color:var(--navy)}
+.fg .chip.on em{background:rgba(255,255,255,.22);color:#fff}
+.fr{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:12px;padding-top:12px;border-top:1px dashed var(--ln)}
+.fr #fsel{flex:0 1 260px;min-width:0;width:auto;min-height:42px}
+.fr .fc{flex:1;text-align:right}.fr .fx{margin-left:0;padding:8px 6px}
+html[data-theme=dark] .fb{background:var(--card)}
+html[data-theme=dark] .fg .chip em{background:#244458;color:var(--ink)}
+html[data-theme=dark] .fg .chip.on em{background:rgba(255,255,255,.2);color:#fff}
+@media(max-width:860px){
+ .hd{position:static}
+ .hero{display:block}.hero>div{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;width:100%}
+ .hero .btn{width:100%;padding:0 6px;font-size:13.5px;white-space:nowrap}
+ .lt{margin:0 0 14px}
+ .tool{flex-wrap:wrap}.tool .vt{order:0;flex:1 1 auto}.tool .vt button{flex:1}
+}
+@media(max-width:560px){
+ .lt{padding:10px}
+ .lt .lt-top{gap:8px}.lt .lt-top .lvt{display:none}.lt .lt-top .lv{padding:0 2px}
+ .lt .lt-top .hubb,.lt .lt-top .jsel{font-size:13px;padding:8px 8px}
+ .lt .lt-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .fb{padding:12px}.fg{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .fr{gap:8px}.fr #fsel{flex:1 1 100%}.fr .fc{text-align:left}
+ .tool{flex-wrap:nowrap}.tool .btn{padding:0 12px}.vt button{padding:10px 11px}
+}
+@media(min-width:561px){.lt .lt-top .hubb{flex:0 0 auto;padding:8px 18px}.lt .lt-top .jsel{flex:0 0 190px;margin-left:auto}}
+@media print{.hero,.lt,.fb,.tool,.mo{display:none!important}}
 </style>
 </head>
 <body>
@@ -700,7 +760,7 @@ async function run(silent){if(!cfg.url)return;if(busy){again=1;return}busy=1;con
  try{const sent=JSON.stringify([jobs,skl]),d=await api('sync',{dirty,jobs:dirty?jobs:[],skills:dirty?skl:[],tomb:dirty?rd('jt_tomb',{}):{}});
   if(JSON.stringify([jobs,skl])!==sent)again=1;
   else{const before=lg('jt_snap');jobs=d.jobs.map(j=>Object.assign({},j,{status:norm(j.status)}));skl=d.skills;ls('jt_tomb',JSON.stringify(d.tomb||{}));snap();store();ls('jt_dirty',null);ls('jt_synced','1');if(lg('jt_snap')!==before||!silent)render()}
-  setSt('tersinkron','ok');remind();cvPull()}
+  setSt('tersinkron','ok');remind();cvPull();icsPub().catch(()=>{})}
  catch(e){setSt(e.message,'er')}
  finally{busy=0;if(again){again=0;setTimeout(()=>run(true),300)}}}
 const push=()=>run(),pull=s=>run(s),sync=()=>run();
@@ -796,9 +856,9 @@ function ana2(){
  ${of.length?`<div class="card rise" style="margin-bottom:14px">${H('Perbandingan offer')}${of.join('')}</div>`:''}`}
 const V={
 sch(){const ev=sev(),up=ev.filter(x=>dl(x.d)>=0),ps=ev.filter(x=>dl(x.d)<0),n0=up.filter(x=>dl(x.d)===0).length,n7=up.filter(x=>dl(x.d)<=7).length;
- const sce=x=>`<div class="se" data-id="${x.jid}" data-act="editjob"><span class="dot" style="background:${SK[x.k]||'#78858a'}"></span><div><b>${esc(x.k)} · ${esc(x.co)}</b><small>${esc(x.po)}${x.n?' · '+esc(x.n):''}</small></div><time>${x.t||'Seharian'}</time><button class="dl" data-act="delsch" data-jid="${x.jid}" data-sid="${x.id}" aria-label="Hapus">✕</button></div>`;
+ const sce=x=>`<div class="se" data-id="${x.jid}" data-act="editjob"><span class="dot" style="background:${SK[x.k]||'#78858a'}"></span><div><b>${esc(x.k)} · ${esc(x.co)}</b><small>${esc(x.po)}${x.n?' · '+esc(x.n):''}</small></div><time>${x.t||'Seharian'}</time><button class="cal" data-act="icsone" data-sid="${x.id}" aria-label="Tambah ke Kalender Apple" title="Tambah ke Kalender Apple">📅</button><button class="dl" data-act="delsch" data-jid="${x.jid}" data-sid="${x.id}" aria-label="Hapus">✕</button></div>`;
  const grp=(a,r)=>{const m={};a.forEach(x=>(m[x.d]=m[x.d]||[]).push(x));let k=Object.keys(m).sort();if(r)k.reverse();return k.map(d=>{const n=dl(d);return `<div class="card dg rise"><div class="dh"><b>${day(d)}</b><span class="pill" style="--c:${n<0?'#78858a':n===0?'#dc2626':n<=3?'#d97706':'#0d9488'}">${rel(n)}</span></div>${m[d].map(sce).join('')}</div>`}).join('')};
- return `<div class="rise"><h2 class="t">Jadwal</h2><p class="sub">Timeline psikotes, assessment, dan interview berdasarkan tanggal. Pengingat muncul otomatis 3 hari sebelumnya.</p><button class="btn s" data-act="ics" style="margin-bottom:14px">Ekspor ke kalender (.ics)</button></div>
+ return `<div class="rise"><h2 class="t">Jadwal</h2><p class="sub">Timeline psikotes, assessment, dan interview berdasarkan tanggal. Pengingat muncul otomatis 3 hari sebelumnya. Ekspor ke Apple Calendar lengkap dengan alarm, atau salin ke Reminders.</p><div class="sb"><button class="btn" data-act="ics">📅 Tambah semua ke Kalender Apple</button><button class="btn s" data-act="icsm">⏰ Atur alarm</button><button class="btn s" data-act="remcopy">✅ Salin untuk Reminders</button><button class="btn s" data-act="icsub">🔗 Langganan otomatis</button></div></div>
  <div class="g g4">${KK('Hari ini',n0,'#dc2626','jadwal hari ini')}${KK('7 hari ke depan',n7,'#f59e0b','termasuk hari ini')}${KK('Akan datang',up.length,'#0d9488','semua jadwal')}${KK('Sudah lewat',ps.length,'#78858a','riwayat jadwal')}</div>
  <div class="sec rise"><h3>Akan datang</h3></div>${up.length?grp(up):'<div class="card empty rise">Belum ada jadwal. Tekan ＋ Jadwal untuk menambah psikotes, assessment, atau interview.</div>'}
  ${ps.length?`<div class="sec rise"><h3>Sudah lewat</h3></div><div style="opacity:.8">${grp(ps,1)}</div>`:''}`},
@@ -828,7 +888,7 @@ dash(){const {n,act,win,out,tc,tw,dn}=stat(),sp=skl.length?Math.round(dn*100/skl
   return `<div class="pw2"><div class="pie" style="background:conic-gradient(${sg.join(',')})"></div><div class="lgd">${ST.filter(cnt).map(t=>`<div class="lg"><span class="sw" style="background:${CL[t]}"></span>${t}<em>${cnt(t)} · ${pct(cnt(t))}</em></div>`).join('')}</div></div>`})(),
  tp=topN(j=>j.company,10),tpm=tp.length?tp[0][1]:1,
  top=tp.length?tp.map(x=>`<div class="tr2"><span title="${esc(x[0])}">${esc(x[0])}</span><div class="bar2"><i style="width:${x[1]*100/tpm}%"></i></div><em>${x[1]}</em></div>`).join(''):'<p class="hint">Belum ada data.</p>';
- return `<div class="hero rise" id="sc-top"><span class="hs">Semua lamaran dan rencana belajarmu, satu layar.</span><div><button class="btn s" data-act="prt">Cetak / PDF</button><button class="btn s" data-act="addskill">＋ Skill</button><button class="btn s" data-act="addsch">＋ Jadwal</button><button class="btn" data-act="addjob">＋ Lamaran</button></div></div>
+ return `<div class="hero rise" id="sc-top"><span class="hs">Semua lamaran dan rencana belajarmu, satu layar.</span><div><button class="btn s" data-act="addskill">＋ Skill</button><button class="btn s" data-act="addsch">＋ Jadwal</button><button class="btn" data-act="addjob">＋ Lamaran</button></div></div>
  ${lts()}
  <div class="card ov rise"><h3>Over View</h3><div class="ovg">${OV('Total lamaran',n,'list','all')}${OV('Sedang proses',act,'layers','act')}${OV('Offer & diterima',win,'trend','win')}${OV('Tidak lanjut',out,'ban','out','warn')}</div></div>
  <div class="dg3">
@@ -858,7 +918,9 @@ function tbl(a){const k=so.k,d=so.d,v=j=>String(j[k]||'').toLowerCase();
  a=a.slice().sort((x,y)=>(k==='status'?ST.indexOf(x.status)-ST.indexOf(y.status):v(x).localeCompare(v(y),'id'))*d);
  const th=(l,k2)=>`<th><button class="sb" data-act="sort" data-k="${k2}">${l}${so.k===k2?(so.d>0?' ▲':' ▼'):''}</button></th>`;
  return `<div class="card tw rise"><div class="ow"><table class="tb"><thead><tr><th>No</th>${th('Perusahaan','company')}${th('Posisi','position')}${th('Lokasi','location')}${th('Tipe','type')}${th('Tanggal','date')}${th('Status','status')}<th></th></tr></thead><tbody>${a.map((j,i)=>`<tr class="trw" data-id="${j.id}" data-act="editjob"><td>${i+1}</td><td><b>${j.pr?'<span style="color:#f59e0b">'+'★'.repeat(j.pr)+'</span> ':''}${esc(j.company)}</b>${j.note?'<small>📝 ada catatan</small>':''}</td><td>${esc(j.position)||'-'}</td><td>${esc(j.location)||'-'}</td><td>${esc(j.type)||'-'}</td><td>${fmt(j.date)||'-'}</td><td><select class="ps" data-act="st" style="--c:${CL[j.status]}">${opts(ST,j.status)}</select></td><td><div class="ra"><button data-act="cvj" aria-label="CV ATS" title="CV ATS">📄</button>${j.link?`<a href="${esc(j.link)}" target="_blank" rel="noopener" aria-label="Buka link">↗</a>`:''}<button class="dl" data-act="deljob" aria-label="Hapus">✕</button></div></td></tr>`).join('')}</tbody></table></div></div>`}
-function kan(a){return `<div class="kb">${ST.map(s=>{const c=a.filter(j=>j.status===s);return `<div class="kc"><h4 style="color:${CL[s]}">${s} <em>${c.length}</em></h4>${c.map(j=>`<div class="card kk" data-id="${j.id}" data-act="editjob"><b>${esc(j.company)}</b><span>${esc(j.position)||'-'}</span>${j.pr?`<small style="color:#f59e0b">${'★'.repeat(j.pr)}</small>`:''}${j.fu?`<small>Follow up ${fmt(j.fu)}</small>`:''}</div>`).join('')||'<p class="hint">-</p>'}</div>`}).join('')}</div>`}
+function kan(a){const card=j=>`<div class="card kk" data-id="${j.id}" data-act="editjob"><b>${esc(j.company)}</b><span>${esc(j.position)||'-'}</span>${j.pr?`<small style="color:#f59e0b">${'★'.repeat(j.pr)}</small>`:''}${j.fu?`<small>Follow up ${fmt(j.fu)}</small>`:''}</div>`,
+ cols=ST.map(s=>[s,a.filter(j=>j.status===s)]),full=cols.filter(c=>c[1].length),empty=cols.filter(c=>!c[1].length).map(c=>c[0]);
+ return `<div class="kb">${full.map(([s,c])=>`<details class="kc" open style="--c:${CL[s]}"><summary><span>${s}</span><em>${c.length}</em></summary>${c.map(card).join('')}</details>`).join('')}</div>${empty.length?`<p class="hint kn">Tahap kosong: ${empty.join(', ')}</p>`:''}`}
 const lvx=()=>lv==='tbl'&&matchMedia('(max-width:760px)').matches?'card':lv;
 function jlist(){const a=jfil();
  if(!a.length)return `<div class="card empty rise">${jobs.length?'Tidak ada yang cocok.':'Belum ada lamaran. Tekan ＋ Tambah untuk mulai.'}</div>`;
@@ -918,7 +980,7 @@ const hh=()=>{const h=document.querySelector('.hd');if(h)document.documentElemen
 window.addEventListener('resize',hh);
 try{matchMedia('(max-width:760px)').addEventListener('change',()=>{if(!$('app').hidden&&view==='job')render()})}catch(e){}
 function lts(){const ch=(k,l,c,hot)=>{const v=KX[k].f().length;if(!v)return '';return `<button data-act="kpi" data-k="${k}" class="${hot&&v?'hot':''}" style="--c:${c}">${l}<b>${v}</b></button>`};
- return `<div class="lt" role="toolbar" aria-label="Pelacak langsung"><span class="lv" title="${cfg.url?'Tersinkron dengan Google Sheets':'Mode lokal, belum tersambung'}"><i${cfg.url?'':' style="background:#94a3b8;animation:none"'}></i>${cfg.url?'Live':'Lokal'}</span><button data-act="hub" class="hubb">☰ Semua pelacak</button>${ch('today','Hari ini','#dc2626',1)}${ch('fu','Follow up','#d97706',1)}${ch('ddl','Deadline','#dc2626',1)}${ch('stale','Tanpa kabar','#d97706',1)}${ch('act','Proses','#0891b2')}${ch('win','Offer','#059669')}${ch('out','Tidak lanjut','#78858a')}${ch('up','Jadwal','#0d9488')}<span class="ls"></span><select id="jmp" class="jsel" aria-label="Loncat ke bagian"><option value="">Loncat ke…</option><option value="sc-prog">Progres</option><option value="sc-trip">Perjalanan</option><option value="sc-ana">Analitik</option><option value="sc-todo">Tindak lanjut</option></select></div>`}
+ return `<div class="lt" role="toolbar" aria-label="Pelacak langsung"><div class="lt-top"><span class="lv" title="${cfg.url?'Tersinkron dengan Google Sheets':'Mode lokal, belum tersambung'}"><i${cfg.url?'':' style="background:#94a3b8;animation:none"'}></i><span class="lvt">${cfg.url?'Live':'Lokal'}</span></span><button data-act="hub" class="hubb">☰ Semua pelacak</button><select id="jmp" class="jsel" aria-label="Loncat ke bagian"><option value="">Loncat ke…</option><option value="sc-prog">Progres</option><option value="sc-trip">Perjalanan</option><option value="sc-ana">Analitik</option><option value="sc-todo">Tindak lanjut</option></select></div><div class="lt-grid">${ch('today','Hari ini','#dc2626',1)}${ch('fu','Follow up','#d97706',1)}${ch('ddl','Deadline','#dc2626',1)}${ch('stale','Tanpa kabar','#d97706',1)}${ch('act','Proses','#0891b2')}${ch('win','Offer','#059669')}${ch('out','Tidak lanjut','#78858a')}${ch('up','Jadwal','#0d9488')}</div></div>`}
 function hubm(){modal(`<h3>Pusat pelacak</h3><p class="hint" style="margin:0 0 4px">Semua daftar tracking di satu tempat. Ketuk kotak untuk melihat daftarnya; yang berwarna perlu perhatian.</p>
  <div class="hl">Loncat ke bagian Dashboard</div><div class="hj"><button class="btn s" data-act="jump" data-to="sc-top">Ringkasan</button><button class="btn s" data-act="jump" data-to="sc-prog">Progres</button><button class="btn s" data-act="jump" data-to="sc-trip">Perjalanan</button><button class="btn s" data-act="jump" data-to="sc-ana">Analitik</button><button class="btn s" data-act="jump" data-to="sc-todo">Tindak lanjut</button></div>
  ${HUB.map(g=>`<div class="hl">${g[0]}</div><div class="hg">${g[1].map(k=>{const K=KX[k],n=K.f().length;return `<button class="ht${HOT.includes(k)&&n?' hot':''}" data-act="kpi" data-k="${k}" style="--c:${K.c}"><b>${n}</b><span>${esc(K.t)}</span></button>`}).join('')}</div>`).join('')}`)}
@@ -979,10 +1041,42 @@ function openSkill(id){const s=skl.find(x=>x.id===id)||{kind:'Kursus',status:'Re
  <div class="act"><button class="btn" data-act="saveskill" data-id="${id||''}">Simpan</button></div>`)}
 
 /* ---------- Actions ---------- */
+
+
+/* langganan otomatis (webcal) lewat Apps Script */
+const icsKey=()=>JSON.stringify([icsEv().map(x=>[x.id,x.d,x.t||'',x.s,x.n]),alGet()]);
+async function icsPub(force,reset){if(!cfg.url||(!force&&lg('jt_sub')!=='1'))return;const k=icsKey();if(!force&&lg('jt_icsk')===k)return;
+ const d=await api('icsset',{ics:icsBuild(icsEv()),reset:reset?1:0},20000);if(!d||!d.token)throw new Error('Backend belum mendukung langganan');ls('jt_icstok',d.token);ls('jt_icsk',k);return d.token}
+const icsLink=()=>{const t=lg('jt_icstok');return t&&cfg.url?'webcal://'+cfg.url.replace(/^https?:\/\//,'')+'?ics='+t:''};
+/* integrasi Apple Calendar / Reminders */
+const AL_OPT=[[10080,'1 minggu sebelum'],[1440,'1 hari sebelum'],[180,'3 jam sebelum'],[60,'1 jam sebelum'],[30,'30 menit sebelum']];
+const alGet=()=>{const v=rd('jt_alarm',null);return Array.isArray(v)?v:[1440,60]};
+function icsEv(){const ev=[];
+ sev().filter(x=>dl(x.d)>=0).forEach(x=>ev.push({id:x.id,d:x.d,t:x.t,s:x.k+' - '+x.co,n:(x.po||'')+(x.n?' | '+x.n:'')}));
+ jobs.forEach(j=>{
+  if(ACT.includes(j.status)&&j.fu&&dl(j.fu)>=0)ev.push({id:'fu-'+j.id,d:j.fu,s:'Follow up - '+j.company,n:(j.position||'')+(j.ct?' | '+j.ct:'')});
+  if(j.status==='Not Applied'&&j.dlu&&dl(j.dlu)>=0)ev.push({id:'dl-'+j.id,d:j.dlu,s:'Deadline daftar - '+j.company,n:j.position||''})});
+ return ev.sort((a,b)=>(a.d+(a.t||'')).localeCompare(b.d+(b.t||'')))}
+const icsF=l=>{const o=[l.slice(0,70)];let r=l.slice(70);while(r.length){o.push(' '+r.slice(0,69));r=r.slice(69)}return o.join('\r\n')};
+function icsBuild(ev){const al=alGet(),p2=n=>String(n).padStart(2,'0'),e=v=>String(v||'').replace(/\\/g,'\\\\').replace(/[,;]/g,'\\$&').replace(/\r?\n/g,'\\n'),ts=new Date().toISOString().replace(/[-:]/g,'').slice(0,15)+'Z',
+ ds=o=>o.getFullYear()+p2(o.getMonth()+1)+p2(o.getDate()),
+ L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//JobTracker//ID','CALSCALE:GREGORIAN','METHOD:PUBLISH','X-WR-CALNAME:Jadwal Lamaran','X-WR-TIMEZONE:Asia/Jakarta','REFRESH-INTERVAL;VALUE=DURATION:PT1H','X-PUBLISHED-TTL:PT1H','BEGIN:VTIMEZONE','TZID:Asia/Jakarta','BEGIN:STANDARD','DTSTART:19700101T000000','TZOFFSETFROM:+0700','TZOFFSETTO:+0700','TZNAME:WIB','END:STANDARD','END:VTIMEZONE'];
+ const alarm=(tr,t)=>L.push('BEGIN:VALARM','ACTION:DISPLAY','DESCRIPTION:'+e(t),'TRIGGER:'+tr,'END:VALARM');
+ ev.forEach(x=>{const [Y,M,D]=x.d.split('-').map(Number);L.push('BEGIN:VEVENT','UID:'+x.id+'@jobtracker','DTSTAMP:'+ts);
+  if(x.t){const [h,m]=x.t.split(':').map(Number),en=new Date(Y,M-1,D,h+1,m);L.push('DTSTART;TZID=Asia/Jakarta:'+x.d.replace(/-/g,'')+'T'+p2(h)+p2(m)+'00','DTEND;TZID=Asia/Jakarta:'+ds(en)+'T'+p2(en.getHours())+p2(en.getMinutes())+'00')}
+  else L.push('DTSTART;VALUE=DATE:'+x.d.replace(/-/g,''),'DTEND;VALUE=DATE:'+ds(new Date(Y,M-1,D+1)));
+  L.push('SUMMARY:'+e(x.s),'DESCRIPTION:'+e(x.n));
+  if(x.t)al.forEach(m=>alarm('-PT'+m+'M',x.s));
+  else if(al.length){if(al.some(m=>m>=1440))alarm('-PT15H',x.s);alarm('PT8H',x.s)}
+  L.push('END:VEVENT')});
+ L.push('END:VCALENDAR');return L.map(icsF).join('\r\n')+'\r\n'}
+async function icsOut(txt,name){const f=new File([txt],name,{type:'text/calendar'});
+ try{if(/iPhone|iPad/.test(navigator.userAgent)||('ontouchend' in document&&/Macintosh/.test(navigator.userAgent))){if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],title:name});return}}}catch(e){if(e&&e.name==='AbortError')return}
+ const u=URL.createObjectURL(f),a=document.createElement('a');a.href=u;a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{a.remove();URL.revokeObjectURL(u)},5000)}
 const A={
  close(){closeM()},
  theme(){const d=document.documentElement.dataset.theme==='dark'?'light':'dark';ls('jt_theme',d);applyTheme(d)},
- prt(){window.print()},
+ prt(){closeM();setTimeout(()=>window.print(),450)},
  cvj(b){cvm(b.closest('.row,.trw').dataset.id)},cvj2(b){cvm(b.dataset.id)},
   cvgen(b){const j=jobs.find(x=>x.id===b.dataset.id);if(!j||!$('xcx'))return;cvRefresh(j,1);toast('CV dibuat ulang dari template dan kualifikasi')},
   cvpdf(b){const j=jobs.find(x=>x.id===b.dataset.id);if(!j)return;let t=$('xcx').value.trim();if(!t)t=cvRefresh(j,1).txt;
@@ -995,9 +1089,18 @@ const A={
  cvtm(){modal(`<h3>Template CV</h3><p class="hint" style="margin:0 0 8px">Format: <b># Nama</b>, baris kontak, <b>## Bagian</b>, <b>*Judul | Kanan</b> untuk baris dua kolom, <b>- butir</b>. Template ini dipakai semua lamaran dan tersimpan di spreadsheet.</p><textarea class="ta" id="xt" style="min-height:340px;font:13px/1.4 ui-monospace,monospace">${esc(cvt)}</textarea><div class="act"><button class="btn" data-act="cvtsave">Simpan template</button></div>`)},
  cvtsave(){cvt=$('xt').value.trim();ls('jt_cvt',cvt);closeM();toast('Template tersimpan');if(cfg.url)api('cvset',{cv:cvt}).catch(e=>toast(e.message))},
 
- ics(){const ev=sev().filter(x=>dl(x.d)>=0);if(!ev.length)return toast('Belum ada jadwal mendatang');const e=v=>String(v||'').replace(/([,;\\])/g,'\\$1'),ts=new Date().toISOString().replace(/[-:]/g,'').slice(0,15)+'Z',L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//JobTracker//ID'];
-  ev.forEach(x=>{const d=x.d.replace(/-/g,''),t=x.t?x.t.replace(':','')+'00':'';L.push('BEGIN:VEVENT','UID:'+x.id+'@jobtracker','DTSTAMP:'+ts,t?'DTSTART:'+d+'T'+t:'DTSTART;VALUE=DATE:'+d,'SUMMARY:'+e(x.k+' - '+x.co),'DESCRIPTION:'+e((x.po||'')+(x.n?' | '+x.n:'')),'END:VEVENT')});
-  L.push('END:VCALENDAR');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([L.join('\r\n')],{type:'text/calendar'}));a.download='jadwal-lamaran.ics';a.click()},
+ ics(){const ev=icsEv();if(!ev.length)return toast('Belum ada jadwal mendatang');icsOut(icsBuild(ev),'jadwal-lamaran.ics');toast(ev.length+' pengingat disiapkan')},
+ icsone(b){const x=sev().find(y=>y.id===b.dataset.sid);if(!x)return;icsOut(icsBuild([{id:x.id,d:x.d,t:x.t,s:x.k+' - '+x.co,n:(x.po||'')+(x.n?' | '+x.n:'')}]),'jadwal-'+(x.co||'lamaran').toLowerCase().replace(/[^a-z0-9]+/g,'-')+'.ics')},
+ icsm(){const on=alGet();modal(`<h3>⏰ Alarm Kalender Apple</h3><p class="hint" style="margin:0">Pilih kapan iPhone/Mac mengingatkanmu untuk jadwal yang berjam. Jadwal seharian (follow up, deadline) diingatkan jam 09.00 sehari sebelumnya dan jam 08.00 di hari H.</p><div class="alc" id="alc">${AL_OPT.map(o=>`<button type="button" class="chip${on.includes(o[0])?' on':''}" data-act="altog" data-m="${o[0]}">${o[1]}</button>`).join('')}</div><p class="hint">Alarm berlaku untuk file yang diekspor berikutnya. Tersimpan di perangkat ini.</p><div class="act"><button class="btn" data-act="icssave">Simpan</button></div>`)},
+ icsub(){if(!cfg.url)return toast('Hubungkan dulu ke Apps Script di ⚙ Pengaturan');const l=icsLink(),on=lg('jt_sub')==='1'&&l;
+  modal(on?`<h3>🔗 Langganan Kalender Apple</h3><p class="hint" style="margin:0 0 8px">Tambahkan sekali sebagai kalender langganan. Setelah itu jadwal baru muncul sendiri di iPhone dan Mac, tanpa ekspor ulang. Apple memperbarui sekitar tiap 15 menit sampai beberapa jam.</p><label>Link langganan <small>(rahasia, jangan dibagikan)</small></label><div class="ln"><input id="cl" readonly value="${esc(l)}"><button class="btn s" data-act="cpl">Salin</button></div><div class="act"><a class="btn" href="${esc(l)}" style="text-decoration:none;display:grid;place-items:center">Buka di Kalender</a><button class="btn s" data-act="icsrot">Buat link baru</button><button class="btn s" data-act="icsoff">Matikan</button></div>`
+  :`<h3>🔗 Langganan Kalender Apple</h3><p class="hint" style="margin:0 0 8px">Jadwal, follow up, dan deadline dikirim ke Apps Script milikmu sebagai file kalender, lalu Kalender Apple berlangganan lewat link rahasia. Jadwal baru ikut muncul otomatis.</p><p class="hint">Syarat: kode <b>ics-subscribe.gs</b> sudah ditempel di Apps Script dan di-deploy ulang.</p><div class="act"><button class="btn" data-act="icson">Aktifkan langganan</button></div>`)},
+ async icson(){toast('Menyiapkan…');try{ls('jt_sub','1');await icsPub(true);closeM();A.icsub()}catch(e){ls('jt_sub',null);toast('Gagal: '+e.message+'. Cek ics-subscribe.gs sudah dipasang dan di-deploy ulang')}},
+ async icsrot(){if(!confirm('Link lama akan berhenti bekerja. Lanjut?'))return;try{await icsPub(true,true);closeM();A.icsub();toast('Link baru dibuat, langganan ulang di Kalender')}catch(e){toast(e.message)}},
+ icsoff(){ls('jt_sub',null);closeM();toast('Pengiriman dimatikan. Hapus kalender langganan di perangkat Apple bila perlu')},
+ altog(b){b.classList.toggle('on')},
+ icssave(){ls('jt_alarm',JSON.stringify([...document.querySelectorAll('#alc .chip.on')].map(x=>+x.dataset.m)));closeM();toast('Pengaturan alarm disimpan');icsPub().catch(()=>{})},
+ remcopy(){const ev=icsEv();if(!ev.length)return toast('Belum ada jadwal mendatang');const t=ev.map(x=>x.s+' ('+fmt(x.d)+(x.t?' '+x.t:'')+')').join('\n');(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>toast('Daftar disalin, tempel ke Reminders'),()=>toast('Gagal menyalin'))},
 
  adds(){const d=$('xd').value;if(!d)return toast('Pilih tanggalnya dulu');ws.push({sc:1,id:uid(),s:'Jadwal',d,t:$('xt').value,k:$('xk').value,n:g('xn')});$('xl').innerHTML=slh();$('xn').value=''},
  dels(b){ws.splice(+b.dataset.i,1);$('xl').innerHTML=slh()},
@@ -1039,7 +1142,7 @@ const A={
  cfgm(){modal(`<h3>Pengaturan</h3><label>URL Web App Apps Script</label><input id="cu" value="${esc(cfg.url||'')}" placeholder="https://script.google.com/macros/s/…/exec"><p class="hint">Password Apps Script otomatis memakai password login.</p>${cfg.url?`<label>Link sambung perangkat <small>(buka di HP sekali, data langsung ikut)</small></label><div class="ln"><input id="cl" readonly value="${esc(location.href.split('?')[0].split('#')[0]+'?sync='+encodeURIComponent(cfg.url))}"><button class="btn s" data-act="cpl">Salin</button></div>`:''}
   <label>Target lamaran</label><input id="ct" type="number" min="1" value="${cfg.target}"><label>Target lamaran per minggu</label><input id="cw" type="number" min="1" value="${cfg.wt}">
   <div class="act"><button class="btn" data-act="savecfg">Simpan</button><button class="btn s" data-act="ping">Tes koneksi</button></div>
-  <div class="act" style="margin-top:10px"><button class="btn s" data-act="cvtm" style="flex:1">Template CV</button><button class="btn s" data-act="impm" style="flex:1">Impor dari Google Sheets</button></div><div class="act" style="margin-top:10px"><button class="btn s" data-act="bak" style="flex:1">Cadangkan (.json)</button><button class="btn s" data-act="rest" style="flex:1">Pulihkan</button></div>
+  <div class="act" style="margin-top:10px"><button class="btn s" data-act="cvtm" style="flex:1">Template CV</button><button class="btn s" data-act="impm" style="flex:1">Impor dari Google Sheets</button></div><div class="act" style="margin-top:10px"><button class="btn s" data-act="prt" style="flex:1">🖨 Cetak / simpan PDF halaman ini</button></div><div class="act" style="margin-top:10px"><button class="btn s" data-act="bak" style="flex:1">Cadangkan (.json)</button><button class="btn s" data-act="rest" style="flex:1">Pulihkan</button></div>
   <div class="act" style="margin-top:10px"><button class="btn s" data-act="logout" style="flex:1">Keluar akun</button><button class="btn s" data-act="wipe" style="flex:1;color:#be123c">Hapus data lokal</button></div>`)},
  savecfg(){cfg.url=g('cu');cfg.target=+$('ct').value||300;cfg.wt=+$('cw').value||5;store();closeM();render();toast('Pengaturan disimpan');if(cfg.url)pull();else setSt('mode lokal')},
  ping(){cfg.url=g('cu');store();toast('Menguji…');api('ping').then(d=>toast('Terhubung, '+d.rows+' baris')).catch(e=>toast(e.message))},
