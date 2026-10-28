@@ -650,16 +650,32 @@ const cleanDom=v=>{v=String(v||'').trim().toLowerCase().replace(/^https?:\/\//,'
 function domOf(j){let d=cleanDom(j.web);
  if(!d)try{d=cleanDom((rd('jt_logo',{}))[(j.company||'').toLowerCase()])}catch(e){}
  if(!d&&j.link)try{const h=cleanDom(new URL(j.link).hostname.replace(/^(careers?|jobs?|recruit(ment)?|apply|karir|hr)\./,''));if(h&&!BOARD.test(h))d=h}catch(e){}
- if(!d)d=gus(j.company);
+ if(!d){const e=rd('jt_lgc',{})[lgk(j.company)];if(e&&e.d)d=e.d}
  return d}
-const LGX={siloam:'siloamhospitals.com',mandiri:'bankmandiri.co.id',grab:'grab.com',telkom:'telkom.co.id',pertamina:'pertamina.com',unilever:'unilever.co.id',astra:'astra.co.id',shopee:'shopee.co.id',tokopedia:'tokopedia.com',gojek:'gojek.com',traveloka:'traveloka.com',indofood:'indofood.com',danone:'danone.co.id',nestle:'nestle.co.id',deloitte:'deloitte.com',kpmg:'kpmg.com',pwc:'pwc.com',ey:'ey.com'};
-/* tebakan domain dari nama perusahaan; hanya tampil bila gambarnya benar-benar ada, selain itu kembali ke huruf */
-function gus(n){n=String(n||'').toLowerCase();const k=Object.keys(LGX).find(x=>new RegExp('\\b'+x+'\\b').test(n));if(k)return LGX[k];
- const t=n.replace(/\b(pt|cv|tbk|persero|ltd|inc|corp|co|group|indonesia)\b/g,'').replace(/[^a-z0-9]/g,'');return t.length>=3&&t.length<=30?t+'.co.id,'+t+'.com':''}
-const lgu=d=>'https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&url=http://'+d+'&size=128',lgq=d=>{const a=d.split(',');return a.map(lgu).concat(a.map(x=>'https://icons.duckduckgo.com/ip3/'+x+'.ico'))};
-const lgi=d=>`<img class="lgi" src="${lgq(d)[0]}" data-q="${d}" data-i="0" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="lge(this)">`;
-function lge(i){const q=lgq(i.dataset.q),n=+i.dataset.i+1;if(n<q.length){i.dataset.i=n;i.src=q[n]}else i.remove()}
-const avh=(j,c)=>{const d=domOf(j);return `<div class="av${c||''}" style="background:color-mix(in srgb,${CL[j.status]} 14%,transparent)">${d?lgi(d):''}<span>${esc((j.company||'?')[0].toUpperCase())}</span></div>`};
+const lgk=n=>String(n||'').toLowerCase().replace(/&amp;/g,'&').trim();
+const lgu=d=>'https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&url=http://'+d+'&size=128',lgq=d=>[lgu(d),'https://icons.duckduckgo.com/ip3/'+d+'.ico'];
+const lgi=(d,l)=>`<img class="lgi" src="${esc(l||(d?lgu(d):''))}" data-q="${d||''}" data-i="${l?-1:0}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="lge(this)">`;
+function lge(i){const q=i.dataset.q?lgq(i.dataset.q):[],n=+i.dataset.i+1;if(n<q.length){i.dataset.i=n;i.src=q[n]}else i.remove()}
+/* otomatis: cari website & logo resmi perusahaan di Wikidata, hasil disimpan di perangkat (jt_lgc) */
+async function lgr(name){const nz=t=>String(t||'').toLowerCase().replace(/&amp;|&/g,' and ').replace(/[^a-z0-9 ]/g,' ').replace(/\b(pt|cv|tbk|persero|indonesia|the)\b/g,' ').replace(/\s+/g,' ').trim(),q=nz(name);
+ if(q.length<3)return null;const A='https://www.wikidata.org/w/api.php?format=json&origin=*&';
+ const s=await(await fetch(A+'action=wbsearchentities&language=en&type=item&limit=8&search='+encodeURIComponent(q))).json();
+ const ids=(s.search||[]).filter(x=>{const a=nz(x.label);return a&&(a===q||a.startsWith(q+' ')||q.startsWith(a+' '))}).map(x=>x.id).slice(0,5);
+ if(!ids.length)return null;
+ const e=await(await fetch(A+'action=wbgetentities&props=claims&ids='+ids.join('|'))).json();
+ for(const id of ids){const c=((e.entities||{})[id]||{}).claims||{},v=p=>c[p]&&c[p][0]&&c[p][0].mainsnak&&c[p][0].mainsnak.datavalue&&c[p][0].mainsnak.datavalue.value;
+  let d='';try{d=cleanDom(new URL(v('P856')).hostname)}catch(x){}
+  const lf=v('P154');if(d||lf)return{d,l:lf?'https://commons.wikimedia.org/wiki/Special:FilePath/'+encodeURIComponent(lf)+'?width=128':''}}
+ return null}
+const LQ=new Set();let LT=0,LB=0;
+function lgq2(n){LQ.add(n);clearTimeout(LT);LT=setTimeout(lgrun,500)}
+async function lgrun(){if(LB)return;LB=1;try{for(const n of [...LQ]){LQ.delete(n);const k=lgk(n);let r;try{r=await lgr(n)}catch(e){continue}
+  const m=rd('jt_lgc',{});m[k]={d:r?r.d:'',l:r?r.l:'',t:Date.now()};ls('jt_lgc',JSON.stringify(m));
+  if(r)document.querySelectorAll('.av[data-co]').forEach(a=>{if(a.dataset.co===k&&!a.querySelector('.lgi'))a.insertAdjacentHTML('afterbegin',lgi(r.d,r.l))});
+  await new Promise(z=>setTimeout(z,250))}}finally{LB=0}}
+const avh=(j,c)=>{const d=domOf(j),k=lgk(j.company),e=rd('jt_lgc',{})[k]||{},l=j.web?'':e.l;
+ if(!d&&!l&&!(e.t&&Date.now()-e.t<12096e5)&&k)lgq2(j.company);
+ return `<div class="av${c||''}" data-co="${esc(k)}" style="background:color-mix(in srgb,${CL[j.status]} 14%,transparent)">${d||l?lgi(d,l):''}<span>${esc((j.company||'?')[0].toUpperCase())}</span></div>`};
 document.addEventListener('input',e=>{if(e.target.id==='jweb'){const d=cleanDom(e.target.value),p=$('jlg');if(p)p.innerHTML=d?lgi(d):''}});
 const NAV=[['dash','Dashboard','dash'],['job','Lamaran','job'],['sch','Jadwal','sch'],['skill','Skill','skill']];
 function bellu(){const e=document.getElementById('bd');if(e)e.hidden=!sev().some(x=>{const n=dl(x.d);return n>=0&&n<=3})}
@@ -677,7 +693,7 @@ function dline(){const t=new Date(),M=[];
  const ln=S.map(s=>{const P=M.map((m,i)=>[X(i),Y(m[s[0]])]),d=dsm(P),pk=M.reduce((b,m,i)=>m[s[0]]>M[b][s[0]]?i:b,0),pv=M[pk][s[0]],lx=Math.min(W-R-76,Math.max(L,X(pk)-38)),ly=s[0]===1?Y(pv)-30:Y(pv)+10;
   return `<defs><linearGradient id="${s[3]}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${s[1]}" stop-opacity=".32"/><stop offset="1" stop-color="${s[1]}" stop-opacity="0"/></linearGradient></defs><path d="${d} L${X(5)} ${Y(0)} L${X(0)} ${Y(0)}Z" fill="url(#${s[3]})"/><path d="${d}" fill="none" stroke="${s[1]}" stroke-width="2.5" stroke-linecap="round"/>`+(pv?`<circle cx="${X(pk)}" cy="${Y(pv)}" r="4.5" fill="${s[1]}" stroke="#fff" stroke-width="2"/><g transform="translate(${lx} ${ly})"><rect width="76" height="17" rx="5" fill="${s[1]}"/><text x="38" y="12.5" text-anchor="middle" font-size="11" font-weight="700" style="fill:#fff">${pv} ${s[2]}</text></g>`:'')}).join('');
  return `<svg viewBox="0 0 ${W} ${Ht}" style="width:100%;height:auto" role="img" aria-label="Grafik lamaran dan respons 6 bulan terakhir">${gr}${xl}${ln}</svg>`}
-const $=i=>document.getElementById(i),esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const $=i=>document.getElementById(i),esc=s=>String(s==null?'':s).replace(/&amp;/g,'&').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const rd=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}};
 const lg=k=>{try{return localStorage.getItem(k)}catch(e){return null}},ls=(k,v)=>{try{v===null?localStorage.removeItem(k):localStorage.setItem(k,v)}catch(e){}};
 let cfg=rd('jt_cfg',{}),jobs=rd('jt_jobs',[]),skl=rd('jt_skills',[]),view='dash',flt={q:'',s:'',t:'',src:'',wm:'',pr:''},sq='',tmr;
