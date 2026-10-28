@@ -377,7 +377,7 @@ input:focus,select:focus,textarea.ta:focus{border-color:var(--ac);box-shadow:0 0
 .oc.warn{border-color:#e3b79c;background:#fbf1ea}.oc.warn .oi{background:#f6d9c6;color:#a4552a}
 /* grid dashboard */
 .dg3{display:grid;gap:14px;margin-bottom:14px;grid-template-columns:minmax(0,1fr) minmax(0,1.45fr) minmax(0,1.35fr);grid-template-areas:"a b d" "c c d" "f g e"}
-.dg3>.card{min-width:0}.tr3{display:grid;grid-template-columns:96px minmax(0,1fr) 86px;gap:12px;align-items:center;padding:7px 0;font-size:13.5px;font-weight:600;cursor:pointer}.tr3 span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.tr3 em{font-style:normal;font-size:12.5px;color:var(--mut);text-align:right}.ag2{display:grid;grid-template-columns:8px minmax(0,1fr) auto;gap:12px;align-items:center;padding:8px 0;cursor:pointer;border-bottom:1px dashed var(--ln)}.ag2:last-child{border:0}.ag2 i{width:8px;height:8px;border-radius:50%}.ag2 b{display:block;font-size:13.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.ag2 small{color:var(--mut);font-size:12px}.ag2 em{font-style:normal;font-size:12.5px;font-weight:600;color:var(--mut);white-space:nowrap}.dg3 .chd span{font-size:12px;color:var(--mut)}
+.dg3>.card{min-width:0}.tr3{display:grid;grid-template-columns:118px minmax(0,1fr) 86px;gap:12px;align-items:center;padding:7px 0;font-size:13.5px;font-weight:600;cursor:pointer}.tr3 span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.tr3 em{font-style:normal;font-size:12.5px;color:var(--mut);text-align:right}.ag2{display:grid;grid-template-columns:8px minmax(0,1fr) auto;gap:12px;align-items:center;padding:8px 0;cursor:pointer;border-bottom:1px dashed var(--ln)}.ag2:last-child{border:0}.ag2 i{width:8px;height:8px;border-radius:50%}.ag2 b{display:block;font-size:13.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.ag2 small{color:var(--mut);font-size:12px}.ag2 em{font-style:normal;font-size:12.5px;font-weight:600;color:var(--mut);white-space:nowrap}.dg3 .chd span{font-size:12px;color:var(--mut)}
 .chd{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}.chd h3{margin:0!important}.chd span{font-size:14px;color:var(--mut)}
 .ua{display:flex;align-items:center;gap:14px;margin:6px 0 14px}.ua b{display:block;font:800 28px/1.1 var(--serif);color:var(--navy)}.ua small{color:var(--mut);font-size:14px}
 .oi.sm{width:48px;height:48px;background:#dce9f1;color:#2b6683;border:1.5px solid #b9d0de}
@@ -744,8 +744,21 @@ function snap(){const s={};[[jobs,'j'],[skl,'s']].forEach(([a,p])=>a.forEach(x=>
 function persist(){stamp();store();if(cfg.url){ls('jt_dirty','1');clearTimeout(tmr);setSt('menyimpan…','bz');tmr=setTimeout(push,800)}else setSt('mode lokal')}
 
 /* ---------- Apps Script ---------- */
+function icsBuild(){const e=v=>String(v||'').replace(/([,;\\])/g,'\\$1').replace(/\r?\n/g,'\\n'),ts=new Date().toISOString().replace(/[-:]/g,'').slice(0,15)+'Z',L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//JobTracker//ID','CALSCALE:GREGORIAN','X-WR-CALNAME:Job Tracker','REFRESH-INTERVAL;VALUE=DURATION:PT1H','X-PUBLISHED-TTL:PT1H'];
+ sev().filter(x=>dl(x.d)>=-30).forEach(x=>{const d=x.d.replace(/-/g,''),t=x.t?x.t.replace(':','')+'00':'';L.push('BEGIN:VEVENT','UID:'+x.id+'@jobtracker','DTSTAMP:'+ts,t?'DTSTART:'+d+'T'+t:'DTSTART;VALUE=DATE:'+d,'SUMMARY:'+e(x.k+' - '+x.co),'DESCRIPTION:'+e((x.po||'')+(x.n?' | '+x.n:'')),'END:VEVENT')});
+ L.push('END:VCALENDAR');return L.join('\r\n')}
+const icsHash=t=>{let h=0;for(let i=0;i<t.length;i++)h=(h*31+t.charCodeAt(i))|0;return String(h)};
+async function icsAuto(){if(!lg('jt_ics')||!cfg.url)return;try{const t=icsBuild().replace(/DTSTAMP:\S+/g,''),h=icsHash(t);if(lg('jt_ics_h')===h)return;await api('icsset',{ics:icsBuild()});ls('jt_ics_h',h)}catch(e){}}
 const cleanUrl=u=>String(u||'').replace(/[\u200b\s]+/g,'').replace(/^["']+|["']+$/g,'');
 const URLOK=/^https:\/\/script\.google\.com\/(a\/(macros\/|[^\/]+\/macros\/))?s\/[\w-]+\/exec$|^https:\/\/script\.google\.com\/macros\/s\/[\w-]+\/exec$|^https:\/\/script\.google\.com\/a\/macros\/[^\/]+\/s\/[\w-]+\/exec$/;
+async function diagnose(){const u=cleanUrl(cfg.url),o=[],ok=t=>'✅ '+t,no=t=>'❌ '+t;
+ if(!u)return no('URL belum diisi');if(/\/dev$/.test(u))return no('URL berakhiran /dev, pakai URL /exec');if(!URLOK.test(u))return no('Format URL salah, harus https://script.google.com/macros/s/…/exec');
+ if(navigator.onLine===false)return no('Perangkat offline');
+ let gOk=0;try{await fetch(u+'?ping=1',{credentials:'omit',cache:'no-store'});gOk=1;o.push(ok('Deployment publik terjangkau (GET)'))}
+ catch(e){o.push((await probe(u))?no('GET ditolak: akses deployment bukan "Anyone", atau versi baru yang berisi doGet belum di-Deploy'):no('script.google.com tidak terjangkau (internet/VPN/adblock)'))}
+ let pOk=0;try{const d=await api('ping');pOk=1;o.push(ok('Sync (POST) berjalan'+(d&&d.rows!=null?', '+d.rows+' baris':'')))}catch(e){o.push(no('Sync (POST): '+e.message));if(gOk&&/menolak/.test(e.message))o.push('↳ GET lolos tapi POST gagal: doPost kemungkinan error. Buka Apps Script → Executions, lihat pesan merahnya, atau pasang pembungkus try/catch.')}
+ if(pOk){try{const d=await api('icsset',{ics:icsBuild()});o.push(d.token?ok('Kalender Apple siap'):no('Kalender: '+(d.error||'kode icsset belum terpasang')))}catch(e){o.push(no('Kalender: '+e.message))}}
+ return o.map(esc).join('<br>')}
 async function probe(u){try{await fetch(u,{mode:'no-cors',credentials:'omit',cache:'no-store'});return true}catch(e){return false}}
 async function api(action,data,ms){
  cfg.url=cleanUrl(cfg.url);
@@ -770,9 +783,10 @@ async function api(action,data,ms){
 let busy=0,again=0;
 async function run(silent){if(!cfg.url)return;if(busy){again=1;return}busy=1;const dirty=!!lg('jt_dirty');if(dirty||!silent)setSt(dirty?'menyimpan…':'memuat…','bz');
  try{const sent=JSON.stringify([jobs,skl]),d=await api('sync',{dirty,jobs:dirty?jobs:[],skills:dirty?skl:[],tomb:dirty?rd('jt_tomb',{}):{}});
-  if(JSON.stringify([jobs,skl])!==sent)again=1;
+  if(d.fresh&&!dirty&&(jobs.length||skl.length)){ls('jt_dirty','1');again=1}
+  else if(JSON.stringify([jobs,skl])!==sent)again=1;
   else{const before=lg('jt_snap');jobs=d.jobs.map(j=>Object.assign({},j,{status:norm(j.status)}));skl=d.skills;ls('jt_tomb',JSON.stringify(d.tomb||{}));snap();store();ls('jt_dirty',null);ls('jt_synced','1');if(lg('jt_snap')!==before||!silent)render()}
-  setSt('tersinkron','ok');remind();cvPull()}
+  setSt('tersinkron','ok');remind();cvPull();icsAuto()}
  catch(e){setSt(e.message,'er')}
  finally{busy=0;if(again){again=0;setTimeout(()=>run(true),300)}}}
 const push=()=>run(),pull=s=>run(s),sync=()=>run();
@@ -870,7 +884,7 @@ const V={
 sch(){const ev=sev(),up=ev.filter(x=>dl(x.d)>=0),ps=ev.filter(x=>dl(x.d)<0),n0=up.filter(x=>dl(x.d)===0).length,n7=up.filter(x=>dl(x.d)<=7).length;
  const sce=x=>`<div class="se" data-id="${x.jid}" data-act="editjob"><span class="dot" style="background:${SK[x.k]||'#78858a'}"></span><div><b>${esc(x.k)} · ${esc(x.co)}</b><small>${esc(x.po)}${x.n?' · '+esc(x.n):''}</small></div><time>${x.t||'Seharian'}</time><button class="dl" data-act="delsch" data-jid="${x.jid}" data-sid="${x.id}" aria-label="Hapus">✕</button></div>`;
  const grp=(a,r)=>{const m={};a.forEach(x=>(m[x.d]=m[x.d]||[]).push(x));let k=Object.keys(m).sort();if(r)k.reverse();return k.map(d=>{const n=dl(d);return `<div class="card dg rise"><div class="dh"><b>${day(d)}</b><span class="pill" style="--c:${n<0?'#78858a':n===0?'#dc2626':n<=3?'#d97706':'#0d9488'}">${rel(n)}</span></div>${m[d].map(sce).join('')}</div>`}).join('')};
- return `<div class="rise"><h2 class="t">Jadwal</h2><p class="sub">Timeline psikotes, assessment, dan interview berdasarkan tanggal. Pengingat muncul otomatis 3 hari sebelumnya.</p><button class="btn s" data-act="ics" style="margin-bottom:14px">Ekspor ke kalender (.ics)</button></div>
+ return `<div class="rise"><h2 class="t">Jadwal</h2><p class="sub">Timeline psikotes, assessment, dan interview berdasarkan tanggal. Pengingat muncul otomatis 3 hari sebelumnya.</p><button class="btn s" data-act="ics" style="margin-bottom:14px">Ekspor ke kalender (.ics)</button> <button class="btn s" data-act="icssub" style="margin-bottom:14px">Langganan Kalender Apple</button></div>
  <div class="g g4">${KK('Hari ini',n0,'#dc2626','jadwal hari ini')}${KK('7 hari ke depan',n7,'#f59e0b','termasuk hari ini')}${KK('Akan datang',up.length,'#0d9488','semua jadwal')}${KK('Sudah lewat',ps.length,'#78858a','riwayat jadwal')}</div>
  <div class="sec rise"><h3>Akan datang</h3></div>${up.length?grp(up):'<div class="card empty rise">Belum ada jadwal. Tekan ＋ Jadwal untuk menambah psikotes, assessment, atau interview.</div>'}
  ${ps.length?`<div class="sec rise"><h3>Sudah lewat</h3></div><div style="opacity:.8">${grp(ps,1)}</div>`:''}`},
@@ -1079,6 +1093,12 @@ const A={
  cvtm(){modal(`<h3>Template CV</h3><p class="hint" style="margin:0 0 8px">Format: <b># Nama</b>, baris kontak, <b>## Bagian</b>, <b>*Judul | Kanan</b> untuk baris dua kolom, <b>- butir</b>. Template ini dipakai semua lamaran dan tersimpan di spreadsheet.</p><textarea class="ta" id="xt" style="min-height:340px;font:13px/1.4 ui-monospace,monospace">${esc(cvt)}</textarea><div class="act"><button class="btn" data-act="cvtsave">Simpan template</button></div>`)},
  cvtsave(){cvt=$('xt').value.trim();ls('jt_cvt',cvt);closeM();toast('Template tersimpan');if(cfg.url)api('cvset',{cv:cvt}).catch(e=>toast(e.message))},
 
+ async icssub(){if(!cfg.url)return toast('Hubungkan dulu di ⚙ Pengaturan');toast('Menyiapkan langganan…');
+  try{const d=await api('icsset',{ics:icsBuild()});if(!d.token)throw new Error('Apps Script belum dipasangi kode kalender (icsset)');
+   ls('jt_ics','1');ls('jt_ics_h',icsHash(icsBuild().replace(/DTSTAMP:\S+/g,'')));
+   const u=cfg.url+'?ics='+d.token,w=u.replace(/^https:/,'webcal:');
+   modal(`<h3>Langganan Kalender Apple</h3><p class="hint">Link ini rahasia, jangan dibagikan. Jadwal diperbarui otomatis tiap kali data tersinkron, dan Kalender Apple menyegarkan sendiri sekitar tiap jam.</p><div class="ln"><input id="cl" readonly value="${esc(w)}"><button class="btn s" data-act="cpl">Salin</button></div><p class="hint"><b>iPhone:</b> ketuk <a href="${esc(w)}">Buka di Kalender</a> lalu Berlangganan. <b>Mac:</b> Kalender → File → Langganan Kalender Baru → tempel link.</p>`)}
+  catch(e){toast(e.message)}},
  ics(){const ev=sev().filter(x=>dl(x.d)>=0);if(!ev.length)return toast('Belum ada jadwal mendatang');const e=v=>String(v||'').replace(/([,;\\])/g,'\\$1'),ts=new Date().toISOString().replace(/[-:]/g,'').slice(0,15)+'Z',L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//JobTracker//ID'];
   ev.forEach(x=>{const d=x.d.replace(/-/g,''),t=x.t?x.t.replace(':','')+'00':'';L.push('BEGIN:VEVENT','UID:'+x.id+'@jobtracker','DTSTAMP:'+ts,t?'DTSTART:'+d+'T'+t:'DTSTART;VALUE=DATE:'+d,'SUMMARY:'+e(x.k+' - '+x.co),'DESCRIPTION:'+e((x.po||'')+(x.n?' | '+x.n:'')),'END:VEVENT')});
   L.push('END:VCALENDAR');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([L.join('\r\n')],{type:'text/calendar'}));a.download='jadwal-lamaran.ics';a.click()},
@@ -1122,11 +1142,11 @@ const A={
  sync(){if(!cfg.url)return toast('Hubungkan dulu di ⚙ Pengaturan');sync()},
  cfgm(){modal(`<h3>Pengaturan</h3><label>URL Web App Apps Script</label><input id="cu" value="${esc(cfg.url||'')}" placeholder="https://script.google.com/macros/s/…/exec"><p class="hint">Password Apps Script otomatis memakai password login.</p>${cfg.url?`<label>Link sambung perangkat <small>(buka di HP sekali, data langsung ikut)</small></label><div class="ln"><input id="cl" readonly value="${esc(location.href.split('?')[0].split('#')[0]+'?sync='+encodeURIComponent(cfg.url))}"><button class="btn s" data-act="cpl">Salin</button></div>`:''}
   <label>Target lamaran</label><input id="ct" type="number" min="1" value="${cfg.target}"><label>Target lamaran per minggu</label><input id="cw" type="number" min="1" value="${cfg.wt}">
-  <div class="act"><button class="btn" data-act="savecfg">Simpan</button><button class="btn s" data-act="ping">Tes koneksi</button></div>
+  <div class="act"><button class="btn" data-act="savecfg">Simpan</button><button class="btn s" data-act="ping">Tes koneksi</button></div><div id="dg" class="hint" style="margin-top:10px;line-height:1.6"></div>
   <div class="act" style="margin-top:10px"><button class="btn s" data-act="cvtm" style="flex:1">Template CV</button><button class="btn s" data-act="impm" style="flex:1">Impor dari Google Sheets</button></div><div class="act" style="margin-top:10px"><button class="btn s" data-act="prt" style="flex:1">🖨 Cetak / simpan PDF halaman ini</button></div><div class="act" style="margin-top:10px"><button class="btn s" data-act="bak" style="flex:1">Cadangkan (.json)</button><button class="btn s" data-act="rest" style="flex:1">Pulihkan</button></div>
   <div class="act" style="margin-top:10px"><button class="btn s" data-act="logout" style="flex:1">Keluar akun</button><button class="btn s" data-act="wipe" style="flex:1;color:#be123c">Hapus data lokal</button></div>`)},
  savecfg(){cfg.url=cleanUrl(g('cu'));cfg.target=+$('ct').value||300;cfg.wt=+$('cw').value||5;store();closeM();render();toast('Pengaturan disimpan');if(cfg.url)pull();else setSt('mode lokal')},
- ping(){cfg.url=cleanUrl(g('cu'));store();toast('Menguji…');api('ping').then(d=>toast('Terhubung, '+d.rows+' baris')).catch(e=>toast(e.message))},
+ ping(){cfg.url=cleanUrl(g('cu'));store();const b=$('dg');if(b)b.innerHTML='Menguji…';diagnose().then(h=>{if(b)b.innerHTML=h;else toast(h.replace(/<[^>]+>/g,' '))})},
 
  addh(){const n=g('hn');if(!n)return toast('Tulis kejadiannya dulu');const st=(document.querySelector('#js .on')||{dataset:{v:'Applied'}}).dataset.v;wh.push({d:$('hd').value||today(),s:st,n});wh.sort((a,b)=>a.d.localeCompare(b.d));$('tl').innerHTML=tlh();$('hn').value=''},
  delh(b){wh.splice(+b.dataset.i,1);$('tl').innerHTML=tlh()},
