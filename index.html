@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"><script>try{var t=localStorage.getItem("jt_theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.dataset.theme=t}catch(e){}</script>
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<title>Job Application Tracker</title>
+<title>Job Application Tracker by davito</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#f8f6f1">
 <link rel="icon" type="image/png" sizes="64x64" href="favicon.png?v=3">
@@ -533,6 +533,30 @@ html[data-theme=dark] .fg .chip.on em{background:rgba(255,255,255,.2);color:#fff
 }
 @media(min-width:561px){.lt .lt-top .hubb{flex:0 0 auto;padding:8px 18px}.lt .lt-top .jsel{flex:0 0 190px;margin-left:auto}}
 @media print{.hero,.lt,.fb,.tool,.mo{display:none!important}}
+/* ===== Upgrade: filter lanjutan, ikon, popup ringkas ===== */
+.fbtn{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--ln);background:var(--card);color:var(--navy);border-radius:12px;min-height:42px;padding:0 14px;font:700 14px inherit;cursor:pointer;transition:transform .25s var(--ease),border-color .2s}
+.fbtn:hover{border-color:var(--ac);transform:translateY(-1px)}.fbtn svg{width:18px;height:18px}
+.fbtn b{min-width:20px;height:20px;border-radius:99px;background:var(--ac);color:#fff;font-size:12px;display:grid;place-items:center;padding:0 6px}
+.ftg{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.ftag{display:inline-flex;align-items:center;gap:6px;border:0;background:color-mix(in srgb,var(--ac) 16%,transparent);color:var(--navy);border-radius:99px;padding:6px 9px 6px 12px;font:700 12.5px inherit;cursor:pointer}.ftag svg{width:13px;height:13px}
+.fpg{margin:16px 0 4px}.fpt{display:flex;align-items:center;gap:8px;font:800 12.5px inherit;letter-spacing:.05em;text-transform:uppercase;color:var(--mut);margin-bottom:8px}.fpt svg{width:16px;height:16px}
+.fpc{display:flex;flex-wrap:wrap;gap:8px}
+.mi{width:14px;height:14px;vertical-align:-2px;margin-right:5px;opacity:.75}
+.ra svg{width:18px;height:18px}.ra{min-width:108px}
+.vh{display:flex;align-items:center;gap:14px;margin:4px 40px 12px 0}.vh .av{flex:none}.vh h3{margin:0}.vh p{margin:2px 0 0;color:var(--mut)}
+.vg{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.vi{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1px solid var(--ln);border-radius:14px;min-width:0}
+.vic{display:grid;place-items:center;width:32px;height:32px;border-radius:10px;background:color-mix(in srgb,var(--ac) 14%,transparent);color:var(--ac);flex:none}.vic svg{width:17px;height:17px}
+.vi small{display:block;color:var(--mut);font-size:12px}.vi b{display:block;font-size:14px;overflow-wrap:anywhere}
+.vp{display:inline-block;border-radius:99px;padding:4px 12px;font:700 13px inherit;color:var(--c);background:color-mix(in srgb,var(--c) 14%,transparent)}
+.vn{margin:12px 0 0;padding:12px 14px;border-radius:14px;background:color-mix(in srgb,var(--ac) 9%,transparent);font-size:14px;white-space:pre-wrap;overflow-wrap:anywhere}
+@media(min-width:761px){.row{grid-template-columns:44px minmax(0,1.5fr) minmax(0,1fr) 148px 112px}}
+@media(max-width:760px){.vg{grid-template-columns:1fr}.fr .fbtn{flex:1 1 auto;justify-content:center}.fpc .chip{padding:10px 14px}.mo .sh::before{content:"";display:block;width:42px;height:4px;border-radius:9px;background:var(--ln);margin:-10px auto 14px}.ra button,.ra a{width:40px;height:40px}}
+.av{position:relative;overflow:hidden}
+.av .lgi{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:7px;background:#fff;border-radius:inherit}
+.av.s{width:28px;height:28px;border-radius:9px;font-size:13px;flex:none}.av.s .lgi{padding:4px}
+.cw{display:flex;align-items:center;gap:10px}.cw>div:last-child{min-width:0}
+.lgp{display:grid;place-items:center;width:48px;height:48px;border:1.5px solid var(--ln);border-radius:14px;flex:none;overflow:hidden;background:#fff}.lgp img{width:32px;height:32px;object-fit:contain}
 </style>
 </head>
 <body>
@@ -541,7 +565,7 @@ html[data-theme=dark] .fg .chip.on em{background:rgba(255,255,255,.2);color:#fff
 <section id="lk">
  <div class="lc" id="lc">
   <img src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 512 512%22%3E%3Crect width=%22512%22 height=%22512%22 rx=%22112%22 fill=%22%231a1a4b%22/%3E%3Crect x=%22198%22 y=%22118%22 width=%22116%22 height=%2284%22 rx=%2218%22 fill=%22none%22 stroke=%22%23fff%22 stroke-width=%2230%22/%3E%3Crect x=%2262%22 y=%22170%22 width=%22388%22 height=%22250%22 rx=%2242%22 fill=%22%23fff%22/%3E%3Cpath d=%22M172 306l64 60 112-120%22 fill=%22none%22 stroke=%22%231a1a4b%22 stroke-width=%2234%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E" alt="Logo">
-  <h1>Job Application Tracker</span></h1>
+  <h1>Job Application Tracker<span>by davito</span></h1>
   <p>Masukkan password untuk melanjutkan</p>
   <div class="pw"><input id="lp" type="password" placeholder="Password" autocomplete="current-password"><button id="lt" type="button">Lihat</button></div>
   <label class="rm"><input id="lr" type="checkbox" checked style="width:18px;min-height:0;accent-color:#0f4c4a"> Ingat di perangkat ini</label>
@@ -594,6 +618,49 @@ layers:SV('<path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/>'),
 trend:SV('<path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/>'),
 ban:SV('<circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/>'),
 target:SV('<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r=".8"/>')};
+Object.assign(ICO,{
+filter:SV('<path d="M3 5h18l-7 8v6l-4 2v-8z"/>'),
+pin:SV('<path d="M12 21s7-6.2 7-11a7 7 0 10-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/>'),
+link:SV('<path d="M10 14a4 4 0 005.7 0l3-3a4 4 0 00-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 00-5.7 0l-3 3a4 4 0 005.7 5.7l1-1"/>'),
+star:SV('<path d="M12 3l2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3 -5.6 3 1.1-6.2L3 9.6l6.2-.9z"/>'),
+eye:SV('<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>'),
+money:SV('<rect x="2" y="6" width="20" height="12" rx="3"/><circle cx="12" cy="12" r="2.5"/>'),
+user:SV('<circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4.5-6 8-6s7 2 8 6"/>'),
+tag:SV('<path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.2"/>'),
+note:SV('<path d="M5 3h14v18H5z"/><path d="M9 8h6M9 12h6M9 16h3"/>'),
+x:SV('<path d="M6 6l12 12M18 6L6 18"/>')});
+const mi=n=>ICO[n].replace('<svg','<svg class="mi"');
+/* filter lanjutan: tipe, sumber, mode kerja, prioritas */
+const FPK=[['t','Tipe','job',TY],['src','Sumber','link',SRC],['wm','Mode kerja','pin',WM],['pr','Prioritas','star',['1','2','3']]];
+const fpb=()=>FPK.map(([k,l,ic,o])=>`<div class="fpg"><div class="fpt">${ICO[ic]}<span>${l}</span></div><div class="fpc">${o.map(v=>`<button type="button" class="chip${flt[k]===v?' on':''}" data-act="fp" data-k="${k}" data-v="${v}">${k==='pr'?'★'.repeat(+v)+'+':v}<em>${jobs.filter(j=>k==='pr'?(+j.pr||0)>=+v:j[k]===v).length}</em></button>`).join('')}</div></div>`).join('');
+function fref(){const b=$('fpb');if(b)b.innerHTML=fpb();const c=$('fpn');if(c)c.textContent=jfil().length;if($('ch')){$('ch').innerHTML=chips();list('lst',jlist())}}
+function fmodal(){modal(`<h3>Filter lanjutan</h3><p class="hint" style="margin:0 0 4px">Ketuk untuk memilih, ketuk lagi untuk melepas. Hasil langsung berubah di belakang.</p><div id="fpb">${fpb()}</div><div class="act"><button class="btn" data-act="close">Tampilkan <span id="fpn">${jfil().length}</span> lamaran</button><button class="btn s" data-act="frs">Reset</button></div>`)}
+function jview(id){const j=jobs.find(x=>x.id===id);if(!j)return;
+ const I=(ic,l,v)=>v?`<div class="vi"><span class="vic">${ICO[ic]}</span><div><small>${l}</small><b>${esc(v)}</b></div></div>`:'',
+ du=j.dlu?fmt(j.dlu)+(dl(j.dlu)>=0?' ('+dl(j.dlu)+' hari lagi)':' (lewat)'):'',
+ h=(j.hist||[]).filter(x=>!x.sc).slice().reverse().map(x=>`<div class="tli"><span class="dot" style="background:${CL[x.s]||'#94a3b8'}"></span><div><b>${esc(x.s)}</b>${x.n?`<small>${esc(x.n)}</small>`:''}</div><time>${fmt(x.d)}</time></div>`).join('');
+ modal(`<div class="vh">${avh(j)}<div style="min-width:0"><h3>${esc(j.company)}</h3><p>${esc(j.position)||'-'}</p></div></div>
+ <div style="margin:0 0 12px"><span class="vp" style="--c:${CL[j.status]}">${esc(j.status)}</span>${j.pr?` <span style="color:#f59e0b">${'★'.repeat(+j.pr)}</span>`:''}</div>
+ <div class="vg">${I('pin','Lokasi',j.location)}${I('job','Tipe',j.type)}${I('layers','Mode kerja',j.wm)}${I('link','Sumber',j.src)}${I('sch','Tanggal lamar',fmt(j.date))}${I('bell','Deadline',du)}${I('target','Follow up',fmt(j.fu))}${I('tag','Industri',j.ind)}${I('money','Gaji diharapkan',j.gx?rp(j.gx):'')}${I('money','Gaji ditawarkan',j.go?rp(j.go):'')}${I('user','Kontak',j.ct)}${I('note','Versi CV',j.cv)}</div>
+ ${j.note?`<div class="vn">${esc(j.note)}</div>`:''}${h?`<div class="hl">Riwayat status</div><div class="tl">${h}</div>`:''}
+ <div class="act"><button class="btn" data-act="editjob" data-id="${j.id}">Edit lamaran</button>${j.link?`<a class="btn s" style="display:grid;place-items:center;text-decoration:none" href="${esc(j.link)}" target="_blank" rel="noopener">Buka link</a>`:''}</div>`)}
+/* logo perusahaan: domain dari kolom Website, atau link lowongan bila bukan situs lowongan kerja */
+const BOARD=/(^|\.)(linkedin|jobstreet|glints|kalibrr|indeed|karir|karirhub|jobs|loker|lokerid|google|forms|bit|wa|t|instagram|facebook|tiktok|x|twitter|telegram|lnkd)\.(com|co\.id|id|gle|ly|me|in|it)$/;
+const cleanDom=v=>{v=String(v||'').trim().toLowerCase().replace(/^https?:\/\//,'').replace(/^www\./,'').replace(/[\/?#].*$/,'');return /^[a-z0-9-]+(\.[a-z0-9-]+)+$/.test(v)?v:''};
+function domOf(j){let d=cleanDom(j.web);
+ if(!d)try{d=cleanDom((rd('jt_logo',{}))[(j.company||'').toLowerCase()])}catch(e){}
+ if(!d&&j.link)try{const h=cleanDom(new URL(j.link).hostname.replace(/^(careers?|jobs?|recruit(ment)?|apply|karir|hr)\./,''));if(h&&!BOARD.test(h))d=h}catch(e){}
+ if(!d)d=gus(j.company);
+ return d}
+const LGX={siloam:'siloamhospitals.com',mandiri:'bankmandiri.co.id',grab:'grab.com',telkom:'telkom.co.id',pertamina:'pertamina.com',unilever:'unilever.co.id',astra:'astra.co.id',shopee:'shopee.co.id',tokopedia:'tokopedia.com',gojek:'gojek.com',traveloka:'traveloka.com',indofood:'indofood.com',danone:'danone.co.id',nestle:'nestle.co.id',deloitte:'deloitte.com',kpmg:'kpmg.com',pwc:'pwc.com',ey:'ey.com'};
+/* tebakan domain dari nama perusahaan; hanya tampil bila gambarnya benar-benar ada, selain itu kembali ke huruf */
+function gus(n){n=String(n||'').toLowerCase();const k=Object.keys(LGX).find(x=>new RegExp('\\b'+x+'\\b').test(n));if(k)return LGX[k];
+ const t=n.replace(/\b(pt|cv|tbk|persero|ltd|inc|corp|co|group|indonesia)\b/g,'').replace(/[^a-z0-9]/g,'');return t.length>=3&&t.length<=30?t+'.co.id,'+t+'.com':''}
+const lgu=d=>'https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&url=http://'+d+'&size=128',lgq=d=>{const a=d.split(',');return a.map(lgu).concat(a.map(x=>'https://icons.duckduckgo.com/ip3/'+x+'.ico'))};
+const lgi=d=>`<img class="lgi" src="${lgq(d)[0]}" data-q="${d}" data-i="0" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="lge(this)">`;
+function lge(i){const q=lgq(i.dataset.q),n=+i.dataset.i+1;if(n<q.length){i.dataset.i=n;i.src=q[n]}else i.remove()}
+const avh=(j,c)=>{const d=domOf(j);return `<div class="av${c||''}" style="background:color-mix(in srgb,${CL[j.status]} 14%,transparent)">${d?lgi(d):''}<span>${esc((j.company||'?')[0].toUpperCase())}</span></div>`};
+document.addEventListener('input',e=>{if(e.target.id==='jweb'){const d=cleanDom(e.target.value),p=$('jlg');if(p)p.innerHTML=d?lgi(d):''}});
 const NAV=[['dash','Dashboard','dash'],['job','Lamaran','job'],['sch','Jadwal','sch'],['skill','Skill','skill']];
 function bellu(){const e=document.getElementById('bd');if(e)e.hidden=!sev().some(x=>{const n=dl(x.d);return n>=0&&n<=3})}
 /* grafik garis halus: Dilamar vs Dapat respons, 6 bulan terakhir */
@@ -613,7 +680,7 @@ function dline(){const t=new Date(),M=[];
 const $=i=>document.getElementById(i),esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const rd=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}};
 const lg=k=>{try{return localStorage.getItem(k)}catch(e){return null}},ls=(k,v)=>{try{v===null?localStorage.removeItem(k):localStorage.setItem(k,v)}catch(e){}};
-let cfg=rd('jt_cfg',{}),jobs=rd('jt_jobs',[]),skl=rd('jt_skills',[]),view='dash',flt={q:'',s:''},sq='',tmr;
+let cfg=rd('jt_cfg',{}),jobs=rd('jt_jobs',[]),skl=rd('jt_skills',[]),view='dash',flt={q:'',s:'',t:'',src:'',wm:'',pr:''},sq='',tmr;
 cfg.target=+cfg.target||300;cfg.wt=+cfg.wt||5;
 /* ISI SEKALI: tempel URL Web App Apps Script (berakhiran /exec) di antara tanda kutip agar semua perangkat otomatis tersambung */
 const API_URL='';
@@ -945,25 +1012,25 @@ skill(){const {tc,tw,dn}=stat();
 /* Filter sederhana: 5 grup cepat + dropdown untuk 10 status lengkap */
 const FG=[['g:todo','Belum dilamar',['Not Applied']],['g:sent','Dilamar',['Applied']],['g:proc','Proses',['HR Interview','User Interview','Assessment']],['g:win','Offer',['Offer','Accepted']],['g:out','Tidak lanjut',['Rejected','Ghosted','Failed']]];
 const fst=s=>{const g=FG.find(x=>x[0]===s);return g?g[2]:s?[s]:null};
-const jfil=()=>{const q=flt.q.toLowerCase(),a=fst(flt.s);return jobs.filter(j=>(!a||a.includes(j.status))&&(!q||(j.company+' '+j.position+' '+j.location).toLowerCase().includes(q)))};
+const jfil=()=>{const q=flt.q.toLowerCase(),a=fst(flt.s);return jobs.filter(j=>(!a||a.includes(j.status))&&(!flt.t||j.type===flt.t)&&(!flt.src||j.src===flt.src)&&(!flt.wm||j.wm===flt.wm)&&(!flt.pr||(+j.pr||0)>=+flt.pr)&&(!q||(j.company+' '+j.position+' '+j.location).toLowerCase().includes(q)))};
 const chips=()=>{const pill=(s,l,n)=>`<button class="chip${flt.s===s?' on':''}" data-act="flt" data-s="${s}">${l}<em>${n}</em></button>`,
- act=!!(flt.s||flt.q),isSt=ST.includes(flt.s);
+ xn=['t','src','wm','pr'].filter(k=>flt[k]).length,act=!!(flt.s||flt.q||xn),isSt=ST.includes(flt.s);
  return `<div class="fg">${pill('','Semua',jobs.length)}${FG.map(g=>pill(g[0],g[1],jobs.filter(j=>g[2].includes(j.status)).length)).join('')}</div>
- <div class="fr"><select id="fsel" aria-label="Pilih status tertentu"><option value="">Status lengkap…</option>${ST.map(s=>`<option value="${s}"${flt.s===s?' selected':''}>${s} (${cnt(s)})</option>`).join('')}</select><span class="fc">Menampilkan <b>${jfil().length}</b> dari ${jobs.length}</span>${act?'<button class="fx" data-act="frs">Reset filter ✕</button>':''}</div>`};
+ <div class="fr"><select id="fsel" aria-label="Pilih status tertentu"><option value="">Status lengkap…</option>${ST.map(s=>`<option value="${s}"${flt.s===s?' selected':''}>${s} (${cnt(s)})</option>`).join('')}</select><button class="fbtn" data-act="fopen" aria-label="Filter lanjutan">${ICO.filter}<span>Filter</span>${xn?`<b>${xn}</b>`:''}</button><span class="fc">Menampilkan <b>${jfil().length}</b> dari ${jobs.length}</span>${act?'<button class="fx" data-act="frs">Reset filter ✕</button>':''}</div>${xn?`<div class="ftg">${FPK.filter(p=>flt[p[0]]).map(p=>`<button class="ftag" data-act="fx" data-k="${p[0]}">${p[1]}: ${p[0]==='pr'?'★'.repeat(+flt.pr)+'+':esc(flt[p[0]])}${ICO.x}</button>`).join('')}</div>`:''}`};
 function tbl(a){const k=so.k,d=so.d,v=j=>String(j[k]||'').toLowerCase();
  a=a.slice().sort((x,y)=>(k==='status'?ST.indexOf(x.status)-ST.indexOf(y.status):v(x).localeCompare(v(y),'id'))*d);
  const th=(l,k2)=>`<th><button class="sb" data-act="sort" data-k="${k2}">${l}${so.k===k2?(so.d>0?' ▲':' ▼'):''}</button></th>`;
- return `<div class="card tw rise"><div class="ow"><table class="tb"><thead><tr><th>No</th>${th('Perusahaan','company')}${th('Posisi','position')}${th('Lokasi','location')}${th('Tipe','type')}${th('Tanggal','date')}${th('Status','status')}<th></th></tr></thead><tbody>${a.map((j,i)=>`<tr class="trw" data-id="${j.id}" data-act="editjob"><td>${i+1}</td><td><b>${j.pr?'<span style="color:#f59e0b">'+'★'.repeat(j.pr)+'</span> ':''}${esc(j.company)}</b>${j.note?'<small>📝 ada catatan</small>':''}</td><td>${esc(j.position)||'-'}</td><td>${esc(j.location)||'-'}</td><td>${esc(j.type)||'-'}</td><td>${fmt(j.date)||'-'}</td><td><select class="ps" data-act="st" style="--c:${CL[j.status]}">${opts(ST,j.status)}</select></td><td><div class="ra"><button data-act="cvj" aria-label="CV ATS" title="CV ATS">📄</button>${j.link?`<a href="${esc(j.link)}" target="_blank" rel="noopener" aria-label="Buka link">↗</a>`:''}<button class="dl" data-act="deljob" aria-label="Hapus">✕</button></div></td></tr>`).join('')}</tbody></table></div></div>`}
+ return `<div class="card tw rise"><div class="ow"><table class="tb"><thead><tr><th>No</th>${th('Perusahaan','company')}${th('Posisi','position')}${th('Lokasi','location')}${th('Tipe','type')}${th('Tanggal','date')}${th('Status','status')}<th></th></tr></thead><tbody>${a.map((j,i)=>`<tr class="trw" data-id="${j.id}" data-act="editjob"><td>${i+1}</td><td><div class="cw">${avh(j,' s')}<div><b>${j.pr?'<span style="color:#f59e0b">'+'★'.repeat(j.pr)+'</span> ':''}${esc(j.company)}</b>${j.note?'<small>📝 ada catatan</small>':''}</div></div></td><td>${esc(j.position)||'-'}</td><td>${esc(j.location)||'-'}</td><td>${esc(j.type)||'-'}</td><td>${fmt(j.date)||'-'}</td><td><select class="ps" data-act="st" style="--c:${CL[j.status]}">${opts(ST,j.status)}</select></td><td><div class="ra"><button data-act="jview" aria-label="Lihat ringkas" title="Lihat ringkas">${ICO.eye}</button><button data-act="cvj" aria-label="CV ATS" title="CV ATS">📄</button>${j.link?`<a href="${esc(j.link)}" target="_blank" rel="noopener" aria-label="Buka link">↗</a>`:''}<button class="dl" data-act="deljob" aria-label="Hapus">✕</button></div></td></tr>`).join('')}</tbody></table></div></div>`}
 function kan(a){const card=j=>`<div class="card kk" data-id="${j.id}" data-act="editjob"><b>${esc(j.company)}</b><span>${esc(j.position)||'-'}</span>${j.pr?`<small style="color:#f59e0b">${'★'.repeat(j.pr)}</small>`:''}${j.fu?`<small>Follow up ${fmt(j.fu)}</small>`:''}</div>`,
  cols=ST.map(s=>[s,a.filter(j=>j.status===s)]),full=cols.filter(c=>c[1].length),empty=cols.filter(c=>!c[1].length).map(c=>c[0]);
  return `<div class="kb">${full.map(([s,c])=>`<details class="kc" open style="--c:${CL[s]}"><summary><span>${s}</span><em>${c.length}</em></summary>${c.map(card).join('')}</details>`).join('')}</div>${empty.length?`<p class="hint kn">Tahap kosong: ${empty.join(', ')}</p>`:''}`}
 const lvx=()=>lv==='tbl'&&matchMedia('(max-width:760px)').matches?'card':lv;
 function jlist(){const a=jfil();
  if(!a.length)return `<div class="card empty rise">${jobs.length?'Tidak ada yang cocok.':'Belum ada lamaran. Tekan ＋ Tambah untuk mulai.'}</div>`;
- const LV=lvx();if(LV==='kan')return kan(a);if(LV==='tbl')return tbl(a);return a.slice().reverse().map(j=>`<div class="card row rise" data-id="${j.id}" data-act="editjob"><div class="av" style="background:color-mix(in srgb,${CL[j.status]} 14%,#fff)">${esc((j.company||'?')[0].toUpperCase())}</div>
- <div class="rm"><b>${esc(j.company)}</b><span>${esc(j.position)}</span></div><div class="mm"><span>${esc(j.location)||'-'}</span><small>${[j.type,fmt(j.date)].filter(Boolean).map(esc).join(' · ')||'-'}${j.note?' 📝':''}</small></div>
+ const LV=lvx();if(LV==='kan')return kan(a);if(LV==='tbl')return tbl(a);return a.slice().reverse().map(j=>`<div class="card row rise" data-id="${j.id}" data-act="editjob">${avh(j)}
+ <div class="rm"><b>${esc(j.company)}</b><span>${esc(j.position)}</span></div><div class="mm"><span>${mi('pin')}${esc(j.location)||'-'}</span><small>${mi('tag')}${[j.type,j.wm,fmt(j.date)].filter(Boolean).map(esc).join(' · ')||'-'}${j.note?' 📝':''}</small></div>
  <select class="ps" data-act="st" style="--c:${CL[j.status]}">${opts(ST,j.status)}</select>
- <div class="ra"><button data-act="cvj" aria-label="CV ATS" title="CV ATS">📄</button>${j.link?`<a href="${esc(j.link)}" target="_blank" rel="noopener" aria-label="Buka link">↗</a>`:''}<button class="dl" data-act="deljob" aria-label="Hapus">✕</button></div></div>`).join('')}
+ <div class="ra"><button data-act="jview" aria-label="Lihat ringkas" title="Lihat ringkas">${ICO.eye}</button><button data-act="cvj" aria-label="CV ATS" title="CV ATS">📄</button>${j.link?`<a href="${esc(j.link)}" target="_blank" rel="noopener" aria-label="Buka link">↗</a>`:''}<button class="dl" data-act="deljob" aria-label="Hapus">✕</button></div></div>`).join('')}
 /* ---------- Semua kartu penting bisa diketuk: daftar tracking per kartu ---------- */
 const KXK={'Total lamaran':'all','Sedang proses':'act','Offer & diterima':'win','Tidak lanjut':'out','Sudah dilamar':'sent','Sudah dikirim':'sent','Dapat respons':'resp','Sampai wawancara user':'int3','Offer / diterima':'offr','Perlu tindak lanjut':'stale','Aktivitas 30 hari':'act30','Rata-rata respons':'avg','Laju lamaran':'pace','Estimasi capai target':'eta','Lamaran basi':'basi','Follow up jatuh tempo':'fu','Deadline ≤ 7 hari':'ddl','Target minggu ini':'wk7','Streak':'streak','Hari ini':'today','7 hari ke depan':'week','Akan datang':'up','Sudah lewat':'past'};
 const kcA=k=>k?` data-act="kpi" data-k="${k}" role="button" tabindex="0" title="Ketuk untuk lihat daftar"`:'',kgA=k=>k?'<em class="kg">Lihat ›</em>':'';
@@ -1050,6 +1117,7 @@ function openJob(id){const j=jobs.find(x=>x.id===id)||{status:'Applied',date:tod
  <label>Status</label><div class="chips" style="flex-wrap:wrap" id="js">${ST.map(s=>`<button type="button" class="chip${s===j.status?' on':''}" data-act="pick" data-v="${s}">${s}</button>`).join('')}</div>
  <div class="f3"><div><label>Lokasi</label><input id="jl" value="${esc(j.location)}" placeholder="Jakarta"></div><div><label>Tipe</label><select id="jt"><option></option>${opts(TY,j.type)}</select></div><div><label>Tanggal</label><input id="jd" type="date" value="${esc(j.date)}"></div></div>
  <label>Link lowongan <small>(opsional)</small></label><div class="ln"><input id="jk" type="url" value="${esc(j.link)}" placeholder="https://…"><button class="btn s" data-act="fill">Isi otomatis</button></div>
+ <label>Website perusahaan <small>(untuk logo, mis. google.com)</small></label><div class="ln"><input id="jweb" value="${esc(j.web)}" placeholder="google.com" inputmode="url" autocapitalize="off" autocomplete="off"><span class="lgp" id="jlg">${domOf(j)?lgi(domOf(j)):''}</span></div>
  <details class="dt"${(j.src||j.cv||j.fu||j.why||j.ct||j.gx||j.go||j.dlu||j.pr||j.wm||j.ind||j.prep)?' open':''}><summary>Detail tambahan <small>(sumber, versi CV, follow up, gaji, kontak, persiapan)</small></summary>
  <div class="f3"><div><label>Sumber</label><select id="jsr"><option></option>${opts(SRC,j.src)}</select></div><div><label>Mode kerja</label><select id="jwm"><option></option>${opts(WM,j.wm)}</select></div><div><label>Prioritas</label><select id="jpr">${[0,1,2,3].map(n=>`<option value="${n}"${(+j.pr||0)===n?' selected':''}>${n?'★'.repeat(n):'-'}</option>`).join('')}</select></div></div>
  <div class="f2"><div><label>Versi CV / cover letter</label><input id="jcv" value="${esc(j.cv)}" placeholder="mis. CV Procurement v2"></div><div><label>Industri</label><input id="jin" value="${esc(j.ind)}" placeholder="mis. Perbankan"></div></div>
@@ -1122,7 +1190,7 @@ const A={
   try{const x=(await api('extract',{urls:[u]},60000)).items[0];const set=(i,v)=>{if(v&&!/^\(lengkapi\)/.test(v)&&!$(i).value)$(i).value=v};set('jc',x.company);set('jp',x.position);set('jl',x.location);set('jd',x.date);fillJd={u:u,t:x.jd||''};
    if(x.type&&TY.includes(x.type))$('jt').value=x.type;toast(x.jd?'Terisi otomatis, JD ikut tersimpan untuk CV':x.ok?'Terisi otomatis':'Sebagian terisi, lengkapi sisanya')}catch(e){toast(e.message)}b.disabled=false;b.textContent='Isi otomatis'},
  savejob(b){const c=g('jc'),p=g('jp');if(!c&&!p)return toast('Isi perusahaan atau posisi');
-  const o={note:$('jn').value.trim(),company:c,position:p,location:g('jl'),type:$('jt').value,date:$('jd').value,link:g('jk'),src:$('jsr').value,wm:$('jwm').value,pr:+$('jpr').value||0,cv:g('jcv'),ind:g('jin'),dlu:$('jdu').value,fu:$('jfu').value,gx:+$('jgx').value||0,go:+$('jgo').value||0,ct:g('jct'),why:g('jwh'),prep:$('jpp').value.trim(),status:(document.querySelector('#js .on')||{dataset:{v:'Applied'}}).dataset.v};
+  const o={note:$('jn').value.trim(),company:c,position:p,location:g('jl'),type:$('jt').value,date:$('jd').value,link:g('jk'),src:$('jsr').value,wm:$('jwm').value,pr:+$('jpr').value||0,cv:g('jcv'),ind:g('jin'),dlu:$('jdu').value,fu:$('jfu').value,gx:+$('jgx').value||0,go:+$('jgo').value||0,ct:g('jct'),web:cleanDom($('jweb').value),why:g('jwh'),prep:$('jpp').value.trim(),status:(document.querySelector('#js .on')||{dataset:{v:'Applied'}}).dataset.v};try{if(o.web){const m=rd('jt_logo',{});m[(o.company||'').toLowerCase()]=o.web;ls('jt_logo',JSON.stringify(m))}}catch(e){}
   const pv=b.dataset.id&&jobs.find(x=>x.id===b.dataset.id),h=wh.slice(),lq=h.length?h[h.length-1].s:(pv?pv.status:null);if(lq!==o.status)h.push({d:today(),s:o.status,n:''});o.hist=h.concat(ws);if(fillJd.t&&fillJd.u===o.link&&!(pv&&pv.jd))o.jd=fillJd.t;
   if(b.dataset.id)Object.assign(jobs.find(x=>x.id===b.dataset.id),o);
   else{if(jobs.some(x=>key(x)===key(o)||(o.link&&x.link===o.link)))return toast('Lamaran ini sudah ada (perusahaan+posisi atau link sama)');jobs.push(Object.assign({id:uid()},o))}
@@ -1136,7 +1204,9 @@ const A={
  lv(b){lv=b.dataset.v;ls('jt_lv',lv);render()},
  sort(b){const k=b.dataset.k;so=so.k===k?{k,d:-so.d}:{k,d:k==='date'?-1:1};list('lst',jlist())},
  flt(b){flt.s=b.dataset.s;$('ch').innerHTML=chips();list('lst',jlist())},
- frs(){flt={q:'',s:''};const f=$('gq');if(f)f.value='';$('ch').innerHTML=chips();list('lst',jlist())},
+ frs(){flt={q:'',s:'',t:'',src:'',wm:'',pr:''};const f=$('gq');if(f)f.value='';fref()},
+ fopen(){fmodal()},jview(b){const r=b.closest('[data-id]');if(r)jview(r.dataset.id)},
+ fp(b){const k=b.dataset.k,v=b.dataset.v;flt[k]=flt[k]===v?'':v;fref()},fx(b){flt[b.dataset.k]='';fref()},
  csv(){const e=v=>'"'+String(v||'').replace(/"/g,'""')+'"',t=['No,Company,Position,Location,Employment Type,Date Posted,Status,Link'].concat(jobs.map((j,i)=>[i+1,j.company,j.position,j.location,j.type,fmt(j.date),j.status,j.link].map(e).join(','))).join('\n');
   const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+t],{type:'text/csv'}));a.download='job-tracker.csv';a.click()},
  sync(){if(!cfg.url)return toast('Hubungkan dulu di ⚙ Pengaturan');sync()},
