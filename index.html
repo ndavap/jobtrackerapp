@@ -6,6 +6,7 @@
 <title>Job Application Tracker by davito</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#f8f6f1">
+<link rel="icon" type="image/svg+xml" sizes="any" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%232d647d'/%3E%3Cstop offset='1' stop-color='%231e4b62'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='512' height='512' rx='116' fill='url(%23g)'/%3E%3Crect x='198' y='118' width='116' height='84' rx='18' fill='none' stroke='%23fff' stroke-width='30'/%3E%3Crect x='62' y='170' width='388' height='250' rx='42' fill='%23fff'/%3E%3Cpath d='M172 306l64 60 112-120' fill='none' stroke='%23c77f4c' stroke-width='34' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="icon" type="image/png" sizes="64x64" href="favicon.png?v=3">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=3">
 <link rel="shortcut icon" href="favicon.ico?v=3">
@@ -557,14 +558,53 @@ html[data-theme=dark] .fg .chip.on em{background:rgba(255,255,255,.2);color:#fff
 .av.s{width:28px;height:28px;border-radius:9px;font-size:13px;flex:none}.av.s .lgi{padding:4px}
 .cw{display:flex;align-items:center;gap:10px}.cw>div:last-child{min-width:0}
 .lgp{display:grid;place-items:center;width:48px;height:48px;border:1.5px solid var(--ln);border-radius:14px;flex:none;overflow:hidden;background:#fff}.lgp img{width:32px;height:32px;object-fit:contain}
+/* ===== Polesan: logo senada, ikon, ringkasan, gerak ===== */
+:root{--lg-fill:url(#lgg);--lg-fg:#fff;--lg-mark:#c77f4c;--cop:#c77f4c}
+html[data-theme=dark]{--lg-mark:#e29d6b;--cop:#e29d6b}
+.lgo{display:block;width:72px;height:72px;filter:drop-shadow(0 12px 18px rgba(30,75,98,.38))}
+.lgc{stroke-dasharray:260;animation:draw .9s .55s var(--ease) both}
+@keyframes draw{from{stroke-dashoffset:260}}
+@keyframes shim{to{transform:translateX(100%)}}
+@keyframes ring{0%,100%{transform:rotate(0)}15%{transform:rotate(14deg)}30%{transform:rotate(-12deg)}45%{transform:rotate(8deg)}60%{transform:rotate(-5deg)}}
+.lc .lgo{margin:0 auto;animation:rise .9s .15s var(--ease) both}
+.bk{display:flex;align-items:center;gap:11px;padding:0 20px 18px;border-bottom:1px solid rgba(255,255,255,.12)}
+.bk .lgo{width:40px;height:40px;flex:none;filter:none;--lg-fill:url(#lgl);--lg-fg:#2b6683;--lg-mark:#fff}
+.bk b{display:block;color:#fff;font:800 16px/1.15 var(--serif)}.bk small{color:#a9cadb;font-size:12px}
+.pf{padding-top:20px}
+.sn button{position:relative}.sn button .ic{transition:transform .35s var(--ease)}.sn button:hover .ic{transform:translateX(3px) scale(1.1)}
+.sn button.on::before{content:"";position:absolute;left:0;top:11px;bottom:11px;width:4px;border-radius:0 4px 4px 0;background:var(--cop)}
+.wl small{display:block;font:600 13px/1.3 var(--serif);color:var(--mut);margin-top:2px}
+.ib:has(u:not([hidden])) .ic svg{transform-origin:50% 8%;animation:ring 1.2s 1s 3}
+.k>i{background:var(--kc,#3f7f9a)!important}
+.ki{position:absolute;right:16px;top:14px;width:38px;height:38px;border-radius:12px;display:grid;place-items:center;color:var(--kc);background:color-mix(in srgb,var(--kc) 14%,transparent);transition:transform .4s var(--ease)}
+.ki svg{width:20px;height:20px}.k[data-act=kpi]:hover .ki{transform:translateY(-2px) rotate(-8deg)}
+.oc .oh{display:block;font-style:normal;font-size:12px;line-height:1.3;color:var(--mut);margin-top:2px}
+.sec{display:block;margin:30px 0 12px}.sec h3{display:flex;align-items:center;gap:10px}
+.hi{display:grid;place-items:center;width:34px;height:34px;border-radius:11px;background:color-mix(in srgb,var(--ac) 16%,transparent);color:var(--navy);flex:none}.hi svg{width:19px;height:19px}
+.sd{margin:4px 0 0 44px;color:var(--mut);font-size:14px}
+.fcs{display:flex;align-items:center;gap:16px;padding:16px 20px;margin-bottom:14px;border-radius:18px;color:#d3e6ee;background:linear-gradient(120deg,#2d647d,#1e4b62);box-shadow:0 16px 30px -20px rgba(30,75,98,.8)}
+.fci{display:grid;place-items:center;width:46px;height:46px;border-radius:14px;background:rgba(255,255,255,.14);color:#fff;flex:none}.fci svg{width:24px;height:24px}
+.fct{flex:1;min-width:0}.fct b{display:block;font:800 17px var(--serif);color:#fff;margin-bottom:8px}.fct p{margin:0}
+.fcc{display:flex;flex-wrap:wrap;gap:8px}
+.fcc button{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.1);color:#fff;border-radius:99px;padding:6px 14px 6px 6px;font:700 13.5px inherit;cursor:pointer;transition:background .2s,transform .25s var(--ease)}
+.fcc button:hover{background:rgba(255,255,255,.2);transform:translateY(-2px)}
+.fcc button b{display:grid;place-items:center;min-width:26px;height:26px;margin:0;padding:0 6px;border-radius:99px;background:var(--cop);color:#fff;font:800 13px inherit}
+.fcs .btn{background:#f5fafc;color:var(--navy);box-shadow:none;flex:none}
+.pill::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--c);margin-right:6px}
+.bar i,.bar2 i{position:relative;overflow:hidden}
+.bar i::after,.bar2 i::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent);transform:translateX(-100%);animation:shim 1.5s 1.3s ease 1 both}
+@media(min-width:861px) and (max-width:1100px){.bk{padding:0 0 14px;justify-content:center}.bk div{display:none}.bk .lgo{width:42px;height:42px}}
+@media(max-width:860px){.bk{display:none}.sn button.on::before{display:none}.wl small{font-size:12px}.fcs{flex-wrap:wrap}.sd{margin-left:0}}
+@media print{.fcs,.bk{display:none!important}}
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><linearGradient id="lgg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2d647d"/><stop offset="1" stop-color="#1e4b62"/></linearGradient><linearGradient id="lgl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4fafc"/><stop offset="1" stop-color="#cfe4ee"/></linearGradient></defs><symbol id="lgo" viewBox="0 0 512 512"><rect width="512" height="512" rx="116" style="fill:var(--lg-fill)"/><rect x="198" y="118" width="116" height="84" rx="18" fill="none" stroke-width="30" style="stroke:var(--lg-fg)"/><rect x="62" y="170" width="388" height="250" rx="42" style="fill:var(--lg-fg)"/><path class="lgc" d="M172 306l64 60 112-120" fill="none" stroke-width="34" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--lg-mark)"/></symbol></svg>
 <div class="bg"></div>
 
 <section id="lk">
  <div class="lc" id="lc">
-  <img src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 512 512%22%3E%3Crect width=%22512%22 height=%22512%22 rx=%22112%22 fill=%22%231a1a4b%22/%3E%3Crect x=%22198%22 y=%22118%22 width=%22116%22 height=%2284%22 rx=%2218%22 fill=%22none%22 stroke=%22%23fff%22 stroke-width=%2230%22/%3E%3Crect x=%2262%22 y=%22170%22 width=%22388%22 height=%22250%22 rx=%2242%22 fill=%22%23fff%22/%3E%3Cpath d=%22M172 306l64 60 112-120%22 fill=%22none%22 stroke=%22%231a1a4b%22 stroke-width=%2234%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E" alt="Logo">
+  <svg class="lgo" viewBox="0 0 512 512" role="img" aria-label="Logo Job Tracker"><use href="#lgo"/></svg>
   <h1>Job Application Tracker<span>by davito</span></h1>
   <p>Masukkan password untuk melanjutkan</p>
   <div class="pw"><input id="lp" type="password" placeholder="Password" autocomplete="current-password"><button id="lt" type="button">Lihat</button></div>
@@ -576,7 +616,7 @@ html[data-theme=dark] .fg .chip.on em{background:rgba(255,255,255,.2);color:#fff
 
 <div id="app" hidden>
  <aside class="sb2" id="sbar">
-  <div class="pf"><div class="pav"><span>D</span></div><b>Davito</b><small>Job Application Tracker</small></div>
+  <div class="bk"><svg class="lgo" viewBox="0 0 512 512" aria-hidden="true"><use href="#lgo"/></svg><div><b>Job Tracker</b><small>by davito</small></div></div><div class="pf"><div class="pav"><span>D</span></div><b>Davito</b><small>Pelacak lamaran</small></div>
   <nav id="nv" class="sn"></nav>
   <div class="sbf"><button data-act="cfgm"><span class="ic" id="icg"></span><span>Pengaturan</span></button><button data-act="logout"><span class="ic" id="icl"></span><span>Keluar</span></button></div>
  </aside>
@@ -595,7 +635,7 @@ html[data-theme=dark] .fg .chip.on em{background:rgba(255,255,255,.2);color:#fff
 <script>
 const H='8bfc8b026805c88ee55b468f23b0792831c6c07d9e97d23bba0889386e2b7057';
 const ST=['Not Applied','Applied','HR Interview','User Interview','Assessment','Offer','Accepted','Rejected','Ghosted','Failed'];
-const CL={'Not Applied':'#78858a','Applied':'#2563eb','HR Interview':'#0891b2','User Interview':'#0d9488','Assessment':'#d97706','Offer':'#65a30d','Accepted':'#059669','Rejected':'#dc2626','Ghosted':'#8a7f72','Failed':'#9f1239'};
+const CL={'Not Applied':'#7a8d99','Applied':'#2f6f9f','HR Interview':'#3a93a8','User Interview':'#3d9a8c','Assessment':'#c48a3a','Offer':'#78a444','Accepted':'#2f9a69','Rejected':'#cc5b4b','Ghosted':'#8e8a86','Failed':'#a8465a'};
 const TY=['Full Time','Part Time','Internship','Contract','Freelance'];
 const SRC=['LinkedIn','JobStreet','Glints','Kalibrr','Situs perusahaan','Referral','Medsos','Lainnya'],WM=['Onsite','Hybrid','Remote'];
 const KD=['Kursus','Sertifikasi','Workshop','Bootcamp','Bahasa','Lainnya'],SS=['Rencana','Berjalan','Selesai','Ditunda'];
@@ -629,6 +669,26 @@ user:SV('<circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4.5-6 8-6s7 2 8 6"/>')
 tag:SV('<path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.2"/>'),
 note:SV('<path d="M5 3h14v18H5z"/><path d="M9 8h6M9 12h6M9 16h3"/>'),
 x:SV('<path d="M6 6l12 12M18 6L6 18"/>')});
+Object.assign(ICO,{
+send:SV('<path d="M21 3L3 10.5l7 3 3 7z"/><path d="M10 13.5L21 3"/>'),
+chat:SV('<path d="M4 5h16v11H9l-5 4z"/><path d="M8 9.5h8M8 12.5h5"/>'),
+clock:SV('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'),
+flame:SV('<path d="M12 3c1 3.5 5 5.5 5 10a5 5 0 01-10 0c0-2 1-3.2 2-4.2.3 1.6 1 2.2 1.8 2.4C10.6 8.4 11 5.8 12 3z"/>'),
+alert:SV('<path d="M12 3.5l9.5 16.5h-19z"/><path d="M12 10v4.5M12 17.5v.1"/>')});
+const OVH={all:'Semua yang pernah dicatat',act:'Sedang tes atau interview',win:'Sudah ada tawaran',out:'Ditolak atau tanpa kabar'};
+const KIC={all:'list',act:'layers',win:'trend',out:'ban',sent:'send',resp:'chat',int3:'user',offr:'star',stale:'clock',act30:'pulse',avg:'clock',pace:'trend',eta:'target',basi:'alert',fu:'bell',ddl:'alert',wk7:'target',streak:'flame',today:'sch',week:'sch',up:'sch',past:'sch',sk_all:'skill',sk_cost:'money',sk_dur:'clock',sk_todo:'layers'};
+const SECI={'sc-prog':['trend','Seberapa jauh tiap lamaran melaju di tahap seleksi.'],'sc-trip':['pulse','Riwayat kejadian dan komposisi semua lamaranmu.'],'sc-ana':['layers','Seberapa cepat respons datang dan bagaimana hasilnya.'],'sc-todo':['target','Apa yang perlu kamu tindak lanjuti dan pelajaran dari penolakan.']};
+function greet(){const w=document.querySelector('.wl');if(!w)return;const h=new Date().getHours(),p=h<11?'pagi':h<15?'siang':h<19?'sore':'malam',
+ d=new Date().toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric'}),
+ t={job:'Daftar lamaran',sch:'Jadwal seleksi',skill:'Skill & kursus'}[view]||'Selamat '+p+', Davito';
+ w.innerHTML=esc(t)+'<small>'+esc(d)+'</small>'}
+function focusHtml(){const it=[['today','Jadwal hari ini'],['fu','Waktunya follow up'],['ddl','Deadline ≤ 7 hari'],['stale','Tanpa kabar > 14 hari']].map(a=>[a[0],a[1],KX[a[0]].f().length]).filter(a=>a[2]);
+ return `<div class="fcs rise" id="fcs"><span class="fci">${ICO[it.length?'flame':'trend']}</span><div class="fct"><b>${it.length?'Yang perlu kamu urus sekarang':'Semua terkendali'}</b>${it.length?`<div class="fcc">${it.map(a=>`<button data-act="kpi" data-k="${a[0]}"><b>${a[2]}</b>${a[1]}</button>`).join('')}</div>`:'<p>Tidak ada yang mendesak. Waktu yang pas untuk mengirim lamaran baru.</p>'}</div>${it.length?'':'<button class="btn" data-act="addjob">＋ Lamaran</button>'}</div>`}
+function deco(){greet();
+ document.querySelectorAll('.k[data-k]').forEach(k=>{if(k.querySelector('.ki'))return;const d=k.dataset.k,ic=KIC[d];if(!ic)return;
+  const c=['stale','basi','fu','ddl','out','past'].includes(d)?'#c0713a':['win','offr'].includes(d)?'#3f8f6a':'#3f7f9a';k.style.setProperty('--kc',c);k.insertAdjacentHTML('beforeend','<span class="ki">'+ICO[ic]+'</span>')});
+ document.querySelectorAll('.sec[id]').forEach(s=>{const m=SECI[s.id],h=s.querySelector('h3');if(!m||!h||h.querySelector('.hi'))return;h.insertAdjacentHTML('afterbegin','<span class="hi">'+ICO[m[0]]+'</span>');s.insertAdjacentHTML('beforeend','<p class="sd">'+m[1]+'</p>')});
+ const hero=document.getElementById('sc-top');if(hero&&!document.getElementById('fcs'))hero.insertAdjacentHTML('afterend',focusHtml())}
 const mi=n=>ICO[n].replace('<svg','<svg class="mi"');
 /* filter lanjutan: tipe, sumber, mode kerja, prioritas */
 const FPK=[['t','Tipe','job',TY],['src','Sumber','link',SRC],['wm','Mode kerja','pin',WM],['pr','Prioritas','star',['1','2','3']]];
@@ -992,7 +1052,7 @@ prog(part){const n=jobs.length,R=jobs.map(reach),c=l=>R.filter(r=>r>=l).length,p
  <div class="g g2"><div class="card rise">${H('Funnel & konversi tahap')}${SG.map((l,i)=>`<div class="fn fn2"><span>${l}</span><div class="bar"><i style="width:${cn[i]*100/mx}%"></i></div><em>${cn[i]}${i?' · '+pc(cn[i],cn[i-1]):''}</em></div>`).join('')}<p class="hint">Angka persen = lolos dari tahap sebelumnya.</p></div>
  <div class="card rise">${H('Aktivitas 12 minggu terakhir')}<div class="hm">${hm}</div><p class="hint">Makin pekat, makin banyak aktivitas pada hari itu.</p></div></div>`},
 dash(){const {n,act,win,out,tc,tw,dn}=stat(),sp=skl.length?Math.round(dn*100/skl.length):0,w7=KX.wk7.f().length,
- OV=(l,v,ic,k,c)=>`<div class="oc${c?' '+c:''}" data-act="kpi" data-k="${k}" role="button" tabindex="0" title="Ketuk untuk lihat daftar"><span class="oi">${ICO[ic]}</span><div><b data-n="${v}">0</b><small>${l}</small></div></div>`,
+ OV=(l,v,ic,k,c)=>`<div class="oc${c?' '+c:''}" data-act="kpi" data-k="${k}" role="button" tabindex="0" title="Ketuk untuk lihat daftar"><span class="oi">${ICO[ic]}</span><div><b data-n="${v}">0</b><small>${l}</small><em class="oh">${OVH[k]||''}</em></div></div>`,
  pie=(()=>{if(!n)return '<p class="hint">Belum ada data.</p>';let a=0;const sg=ST.filter(cnt).map(t=>{const p=cnt(t)*100/n;return CL[t]+' '+a+'% '+(a+=p)+'%'});
   return `<div class="pw2"><div class="pie" style="background:conic-gradient(${sg.join(',')})"></div><div class="lgd">${ST.filter(cnt).map(t=>`<div class="lg"><span class="sw" style="background:${CL[t]}"></span>${t}<em>${cnt(t)} · ${pct(cnt(t))}</em></div>`).join('')}</div></div>`})(),
  tp=topN(j=>j.company,10),tpm=tp.length?tp[0][1]:1,
@@ -1119,7 +1179,7 @@ function anim(root){(root||document).querySelectorAll('.rise').forEach((e,i)=>e.
 function render(){
  $('nv').innerHTML=NAV.map(n=>`<button data-go="${n[0]}" class="${n[0]===view?'on':''}"><span class="ic">${ICO[n[2]]}</span><span>${n[1]}</span></button>`).join('');
  if(view==='prog')view='dash';
- $('mn').innerHTML=(cfg.url?'':NB)+V[view]();$('fab').hidden=view==='dash'||view==='prog';$('fab').textContent=view==='skill'?'＋ Skill':view==='sch'?'＋ Jadwal':'＋ Lamaran';anim($('mn'));bellu();hh()}
+ $('mn').innerHTML=(cfg.url?'':NB)+V[view]();$('fab').hidden=view==='dash'||view==='prog';$('fab').textContent=view==='skill'?'＋ Skill':view==='sch'?'＋ Jadwal':'＋ Lamaran';anim($('mn'));bellu();deco();hh()}
 function go(v){view=v==='prog'?'dash':v;render();window.scrollTo({top:0,behavior:'smooth'})}
 const list=(id,html)=>{const e=$(id);e.innerHTML=html;anim(e)};
 
