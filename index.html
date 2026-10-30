@@ -596,6 +596,48 @@ html[data-theme=dark]{--lg-mark:#e29d6b;--cop:#e29d6b}
 @media(min-width:861px) and (max-width:1100px){.bk{padding:0 0 14px;justify-content:center}.bk div{display:none}.bk .lgo{width:42px;height:42px}}
 @media(max-width:860px){.bk{display:none}.sn button.on::before{display:none}.wl small{font-size:12px}.fcs{flex-wrap:wrap}.sd{margin-left:0}}
 @media print{.fcs,.bk{display:none!important}}
+/* Rutinitas */
+.tdg{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:14px;align-items:start}
+.tdcol{display:flex;flex-direction:column;gap:14px;min-width:0}
+.tdcol>.card:hover{transform:none}
+.tdl{display:flex;flex-direction:column;gap:8px}
+.td{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;padding:11px 12px;border:1px solid var(--ln);border-left:4px solid var(--c);border-radius:14px;background:var(--card,#fff);cursor:pointer;transition:background .25s,opacity .25s}
+.td:hover{background:color-mix(in srgb,var(--c) 8%,var(--card,#fff))}
+.td b{display:block;font-weight:700;line-height:1.3;overflow-wrap:anywhere}
+.td small{display:block;color:var(--mut);font-size:12.5px;margin-top:3px;line-height:1.45}
+.td.dn{opacity:.7}.td.dn b{text-decoration:line-through;color:var(--mut)}
+.td.bl{grid-template-columns:auto minmax(0,1fr) auto}
+.tdic{font-size:20px;line-height:1;width:34px;text-align:center}
+.tdk{width:34px;height:34px;border-radius:50%;border:2px solid var(--c);background:transparent;color:transparent;font:800 16px/1 inherit;cursor:pointer;display:grid;place-items:center;padding:0;flex:none;transition:background .25s,color .25s,transform .25s var(--ease)}
+.tdk:hover{background:color-mix(in srgb,var(--c) 18%,transparent)}
+.tdk:active{transform:scale(.86)}
+.td.dn .tdk{background:var(--c);color:#fff}
+.tdt{display:inline-block;font-size:11.5px;font-weight:800;border-radius:99px;padding:1px 8px;color:var(--ink);background:color-mix(in srgb,var(--c) 16%,var(--card,#fff));white-space:nowrap}
+.tdsm{min-height:38px;padding:0 14px;font-size:13px;border-radius:12px;white-space:nowrap}
+.tdbar{height:10px;border-radius:9px;background:var(--ln);overflow:hidden}
+.tdbar i{display:block;height:100%;border-radius:9px;background:var(--c,var(--ac));transition:width .5s var(--ease)}
+.tdtg{margin:0 0 14px}
+.tdtg>div:first-child{display:flex;justify-content:space-between;gap:10px;margin-bottom:6px;font-weight:700;font-size:14px}
+.tdtg em{font-style:normal;color:var(--mut);font-weight:600}
+.tdnote{margin-top:10px;padding:10px 12px;border-radius:12px;background:color-mix(in srgb,#d97706 14%,var(--card,#fff));font-size:13.5px;line-height:1.45}
+.tdst{display:flex;align-items:center;gap:14px}
+.tdst b{display:block;font-weight:700}
+.tdst small{display:block;color:var(--mut);font-size:12.5px;line-height:1.45;margin-top:2px}
+.tdbig{font:800 34px/1 inherit;color:var(--navy);white-space:nowrap}
+.tdd{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;text-align:center;font-size:12px;color:var(--mut);margin-top:14px}
+.tdd i{display:block;height:28px;border-radius:9px;background:var(--ln);margin-bottom:4px}
+.tdd i.p{background:var(--ac)}
+.tdd i.h{background:color-mix(in srgb,var(--ac) 38%,var(--ln))}
+.tdd i.f{opacity:.45}
+.tdd i.t{outline:2px solid var(--ac);outline-offset:1px}
+.tdd2{cursor:pointer}
+.tdsb{border:1.5px solid var(--ln);background:var(--card,#fff);color:var(--navy);border-radius:99px;padding:5px 11px;font:700 12px inherit;cursor:pointer;white-space:nowrap}
+.tdsb:hover{border-color:var(--ac)}
+@media(max-width:860px){
+ .tdg{display:flex;flex-direction:column}
+ .tdcol{display:contents}
+ .td{padding:12px 10px;gap:10px}
+}
 </style>
 </head>
 <body>
@@ -648,6 +690,7 @@ dash:SV('<rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width
 job:SV('<rect x="3" y="7" width="18" height="13" rx="3"/><path d="M9 7V5a2 2 0 012-2h2a2 2 0 012 2v2M3 13h18"/>'),
 sch:SV('<rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 11h18"/>'),
 skill:SV('<path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11.5V16c3 2.5 9 2.5 12 0v-4.5"/>'),
+todo:SV('<rect x="4" y="3" width="16" height="18" rx="3"/><path d="M8.5 9l1.8 1.8L14.5 7.5M8.5 15.5h7"/>'),
 gear:SV('<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>'),
 power:SV('<path d="M12 3v8"/><path d="M6.3 6.5a8 8 0 1011.4 0"/>'),
 search:SV('<circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/>'),
@@ -737,7 +780,7 @@ const avh=(j,c)=>{const d=domOf(j),k=lgk(j.company),e=rd('jt_lgc',{})[k]||{},l=j
  if(!d&&!l&&!(e.t&&Date.now()-e.t<12096e5)&&k)lgq2(j.company);
  return `<div class="av${c||''}" data-co="${esc(k)}" style="background:color-mix(in srgb,${CL[j.status]} 14%,transparent)">${d||l?lgi(d,l):''}<span>${esc((j.company||'?')[0].toUpperCase())}</span></div>`};
 document.addEventListener('input',e=>{if(e.target.id==='jweb'){const d=cleanDom(e.target.value),p=$('jlg');if(p)p.innerHTML=d?lgi(d):''}});
-const NAV=[['dash','Dashboard','dash'],['job','Lamaran','job'],['sch','Jadwal','sch'],['skill','Skill','skill']];
+const NAV=[['dash','Dashboard','dash'],['job','Lamaran','job'],['sch','Jadwal','sch'],['skill','Skill','skill'],['todo','Rutinitas','todo']];
 function bellu(){const e=document.getElementById('bd');if(e)e.hidden=!sev().some(x=>{const n=dl(x.d);return n>=0&&n<=3})}
 /* grafik garis halus: Dilamar vs Dapat respons, 6 bulan terakhir */
 function dsm(P){const f=v=>v.toFixed(1);let d='M'+f(P[0][0])+' '+f(P[0][1]);
@@ -889,7 +932,7 @@ function persist(){stamp();store();if(cfg.url){ls('jt_dirty','1');clearTimeout(t
 /* ---------- Apps Script ---------- */
 function icsBuild(){const e=v=>String(v||'').replace(/([,;\\])/g,'\\$1').replace(/\r?\n/g,'\\n'),ts=new Date().toISOString().replace(/[-:]/g,'').slice(0,15)+'Z',L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//JobTracker//ID','CALSCALE:GREGORIAN','X-WR-CALNAME:Job Tracker','REFRESH-INTERVAL;VALUE=DURATION:PT1H','X-PUBLISHED-TTL:PT1H'];
  sev().filter(x=>dl(x.d)>=-30).forEach(x=>{const d=x.d.replace(/-/g,''),t=x.t?x.t.replace(':','')+'00':'';L.push('BEGIN:VEVENT','UID:'+x.id+'@jobtracker','DTSTAMP:'+ts,t?'DTSTART:'+d+'T'+t:'DTSTART;VALUE=DATE:'+d,'SUMMARY:'+e(x.k+' - '+x.co),'DESCRIPTION:'+e((x.po||'')+(x.n?' | '+x.n:'')),'END:VEVENT')});
- L.push('END:VCALENDAR');return L.join('\r\n')}
+ tdIcs(L,e,ts);L.push('END:VCALENDAR');return L.join('\r\n')}
 const icsHash=t=>{let h=0;for(let i=0;i<t.length;i++)h=(h*31+t.charCodeAt(i))|0;return String(h)};
 async function icsAuto(){if(!lg('jt_ics')||!cfg.url)return;try{const t=icsBuild().replace(/DTSTAMP:\S+/g,''),h=icsHash(t);if(lg('jt_ics_h')===h)return;await api('icsset',{ics:icsBuild()});ls('jt_ics_h',h)}catch(e){}}
 const cleanUrl=u=>String(u||'').replace(/[\u200b\s]+/g,'').replace(/^["']+|["']+$/g,'');
@@ -1030,7 +1073,7 @@ sch(){const ev=sev(),up=ev.filter(x=>dl(x.d)>=0),ps=ev.filter(x=>dl(x.d)<0),n0=u
  return `<div class="rise"><h2 class="t">Jadwal</h2><p class="sub">Timeline psikotes, assessment, dan interview berdasarkan tanggal. Pengingat muncul otomatis 3 hari sebelumnya.</p><button class="btn s" data-act="ics" style="margin-bottom:14px">Ekspor ke kalender (.ics)</button> <button class="btn s" data-act="icssub" style="margin-bottom:14px">Langganan Kalender Apple</button></div>
  <div class="g g4">${KK('Hari ini',n0,'#dc2626','jadwal hari ini')}${KK('7 hari ke depan',n7,'#f59e0b','termasuk hari ini')}${KK('Akan datang',up.length,'#0d9488','semua jadwal')}${KK('Sudah lewat',ps.length,'#78858a','riwayat jadwal')}</div>
  <div class="sec rise"><h3>Akan datang</h3></div>${up.length?grp(up):'<div class="card empty rise">Belum ada jadwal. Tekan ＋ Jadwal untuk menambah psikotes, assessment, atau interview.</div>'}
- ${ps.length?`<div class="sec rise"><h3>Sudah lewat</h3></div><div style="opacity:.8">${grp(ps,1)}</div>`:''}`},
+ ${ps.length?`<div class="sec rise"><h3>Sudah lewat</h3></div><div style="opacity:.8">${grp(ps,1)}</div>`:''}${tdSch()}`},
 prog(part){const n=jobs.length,R=jobs.map(reach),c=l=>R.filter(r=>r>=l).length,pc=(a,b)=>b?Math.round(a*100/b)+'%':'0%',D0=new Date(today()+'T00:00:00'),dm=k=>{const x=new Date(D0.getTime()-k*864e5);return x.getDate()+'/'+(x.getMonth()+1)};
  const SG=['Dilamar','HR Interview','User Interview','Assessment','Offer','Diterima'],cn=SG.map((_,i)=>c(i+1)),mx=Math.max(1,cn[0]);
  const wb=Array(12).fill(0);jobs.forEach(j=>{const f=(hs(j)[0]||{}).d;if(!f)return;const w=Math.floor(dd(f)/7);if(w>=0&&w<12)wb[11-w]++});const wm=Math.max(1,...wb);
@@ -1068,6 +1111,7 @@ dash(){const {n,act,win,out,tc,tw,dn}=stat(),sp=skl.length?Math.round(dn*100/skl
  return `<div class="hero rise" id="sc-top"><span class="hs">Semua lamaran dan rencana belajarmu, satu layar.</span><div><button class="btn s" data-act="addskill">＋ Skill</button><button class="btn s" data-act="addsch">＋ Jadwal</button><button class="btn" data-act="addjob">＋ Lamaran</button></div></div>
  ${lts()}
  <div class="card ov rise"><h3>Over View</h3><div class="ovg">${OV('Total lamaran',n,'list','all')}${OV('Sedang proses',act,'layers','act')}${OV('Offer & diterima',win,'trend','win')}${OV('Tidak lanjut',out,'ban','out','warn')}</div></div>
+ ${tdDash()}
  <div class="dg3">
   <div class="card rise" style="grid-area:a" data-act="kpi" data-k="wk7" role="button" tabindex="0" title="Ketuk untuk lihat daftar"><div class="chd"><h3>Target mingguan</h3></div><div class="ua"><span class="oi sm">${ICO.target}</span><div><b>${w7} / ${cfg.wt}</b><small>lamaran 7 hari terakhir</small></div></div><div class="bar"><i style="width:${Math.min(100,w7*100/cfg.wt)}%"></i></div><p class="hint">Total ${n} dari target ${cfg.target}</p><p class="hint" style="margin-top:4px">${eta}</p></div>
   <div class="card rise" style="grid-area:b"><div class="chd"><h3>Funnel seleksi</h3><span>Respons ${rr}%</span></div>${n?fnl+`<p class="hint">Tidak lanjut: ${out} · masih menunggu: ${act}</p>`:'<p class="hint">Belum ada data.</p>'}</div>
@@ -1172,14 +1216,14 @@ function slist(){const q=sq.toLowerCase(),a=skl.filter(s=>!q||(s.name+' '+s.prov
  return a.map(s=>`<div class="card sc rise" data-id="${s.id}" data-act="editskill"><div style="display:flex;justify-content:space-between;gap:8px;align-items:start"><h4>${esc(s.name)}</h4><span class="tag">${esc(s.kind)}</span></div>
  <small style="color:var(--mut)">${esc(s.provider)||'&nbsp;'}</small>
  <div class="mt"><div><span>Biaya</span><b>${rp(s.cost)}</b></div><div><span>Durasi</span><b>${s.dur?esc(s.dur)+' '+esc(s.unit):'-'}</b></div><div><span>Target</span><b>${s.date?fmt(s.date):'-'}</b></div></div>
- <div class="ft"><select class="ps" data-act="sst" style="--c:${SC[s.status]}">${opts(SS,s.status)}</select><div class="ra">${s.link?`<a href="${esc(s.link)}" target="_blank" rel="noopener" aria-label="Buka link">↗</a>`:''}<button class="dl" data-act="delskill" aria-label="Hapus">✕</button></div></div></div>`).join('')}
+ <div class="ft"><select class="ps" data-act="sst" style="--c:${SC[s.status]}">${opts(SS,s.status)}</select><div class="ra">${s.status==='Berjalan'?`<button class="tdsb" type="button" data-act="tdsk" data-id="${s.id}">${tdLinked(s.id)?'✓ Di Rutinitas':'＋ Jadikan tugas'}</button>`:''}${s.link?`<a href="${esc(s.link)}" target="_blank" rel="noopener" aria-label="Buka link">↗</a>`:''}<button class="dl" data-act="delskill" aria-label="Hapus">✕</button></div></div></div>`).join('')}
 
 function anim(root){(root||document).querySelectorAll('.rise').forEach((e,i)=>e.style.animationDelay=Math.min(i*45,450)+'ms');
  (root||document).querySelectorAll('[data-n],[data-m]').forEach(e=>{const to=+(e.dataset.n||e.dataset.m),t0=performance.now();(function f(t){const p=Math.min(1,(t-t0)/900),v=Math.round(to*(1-Math.pow(1-p,3)));e.textContent=v;if(p<1)requestAnimationFrame(f)})(t0)})}
 function render(){
  $('nv').innerHTML=NAV.map(n=>`<button data-go="${n[0]}" class="${n[0]===view?'on':''}"><span class="ic">${ICO[n[2]]}</span><span>${n[1]}</span></button>`).join('');
  if(view==='prog')view='dash';
- $('mn').innerHTML=(cfg.url?'':NB)+V[view]();$('fab').hidden=view==='dash'||view==='prog';$('fab').textContent=view==='skill'?'＋ Skill':view==='sch'?'＋ Jadwal':'＋ Lamaran';anim($('mn'));bellu();deco();hh()}
+ $('mn').innerHTML=(cfg.url?'':NB)+V[view]();$('fab').hidden=view==='dash'||view==='prog';$('fab').textContent=view==='skill'?'＋ Skill':view==='sch'?'＋ Jadwal':view==='todo'?'＋ Tugas':'＋ Lamaran';anim($('mn'));bellu();deco();hh()}
 function go(v){view=v==='prog'?'dash':v;render();window.scrollTo({top:0,behavior:'smooth'})}
 const list=(id,html)=>{const e=$(id);e.innerHTML=html;anim(e)};
 
@@ -1243,9 +1287,9 @@ const A={
    const u=cfg.url+'?ics='+d.token,w=u.replace(/^https:/,'webcal:');
    modal(`<h3>Langganan Kalender Apple</h3><p class="hint">Link ini rahasia, jangan dibagikan. Jadwal diperbarui otomatis tiap kali data tersinkron, dan Kalender Apple menyegarkan sendiri sekitar tiap jam.</p><div class="ln"><input id="cl" readonly value="${esc(w)}"><button class="btn s" data-act="cpl">Salin</button></div><p class="hint"><b>iPhone:</b> ketuk <a href="${esc(w)}">Buka di Kalender</a> lalu Berlangganan. <b>Mac:</b> Kalender → File → Langganan Kalender Baru → tempel link.</p>`)}
   catch(e){toast(e.message)}},
- ics(){const ev=sev().filter(x=>dl(x.d)>=0);if(!ev.length)return toast('Belum ada jadwal mendatang');const e=v=>String(v||'').replace(/([,;\\])/g,'\\$1'),ts=new Date().toISOString().replace(/[-:]/g,'').slice(0,15)+'Z',L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//JobTracker//ID'];
+ ics(){const ev=sev().filter(x=>dl(x.d)>=0);if(!ev.length&&!tdHasJam())return toast('Belum ada jadwal mendatang');const e=v=>String(v||'').replace(/([,;\\])/g,'\\$1'),ts=new Date().toISOString().replace(/[-:]/g,'').slice(0,15)+'Z',L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//JobTracker//ID'];
   ev.forEach(x=>{const d=x.d.replace(/-/g,''),t=x.t?x.t.replace(':','')+'00':'';L.push('BEGIN:VEVENT','UID:'+x.id+'@jobtracker','DTSTAMP:'+ts,t?'DTSTART:'+d+'T'+t:'DTSTART;VALUE=DATE:'+d,'SUMMARY:'+e(x.k+' - '+x.co),'DESCRIPTION:'+e((x.po||'')+(x.n?' | '+x.n:'')),'END:VEVENT')});
-  L.push('END:VCALENDAR');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([L.join('\r\n')],{type:'text/calendar'}));a.download='jadwal-lamaran.ics';a.click()},
+  tdIcs(L,e,ts);L.push('END:VCALENDAR');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([L.join('\r\n')],{type:'text/calendar'}));a.download='jadwal-lamaran.ics';a.click()},
 
  adds(){const d=$('xd').value;if(!d)return toast('Pilih tanggalnya dulu');ws.push({sc:1,id:uid(),s:'Jadwal',d,t:$('xt').value,k:$('xk').value,n:g('xn')});$('xl').innerHTML=slh();$('xn').value=''},
  dels(b){ws.splice(+b.dataset.i,1);$('xl').innerHTML=slh()},
@@ -1253,10 +1297,10 @@ const A={
  delsch(b){if(!confirm('Hapus jadwal ini?'))return;const j=jobs.find(x=>x.id===b.dataset.jid);j.hist=(j.hist||[]).filter(x=>x.id!==b.dataset.sid);persist();render()},
  popgo(){closeM();go('sch')},
  logout(){if(!confirm('Keluar dari akun? Data tetap aman di Google Sheets dan perangkat ini.'))return;ls('jt_auth',null);try{sessionStorage.removeItem('jt_auth')}catch(e){}cfg.pw='';store();location.reload()},
- bak(){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify({v:1,jobs,skills:skl})],{type:'application/json'}));a.download='job-tracker-backup-'+today()+'.json';a.click()},
- rest(){const f=document.createElement('input');f.type='file';f.accept='.json,application/json';f.onchange=()=>{const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result),h=new Set(jobs.map(key));let n=0;(d.jobs||[]).forEach(j=>{if(!h.has(key(j))){jobs.push(Object.assign({},j,{id:uid()}));h.add(key(j));n++}});const sn=new Set(skl.map(x=>x.name));(d.skills||[]).forEach(x=>{if(!sn.has(x.name)){skl.push(Object.assign({},x,{id:uid()}));sn.add(x.name)}});persist();closeM();render();toast(n+' lamaran dipulihkan')}catch(e){toast('File tidak valid')}};r.readAsText(f.files[0])};f.click()},
+ bak(){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify({v:2,jobs,skills:skl,todos:tds,tdc})],{type:'application/json'}));a.download='job-tracker-backup-'+today()+'.json';a.click()},
+ rest(){const f=document.createElement('input');f.type='file';f.accept='.json,application/json';f.onchange=()=>{const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result),h=new Set(jobs.map(key));let n=0;(d.jobs||[]).forEach(j=>{if(!h.has(key(j))){jobs.push(Object.assign({},j,{id:uid()}));h.add(key(j));n++}});const sn=new Set(skl.map(x=>x.name));(d.skills||[]).forEach(x=>{if(!sn.has(x.name)){skl.push(Object.assign({},x,{id:uid()}));sn.add(x.name)}});const tn=tdRestore(d);persist();closeM();render();toast(n+' lamaran'+(tn?' dan '+tn+' tugas':'')+' dipulihkan')}catch(e){toast('File tidak valid')}};r.readAsText(f.files[0])};f.click()},
  cpl(){const v=$('cl').value;(navigator.clipboard?navigator.clipboard.writeText(v):Promise.reject()).then(()=>toast('Link disalin'),()=>{$('cl').select();toast('Salin manual dari kolom')})},
- addjob(){openJob()},addskill(){openSkill()},addnew(){view==='skill'?openSkill():view==='sch'?openSch():openJob()},addsch(){openSch()},
+ addjob(){openJob()},addskill(){openSkill()},addnew(){view==='skill'?openSkill():view==='sch'?openSch():view==='todo'?openTodo():openJob()},addsch(){openSch()},
  kpi(b){kpm(b.dataset.k)},hub(){hubm()},bell(){kpm('up')},
  jump(b){closeM();if(view!=='dash'){view='dash';render()}const id=b.dataset.to;setTimeout(()=>{const e=$(id);if(e)e.scrollIntoView({behavior:'smooth',block:'start'})},id==='sc-top'?320:340)},kpf(b){kp.s=b.dataset.s;$('kpc').innerHTML=kpc();$('kpl').innerHTML=kpl()},
  editjob(b,e){if(e.target.closest('select,a,.dl'))return;openJob(b.dataset.id)},editskill(b,e){if(e.target.closest('select,a,.dl'))return;openSkill(b.dataset.id)},
@@ -1309,7 +1353,7 @@ const A={
   if(!R.length||!$('imp').value.trim())return toast('Tempel datanya dulu');
   persist();closeM();render();toast(n+' lamaran diimpor')},
  lock(){ls('jt_auth',null);try{sessionStorage.removeItem('jt_auth')}catch(e){}location.reload()},
- wipe(){if(confirm('Hapus semua data di browser ini? Data di spreadsheet tidak terhapus.')){jobs=[];skl=[];ls('jt_synced',null);ls('jt_snap',null);ls('jt_tomb',null);ls('jt_dirty',null);store();closeM();render();if(cfg.url)pull()}}
+ wipe(){if(confirm('Hapus semua data di browser ini? Data di spreadsheet tidak terhapus.')){jobs=[];skl=[];tds=[];tdc={tg:tdc.tg,ad:{},lt:[]};tdsave();ls('jt_synced',null);ls('jt_snap',null);ls('jt_tomb',null);ls('jt_dirty',null);store();closeM();render();if(cfg.url)pull()}}
 };
 document.addEventListener('click',e=>{const b=e.target.closest('[data-act]');if(b&&A[b.dataset.act]){A[b.dataset.act](b,e);return}
  const n=e.target.closest('[data-go]');if(n)go(n.dataset.go);if(e.target.classList&&e.target.classList.contains('mo'))closeM()});
@@ -1329,6 +1373,165 @@ document.addEventListener('input',e=>{const t=e.target;
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeM();
  if((e.key==='Enter'||e.key===' ')&&e.target.dataset&&e.target.dataset.act==='kpi'){e.preventDefault();A.kpi(e.target)}
  if(e.key==='Enter'&&e.target.closest('.sh')&&e.target.tagName==='INPUT'){const b=document.querySelector('.sh [data-act^=save]');if(b&&e.target.type!=='url')b.click()}});
+
+/* ---------- Rutinitas: to-do selama menunggu panggilan kerja ---------- */
+const TK={'Cari kerja':['💼','#2f6f9f'],'Belajar':['📘','#0d9488'],'Portofolio':['🧩','#7c3aed'],'Networking':['🤝','#d97706'],'Penghasilan':['💰','#65a30d'],'Kesehatan':['🌿','#e11d48']},
+ UL={none:'Sekali saja',harian:'Setiap hari',kerja:'Hari kerja (Sen–Jum)',mingguan:'Mingguan'},ULS={harian:'Harian',kerja:'Hari kerja',mingguan:'Mingguan'},TMAX=5,
+ HR=['Sen','Sel','Rab','Kam','Jum','Sab','Min'];
+let tds=rd('jt_todos',[]),tdc=rd('jt_tdc',{}),tdDay=today();
+tdc.tg=Object.assign({lam:15,jam:3,net:2,port:1},tdc.tg||{});tdc.ad=tdc.ad||{};tdc.lt=tdc.lt||[];
+function tdsave(){ls('jt_todos',JSON.stringify(tds));ls('jt_tdc',JSON.stringify(tdc));try{icsAuto()}catch(e){}}
+const tdAdd=(d,n)=>iso(new Date(new Date(d+'T00:00:00').getTime()+n*864e5)),tdW=d=>new Date(d+'T00:00:00').getDay(),tdMon=d=>tdAdd(d,-((tdW(d)+6)%7)),
+ tdCol=k=>(TK[k]||TK['Cari kerja'])[1],tdIc=k=>(TK[k]||TK['Cari kerja'])[0];
+/* apakah tugas berlaku pada tanggal d */
+function tdAct(t,d){if(t.arsip)return false;const ul=t.ulang||'none';if(ul==='none')return t.tgl===d;
+ const s=t.tgl||d;if(d<s)return false;const w=tdW(d);
+ if(ul==='harian')return true;if(ul==='kerja')return w>0&&w<6;if(ul==='mingguan')return w===tdW(s);return false}
+/* tugas yang terhubung ke skill hanya aktif selama skill berstatus Berjalan */
+function tdOk(t){if(t.tautan&&t.tautan.jenis==='skill'){const s=skl.find(x=>x.id===t.tautan.id);return !!s&&s.status==='Berjalan'}return true}
+const tdLinked=id=>tds.some(t=>!t.arsip&&t.tautan&&t.tautan.jenis==='skill'&&t.tautan.id===id),
+ tdDone=d=>tds.filter(t=>(t.done||[]).includes(d)).length+(tdc.ad[d]||[]).length,
+ tdNeed=d=>tdc.lt.includes(d)?1:3,tdProd=d=>tdDone(d)>=tdNeed(d),tdHasJam=()=>tds.some(t=>!t.arsip&&t.jam);
+/* tugas otomatis dari tab Lamaran */
+function tdAuto(){const d=today(),dn=new Set((tdc.ad[d]||[]).map(a=>a.key)),L=[];
+ jobs.forEach(j=>{
+  if(j.status==='Applied'){const l=lastD(j),k='fu:'+j.id;
+   if(!dn.has(k)&&((l&&dd(l)>7)||(j.fu&&dd(j.fu)>=0)))L.push({k:'a',id:k,j:'Follow-up ke '+j.company,kat:'Cari kerja',pr:2,jam:'',mnt:0,done:false,ul:'none',sub:(j.position?j.position+' · ':'')+(l?dd(l)+' hari tanpa kabar':'waktunya follow up'),jid:j.id})}
+  if(j.status==='Not Applied'&&j.dlu&&dl(j.dlu)>=0&&dl(j.dlu)<=3){const k='ap:'+j.id;
+   if(!dn.has(k))L.push({k:'a',id:k,j:'Kirim lamaran ke '+j.company,kat:'Cari kerja',pr:3,jam:'',mnt:0,done:false,ul:'none',sub:(j.position?j.position+' · ':'')+'deadline '+rel(dl(j.dlu)).toLowerCase(),jid:j.id})}});
+ return L}
+/* daftar hari ini: maksimal 5 (mode ringan: 1), sisanya antre */
+function tdCand(){const d=today(),L=[];
+ tds.forEach(t=>{if(tdAct(t,d)&&tdOk(t))L.push({k:'t',id:t.id,j:t.judul,kat:t.kat,pr:t.pr||2,jam:t.jam||'',mnt:t.mnt||0,ul:t.ulang||'none',done:(t.done||[]).includes(d),sub:''})});
+ (tdc.ad[d]||[]).forEach(a=>L.push({k:'a',id:a.key,j:a.j,kat:a.kat,pr:a.pr||2,jam:'',mnt:0,done:true,ul:'none',sub:a.sub||''}));
+ tdAuto().forEach(a=>L.push(a));
+ L.sort((a,b)=>b.pr-a.pr||(a.jam||'99').localeCompare(b.jam||'99')||a.j.localeCompare(b.j,'id'));
+ const lite=tdc.lt.includes(d),cap=lite?1:TMAX;
+ return {all:L,show:L.slice(0,cap),wait:L.slice(cap),lite}}
+/* streak: hari produktif berturut-turut; Sabtu/Minggu yang kosong tidak memutus */
+function tdStreak(){let d=today(),n=0;if(!tdProd(d))d=tdAdd(d,-1);
+ for(let i=0;i<400;i++){if(tdProd(d))n++;else if(tdW(d)!==0&&tdW(d)!==6)break;d=tdAdd(d,-1)}return n}
+function tdWeek(){const d=today(),m=tdMon(d),days=[];for(let x=m;x<=d;x=tdAdd(x,1))days.push(x);
+ let mn=0,net=0,port=0,tot=0;
+ tds.forEach(t=>days.forEach(x=>{if((t.done||[]).includes(x)){tot++;if(t.kat==='Belajar')mn+=(+t.mnt||0);if(t.kat==='Networking')net++;if(t.kat==='Portofolio')port++}}));
+ days.forEach(x=>{tot+=(tdc.ad[x]||[]).length});
+ const dm=dd(m),lam=jobs.filter(j=>{const n=kxW(j);return reach(j)>=1&&n>=0&&n<=dm}).length;
+ return {lam,jam:mn/60,net,port,tot}}
+const tdJam=v=>(Math.round(v*10)/10).toString().replace('.',',')+' jam';
+function tdBacklog(){const d=today();
+ return tds.filter(t=>!t.arsip&&(!t.ulang||t.ulang==='none')&&!(t.done||[]).length&&tdOk(t)&&t.tgl!==d)
+  .sort((a,b)=>{const r=t=>!t.tgl?1:t.tgl<d?0:2;return r(a)-r(b)||(r(a)===1?(b.pr||2)-(a.pr||2):(a.tgl||'').localeCompare(b.tgl||''))})}
+/* ---- tampilan ---- */
+function tdRow(x){const c=tdCol(x.kat),meta=[`<span class="tdt" style="--c:${c}">${tdIc(x.kat)} ${esc(x.kat)}</span>`];
+ if(x.pr===3)meta.push('<span class="tdt" style="--c:#dc2626">Prioritas</span>');
+ if(x.k==='a')meta.push('<span class="tdt" style="--c:#2f6f9f">Otomatis</span>');
+ if(x.jam)meta.push('🕒 '+esc(x.jam)+(x.mnt?' · '+x.mnt+' mnt':''));else if(x.mnt)meta.push(x.mnt+' mnt');
+ if(ULS[x.ul])meta.push('↻ '+ULS[x.ul]);
+ return `<div class="td${x.done?' dn':''}" style="--c:${c}" ${x.k==='t'?`data-act="tded" data-id="${x.id}"`:''}>
+  <button class="tdk" type="button" data-act="${x.done&&x.k==='a'?'tdnoop':'tdck'}" data-k="${x.k}" data-id="${esc(x.id)}" aria-pressed="${x.done}" aria-label="${x.done?'Selesai':'Tandai selesai'}: ${esc(x.j)}">✓</button>
+  <div><b>${esc(x.j)}</b><small>${meta.join(' · ')}</small>${x.sub?`<small>${esc(x.sub)}</small>`:''}</div><span></span></div>`}
+function tdHtml(f){const R=f?' rise':'',d=today(),C=tdCand(),dn=C.show.filter(x=>x.done).length,tot=C.show.length,need=tdNeed(d),prod=dn>=need,st=tdStreak(),w=tdWeek(),T=tdc.tg,
+ pc=(v,g)=>g>0?Math.min(100,Math.round(v*100/g)):0,
+ tgr=(l,v,g,txt,c)=>`<div class="tdtg"><div><span>${l}</span><em>${txt}</em></div><div class="tdbar" style="--c:${c}"><i style="width:${pc(v,g)}%"></i></div></div>`,
+ m=tdMon(d),dots=HR.map((h,i)=>{const x=tdAdd(m,i),n=tdDone(x),cl=x>d?'f':tdProd(x)?'p':n>0?'h':'';return `<div><i class="${cl}${x===d?' t':''}" title="${fmt(x)}: ${n} tugas selesai"></i>${h}</div>`}).join(''),
+ bl=tdBacklog(),sks=skl.filter(s=>s.status==='Berjalan'&&!tdLinked(s.id));
+ const today_=`<div class="card${R}" style="order:1"><div class="chd"><h3>Hari ini</h3><span class="pill" style="--c:${prod?'#059669':'#0d9488'}">${dn} / ${tot} selesai</span></div>
+  <div class="tdbar" style="--c:${prod?'#059669':'var(--ac)'}"><i style="width:${pc(dn,tot)}%"></i></div>
+  <p class="hint">${day(d)}. ${prod?'Hari ini sudah produktif 🎉':'Selesaikan minimal '+need+' tugas agar hari ini dihitung produktif.'}</p>
+  ${C.lite?'<div class="tdnote">Mode ringan aktif: hanya 1 tugas minimum. Selesaikan ini saja dan streak tetap terjaga. Istirahat juga bagian dari rencana.</div>':''}
+  <div class="tdl" style="margin-top:12px">${C.show.length?C.show.map(tdRow).join(''):'<div class="empty" style="padding:26px 10px">Belum ada tugas hari ini. Tarik dari Backlog, tambah tugas baru, atau pakai Paket menganggur produktif.</div>'}</div>
+  ${C.wait.length?`<p class="hint" style="margin-top:12px">${C.wait.length} tugas lain antre karena batas ${C.lite?1:TMAX} per hari: ${C.wait.slice(0,3).map(x=>esc(x.j)).join(', ')}${C.wait.length>3?', …':''}</p>`:''}
+  <div class="act" style="flex-wrap:wrap;margin-top:16px"><button class="btn" data-act="addtodo">＋ Tugas</button><button class="btn s" data-act="tdlt">${C.lite?'Matikan mode ringan':'Mode ringan'}</button><button class="btn s" data-act="tdpack">Paket menganggur produktif</button></div></div>`,
+ streak_=`<div class="card${R}" style="order:2"><div class="chd"><h3>Streak & minggu ini</h3></div>
+  <div class="tdst"><span class="tdbig">🔥 ${st}</span><div><b>hari produktif beruntun</b><small>Produktif = minimal 3 tugas selesai (mode ringan: 1). Sabtu dan Minggu yang kosong tidak memutus streak.</small></div></div>
+  <div class="tdd">${dots}</div>
+  <p class="hint" style="margin-top:12px">Minggu ini: <b>${w.lam}</b> lamaran, <b>${tdJam(w.jam)}</b> belajar, <b>${w.port}</b> proyek portofolio, <b>${w.net}</b> networking, ${w.tot} tugas selesai.</p></div>`,
+ target_=`<div class="card${R}" style="order:3"><div class="chd"><h3>Target mingguan</h3><button class="btn s tdsm" data-act="tdtg">Atur</button></div>
+  ${tgr('Lamaran terkirim',w.lam,T.lam,w.lam+' / '+T.lam,'#2f6f9f')}${tgr('Jam belajar',w.jam,T.jam,tdJam(w.jam).replace(' jam','')+' / '+T.jam+' jam','#0d9488')}${tgr('Sesi networking',w.net,T.net,w.net+' / '+T.net,'#d97706')}${tgr('Proyek portofolio',w.port,T.port,w.port+' / '+T.port,'#7c3aed')}
+  <p class="hint">Lamaran dihitung otomatis dari tab Lamaran. Jam belajar, networking, dan portofolio dihitung dari tugas yang kamu centang minggu ini (isi durasi di tugas belajar).</p></div>`,
+ back_=`<div class="card${R}" style="order:4"><div class="chd"><h3>Backlog</h3><span class="hint" style="margin:0">${bl.length} ide</span></div>
+  <div class="ln" style="margin-bottom:10px"><input id="tdq" placeholder="Tambah ide tugas…" style="flex:2 1 160px"><select id="tdqk" style="flex:1 1 120px;width:auto">${Object.keys(TK).map(k=>`<option>${k}</option>`).join('')}</select><button class="btn s" data-act="tdqa">Tambah</button></div>
+  ${bl.length?`<div class="tdl">${bl.map(t=>{const c=tdCol(t.kat),lb=!t.tgl?'Tanpa tanggal':t.tgl<d?'Tertunda dari '+fmt(t.tgl).slice(0,5):'Terjadwal '+fmt(t.tgl).slice(0,5);
+   return `<div class="td bl" style="--c:${c}" data-act="tded" data-id="${t.id}"><span class="tdic">${tdIc(t.kat)}</span><div><b>${esc(t.judul)}</b><small>${esc(t.kat)} · ${lb}</small></div><button class="btn s tdsm" data-act="tdhr" data-id="${t.id}">Ke Hari ini</button></div>`}).join('')}</div>`:'<p class="hint">Backlog kosong. Tulis ide tugas di atas, nanti tinggal ditarik ke Hari ini.</p>'}</div>`,
+ skill_=sks.length?`<div class="card${R}" style="order:5"><div class="chd"><h3>Dari tab Skill</h3></div><p class="hint" style="margin:0 0 10px">Kursus yang sedang berjalan bisa dijadikan tugas belajar harian (30 menit, hari kerja).</p><div class="tdl">${sks.map(s=>`<div class="td bl" style="--c:#0d9488"><span class="tdic">📘</span><div><b>${esc(s.name)}</b><small>${esc(s.provider||s.kind)}</small></div><button class="btn s tdsm" data-act="tdsk" data-id="${s.id}">Jadikan tugas</button></div>`).join('')}</div></div>`:'';
+ return `<div class="${R.trim()}"><h2 class="t">Rutinitas</h2><p class="sub">Tugas kecil dan jelas selama menunggu panggilan kerja, supaya setiap hari ada kemajuan yang terlihat.</p></div>
+  <div class="tdg"><div class="tdcol">${today_}${back_}</div><div class="tdcol">${streak_}${target_}${skill_}</div></div>`}
+V.todo=()=>`<div id="tdw">${tdHtml(1)}</div>`;
+function tdRefresh(){const e=$('tdw');if(e)e.innerHTML=tdHtml(0);else render()}
+/* kartu ringkas di Dashboard */
+function tdDash(){const C=tdCand(),dn=C.show.filter(x=>x.done).length,tot=C.show.length,st=tdStreak(),w=tdWeek(),p=tot?Math.round(dn*100/tot):0;
+ return `<div class="card tdd2 rise" data-go="todo" role="button" tabindex="0" title="Buka Rutinitas"><div class="chd"><h3>Produktivitas hari ini</h3><span class="pill" style="--c:#0d9488">Rutinitas ›</span></div>
+  <div class="tdst"><span class="tdbig">${tot?dn+'/'+tot:'–'}</span><div><b>${tot?'tugas selesai hari ini':'Belum ada tugas hari ini'}</b><small>🔥 Streak ${st} hari · minggu ini ${w.lam} lamaran, ${tdJam(w.jam)} belajar</small></div></div>
+  <div class="tdbar" style="--c:var(--ac);margin-top:10px"><i style="width:${p}%"></i></div></div>`}
+/* tugas berjam di tab Jadwal */
+function tdSch(){const d0=today(),m={};
+ for(let i=0;i<7;i++){const d=tdAdd(d0,i);tds.forEach(t=>{if(t.jam&&tdOk(t)&&tdAct(t,d))(m[d]=m[d]||[]).push(t)})}
+ const k=Object.keys(m).sort();if(!k.length)return '';
+ return `<div class="sec rise"><h3>Tugas berjam (7 hari ke depan)</h3></div>`+k.map(d=>{const n=dl(d);
+  return `<div class="card dg rise"><div class="dh"><b>${day(d)}</b><span class="pill" style="--c:${n===0?'#dc2626':'#0d9488'}">${rel(n)}</span></div>${m[d].sort((a,b)=>a.jam.localeCompare(b.jam)).map(t=>{const dn=(t.done||[]).includes(d);
+   return `<div class="se" data-go="todo" role="button"><span class="dot" style="background:${tdCol(t.kat)}"></span><div><b${dn?' style="text-decoration:line-through;opacity:.6"':''}>${esc(t.judul)}</b><small>${esc(t.kat)}${t.mnt?' · '+t.mnt+' mnt':''}${ULS[t.ulang]?' · '+ULS[t.ulang]:''}</small></div><time>${esc(t.jam)}</time></div>`}).join('')}</div>`}).join('')}
+/* ekspor kalender (.ics): tugas berjam, yang berulang memakai RRULE */
+function tdIcs(L,e,ts){const d0=today();
+ tds.forEach(t=>{if(t.arsip||!t.jam||!tdOk(t))return;const ul=t.ulang||'none';let st=t.tgl||d0;
+  if(ul==='none'){if(!t.tgl||t.tgl<d0||(t.done||[]).includes(t.tgl))return}
+  else{if(st<d0)st=d0;let ok=0;for(let i=0;i<8;i++){const x=tdAdd(st,i);if(tdAct(t,x)){st=x;ok=1;break}}if(!ok)return}
+  const rr=ul==='harian'?'FREQ=DAILY':ul==='kerja'?'FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR':ul==='mingguan'?'FREQ=WEEKLY':'';
+  L.push('BEGIN:VEVENT','UID:td'+t.id+'@jobtracker','DTSTAMP:'+ts,'DTSTART:'+st.replace(/-/g,'')+'T'+t.jam.replace(':','')+'00','DURATION:PT'+(t.mnt||30)+'M');
+  if(rr)L.push('RRULE:'+rr);
+  L.push('SUMMARY:'+e(tdIc(t.kat)+' '+t.judul),'DESCRIPTION:'+e('Rutinitas · '+t.kat),'END:VEVENT')})}
+/* ---- form tugas ---- */
+function openTodo(id){const t=tds.find(x=>x.id===id)||{kat:'Cari kerja',pr:2,tgl:today(),ulang:'none',mnt:'',jam:''},
+ lk=t.tautan&&t.tautan.jenis==='skill'?(skl.find(s=>s.id===t.tautan.id)||{}).name:'';
+ modal(`<h3>${id?'Edit tugas':'Tambah tugas'}</h3>
+ <label>Tugas</label><input id="tfj" autofocus value="${esc(t.judul)}" placeholder="mis. Kirim 3 lamaran">
+ <label>Kategori</label><div class="chips" id="tfk" style="flex-wrap:wrap">${Object.keys(TK).map(k=>`<button type="button" class="chip${k===t.kat?' on':''}" data-act="tdpick" data-v="${k}">${TK[k][0]} ${k}</button>`).join('')}</div>
+ <div class="f2"><div><label>Prioritas</label><select id="tfp">${[3,2,1].map(n=>`<option value="${n}"${(t.pr||2)===n?' selected':''}>${['','Rendah','Sedang','Tinggi'][n]}</option>`).join('')}</select></div><div><label>Ulangi</label><select id="tfu">${Object.keys(UL).map(k=>`<option value="${k}"${(t.ulang||'none')===k?' selected':''}>${UL[k]}</option>`).join('')}</select></div></div>
+ <div class="f3"><div><label>Tanggal</label><input id="tfd" type="date" value="${esc(t.tgl)}"></div><div><label>Jam <small>(opsional)</small></label><input id="tfm" type="time" value="${esc(t.jam)}"></div><div><label>Durasi <small>(menit)</small></label><input id="tfn" type="number" inputmode="numeric" min="0" step="5" value="${esc(t.mnt||'')}" placeholder="30"></div></div>
+ <p class="hint">Kosongkan tanggal agar masuk Backlog. Pada tugas berulang, tanggal adalah hari mulai. Tugas yang punya jam tampil di tab Jadwal dan ikut ekspor kalender. Durasi tugas Belajar dipakai untuk menghitung jam belajar mingguan.</p>
+ ${lk?`<p class="hint">Terhubung ke skill “${esc(lk)}”. Tugas aktif selama statusnya Berjalan.</p>`:''}
+ <div class="act"><button class="btn" data-act="savetodo" data-id="${id||''}">Simpan</button>${id?`<button class="btn s" data-act="deltodo" data-id="${id}" style="color:#be123c">Hapus</button>`:''}</div>`)}
+function openTg(){const T=tdc.tg;
+ modal(`<h3>Target mingguan</h3><p class="hint" style="margin:0 0 4px">Minggu dihitung dari Senin. Angka ini hanya patokan, sesuaikan dengan tenagamu.</p>
+ <div class="f2"><div><label>Lamaran terkirim</label><input id="tgl" type="number" inputmode="numeric" min="0" value="${T.lam}"></div><div><label>Jam belajar</label><input id="tgj" type="number" inputmode="decimal" min="0" step="0.5" value="${T.jam}"></div></div>
+ <div class="f2"><div><label>Sesi networking</label><input id="tgn" type="number" inputmode="numeric" min="0" value="${T.net}"></div><div><label>Proyek portofolio</label><input id="tgp" type="number" inputmode="numeric" min="0" value="${T.port}"></div></div>
+ <div class="act"><button class="btn" data-act="savetg">Simpan target</button></div>`)}
+Object.assign(A,{
+ addtodo(){openTodo()},tded(b,e){if(e.target.closest('button,select,a'))return;openTodo(b.dataset.id)},tdnoop(){toast('Sudah tercatat otomatis di tab Lamaran')},
+ tdpick(b){b.parentElement.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c===b))},
+ savetodo(b){const j=$('tfj').value.trim();if(!j)return toast('Isi nama tugasnya dulu');
+  const kat=(document.querySelector('#tfk .on')||{dataset:{v:'Cari kerja'}}).dataset.v,ul=$('tfu').value;let tg=$('tfd').value;if(ul!=='none'&&!tg)tg=today();
+  const o={judul:j,kat,pr:+$('tfp').value||2,ulang:ul,tgl:tg,jam:$('tfm').value,mnt:+$('tfn').value||0},id=b.dataset.id,old=id?tds.find(x=>x.id===id):null;let msg='Tugas tersimpan';
+  const was=old&&tdAct(old,today()),full=tdCand().all.length>=TMAX;
+  if(ul==='none'&&tg===today()&&!was&&full){o.tgl='';msg='Hari ini sudah penuh ('+TMAX+' tugas), jadi masuk Backlog'}
+  if(old)Object.assign(old,o,{diubah:Date.now()});else tds.push(Object.assign({id:uid(),done:[],dibuat:Date.now(),diubah:Date.now()},o));
+  tdsave();closeM();render();toast(msg)},
+ deltodo(b){const t=tds.find(x=>x.id===b.dataset.id);if(!t)return;t.arsip=1;tdsave();closeM();render();undo('Tugas dihapus',()=>{t.arsip=0;tdsave();render()})},
+ tdck(b){const id=b.dataset.id,d=today();
+  if(b.dataset.k==='a'){const c=tdCand().all.find(x=>x.k==='a'&&x.id===id&&!x.done);if(!c)return;const j=jobs.find(x=>x.id===c.jid);if(!j)return;
+   const js=JSON.stringify(j),ds=JSON.stringify(tdc.ad[d]||[]),fu=id.indexOf('fu:')===0;
+   if(fu){(j.hist=j.hist||[]).push({d,s:j.status,n:'Follow-up dikirim'});j.fu=''}else{j.status='Applied';(j.hist=j.hist||[]).push({d,s:'Applied',n:'Lamaran dikirim'})}
+   (tdc.ad[d]=tdc.ad[d]||[]).push({key:id,j:c.j,kat:c.kat,pr:c.pr,sub:c.sub,jid:j.id});persist();tdsave();tdRefresh();
+   undo(fu?'Follow-up dicatat di riwayat lamaran':'Status lamaran diubah ke Applied',()=>{const i=jobs.findIndex(x=>x.id===j.id);if(i>=0)jobs[i]=JSON.parse(js);tdc.ad[d]=JSON.parse(ds);persist();tdsave();tdRefresh()});return}
+  const t=tds.find(x=>x.id===id);if(!t)return;const was=tdProd(d);t.done=t.done||[];const i=t.done.indexOf(d);i<0?t.done.push(d):t.done.splice(i,1);t.diubah=Date.now();
+  tdsave();tdRefresh();if(!was&&tdProd(d))toast('Hari ini produktif! Streak '+tdStreak()+' hari 🔥')},
+ tdhr(b){const t=tds.find(x=>x.id===b.dataset.id);if(!t)return;if(tdCand().all.length>=TMAX)return toast('Hari ini sudah '+TMAX+' tugas. Selesaikan atau hapus satu dulu.');
+  t.tgl=today();t.diubah=Date.now();tdsave();tdRefresh();toast('Dipindah ke Hari ini')},
+ tdlt(){const d=today(),i=tdc.lt.indexOf(d);i<0?tdc.lt.push(d):tdc.lt.splice(i,1);tdc.lt=tdc.lt.filter(x=>x>=tdAdd(d,-400));tdsave();tdRefresh();toast(i<0?'Mode ringan aktif untuk hari ini':'Mode ringan dimatikan')},
+ tdqa(){const j=$('tdq').value.trim();if(!j)return toast('Tulis idenya dulu');tds.push({id:uid(),judul:j,kat:$('tdqk').value,pr:2,ulang:'none',tgl:'',jam:'',mnt:$('tdqk').value==='Belajar'?30:0,done:[],dibuat:Date.now(),diubah:Date.now()});tdsave();tdRefresh();const q=$('tdq');if(q)q.focus()},
+ tdtg(){openTg()},
+ savetg(){const n=i=>Math.max(0,+$(i).value||0);tdc.tg={lam:n('tgl'),jam:n('tgj'),net:n('tgn'),port:n('tgp')};tdsave();closeM();render();toast('Target tersimpan')},
+ tdsk(b){const s=skl.find(x=>x.id===b.dataset.id);if(!s)return;if(tdLinked(s.id))return toast('Skill ini sudah ada di Rutinitas');
+  tds.push({id:uid(),judul:'Belajar: '+s.name,kat:'Belajar',pr:2,ulang:'kerja',tgl:today(),jam:'',mnt:30,done:[],tautan:{jenis:'skill',id:s.id},dibuat:Date.now(),diubah:Date.now()});tdsave();
+  if(view==='skill')list('slst',slist());else tdRefresh();toast(tdCand().all.length>TMAX?'Ditambahkan, tapi hari ini sudah penuh jadi antre':'Masuk ke daftar Hari ini')},
+ tdpack(){const d=today(),P=[['Kirim 3 lamaran','Cari kerja',3,'kerja',0,0],['Belajar 1 jam (kursus atau skill)','Belajar',2,'kerja',60,0],['Hubungi 1 kenalan atau recruiter','Networking',2,'mingguan',20,0],['Hubungi 1 kenalan atau recruiter (sesi 2)','Networking',2,'mingguan',20,3],['Kerjakan proyek portofolio','Portofolio',2,'mingguan',45,1],['Olahraga atau jalan 20 menit','Kesehatan',1,'harian',20,0]];
+  const have=new Set(tds.filter(t=>!t.arsip).map(t=>t.judul));let n=0;
+  P.forEach(p=>{if(have.has(p[0]))return;tds.push({id:uid(),judul:p[0],kat:p[1],pr:p[2],ulang:p[3],tgl:tdAdd(d,p[5]),jam:'',mnt:p[4],done:[],dibuat:Date.now(),diubah:Date.now()});n++});
+  if(!n)return toast('Paket ini sudah ada semua');tdsave();tdRefresh();toast(n+' tugas awal ditambahkan')}
+});
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.id==='tdq'){e.preventDefault();A.tdqa()}});
+document.addEventListener('visibilitychange',()=>{if(document.hidden||tdDay===today())return;tdDay=today();if(!$('app').hidden&&!document.querySelector('.mo'))render()});
+function tdRestore(d){let n=0;(d.todos||[]).forEach(t=>{if(t&&t.id&&!tds.some(x=>x.id===t.id)){tds.push(t);n++}});const c=d.tdc||{};
+ Object.keys(c.ad||{}).forEach(k=>{if(!tdc.ad[k])tdc.ad[k]=c.ad[k]});(c.lt||[]).forEach(k=>{if(!tdc.lt.includes(k))tdc.lt.push(k)});tdsave();return n}
 
 /* ---------- Login ---------- */
 async function chk(p){try{const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(p));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')===H}catch(e){return false}}
