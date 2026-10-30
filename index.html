@@ -597,47 +597,68 @@ html[data-theme=dark]{--lg-mark:#e29d6b;--cop:#e29d6b}
 @media(max-width:860px){.bk{display:none}.sn button.on::before{display:none}.wl small{font-size:12px}.fcs{flex-wrap:wrap}.sd{margin-left:0}}
 @media print{.fcs,.bk{display:none!important}}
 /* Rutinitas */
-.tdg{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:14px;align-items:start}
-.tdcol{display:flex;flex-direction:column;gap:14px;min-width:0}
-.tdcol>.card:hover{transform:none}
+#tdw{width:100%}
+.tdg{width:100%;max-width:760px;display:flex;flex-direction:column;gap:14px}
+.tdg>.card:hover{transform:none}
 .tdl{display:flex;flex-direction:column;gap:8px}
-.td{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;padding:11px 12px;border:1px solid var(--ln);border-left:4px solid var(--c);border-radius:14px;background:var(--card,#fff);cursor:pointer;transition:background .25s,opacity .25s}
-.td:hover{background:color-mix(in srgb,var(--c) 8%,var(--card,#fff))}
-.td b{display:block;font-weight:700;line-height:1.3;overflow-wrap:anywhere}
-.td small{display:block;color:var(--mut);font-size:12.5px;margin-top:3px;line-height:1.45}
-.td.dn{opacity:.7}.td.dn b{text-decoration:line-through;color:var(--mut)}
-.td.bl{grid-template-columns:auto minmax(0,1fr) auto}
-.tdic{font-size:20px;line-height:1;width:34px;text-align:center}
-.tdk{width:34px;height:34px;border-radius:50%;border:2px solid var(--c);background:transparent;color:transparent;font:800 16px/1 inherit;cursor:pointer;display:grid;place-items:center;padding:0;flex:none;transition:background .25s,color .25s,transform .25s var(--ease)}
-.tdk:hover{background:color-mix(in srgb,var(--c) 18%,transparent)}
-.tdk:active{transform:scale(.86)}
+.td{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:center;padding:12px;border-radius:16px;background:color-mix(in srgb,var(--c) 6%,var(--card,#fff));cursor:pointer;transition:background .3s,transform .3s var(--ease),opacity .3s}
+.td:hover{background:color-mix(in srgb,var(--c) 12%,var(--card,#fff));transform:translateX(3px)}
+.td.bl{grid-template-columns:minmax(0,1fr) auto}
+.td b{display:block;font-weight:700;line-height:1.3;overflow-wrap:anywhere;transition:color .3s}
+.td small{display:block;color:var(--mut);font-size:12.5px;margin-top:2px;line-height:1.4}
+.td.dn{opacity:.65}.td.dn b{text-decoration:line-through;text-decoration-color:var(--mut);color:var(--mut)}
+.td.in{animation:tdin .5s var(--ease) both}
+.td.in:nth-child(2){animation-delay:.05s}.td.in:nth-child(3){animation-delay:.1s}.td.in:nth-child(4){animation-delay:.15s}.td.in:nth-child(5){animation-delay:.2s}
+@keyframes tdin{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.tdk{width:34px;height:34px;border-radius:50%;border:2px solid var(--c);background:transparent;color:transparent;font:800 16px/1 inherit;cursor:pointer;display:grid;place-items:center;padding:0;flex:none;transition:background .3s,color .3s,transform .3s var(--ease)}
+.tdk:hover{background:color-mix(in srgb,var(--c) 20%,transparent)}
+.tdk:active{transform:scale(.85)}
 .td.dn .tdk{background:var(--c);color:#fff}
-.tdt{display:inline-block;font-size:11.5px;font-weight:800;border-radius:99px;padding:1px 8px;color:var(--ink);background:color-mix(in srgb,var(--c) 16%,var(--card,#fff));white-space:nowrap}
+.tdk.pop{animation:tdpop .5s var(--ease)}
+@keyframes tdpop{0%{transform:scale(.7)}55%{transform:scale(1.22)}100%{transform:scale(1)}}
 .tdsm{min-height:38px;padding:0 14px;font-size:13px;border-radius:12px;white-space:nowrap}
-.tdbar{height:10px;border-radius:9px;background:var(--ln);overflow:hidden}
-.tdbar i{display:block;height:100%;border-radius:9px;background:var(--c,var(--ac));transition:width .5s var(--ease)}
-.tdtg{margin:0 0 14px}
+.tdbar{height:8px;border-radius:9px;background:var(--ln);overflow:hidden}
+.tdbar i{display:block;height:100%;border-radius:9px;background:var(--c,var(--ac));transition:width .7s var(--ease)}
+.tdtg{margin:0 0 14px}.tdtg:last-child{margin-bottom:0}
 .tdtg>div:first-child{display:flex;justify-content:space-between;gap:10px;margin-bottom:6px;font-weight:700;font-size:14px}
 .tdtg em{font-style:normal;color:var(--mut);font-weight:600}
-.tdnote{margin-top:10px;padding:10px 12px;border-radius:12px;background:color-mix(in srgb,#d97706 14%,var(--card,#fff));font-size:13.5px;line-height:1.45}
+.tdnote{margin:12px 0 0;font-size:13.5px;color:var(--mut)}
+.tdempty{text-align:center;color:var(--mut);padding:22px 8px}
+.tdfoot{display:flex;align-items:center;gap:10px;margin-top:16px;flex-wrap:wrap}
+.tdsum{margin-left:auto;font-weight:800;color:var(--navy)}
+.tdlk{border:0;background:none;color:var(--mut);font:700 13px inherit;padding:8px 12px;border-radius:99px;cursor:pointer;transition:background .3s,color .3s}
+.tdlk:hover{background:color-mix(in srgb,var(--ac) 12%,transparent);color:var(--navy)}
+.tdlk.on{background:color-mix(in srgb,#d97706 18%,transparent);color:var(--ink)}
+.tdmore summary{display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:800;font-size:17px;color:var(--navy);list-style:none}
+.tdmore summary::-webkit-details-marker{display:none}
+.tdmore summary::after{content:"";width:9px;height:9px;border-right:2px solid var(--mut);border-bottom:2px solid var(--mut);transform:rotate(45deg);transition:transform .35s var(--ease);margin-left:10px}
+.tdmore[open] summary::after{transform:rotate(225deg)}
+.tdmore summary em{font-style:normal;margin-left:auto;color:var(--mut);font-weight:700;font-size:14px}
+.tdmore[open]>*:not(summary){animation:tdin .45s var(--ease) both}
+.tdd2{cursor:pointer}
 .tdst{display:flex;align-items:center;gap:14px}
 .tdst b{display:block;font-weight:700}
 .tdst small{display:block;color:var(--mut);font-size:12.5px;line-height:1.45;margin-top:2px}
 .tdbig{font:800 34px/1 inherit;color:var(--navy);white-space:nowrap}
-.tdd{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;text-align:center;font-size:12px;color:var(--mut);margin-top:14px}
-.tdd i{display:block;height:28px;border-radius:9px;background:var(--ln);margin-bottom:4px}
-.tdd i.p{background:var(--ac)}
-.tdd i.h{background:color-mix(in srgb,var(--ac) 38%,var(--ln))}
-.tdd i.f{opacity:.45}
-.tdd i.t{outline:2px solid var(--ac);outline-offset:1px}
-.tdd2{cursor:pointer}
-.tdsb{border:1.5px solid var(--ln);background:var(--card,#fff);color:var(--navy);border-radius:99px;padding:5px 11px;font:700 12px inherit;cursor:pointer;white-space:nowrap}
-.tdsb:hover{border-color:var(--ac)}
-@media(max-width:860px){
- .tdg{display:flex;flex-direction:column}
- .tdcol{display:contents}
- .td{padding:12px 10px;gap:10px}
-}
+.tdsb{border:1.5px solid var(--ln);background:var(--card,#fff);color:var(--navy);border-radius:99px;padding:5px 11px;font:700 12px inherit;cursor:pointer;white-space:nowrap;transition:border-color .3s,transform .3s var(--ease)}
+.tdsb:hover{border-color:var(--ac);transform:translateY(-1px)}
+/* gerakan halus di seluruh aplikasi */
+html{scroll-behavior:smooth}
+#mn.vfx{animation:vsw .45s var(--ease)}
+@keyframes vsw{from{opacity:.0}to{opacity:1}}
+body,.card,.hd,.sb2,.chip,input,select,textarea,.sh{transition-property:background-color,border-color,color,box-shadow,transform,opacity;transition-duration:.4s;transition-timing-function:var(--ease)}
+.card:hover,.oc:hover,.k:hover{transform:translateY(-3px)}
+.oc,.se,.pt,.ag2,.tr3,.row,.kk,.sc{transition:transform .35s var(--ease),box-shadow .35s,background-color .35s}
+.oc:hover,.row:hover,.kk:hover{transform:translateY(-2px)}
+.se:hover,.pt:hover,.ag2:hover,.tr3:hover{transform:translateX(3px)}
+.sn button{transition:background-color .3s,transform .35s var(--ease),color .3s}
+.sn button:hover:not(.on){transform:translateX(4px)}
+.sn button .ic{transition:transform .35s var(--ease)}
+.sn button:hover .ic,.sn button.on .ic{transform:scale(1.12)}
+.btn,.fab,.chip{transition:transform .3s var(--ease),box-shadow .3s,background-color .3s,border-color .3s,opacity .2s}
+.mo{transition:opacity .35s var(--ease)}
+.bar i,.bar2 i{transition:width .8s var(--ease)}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.td.in,.tdk.pop,#mn.vfx{animation:none!important}}
 </style>
 </head>
 <body>
@@ -1223,7 +1244,7 @@ function anim(root){(root||document).querySelectorAll('.rise').forEach((e,i)=>e.
 function render(){
  $('nv').innerHTML=NAV.map(n=>`<button data-go="${n[0]}" class="${n[0]===view?'on':''}"><span class="ic">${ICO[n[2]]}</span><span>${n[1]}</span></button>`).join('');
  if(view==='prog')view='dash';
- $('mn').innerHTML=(cfg.url?'':NB)+V[view]();$('fab').hidden=view==='dash'||view==='prog';$('fab').textContent=view==='skill'?'＋ Skill':view==='sch'?'＋ Jadwal':view==='todo'?'＋ Tugas':'＋ Lamaran';anim($('mn'));bellu();deco();hh()}
+ $('mn').innerHTML=(cfg.url?'':NB)+V[view]();$('fab').hidden=view==='dash'||view==='prog';$('fab').textContent=view==='skill'?'＋ Skill':view==='sch'?'＋ Jadwal':view==='todo'?'＋ Tugas':'＋ Lamaran';{const m=$('mn');if(window._lv!==view){window._lv=view;m.classList.remove('vfx');void m.offsetWidth;m.classList.add('vfx')}}anim($('mn'));bellu();deco();hh()}
 function go(v){view=v==='prog'?'dash':v;render();window.scrollTo({top:0,behavior:'smooth'})}
 const list=(id,html)=>{const e=$(id);e.innerHTML=html;anim(e)};
 
@@ -1422,42 +1443,41 @@ function tdBacklog(){const d=today();
  return tds.filter(t=>!t.arsip&&(!t.ulang||t.ulang==='none')&&!(t.done||[]).length&&tdOk(t)&&t.tgl!==d)
   .sort((a,b)=>{const r=t=>!t.tgl?1:t.tgl<d?0:2;return r(a)-r(b)||(r(a)===1?(b.pr||2)-(a.pr||2):(a.tgl||'').localeCompare(b.tgl||''))})}
 /* ---- tampilan ---- */
-function tdRow(x){const c=tdCol(x.kat),meta=[`<span class="tdt" style="--c:${c}">${tdIc(x.kat)} ${esc(x.kat)}</span>`];
- if(x.pr===3)meta.push('<span class="tdt" style="--c:#dc2626">Prioritas</span>');
- if(x.k==='a')meta.push('<span class="tdt" style="--c:#2f6f9f">Otomatis</span>');
- if(x.jam)meta.push('🕒 '+esc(x.jam)+(x.mnt?' · '+x.mnt+' mnt':''));else if(x.mnt)meta.push(x.mnt+' mnt');
- if(ULS[x.ul])meta.push('↻ '+ULS[x.ul]);
- return `<div class="td${x.done?' dn':''}" style="--c:${c}" ${x.k==='t'?`data-act="tded" data-id="${x.id}"`:''}>
+function tdRow(x,f){const c=tdCol(x.kat),m=[esc(x.kat)];
+ if(x.jam)m.push(esc(x.jam));else if(x.mnt)m.push(x.mnt+' mnt');
+ if(ULS[x.ul])m.push(ULS[x.ul].toLowerCase());
+ if(x.k==='a')m.push('otomatis');
+ return `<div class="td${x.done?' dn':''}${f?' in':''}" style="--c:${c}" ${x.k==='t'?`data-act="tded" data-id="${x.id}"`:''}>
   <button class="tdk" type="button" data-act="${x.done&&x.k==='a'?'tdnoop':'tdck'}" data-k="${x.k}" data-id="${esc(x.id)}" aria-pressed="${x.done}" aria-label="${x.done?'Selesai':'Tandai selesai'}: ${esc(x.j)}">✓</button>
-  <div><b>${esc(x.j)}</b><small>${meta.join(' · ')}</small>${x.sub?`<small>${esc(x.sub)}</small>`:''}</div><span></span></div>`}
+  <div><b>${esc(x.j)}</b><small>${tdIc(x.kat)} ${m.join(' · ')}${x.sub?' · '+esc(x.sub):''}</small></div></div>`}
+let tdOpen=0;
 function tdHtml(f){const R=f?' rise':'',d=today(),C=tdCand(),dn=C.show.filter(x=>x.done).length,tot=C.show.length,need=tdNeed(d),prod=dn>=need,st=tdStreak(),w=tdWeek(),T=tdc.tg,
  pc=(v,g)=>g>0?Math.min(100,Math.round(v*100/g)):0,
  tgr=(l,v,g,txt,c)=>`<div class="tdtg"><div><span>${l}</span><em>${txt}</em></div><div class="tdbar" style="--c:${c}"><i style="width:${pc(v,g)}%"></i></div></div>`,
- m=tdMon(d),dots=HR.map((h,i)=>{const x=tdAdd(m,i),n=tdDone(x),cl=x>d?'f':tdProd(x)?'p':n>0?'h':'';return `<div><i class="${cl}${x===d?' t':''}" title="${fmt(x)}: ${n} tugas selesai"></i>${h}</div>`}).join(''),
- bl=tdBacklog(),sks=skl.filter(s=>s.status==='Berjalan'&&!tdLinked(s.id));
- const today_=`<div class="card${R}" style="order:1"><div class="chd"><h3>Hari ini</h3><span class="pill" style="--c:${prod?'#059669':'#0d9488'}">${dn} / ${tot} selesai</span></div>
+ bl=tdBacklog(),sks=skl.filter(s=>s.status==='Berjalan'&&!tdLinked(s.id)),none=!tds.some(t=>!t.arsip),cap=C.lite?1:TMAX;
+ const rows=C.show.length?C.show.map(x=>tdRow(x,f)).join(''):`<div class="tdempty">${none?'Mulai dengan beberapa tugas kecil, atau pakai paket awal.':'Belum ada tugas hari ini.'}</div>`;
+ return `<div class="tdg"><div class="${R.trim()}"><h2 class="t">Rutinitas</h2><p class="sub">Beberapa tugas kecil tiap hari selama menunggu panggilan kerja.</p></div>
+ <div class="card${R}"><div class="chd"><h3>Hari ini</h3><span class="pill" style="--c:${prod?'#059669':'#0d9488'}">${dn} / ${tot}</span></div>
   <div class="tdbar" style="--c:${prod?'#059669':'var(--ac)'}"><i style="width:${pc(dn,tot)}%"></i></div>
-  <p class="hint">${day(d)}. ${prod?'Hari ini sudah produktif 🎉':'Selesaikan minimal '+need+' tugas agar hari ini dihitung produktif.'}</p>
-  ${C.lite?'<div class="tdnote">Mode ringan aktif: hanya 1 tugas minimum. Selesaikan ini saja dan streak tetap terjaga. Istirahat juga bagian dari rencana.</div>':''}
-  <div class="tdl" style="margin-top:12px">${C.show.length?C.show.map(tdRow).join(''):'<div class="empty" style="padding:26px 10px">Belum ada tugas hari ini. Tarik dari Backlog, tambah tugas baru, atau pakai Paket menganggur produktif.</div>'}</div>
-  ${C.wait.length?`<p class="hint" style="margin-top:12px">${C.wait.length} tugas lain antre karena batas ${C.lite?1:TMAX} per hari: ${C.wait.slice(0,3).map(x=>esc(x.j)).join(', ')}${C.wait.length>3?', …':''}</p>`:''}
-  <div class="act" style="flex-wrap:wrap;margin-top:16px"><button class="btn" data-act="addtodo">＋ Tugas</button><button class="btn s" data-act="tdlt">${C.lite?'Matikan mode ringan':'Mode ringan'}</button><button class="btn s" data-act="tdpack">Paket menganggur produktif</button></div></div>`,
- streak_=`<div class="card${R}" style="order:2"><div class="chd"><h3>Streak & minggu ini</h3></div>
-  <div class="tdst"><span class="tdbig">🔥 ${st}</span><div><b>hari produktif beruntun</b><small>Produktif = minimal 3 tugas selesai (mode ringan: 1). Sabtu dan Minggu yang kosong tidak memutus streak.</small></div></div>
-  <div class="tdd">${dots}</div>
-  <p class="hint" style="margin-top:12px">Minggu ini: <b>${w.lam}</b> lamaran, <b>${tdJam(w.jam)}</b> belajar, <b>${w.port}</b> proyek portofolio, <b>${w.net}</b> networking, ${w.tot} tugas selesai.</p></div>`,
- target_=`<div class="card${R}" style="order:3"><div class="chd"><h3>Target mingguan</h3><button class="btn s tdsm" data-act="tdtg">Atur</button></div>
-  ${tgr('Lamaran terkirim',w.lam,T.lam,w.lam+' / '+T.lam,'#2f6f9f')}${tgr('Jam belajar',w.jam,T.jam,tdJam(w.jam).replace(' jam','')+' / '+T.jam+' jam','#0d9488')}${tgr('Sesi networking',w.net,T.net,w.net+' / '+T.net,'#d97706')}${tgr('Proyek portofolio',w.port,T.port,w.port+' / '+T.port,'#7c3aed')}
-  <p class="hint">Lamaran dihitung otomatis dari tab Lamaran. Jam belajar, networking, dan portofolio dihitung dari tugas yang kamu centang minggu ini (isi durasi di tugas belajar).</p></div>`,
- back_=`<div class="card${R}" style="order:4"><div class="chd"><h3>Backlog</h3><span class="hint" style="margin:0">${bl.length} ide</span></div>
-  <div class="ln" style="margin-bottom:10px"><input id="tdq" placeholder="Tambah ide tugas…" style="flex:2 1 160px"><select id="tdqk" style="flex:1 1 120px;width:auto">${Object.keys(TK).map(k=>`<option>${k}</option>`).join('')}</select><button class="btn s" data-act="tdqa">Tambah</button></div>
-  ${bl.length?`<div class="tdl">${bl.map(t=>{const c=tdCol(t.kat),lb=!t.tgl?'Tanpa tanggal':t.tgl<d?'Tertunda dari '+fmt(t.tgl).slice(0,5):'Terjadwal '+fmt(t.tgl).slice(0,5);
-   return `<div class="td bl" style="--c:${c}" data-act="tded" data-id="${t.id}"><span class="tdic">${tdIc(t.kat)}</span><div><b>${esc(t.judul)}</b><small>${esc(t.kat)} · ${lb}</small></div><button class="btn s tdsm" data-act="tdhr" data-id="${t.id}">Ke Hari ini</button></div>`}).join('')}</div>`:'<p class="hint">Backlog kosong. Tulis ide tugas di atas, nanti tinggal ditarik ke Hari ini.</p>'}</div>`,
- skill_=sks.length?`<div class="card${R}" style="order:5"><div class="chd"><h3>Dari tab Skill</h3></div><p class="hint" style="margin:0 0 10px">Kursus yang sedang berjalan bisa dijadikan tugas belajar harian (30 menit, hari kerja).</p><div class="tdl">${sks.map(s=>`<div class="td bl" style="--c:#0d9488"><span class="tdic">📘</span><div><b>${esc(s.name)}</b><small>${esc(s.provider||s.kind)}</small></div><button class="btn s tdsm" data-act="tdsk" data-id="${s.id}">Jadikan tugas</button></div>`).join('')}</div></div>`:'';
- return `<div class="${R.trim()}"><h2 class="t">Rutinitas</h2><p class="sub">Tugas kecil dan jelas selama menunggu panggilan kerja, supaya setiap hari ada kemajuan yang terlihat.</p></div>
-  <div class="tdg"><div class="tdcol">${today_}${back_}</div><div class="tdcol">${streak_}${target_}${skill_}</div></div>`}
+  ${C.lite?'<p class="tdnote">Mode ringan: cukup 1 tugas hari ini.</p>':''}
+  <div class="tdl" style="margin-top:14px">${rows}</div>
+  ${C.wait.length?`<p class="hint" style="margin-top:10px">+${C.wait.length} tugas antre (batas ${cap} per hari)</p>`:''}
+  <div class="tdfoot"><button class="btn" data-act="addtodo">＋ Tugas</button><button class="tdlk${C.lite?' on':''}" data-act="tdlt" aria-pressed="${C.lite}">Mode ringan</button>${none?'<button class="tdlk" data-act="tdpack">Paket awal</button>':''}<span class="tdsum" title="Hari produktif = minimal ${need} tugas selesai">🔥 ${st} hari</span></div></div>
+ <div class="card${R}"><div class="chd"><h3>Minggu ini</h3><button class="tdlk" data-act="tdtg">Atur target</button></div>
+  ${tgr('Lamaran',w.lam,T.lam,w.lam+' / '+T.lam,'#2f6f9f')}${tgr('Belajar',w.jam,T.jam,tdJam(w.jam).replace(' jam','')+' / '+T.jam+' jam','#0d9488')}${tgr('Networking',w.net,T.net,w.net+' / '+T.net,'#d97706')}${tgr('Portofolio',w.port,T.port,w.port+' / '+T.port,'#7c3aed')}</div>
+ <details class="card tdmore${R}"${tdOpen?' open':''}><summary>Backlog<em>${bl.length+sks.length||''}</em></summary>
+  <div class="ln" style="margin:12px 0"><input id="tdq" placeholder="Tulis ide tugas…" style="flex:2 1 160px"><select id="tdqk" style="flex:1 1 110px;width:auto">${Object.keys(TK).map(k=>`<option>${k}</option>`).join('')}</select><button class="btn s" data-act="tdqa">Tambah</button></div>
+  <div class="tdl">${bl.map(t=>{const c=tdCol(t.kat),lb=!t.tgl?'':t.tgl<d?' · tertunda dari '+fmt(t.tgl).slice(0,5):' · '+fmt(t.tgl).slice(0,5);
+   return `<div class="td bl" style="--c:${c}" data-act="tded" data-id="${t.id}"><div><b>${esc(t.judul)}</b><small>${tdIc(t.kat)} ${esc(t.kat)}${lb}</small></div><button class="btn s tdsm" data-act="tdhr" data-id="${t.id}">Ke Hari ini</button></div>`}).join('')}
+  ${sks.map(s=>`<div class="td bl" style="--c:#0d9488"><div><b>Belajar: ${esc(s.name)}</b><small>📘 dari tab Skill</small></div><button class="btn s tdsm" data-act="tdsk" data-id="${s.id}">Jadikan tugas</button></div>`).join('')}</div>
+  ${bl.length||sks.length?'':'<p class="hint">Kosong. Tulis ide di atas, nanti tinggal ditarik ke Hari ini.</p>'}
+  ${none?'':'<button class="tdlk" data-act="tdpack" style="margin-top:12px">Tambah paket awal</button>'}</details></div>`}
 V.todo=()=>`<div id="tdw">${tdHtml(1)}</div>`;
-function tdRefresh(){const e=$('tdw');if(e)e.innerHTML=tdHtml(0);else render()}
+function tdRefresh(){const e=$('tdw');if(!e)return render();
+ const old=[...e.querySelectorAll('.tdbar i')].map(i=>i.style.width);e.innerHTML=tdHtml(0);
+ e.querySelectorAll('.tdbar i').forEach((i,k)=>{const n=i.style.width;if(old[k]!==undefined&&old[k]!==n){i.style.width=old[k];void i.offsetWidth;i.style.width=n}})}
+const tdPop=id=>{const k=document.querySelector('.tdk[data-id="'+id+'"]');if(k&&k.getAttribute('aria-pressed')==='true')k.classList.add('pop')};
+document.addEventListener('toggle',e=>{if(e.target.classList&&e.target.classList.contains('tdmore'))tdOpen=e.target.open?1:0},true);
 /* kartu ringkas di Dashboard */
 function tdDash(){const C=tdCand(),dn=C.show.filter(x=>x.done).length,tot=C.show.length,st=tdStreak(),w=tdWeek(),p=tot?Math.round(dn*100/tot):0;
  return `<div class="card tdd2 rise" data-go="todo" role="button" tabindex="0" title="Buka Rutinitas"><div class="chd"><h3>Produktivitas hari ini</h3><span class="pill" style="--c:#0d9488">Rutinitas ›</span></div>
@@ -1513,7 +1533,7 @@ Object.assign(A,{
    (tdc.ad[d]=tdc.ad[d]||[]).push({key:id,j:c.j,kat:c.kat,pr:c.pr,sub:c.sub,jid:j.id});persist();tdsave();tdRefresh();
    undo(fu?'Follow-up dicatat di riwayat lamaran':'Status lamaran diubah ke Applied',()=>{const i=jobs.findIndex(x=>x.id===j.id);if(i>=0)jobs[i]=JSON.parse(js);tdc.ad[d]=JSON.parse(ds);persist();tdsave();tdRefresh()});return}
   const t=tds.find(x=>x.id===id);if(!t)return;const was=tdProd(d);t.done=t.done||[];const i=t.done.indexOf(d);i<0?t.done.push(d):t.done.splice(i,1);t.diubah=Date.now();
-  tdsave();tdRefresh();if(!was&&tdProd(d))toast('Hari ini produktif! Streak '+tdStreak()+' hari 🔥')},
+  tdsave();tdRefresh();tdPop(id);if(!was&&tdProd(d))toast('Hari ini produktif! Streak '+tdStreak()+' hari 🔥')},
  tdhr(b){const t=tds.find(x=>x.id===b.dataset.id);if(!t)return;if(tdCand().all.length>=TMAX)return toast('Hari ini sudah '+TMAX+' tugas. Selesaikan atau hapus satu dulu.');
   t.tgl=today();t.diubah=Date.now();tdsave();tdRefresh();toast('Dipindah ke Hari ini')},
  tdlt(){const d=today(),i=tdc.lt.indexOf(d);i<0?tdc.lt.push(d):tdc.lt.splice(i,1);tdc.lt=tdc.lt.filter(x=>x>=tdAdd(d,-400));tdsave();tdRefresh();toast(i<0?'Mode ringan aktif untuk hari ini':'Mode ringan dimatikan')},
