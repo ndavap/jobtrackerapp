@@ -659,6 +659,73 @@ body,.card,.hd,.sb2,.chip,input,select,textarea,.sh{transition-property:backgrou
 .mo{transition:opacity .35s var(--ease)}
 .bar i,.bar2 i{transition:width .8s var(--ease)}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.td.in,.tdk.pop,#mn.vfx{animation:none!important}}
+
+/* ===== PERAPIAN FINAL: anti tabrakan, transisi tema halus, pindah tab mulus ===== */
+html,body{overflow-x:clip}
+.mw{overflow-x:clip}
+/* kartu KPI: judul tidak menabrak ikon, "Lihat ›" tidak menabrak teks */
+.k{padding:16px 18px 42px;min-height:132px;justify-content:flex-start;gap:2px}
+.k>span:not(.ki){display:block;padding-right:52px;line-height:1.3}
+.k b{font-size:clamp(22px,2.3vw,32px);line-height:1.15;overflow-wrap:anywhere;margin:2px 0}
+.k small{display:block;line-height:1.35;overflow-wrap:anywhere}
+.k .kg{right:16px;bottom:13px;line-height:1;white-space:nowrap}
+.k::after{pointer-events:none;z-index:0}
+.k>*{position:relative;z-index:1}.k>i,.k>.ki,.k>.kg{position:absolute}
+@media(max-width:760px){.k{padding:14px 14px 40px;min-height:118px}.k>span:not(.ki){padding-right:46px;font-size:14px}.ki{right:12px;top:12px;width:34px;height:34px}}
+/* kartu skill & tombol aksi */
+.sc h4{min-width:0;flex:1}.sc .tag{flex:none}
+.sc .ft{flex-wrap:wrap;gap:8px 10px}
+.sc .ft .ra{margin-left:auto;justify-content:flex-end;align-items:center;flex-wrap:wrap;min-width:0}
+.ra .tdsb{width:auto;height:auto;min-height:34px;padding:6px 12px;display:inline-flex;align-items:center;border:1.5px solid var(--ln);background:var(--card);color:var(--navy);border-radius:99px;font:700 12.5px inherit;white-space:nowrap}
+.ra .tdsb:hover{background:var(--card);color:var(--navy);border-color:var(--ac)}
+.row .ra{min-width:108px}
+/* jarak & judul kartu dashboard */
+.tdd2{margin-bottom:14px}
+.chd{flex-wrap:wrap;row-gap:2px}.chd h3{flex:0 1 auto;min-width:0}.chd>span:not(.pill){margin-left:auto;text-align:right}
+.dg3>.card{min-width:0;overflow-wrap:anywhere}
+/* tombol tutup modal tidak menimpa judul */
+.sh>h3:first-child{padding-right:46px}
+/* status sinkron: lebar stabil agar header tidak bergeser */
+@media(min-width:981px){.hd .sy{min-width:150px}}
+/* gerak masuk lebih halus */
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.rise{animation-duration:.5s}
+#mn.vfx{animation:vsw .28s ease}
+/* render ulang di halaman yang sama (sinkron, kembali dari tab lain, ubah data) tanpa memutar ulang animasi */
+.nofx .rise,.nofx .bar i,.nofx .seg i,.nofx .bar2 i,.nofx .mb .tr i,.nofx .sk .tr i,.nofx .lgc,.nofx .td.in,.nofx .bar i::after,.nofx .bar2 i::after{animation:none!important}
+#mn.nofx.vfx{animation:none}
+/* transisi tema: latar gradien dibuat crossfade lewat lapisan opacity */
+.bg{background:linear-gradient(180deg,#d3e7ef 0%,#bcd6e3 100%)}
+html[data-theme=dark] .bg{background:linear-gradient(180deg,#d3e7ef 0%,#bcd6e3 100%)}
+.bg::after,html[data-theme=dark] .bg::after{display:block;content:"";position:absolute;inset:0;width:auto;height:auto;border-radius:0;filter:none;animation:none;background:linear-gradient(180deg,#0f202a,#0a151c);opacity:0;transition:opacity .45s ease}
+html[data-theme=dark] .bg::after{opacity:1}
+.sb2{background:linear-gradient(180deg,#2d647d 0%,#1e4b62 100%)}
+html[data-theme=dark] .sb2{background:linear-gradient(180deg,#2d647d 0%,#1e4b62 100%)}
+.sb2::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;background:linear-gradient(180deg,#15323f,#0b1f28);opacity:0;transition:opacity .45s ease;pointer-events:none}
+html[data-theme=dark] .sb2::before{opacity:1}
+html.tswap *,html.tswap *::before,html.tswap *::after{transition:background-color .45s ease,color .45s ease,border-color .45s ease,fill .45s ease,stroke .45s ease,box-shadow .45s ease,opacity .45s ease!important}
+html.tswap .bg::after,html.tswap .sb2::before{transition:opacity .45s ease!important}
+html.tswap .tg i{transition:transform .35s var(--ease),background-color .45s ease!important}
+html.tswap .tg{transition:background-color .45s ease!important}
+@media print{html,body{overflow:visible}}
+/* label funnel tidak terpotong, grid 1 kolom tidak melebar, ringkasan kecil di HP */
+.tr3{grid-template-columns:134px minmax(0,1fr) 82px}
+@media(max-width:860px){.g2{grid-template-columns:minmax(0,1fr)}}
+.oc small{overflow:visible;text-overflow:clip;white-space:normal;overflow-wrap:anywhere;line-height:1.25}
+@media(max-width:420px){.oc{gap:9px;padding:10px}.oi{width:36px;height:36px;border-radius:10px}.oi svg{width:20px;height:20px}.oc b{font-size:20px}.oc small{font-size:13px}.oc .oh{font-size:11.5px}}
+
+@media(max-width:760px){.k b{font-size:clamp(18px,5.4vw,24px)!important}}
+html[data-theme=dark] .tg{box-shadow:inset 0 0 0 1px rgba(143,208,230,.4)}
+
+/* HP: header solid (tidak buram), area status bar tertutup, tombol melayang lebih ringkas */
+body::before{content:"";position:fixed;top:0;left:0;right:0;height:env(safe-area-inset-top,0px);background:var(--card);z-index:50;pointer-events:none}
+@media(max-width:860px){
+ .hd{background:var(--card);-webkit-backdrop-filter:none;backdrop-filter:none;text-shadow:none}
+ .wl{text-shadow:none;-webkit-font-smoothing:antialiased;overflow:hidden;text-overflow:ellipsis;min-width:0}
+ .fab{height:48px;padding:0 18px;font-size:15px;box-shadow:0 10px 22px -12px rgba(31,78,102,.7)}
+ main{padding-bottom:calc(150px + env(safe-area-inset-bottom))}
+}
+@media print{body::before{display:none}}
 </style>
 </head>
 <body>
@@ -1239,13 +1306,18 @@ function slist(){const q=sq.toLowerCase(),a=skl.filter(s=>!q||(s.name+' '+s.prov
  <div class="mt"><div><span>Biaya</span><b>${rp(s.cost)}</b></div><div><span>Durasi</span><b>${s.dur?esc(s.dur)+' '+esc(s.unit):'-'}</b></div><div><span>Target</span><b>${s.date?fmt(s.date):'-'}</b></div></div>
  <div class="ft"><select class="ps" data-act="sst" style="--c:${SC[s.status]}">${opts(SS,s.status)}</select><div class="ra">${s.status==='Berjalan'?`<button class="tdsb" type="button" data-act="tdsk" data-id="${s.id}">${tdLinked(s.id)?'✓ Di Rutinitas':'＋ Jadikan tugas'}</button>`:''}${s.link?`<a href="${esc(s.link)}" target="_blank" rel="noopener" aria-label="Buka link">↗</a>`:''}<button class="dl" data-act="delskill" aria-label="Hapus">✕</button></div></div></div>`).join('')}
 
-function anim(root){(root||document).querySelectorAll('.rise').forEach((e,i)=>e.style.animationDelay=Math.min(i*45,450)+'ms');
- (root||document).querySelectorAll('[data-n],[data-m]').forEach(e=>{const to=+(e.dataset.n||e.dataset.m),t0=performance.now();(function f(t){const p=Math.min(1,(t-t0)/900),v=Math.round(to*(1-Math.pow(1-p,3)));e.textContent=v;if(p<1)requestAnimationFrame(f)})(t0)})}
+function anim(root){const still=!!(root&&root.classList&&root.classList.contains('nofx'));(root||document).querySelectorAll('.rise').forEach((e,i)=>e.style.animationDelay=still?'0ms':Math.min(i*30,240)+'ms');
+ (root||document).querySelectorAll('[data-n],[data-m]').forEach(e=>{const to=+(e.dataset.n||e.dataset.m),t0=performance.now();if(still){e.textContent=to;return}(function f(t){const p=Math.min(1,(t-t0)/900),v=Math.round(to*(1-Math.pow(1-p,3)));e.textContent=v;if(p<1)requestAnimationFrame(f)})(t0)})}
 function render(){
- $('nv').innerHTML=NAV.map(n=>`<button data-go="${n[0]}" class="${n[0]===view?'on':''}"><span class="ic">${ICO[n[2]]}</span><span>${n[1]}</span></button>`).join('');
  if(view==='prog')view='dash';
- $('mn').innerHTML=(cfg.url?'':NB)+V[view]();$('fab').hidden=view==='dash'||view==='prog';$('fab').textContent=view==='skill'?'＋ Skill':view==='sch'?'＋ Jadwal':view==='todo'?'＋ Tugas':'＋ Lamaran';{const m=$('mn');if(window._lv!==view){window._lv=view;m.classList.remove('vfx');void m.offsetWidth;m.classList.add('vfx')}}anim($('mn'));bellu();deco();hh()}
-function go(v){view=v==='prog'?'dash':v;render();window.scrollTo({top:0,behavior:'smooth'})}
+ const mn=$('mn'),same=window._lv===view,y=window.scrollY;
+ {const nv=$('nv'),bs=nv.children;if(bs.length===NAV.length){NAV.forEach((n,i)=>bs[i].classList.toggle('on',n[0]===view))}else nv.innerHTML=NAV.map(n=>`<button data-go="${n[0]}" class="${n[0]===view?'on':''}"><span class="ic">${ICO[n[2]]}</span><span>${n[1]}</span></button>`).join('')}
+ mn.classList.toggle('nofx',same);
+ mn.innerHTML=(cfg.url?'':NB)+V[view]();$('fab').hidden=view==='dash'||view==='prog'||view==='todo';$('fab').textContent=view==='skill'?'＋ Skill':view==='sch'?'＋ Jadwal':view==='todo'?'＋ Tugas':'＋ Lamaran';
+ if(!same){window._lv=view;mn.classList.remove('vfx');void mn.offsetWidth;mn.classList.add('vfx')}
+ anim(mn);bellu();deco();hh();
+ if(same&&y>0)window.scrollTo({top:y,behavior:'instant'})}
+function go(v){const nv=v==='prog'?'dash':v;if(nv!==view)window.scrollTo({top:0,behavior:'instant'});view=nv;render();if(nv===window._lv&&window.scrollY>0)window.scrollTo({top:0,behavior:'smooth'})}
 const list=(id,html)=>{const e=$(id);e.innerHTML=html;anim(e)};
 
 /* ---------- Modal ---------- */
@@ -1288,7 +1360,7 @@ function openSkill(id){const s=skl.find(x=>x.id===id)||{kind:'Kursus',status:'Re
 /* ---------- Actions ---------- */
 const A={
  close(){closeM()},
- theme(){const d=document.documentElement.dataset.theme==='dark'?'light':'dark';ls('jt_theme',d);applyTheme(d)},
+ theme(){const h=document.documentElement,d=h.dataset.theme==='dark'?'light':'dark';ls('jt_theme',d);h.classList.add('tswap');applyTheme(d);clearTimeout(window._tsw);window._tsw=setTimeout(()=>h.classList.remove('tswap'),520)},
  prt(){closeM();setTimeout(()=>window.print(),450)},
  cvj(b){cvm(b.closest('.row,.trw').dataset.id)},cvj2(b){cvm(b.dataset.id)},
   cvgen(b){const j=jobs.find(x=>x.id===b.dataset.id);if(!j||!$('xcx'))return;cvRefresh(j,1);toast('CV dibuat ulang dari template dan kualifikasi')},
