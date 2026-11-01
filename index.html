@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <title>Job Application Tracker by davito</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-<meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#f8f6f1">
+<meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#f5fafc">
 <link rel="icon" type="image/svg+xml" sizes="any" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%232d647d'/%3E%3Cstop offset='1' stop-color='%231e4b62'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='512' height='512' rx='116' fill='url(%23g)'/%3E%3Crect x='198' y='118' width='116' height='84' rx='18' fill='none' stroke='%23fff' stroke-width='30'/%3E%3Crect x='62' y='170' width='388' height='250' rx='42' fill='%23fff'/%3E%3Cpath d='M172 306l64 60 112-120' fill='none' stroke='%23c77f4c' stroke-width='34' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="icon" type="image/png" sizes="64x64" href="favicon.png?v=3">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=3">
@@ -726,6 +726,14 @@ body::before{content:"";position:fixed;top:0;left:0;right:0;height:env(safe-area
  main{padding-bottom:calc(150px + env(safe-area-inset-bottom))}
 }
 @media print{body::before{display:none}}
+/* header & status bar menyatu: satu warna solid, tanpa blur/gradasi di atas */
+html{background-color:#f5fafc}
+html[data-theme=dark]{background-color:#142733}
+body::before{background:var(--card);-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:none}
+.hd{background:var(--card);-webkit-backdrop-filter:none;backdrop-filter:none;filter:none;border-top:0;isolation:isolate}
+.hd::before{content:"";position:absolute;left:0;right:0;bottom:100%;height:140px;background:var(--card);pointer-events:none}
+.hd,.hd *{text-shadow:none}
+@media(max-width:860px){.lt{-webkit-backdrop-filter:none;backdrop-filter:none;background:var(--card)}}
 </style>
 </head>
 <body>
@@ -902,7 +910,7 @@ const key=j=>(j.company+'|'+j.position).toLowerCase().trim();
 const norm=v=>ST.find(x=>x.toLowerCase()===String(v||'').trim().toLowerCase())||'Not Applied';
 const opts=(a,v)=>a.map(x=>`<option${x===v?' selected':''}>${x}</option>`).join('');
 function toast(t){const e=$('ts');e.style.pointerEvents='';e.textContent=t;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('on'),3200)}
-function applyTheme(d){document.documentElement.dataset.theme=d;const m=document.querySelector('meta[name=theme-color]');if(m)m.content=d==='dark'?'#0d1a22':'#cde2eb';const b=$('tm');if(b)b.setAttribute('aria-pressed',d==='dark'?'true':'false')}
+function applyTheme(d){document.documentElement.dataset.theme=d;const m=document.querySelector('meta[name=theme-color]');if(m)m.content=d==='dark'?'#142733':'#f5fafc';const b=$('tm');if(b)b.setAttribute('aria-pressed',d==='dark'?'true':'false')}
 const CVSKEL='# NAMA ANDA\nemail | telepon | linkedin\n## PROFESSIONAL SUMMARY\nTulis ringkasan profesional Anda.\n## WORK EXPERIENCE\n*Jabatan | Kota\n*Perusahaan | Periode\n- Butir pencapaian';
 let cvt=lg('jt_cvt')||CVSKEL,cvLoaded=0;
 const CVSTOP=new Set('the and for with you your our are will have has from that this their they them can able ability abilities including include such who what when where which while within without into over under more most other than then also but not any all each per via etc must should would could may might one two three new work working job role position candidate candidates company team teams years year minimum required requirement requirements responsible responsibilities preferred strong good excellent knowledge skills skill experience experienced understanding based well use using plus related relevant least dan yang untuk dengan atau pada dari dalam di ke serta oleh akan dapat adalah sebagai kami anda memiliki minimal pengalaman kemampuan bidang posisi kandidat tim lebih mampu tahun yg dll'.split(' '));
