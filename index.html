@@ -778,6 +778,41 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 }
 .wl small{line-height:1.4;overflow:visible}
 @media(max-width:860px){.wl{flex:1 1 100%}}
+
+/* ===== HP: header solid & rata (tanpa blur / layer GPU), gaya seperti dashboard keuangan ===== */
+.mbr{display:none}
+@media(max-width:860px){
+ /* matikan semua yang bisa memicu teks buram di iOS Safari */
+ #app,.rise{animation:none!important;opacity:1!important;transform:none!important}
+ #app .hd,#app .hd *,.lt{-webkit-backdrop-filter:none!important;backdrop-filter:none!important;filter:none!important;text-shadow:none!important}
+ /* header: tidak sticky, satu warna solid, tanpa bayangan */
+ #app .hd{
+  position:static;display:grid;grid-template-columns:minmax(0,1fr) auto;
+  grid-template-areas:"brand tools" "title title" "search search";
+  align-items:center;gap:14px 8px;
+  padding:calc(env(safe-area-inset-top,0px) + 14px) 16px 8px;
+  background:var(--card);border:0;box-shadow:none;transition:none;isolation:auto;
+ }
+ #app .hd .mbr{grid-area:brand;display:flex;align-items:center;gap:10px;min-width:0}
+ #app .hd .mbr .lgo{width:40px;height:40px;flex:none;--lg-fill:url(#lgg);--lg-fg:#fff;--lg-mark:#e29d6b;filter:none!important}
+ #app .hd .mbr b{font:800 22px/1 var(--f-brand);letter-spacing:-.035em;color:var(--navy);white-space:nowrap}
+ #app .hd .mbr i{font-style:normal;background:var(--cop-g);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+ #app .hd .hr{grid-area:tools;margin:0;gap:8px;justify-self:end}
+ #app .hd .wl{
+  grid-area:title;display:block;flex:none;width:auto;min-width:0;margin:6px 0 0;padding:0;
+  font:800 26px/1.25 var(--serif);letter-spacing:-.01em;color:var(--navy);
+  white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:break-word;
+ }
+ #app .hd .wl small{display:block;margin-top:4px;font:600 14px/1.4 var(--serif);color:var(--mut)}
+ #app .hd .gs{grid-area:search;order:0;width:100%;flex:none}
+ .lt{top:env(safe-area-inset-top,0px);box-shadow:none;background:var(--card)}
+}
+@media(max-width:360px){
+ #app .hd .mbr b{font-size:19px}
+ #app .hd .mbr .lgo{width:36px;height:36px}
+ #app .hd .wl{font-size:23px}
+}
+@media(max-width:335px){#app .hd .mbr b{display:none}}
 </style>
 </head>
 <body>
@@ -804,6 +839,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
  </aside>
  <div class="mw">
  <header class="hd">
+  <div class="mbr" aria-hidden="true"><svg class="lgo" viewBox="0 0 512 512"><use href="#lgo"/></svg><b>Next<i>Step</i></b></div>
   <h1 class="wl">Welcome Davito !</h1>
   <label class="gs"><input id="gq" type="search" placeholder="Cari lamaran…" autocomplete="off" aria-label="Cari lamaran"><span class="ic" id="icq"></span></label>
   <div class="hr"><button class="sy" id="sy" data-act="sync"><i></i><span id="st">mode lokal</span></button><button class="ib" data-act="hub" aria-label="Pusat pelacak" title="Pusat pelacak"><span class="ic" id="ich"></span></button><button class="ib" data-act="bell" aria-label="Jadwal terdekat" title="Jadwal terdekat"><span class="ic" id="icb"></span><u id="bd" hidden></u></button><button class="ib gm" data-act="cfgm" aria-label="Pengaturan"><span class="ic" id="icm"></span></button><button class="tg" id="tm" data-act="theme" aria-label="Mode gelap" aria-pressed="false"><i></i></button></div>
