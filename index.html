@@ -596,6 +596,23 @@ html[data-theme=dark]{--lg-mark:#e29d6b;--cop:#e29d6b}
 @media(min-width:861px) and (max-width:1100px){.bk{padding:0 0 14px;justify-content:center}.bk div{display:none}.bk .lgo{width:42px;height:42px}}
 @media(max-width:860px){.bk{display:none}.sn button.on::before{display:none}.wl small{font-size:12px}.fcs{flex-wrap:wrap}.sd{margin-left:0}}
 @media print{.fcs,.bk{display:none!important}}
+/* ===== Tombol "Tambah" satu pintu: dropdown di laptop, bottom sheet di HP ===== */
+.hero{position:relative;z-index:5}
+.am{position:relative;display:inline-block}
+.amb{display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:0 16px}
+.amb svg{width:16px;height:16px;flex:none}
+.amb .chv{transition:transform .3s var(--ease)}
+.amb[aria-expanded=true] .chv{transform:rotate(180deg)}
+.amm{position:absolute;right:0;top:calc(100% + 8px);min-width:236px;padding:6px;background:var(--card);border:1px solid var(--ln);border-radius:14px;box-shadow:0 18px 40px -18px rgba(15,40,56,.55);z-index:20;transform-origin:top right;animation:pop .22s var(--ease) both}
+.amm button,.amq button{display:flex;align-items:center;gap:12px;width:100%;min-height:44px;border:0;background:none;border-radius:10px;padding:10px 12px;font:700 14.5px inherit;color:var(--ink);cursor:pointer;text-align:left;transition:background-color .2s}
+.amm button:hover,.amm button:focus-visible,.amq button:hover,.amq button:focus-visible{background:color-mix(in srgb,var(--ac) 14%,transparent);outline:0}
+.amm .ic,.amq .ic{color:var(--ac)}
+.amq{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+.amq button{min-height:58px;border:1.5px solid var(--ln);border-radius:14px;padding:12px 14px;font-size:15.5px}
+.amq button small{display:block;font:500 13px/1.3 inherit;color:var(--mut);margin-top:1px}
+.amq .ic{width:26px;height:26px}
+@media(max-width:860px){.hero>.am{display:none}}
+@media(prefers-reduced-motion:reduce){.amm{animation:none}}
 /* Rutinitas */
 #tdw{width:100%}
 .tdg{width:100%;max-width:760px;display:flex;flex-direction:column;gap:14px}
@@ -813,6 +830,26 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
  #app .hd .wl{font-size:23px}
 }
 @media(max-width:335px){#app .hd .mbr b{display:none}}
+
+/* ===== Ringkasan kotak dashboard ===== */
+.sumc{cursor:pointer;position:relative;-webkit-tap-highlight-color:transparent}
+.sumc:focus-visible{outline:3px solid rgba(63,127,154,.45);outline-offset:2px}
+.sumc::after{content:"›";position:absolute;right:12px;bottom:10px;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font:700 16px/1 var(--serif);color:var(--mut);background:rgba(120,150,165,.16);pointer-events:none}
+.smg{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:2px 0 14px}
+.smt{padding:12px 14px;border:1.5px solid var(--ln);border-left:4px solid var(--c,var(--ac));border-radius:14px;background:var(--card);min-width:0}
+.smt b{display:block;font:800 21px/1.2 var(--serif);color:var(--navy);overflow-wrap:anywhere}
+.smt span{display:block;margin-top:4px;font-size:13px;line-height:1.3;color:var(--mut)}
+.smn{margin:0 0 12px;line-height:1.55;color:var(--ink)}
+.sml{margin:2px 0 14px}
+.smr{display:flex;align-items:center;gap:10px;padding:10px 4px;border-top:1px solid var(--ln);min-width:0}
+.smr:first-child{border-top:0}
+.smr .dot{width:10px;height:10px;border-radius:50%;flex:none}
+.smr b{flex:1;min-width:0;overflow-wrap:anywhere;font-weight:700;color:var(--ink)}
+.smr em{font-style:normal;font-size:13.5px;color:var(--mut);white-space:nowrap}
+.smr .bar2{margin:0;align-self:center}.smr em{align-self:center}.smr.smb b{flex:0 0 36%}.smr.smb .bar2{flex:1;min-width:40px}
+.smr[data-act]{cursor:pointer}
+.sma{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.smc{margin-top:2px}.smc .chd{margin-bottom:8px}
 </style>
 </head>
 <body>
@@ -907,7 +944,7 @@ function deco(){greet();
  document.querySelectorAll('.k[data-k]').forEach(k=>{if(k.querySelector('.ki'))return;const d=k.dataset.k,ic=KIC[d];if(!ic)return;
   const c=['stale','basi','fu','ddl','out','past'].includes(d)?'#c0713a':['win','offr'].includes(d)?'#3f8f6a':'#3f7f9a';k.style.setProperty('--kc',c);k.insertAdjacentHTML('beforeend','<span class="ki">'+ICO[ic]+'</span>')});
  document.querySelectorAll('.sec[id]').forEach(s=>{const m=SECI[s.id],h=s.querySelector('h3');if(!m||!h||h.querySelector('.hi'))return;h.insertAdjacentHTML('afterbegin','<span class="hi">'+ICO[m[0]]+'</span>');s.insertAdjacentHTML('beforeend','<p class="sd">'+m[1]+'</p>')});
- const hero=document.getElementById('sc-top');if(hero&&!document.getElementById('fcs'))hero.insertAdjacentHTML('afterend',focusHtml())}
+ const hero=document.getElementById('sc-top');if(hero&&!document.getElementById('fcs'))hero.insertAdjacentHTML('afterend',focusHtml());sumEnh()}
 const mi=n=>ICO[n].replace('<svg','<svg class="mi"');
 /* filter lanjutan: tipe, sumber, mode kerja, prioritas */
 const FPK=[['t','Tipe','job',TY],['src','Sumber','link',SRC],['wm','Mode kerja','pin',WM],['pr','Prioritas','star',['1','2','3']]];
@@ -1284,7 +1321,7 @@ dash(){const {n,act,win,out,tc,tw,dn}=stat(),sp=skl.length?Math.round(dn*100/skl
  p28=KX.pace.f().length,pw=p28/4,rem=cfg.target-n,eta=rem<=0?'Target total tercapai 🎉':pw>0?'Dengan laju '+(Math.round(pw*10)/10)+'/minggu, '+cfg.target+' lamaran tercapai ± '+new Date(Date.now()+Math.ceil(rem/pw)*7*864e5).toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric'}):'Belum ada lamaran 28 hari terakhir, laju belum bisa dihitung',
  fl=KX.stale.f().slice(0,4),fuw=fl.length?fl.map(j=>`<div class="ag2" data-act="editjob" data-id="${j.id}" role="button" tabindex="0"><i style="background:#d97706"></i><div><b>${esc(j.company)}</b><small>${esc(j.position||'-')}</small></div><em>${dd(lastD(j))} hari</em></div>`).join(''):'<p class="hint">Tidak ada lamaran yang menggantung lebih dari 14 hari 👍</p>',
  ul=KX.up.f().slice(0,4),agw=ul.length?ul.map(x=>`<div class="ag2" data-act="editjob" data-id="${x.id}" role="button" tabindex="0"><i style="background:${x.col}"></i><div><b>${esc(x.t)}</b><small>${esc(x.p)}</small></div><em>${x.pl}${x.tm?' · '+esc(x.tm):''}</em></div>`).join(''):'<p class="hint">Belum ada jadwal. Tambah lewat tombol ＋ Jadwal.</p>';
- return `<div class="hero rise" id="sc-top"><span class="hs">Semua lamaran dan rencana belajarmu, satu layar.</span><div><button class="btn s" data-act="addskill">＋ Skill</button><button class="btn s" data-act="addsch">＋ Jadwal</button><button class="btn" data-act="addjob">＋ Lamaran</button></div></div>
+ return `<div class="hero rise" id="sc-top"><span class="hs">Semua lamaran dan rencana belajarmu, satu layar.</span>${amMenu()}</div>
  ${lts()}
  <div class="card ov rise"><h3>Over View</h3><div class="ovg">${OV('Total lamaran',n,'list','all')}${OV('Sedang proses',act,'layers','act')}${OV('Offer & diterima',win,'trend','win')}${OV('Tidak lanjut',out,'ban','out','warn')}</div></div>
  ${tdDash()}
@@ -1401,7 +1438,7 @@ function render(){
  const mn=$('mn'),same=window._lv===view,y=window.scrollY;
  {const nv=$('nv'),bs=nv.children;if(bs.length===NAV.length){NAV.forEach((n,i)=>bs[i].classList.toggle('on',n[0]===view))}else nv.innerHTML=NAV.map(n=>`<button data-go="${n[0]}" class="${n[0]===view?'on':''}"><span class="ic">${ICO[n[2]]}</span><span>${n[1]}</span></button>`).join('')}
  mn.classList.toggle('nofx',same);
- mn.innerHTML=(cfg.url?'':NB)+V[view]();$('fab').hidden=view==='dash'||view==='prog'||view==='todo';$('fab').textContent=view==='skill'?'＋ Skill':view==='sch'?'＋ Jadwal':view==='todo'?'＋ Tugas':'＋ Lamaran';
+ mn.innerHTML=(cfg.url?'':NB)+V[view]();fabVis();
  if(!same){window._lv=view;mn.classList.remove('vfx');void mn.offsetWidth;mn.classList.add('vfx')}
  anim(mn);bellu();deco();hh();
  if(same&&y>0)window.scrollTo({top:y,behavior:'instant'})}
@@ -1481,7 +1518,7 @@ const A={
  bak(){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify({v:2,jobs,skills:skl,todos:tds,tdc})],{type:'application/json'}));a.download='job-tracker-backup-'+today()+'.json';a.click()},
  rest(){const f=document.createElement('input');f.type='file';f.accept='.json,application/json';f.onchange=()=>{const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result),h=new Set(jobs.map(key));let n=0;(d.jobs||[]).forEach(j=>{if(!h.has(key(j))){jobs.push(Object.assign({},j,{id:uid()}));h.add(key(j));n++}});const sn=new Set(skl.map(x=>x.name));(d.skills||[]).forEach(x=>{if(!sn.has(x.name)){skl.push(Object.assign({},x,{id:uid()}));sn.add(x.name)}});const tn=tdRestore(d);persist();closeM();render();toast(n+' lamaran'+(tn?' dan '+tn+' tugas':'')+' dipulihkan')}catch(e){toast('File tidak valid')}};r.readAsText(f.files[0])};f.click()},
  cpl(){const v=$('cl').value;(navigator.clipboard?navigator.clipboard.writeText(v):Promise.reject()).then(()=>toast('Link disalin'),()=>{$('cl').select();toast('Salin manual dari kolom')})},
- addjob(){openJob()},addskill(){openSkill()},addnew(){view==='skill'?openSkill():view==='sch'?openSch():view==='todo'?openTodo():openJob()},addsch(){openSch()},
+ addjob(){openJob()},addskill(){openSkill()},addnew(){view==='skill'?openSkill():view==='sch'?openSch():view==='todo'?openTodo():view==='dash'?amSheet():openJob()},addsch(){openSch()},
  kpi(b){kpm(b.dataset.k)},hub(){hubm()},bell(){kpm('up')},
  jump(b){closeM();if(view!=='dash'){view='dash';render()}const id=b.dataset.to;setTimeout(()=>{const e=$(id);if(e)e.scrollIntoView({behavior:'smooth',block:'start'})},id==='sc-top'?320:340)},kpf(b){kp.s=b.dataset.s;$('kpc').innerHTML=kpc();$('kpl').innerHTML=kpl()},
  editjob(b,e){if(e.target.closest('select,a,.dl'))return;openJob(b.dataset.id)},editskill(b,e){if(e.target.closest('select,a,.dl'))return;openSkill(b.dataset.id)},
@@ -1554,6 +1591,110 @@ document.addEventListener('input',e=>{const t=e.target;
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeM();
  if((e.key==='Enter'||e.key===' ')&&e.target.dataset&&e.target.dataset.act==='kpi'){e.preventDefault();A.kpi(e.target)}
  if(e.key==='Enter'&&e.target.closest('.sh')&&e.target.tagName==='INPUT'){const b=document.querySelector('.sh [data-act^=save]');if(b&&e.target.type!=='url')b.click()}});
+
+
+/* ---------- Ringkasan: semua kotak dashboard bisa diketuk ---------- */
+function sumKey(t){return (t||'').toLowerCase().replace(/[^a-z0-9]+/g,'')}
+function sumEnh(){
+ if(typeof view==='undefined'||(view!=='dash'&&view!=='prog'))return;
+ const mn=document.getElementById('mn');if(!mn)return;
+ mn.querySelectorAll('.card,.fcs').forEach(c=>{
+  if(c.classList.contains('empty')||c.dataset.sum)return;
+  const own=c.getAttribute('data-act');
+  if(own&&own!=='sum')return;
+  const h=c.querySelector('h3,.fct>b,span');
+  c.dataset.sum=c.classList.contains('fcs')?'focus':sumKey(h?h.textContent:'kotak');
+  c.dataset.act='sum';c.removeAttribute('data-go');
+  c.setAttribute('role','button');c.setAttribute('tabindex','0');c.title='Ketuk untuk lihat ringkasan';
+  c.classList.add('sumc');
+ })
+}
+const sumPc=(a,b)=>b?Math.round(a*100/b)+'%':'0%';
+const sumKb=k=>`<button class="btn s" data-act="kpi" data-k="${k}">${esc(KX[k].t)} (${KX[k].f().length})</button>`;
+const sumGo=(l,to,pri)=>`<button class="btn${pri?'':' s'}" data-act="sumgo" data-to="${to}">${l}</button>`;
+const sumRow=(c,t,r)=>`<div class="smr"><span class="dot" style="background:${c}"></span><b>${t}</b><em>${r}</em></div>`;
+const sumBar=(l,v,w,r)=>`<div class="smr smb"><b>${l}</b><div class="bar2"><i style="width:${w}%"></i></div><em>${r}</em></div>`;
+function sumBuild(key,c){
+ const s=stat(),n=s.n;
+ switch(key){
+ case 'overview':return {t:'Over View',sub:'Gambaran seluruh lamaran yang pernah kamu catat.',
+  stats:[['Total lamaran',n,'#0f4c4a'],['Sedang proses',s.act,'#0891b2'],['Offer & diterima',s.win,'#059669'],['Tidak lanjut',s.out,'#dc2626']],
+  notes:[n?`Dari <b>${n}</b> lamaran, <b>${pct(s.act)}</b> sedang diproses, <b>${pct(s.win)}</b> sudah ada tawaran, dan <b>${pct(s.out)}</b> tidak lanjut. Progres menuju target ${cfg.target} lamaran: <b>${Math.min(100,Math.round(n*100/(cfg.target||1)))}%</b>.`:'Belum ada lamaran tercatat. Tekan ＋ Lamaran untuk mulai.'],
+  rows:ST.filter(cnt).map(t=>sumRow(CL[t],esc(t),cnt(t)+' · '+pct(cnt(t)))).join(''),
+  acts:['all','act','win','out'].map(sumKb)};
+ case 'produktivitashariini':{const C=tdCand(),dn=C.show.filter(x=>x.done).length,tot=C.show.length,w=tdWeek(),left=C.show.filter(x=>!x.done);
+  return {t:'Produktivitas hari ini',sub:'Tugas harian dari menu Rutinitas.',
+  stats:[['Tugas selesai',tot?dn+' / '+tot:'–','#0d9488'],['Streak',tdStreak()+' hari','#f59e0b'],['Lamaran minggu ini',w.lam,'#2563eb'],['Waktu belajar',tdJam(w.jam),'#7c3aed']],
+  notes:[tot?(left.length?`Masih ada <b>${left.length}</b> tugas yang belum selesai hari ini.`:'Semua tugas hari ini sudah selesai 🎉'):'Belum ada tugas untuk hari ini. Tambahkan lewat menu Rutinitas.'],
+  rows:left.slice(0,6).map(x=>sumRow(tdCol(x.kat),esc(x.j),esc(x.kat)+(x.mnt?' · '+x.mnt+' mnt':''))).join(''),
+  acts:[sumGo('Buka Rutinitas','todo',1)]}}
+ case 'funnelseleksi':{const FN=[['Dilamar','sent'],['Dapat respons','resp'],['Wawancara user','int3'],['Offer','offr']].map(x=>[x[0],x[1],KX[x[1]].f().length]),b=FN[0][2];
+  let dr=null;for(let i=1;i<4;i++){const d=FN[i-1][2]-FN[i][2];if(FN[i-1][2]>0&&(!dr||d>dr[0]))dr=[d,FN[i-1][0],FN[i][0]]}
+  return {t:'Funnel seleksi',sub:'Dari dilamar sampai offer.',
+  stats:[['Dilamar',b,'#2563eb'],['Rasio respons',sumPc(FN[1][2],b),'#0891b2'],['Sampai wawancara user',FN[2][2],'#0d9488'],['Offer',FN[3][2],'#65a30d']],
+  notes:[b?(dr&&dr[0]>0?`Penurunan terbesar ada dari <b>${dr[1]}</b> ke <b>${dr[2]}</b>: ${dr[0]} lamaran belum lanjut ke tahap berikutnya.`:'Belum ada penurunan antartahap.')+` Tidak lanjut: <b>${s.out}</b> · masih menunggu: <b>${s.act}</b>.`:'Belum ada lamaran yang dikirim.'],
+  rows:FN.map((x,i)=>sumBar(x[0],x[2],b?x[2]*100/b:0,x[2]+(i?' · '+sumPc(x[2],b):''))).join(''),
+  acts:FN.map(x=>sumKb(x[1]))}}
+ case 'dilamarvsrespons':{const t=new Date(),M=[];for(let i=5;i>=0;i--){const x=new Date(t.getFullYear(),t.getMonth()-i,1),k=x.getFullYear()+'-'+('0'+(x.getMonth()+1)).slice(-2),m=jobs.filter(j=>((hs(j)[0]||{}).d||'').slice(0,7)===k);M.push([MN[x.getMonth()],m.length,m.filter(j=>reach(j)>=2).length])}
+  const ta=M.reduce((a,m)=>a+m[1],0),tr=M.reduce((a,m)=>a+m[2],0),mx=Math.max(1,...M.map(m=>m[1])),best=M.slice().sort((p,q)=>q[1]-p[1])[0],l=M[5],pv=M[4];
+  return {t:'Dilamar vs respons',sub:'Enam bulan terakhir, per bulan lamaran dikirim.',
+  stats:[['Dilamar (6 bulan)',ta,'#4f9d86'],['Dapat respons',tr,'#c98a5e'],['Rasio respons',sumPc(tr,ta),'#0891b2'],['Bulan tersibuk',best[1]?best[0]+' ('+best[1]+')':'-','#2563eb']],
+  notes:[ta?`Bulan ini (<b>${l[0]}</b>) ada <b>${l[1]}</b> lamaran, ${l[1]>pv[1]?'naik':l[1]<pv[1]?'turun':'sama'} dibanding <b>${pv[0]}</b> (${pv[1]}).`:'Belum ada lamaran dalam 6 bulan terakhir.'],
+  rows:M.map(m=>sumBar(m[0],m[1],m[1]*100/mx,m[2]+' respons / '+m[1])).join(''),
+  acts:[sumKb('sent'),sumKb('resp')]}}
+ case 'responspersumber':{const sm={};jobs.forEach(j=>{const k=j.src||'Belum diisi',o=sm[k]||(sm[k]=[0,0]);o[0]++;if(reach(j)>=2)o[1]++});
+  const L=Object.entries(sm).sort((a,b)=>b[1][0]-a[1][0]),mx=L.length?L[0][1][0]:1,bs=L.filter(x=>x[1][0]>=2).sort((a,b)=>b[1][1]/b[1][0]-a[1][1]/a[1][0])[0],bl=sm['Belum diisi'];
+  return {t:'Respons per sumber',sub:'Dari mana lamaranmu paling sering dibalas.',
+  stats:[['Jumlah sumber',L.length,'#2563eb'],['Sumber terbanyak',L[0]?esc(L[0][0]):'-','#0d9488'],['Respons terbaik',bs?esc(bs[0])+' '+sumPc(bs[1][1],bs[1][0]):'-','#059669']],
+  notes:[L.length?(bl&&bl[0]*2>=n?'Sebagian besar lamaran belum diisi sumbernya. Isi kolom Sumber di Detail tambahan agar analisis ini akurat.':'Sumber dengan minimal 2 lamaran dipakai untuk menentukan respons terbaik.'):'Belum ada data.'],
+  rows:L.map(x=>sumBar(esc(x[0]),x[1][0],x[1][0]*100/mx,x[1][1]+'/'+x[1][0]+' · '+sumPc(x[1][1],x[1][0]))).join(''),
+  acts:[sumKb('resp')]}}
+ case 'skillkursus':{const tot=skl.length,run=skl.filter(x=>x.status==='Berjalan').length,todo=skl.filter(x=>x.status!=='Selesai'),rest=todo.reduce((a,x)=>a+(+x.cost||0),0),
+  nx=todo.slice().sort((a,b)=>(a.date||'9999').localeCompare(b.date||'9999')).slice(0,5);
+  return {t:'Skill & kursus',sub:'Rencana belajar dan sertifikasimu.',
+  stats:[['Total rencana',tot,'#0f4c4a'],['Selesai',s.dn+' ('+sumPc(s.dn,tot)+')','#059669'],['Sedang berjalan',run,'#2563eb'],['Total biaya',rp(s.tc),'#d97706'],['Durasi total',lama(s.tw),'#7c3aed'],['Sisa biaya',rp(rest),'#dc2626']],
+  notes:[tot?(todo.length?`Masih ada <b>${todo.length}</b> skill yang belum selesai dengan perkiraan biaya <b>${rp(rest)}</b>.`:'Semua skill sudah selesai 🎉'):'Belum ada rencana skill. Tekan ＋ Skill untuk mulai.'],
+  rows:nx.map(x=>`<div class="smr" data-act="editskill" data-id="${x.id}" role="button" tabindex="0"><span class="dot" style="background:${SC[x.status]||'#78858a'}"></span><b>${esc(x.name)}</b><em>${x.date?fmt(x.date):esc(x.status)}</em></div>`).join(''),
+  acts:[sumGo('Buka Skill','skill',1),sumKb('sk_all'),sumKb('sk_todo')]}}
+ case 'perlufollowup':{const L=KX.stale.f(),old=L[0];
+  return {t:'Perlu di-follow up',sub:'Lamaran aktif tanpa kabar lebih dari 14 hari.',
+  stats:[['Perlu follow up',L.length,'#d97706'],['Lebih dari 30 hari',KX.basi.f().length,'#dc2626'],['Terlama',old?dd(lastD(old))+' hari':'-','#78858a'],['Follow up jatuh tempo',KX.fu.f().length,'#0891b2']],
+  notes:[L.length?'Kirim pesan follow up singkat ke recruiter untuk lamaran di bawah ini. Yang paling lama menggantung ada di paling atas.':'Tidak ada lamaran yang menggantung lebih dari 14 hari 👍'],
+  rows:L.slice(0,6).map(x=>kpr(x,KX.stale)).join(''),acts:[sumKb('stale'),sumKb('fu')]}}
+ case 'agendaterdekat':{const up=KX.up.f(),nx=up[0];
+  return {t:'Agenda terdekat',sub:'Psikotes, assessment, dan interview yang akan datang.',
+  stats:[['Hari ini',KX.today.f().length,'#dc2626'],['7 hari ke depan',KX.week.f().length,'#f59e0b'],['Akan datang',up.length,'#0d9488'],['Sudah lewat',KX.past.f().length,'#78858a']],
+  notes:[nx?`Berikutnya: <b>${esc(nx.t)}</b> (${esc(nx.pl)}) pada <b>${fmt(nx.d)}</b>${nx.tm?' pukul '+esc(nx.tm):''}.`:'Belum ada jadwal. Tambah lewat tombol ＋ Jadwal.'],
+  rows:up.slice(0,6).map(x=>kpr(x,KX.up)).join(''),acts:[sumKb('up'),sumKb('week'),sumGo('Buka Jadwal','sch')]}}
+ case 'focus':{const it=[['today','#dc2626'],['fu','#d97706'],['ddl','#dc2626'],['stale','#d97706']].map(a=>[KX[a[0]].t,KX[a[0]].f().length,a[1],a[0]]),tt=it.reduce((a,x)=>a+x[1],0);
+  return {t:tt?'Yang perlu kamu urus sekarang':'Semua terkendali',sub:'Ringkasan hal yang butuh perhatian hari ini.',
+  stats:it.map(x=>[x[0],x[1],x[1]?x[2]:'#059669']),
+  notes:[tt?`Ada <b>${tt}</b> hal yang butuh perhatian. Ketuk salah satu daftar di bawah untuk langsung menanganinya.`:'Tidak ada yang mendesak. Waktu yang pas untuk mengirim lamaran baru.'],
+  acts:it.filter(x=>x[1]).map(x=>sumKb(x[3])).concat(tt?[]:['<button class="btn" data-act="addjob">＋ Lamaran</button>'])}}
+ }
+ /* kotak lain (grafik, tabel, daftar): tampilkan versi lengkap yang diperbesar */
+ const h=c.querySelector('h3,span'),cl=c.cloneNode(true);
+ const ttl=h?h.textContent.trim():'Ringkasan';
+ if(c.matches('.k')){const g=q=>{const e=c.querySelector(q);return e?e.textContent.trim():''};
+  return {t:g('span')||ttl,sub:'Ringkasan kotak ini.',stats:[[g('span'),g('b'),'#2563eb']],notes:[esc(g('small'))]}}
+ cl.querySelectorAll('.rise').forEach(e=>e.classList.remove('rise'));
+ ['h3','.sumc::after'].forEach(q=>{try{const e=cl.querySelector(q);if(e)e.remove()}catch(x){}});
+ cl.removeAttribute('data-act');cl.removeAttribute('role');cl.removeAttribute('tabindex');cl.removeAttribute('title');
+ return {t:ttl,sub:'Tampilan lengkap kotak ini. Ketuk baris untuk membuka detailnya.',html:'<div class="smc">'+cl.innerHTML+'</div>'}
+}
+function sumHtml(d){
+ const st=(d.stats||[]).map(x=>`<div class="smt" style="--c:${x[2]||'var(--ac)'}"><b>${x[1]}</b><span>${esc(x[0])}</span></div>`).join('');
+ return `<h3>${esc(d.t)}</h3><p class="hint" style="margin:0 0 12px">${d.sub||''}</p>${st?`<div class="smg">${st}</div>`:''}${(d.notes||[]).map(x=>`<p class="smn">${x}</p>`).join('')}${d.rows?`<div class="sml">${d.rows}</div>`:''}${d.html||''}${d.acts&&d.acts.length?`<div class="sma">${d.acts.join('')}</div>`:''}`
+}
+A.sum=function(b,e){
+ const t=e&&e.target;
+ if(t&&t!==b){const g=t.closest('[data-go]');if(g&&b.contains(g)){go(g.dataset.go);return}
+  if(t.closest('a,button,select,input,textarea,label,summary')&&b.contains(t.closest('a,button,select,input,textarea,label,summary')))return}
+ const c=b.closest('[data-sum]')||b;
+ modal(sumHtml(sumBuild(c.dataset.sum,c)))
+};
+A.sumgo=function(b){closeM(1);go(b.dataset.to)};
+document.addEventListener('keydown',e=>{const t=e.target;if((e.key==='Enter'||e.key===' ')&&t&&t.dataset&&t.dataset.act==='sum'&&t===e.target){e.preventDefault();A.sum(t)}});
 
 /* ---------- Rutinitas: to-do selama menunggu panggilan kerja ---------- */
 const TK={'Cari kerja':['💼','#2f6f9f'],'Belajar':['📘','#0d9488'],'Portofolio':['🧩','#7c3aed'],'Networking':['🤝','#d97706'],'Penghasilan':['💰','#65a30d'],'Kesehatan':['🌿','#e11d48']},
@@ -1713,6 +1854,24 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden||tdDay===to
 function tdRestore(d){let n=0;(d.todos||[]).forEach(t=>{if(t&&t.id&&!tds.some(x=>x.id===t.id)){tds.push(t);n++}});const c=d.tdc||{};
  Object.keys(c.ad||{}).forEach(k=>{if(!tdc.ad[k])tdc.ad[k]=c.ad[k]});(c.lt||[]).forEach(k=>{if(!tdc.lt.includes(k))tdc.lt.push(k)});tdsave();return n}
 
+/* ---------- Tombol Tambah (menu) ---------- */
+const AMI=()=>[['addjob','job','Lamaran','Catat lamaran kerja baru'],['addsch','sch','Jadwal seleksi','Psikotes, assessment, interview'],['addskill','skill','Skill dan kursus','Rencana belajar dan sertifikasi']];
+function amMenu(){const chv=SV('<path d="M6 9l6 6 6-6"/>').replace('<svg','<svg class="chv"');
+ return `<div class="am"><button class="btn s amb" type="button" data-act="ammenu" aria-haspopup="menu" aria-expanded="false"><span aria-hidden="true">＋</span><span>Tambah</span>${chv}</button><div class="amm" role="menu" hidden>${AMI().map(a=>`<button type="button" role="menuitem" data-act="${a[0]}"><span class="ic">${ICO[a[1]]}</span><span>${a[2]}</span></button>`).join('')}</div></div>`}
+function amClose(f){document.querySelectorAll('.amm').forEach(m=>{if(m.hidden)return;m.hidden=true;const b=m.parentNode.querySelector('.amb');if(b){b.setAttribute('aria-expanded','false');if(f)b.focus()}})}
+function amSheet(){modal(`<h3>Tambah</h3><p class="hint" style="margin:0">Pilih yang mau dicatat.</p><div class="amq">${AMI().map(a=>`<button type="button" data-act="${a[0]}"><span class="ic">${ICO[a[1]]}</span><span>${a[2]}<small>${a[3]}</small></span></button>`).join('')}</div>`)}
+const mqM=matchMedia('(max-width:860px)');
+/* FAB: di Dashboard hanya muncul di HP (membuka menu Tambah); di laptop memakai tombol di atas */
+function fabVis(){const f=$('fab');if(!f)return;
+ f.hidden=view==='prog'||view==='todo'||(view==='dash'&&!mqM.matches);
+ f.textContent=view==='skill'?'＋ Skill':view==='sch'?'＋ Jadwal':view==='dash'?'＋ Tambah':'＋ Lamaran'}
+try{mqM.addEventListener('change',fabVis)}catch(e){}
+A.ammenu=function(b){const m=b.parentNode.querySelector('.amm'),open=m.hidden;amClose();if(open){m.hidden=false;b.setAttribute('aria-expanded','true');const i=m.querySelector('button');if(i)i.focus()}};
+document.addEventListener('click',e=>{if(!e.target.closest('.am'))amClose();else if(e.target.closest('.amm [data-act]'))amClose()});
+document.addEventListener('keydown',e=>{if(!e.target.closest||!e.target.closest('.amm,.amb'))return;
+ if(e.key==='Escape'){amClose(1)}
+ else if(e.key==='ArrowDown'||e.key==='ArrowUp'){const m=e.target.closest('.am').querySelector('.amm');if(m.hidden)return;e.preventDefault();const L=[...m.querySelectorAll('button')],i=L.indexOf(document.activeElement);L[(i+(e.key==='ArrowDown'?1:-1)+L.length)%L.length].focus()}});
+
 /* ---------- Login ---------- */
 async function chk(p){try{const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(p));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')===H}catch(e){return false}}
 function enter(){idleReset();$('lk').classList.add('out');setTimeout(()=>$('lk').hidden=true,500);$('app').hidden=false;render();
@@ -1749,7 +1908,10 @@ if(ok&&cfg.pw){idleReset();$('lk').hidden=true;$('app').hidden=false;render();if
 if(lg('jt_idle')){ls('jt_idle',null);$('le').textContent='Anda keluar otomatis karena tidak ada aktivitas selama 3 menit.'}
 
 function deep(){setTimeout(remind,800);const p=new URLSearchParams(location.search),n=p.get('new');if(!n)return;history.replaceState(null,'',location.pathname);
- if(n==='skill'){view='skill';render();openSkill()}else{view='job';render();openJob()}}
+ if(n==='skill'){view='skill';render();openSkill()}
+ else if(n==='sch'||n==='jadwal'){view='sch';render();openSch()}
+ else if(n==='todo'||n==='tugas'){view='todo';render();openTodo()}
+ else{view='job';render();openJob()}}
 /* perbarui otomatis tiap 30 detik bila ada perubahan dari perangkat lain atau dari spreadsheet */
 setInterval(()=>{const a=document.activeElement;if(document.hidden||$('app').hidden||!cfg.url||document.querySelector('.mo')||(a&&/INPUT|SELECT/.test(a.tagName)))return;pull(true)},30000);
 /* kunci zoom */
