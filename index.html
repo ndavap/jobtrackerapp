@@ -1133,6 +1133,35 @@ html.tswap *,html.tswap *::before,html.tswap *::after{transition-duration:.6s!im
 .sy,.hd .sy{min-width:0;max-width:none;width:44px;height:44px;padding:0;gap:0;justify-content:center;flex:none;border-radius:14px}
 @media(max-width:860px){.sy,.hd .sy{width:42px;height:42px}}
 .sy i{width:11px;height:11px}
+
+/* menu Tambah dipindah ke banner fokus */
+.fcs{overflow:visible;z-index:6}
+.fcs::before{clip-path:inset(34px 0 0 0)}
+.fcs>.addm{position:relative;z-index:5;flex:none;margin-left:auto}
+@media(max-width:860px){.fcs>.addm{display:none}}
+
+/* ikon lebih tegas & tidak samar */
+html[data-theme] .ic svg,html[data-theme] .fci svg,html[data-theme] .ki svg,html[data-theme] .hi svg{stroke-width:2.5}
+html[data-theme] .sn .ic,html[data-theme] .sbf .ic{width:25px;height:25px}
+html[data-theme] .sn button:not(.on) .ic,html[data-theme] .sbf button .ic{color:var(--ac)}
+html[data-theme] .sn button.on .ic{color:#fff}
+html[data-theme] .ib .ic{width:25px;height:25px;color:var(--ink)}
+html[data-theme] .gs .ic{color:var(--ink)}
+html[data-theme] .gs .ic svg{width:21px;height:21px}
+#tm i svg{stroke-width:2.5}
+html[data-theme] .fcs .fci{background:rgba(255,255,255,.3);width:50px;height:50px}
+html[data-theme] .fcs .fci svg{width:27px;height:27px;color:#fff}
+html[data-theme] .ki{width:42px;height:42px;background:color-mix(in srgb,var(--kc) 24%,transparent)}
+html[data-theme] .ki svg{width:23px;height:23px}
+html[data-theme] .hi{background:color-mix(in srgb,var(--ac) 26%,transparent);color:var(--ac)}
+html[data-theme] .hi svg{width:21px;height:21px}
+.addb svg{stroke-width:2.8}
+.sy i{width:12px;height:12px}
+
+/* tombol Tambah di banner: kontras tinggi di mode terang & gelap */
+html[data-theme] .fcs .addb.btn.s,html[data-theme=dark] .fcs .addb.btn.s{background:#fff;color:#3b3590;border:0;font-weight:800;box-shadow:0 10px 22px -10px rgba(10,6,60,.7)}
+html[data-theme] .fcs .addb.btn.s:hover,html[data-theme=dark] .fcs .addb.btn.s:hover{background:#f1efff;color:#2c2778}
+html[data-theme] .fcs .addb svg{color:#3b3590}
 </style>
 </head>
 <body>
@@ -1223,7 +1252,7 @@ function greet(){const w=document.querySelector('.wl');if(!w)return;const h=new 
  t={job:'Daftar lamaran',sch:'Jadwal seleksi',skill:'Skill & kursus'}[view]||'Selamat '+p+', Davito';
  w.innerHTML=esc(t)+'<small>'+esc(d)+'</small>'}
 function focusHtml(){const it=[['today','Jadwal hari ini'],['fu','Waktunya follow up'],['ddl','Deadline ≤ 7 hari'],['stale','Tanpa kabar > 14 hari']].map(a=>[a[0],a[1],KX[a[0]].f().length]).filter(a=>a[2]);
- return `<div class="fcs rise" id="fcs"><span class="fci">${ICO[it.length?'flame':'trend']}</span><div class="fct"><b>${it.length?'Yang perlu kamu urus sekarang':'Semua terkendali'}</b>${it.length?`<div class="fcc">${it.map(a=>`<button data-act="kpi" data-k="${a[0]}"><b>${a[2]}</b>${a[1]}</button>`).join('')}</div>`:'<p>Tidak ada yang mendesak. Waktu yang pas untuk mengirim lamaran baru.</p>'}</div>${it.length?'':'<button class="btn" data-act="addjob">＋ Lamaran</button>'}</div>`}
+ return `<div class="fcs rise" id="fcs"><span class="fci">${ICO[it.length?'flame':'trend']}</span><div class="fct"><b>${it.length?'Yang perlu kamu urus sekarang':'Semua terkendali'}</b>${it.length?`<div class="fcc">${it.map(a=>`<button data-act="kpi" data-k="${a[0]}"><b>${a[2]}</b>${a[1]}</button>`).join('')}</div>`:'<p>Tidak ada yang mendesak. Tambahkan lamaran, jadwal seleksi, atau skill baru kapan saja lewat tombol Tambah.</p>'}</div>${addMenuHtml()}</div>`}
 function deco(){greet();
  document.querySelectorAll('.k[data-k]').forEach(k=>{if(k.querySelector('.ki'))return;const d=k.dataset.k,ic=KIC[d];if(!ic)return;
   const c=['stale','basi','fu','ddl','out','past'].includes(d)?'#c0713a':['win','offr'].includes(d)?'#3f8f6a':'#6d64d1';k.style.setProperty('--kc',c);k.insertAdjacentHTML('beforeend','<span class="ki">'+ICO[ic]+'</span>')});
@@ -1605,7 +1634,7 @@ dash(){const {n,act,win,out,tc,tw,dn}=stat(),sp=skl.length?Math.round(dn*100/skl
  p28=KX.pace.f().length,pw=p28/4,rem=cfg.target-n,eta=rem<=0?'Target total tercapai 🎉':pw>0?'Dengan laju '+(Math.round(pw*10)/10)+'/minggu, '+cfg.target+' lamaran tercapai ± '+new Date(Date.now()+Math.ceil(rem/pw)*7*864e5).toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric'}):'Belum ada lamaran 28 hari terakhir, laju belum bisa dihitung',
  fl=KX.stale.f().slice(0,4),fuw=fl.length?fl.map(j=>`<div class="ag2" data-act="editjob" data-id="${j.id}" role="button" tabindex="0"><i style="background:#d97706"></i><div><b>${esc(j.company)}</b><small>${esc(j.position||'-')}</small></div><em>${dd(lastD(j))} hari</em></div>`).join(''):'<p class="hint">Tidak ada lamaran yang menggantung lebih dari 14 hari 👍</p>',
  ul=KX.up.f().slice(0,4),agw=ul.length?ul.map(x=>`<div class="ag2" data-act="editjob" data-id="${x.id}" role="button" tabindex="0"><i style="background:${x.col}"></i><div><b>${esc(x.t)}</b><small>${esc(x.p)}</small></div><em>${x.pl}${x.tm?' · '+esc(x.tm):''}</em></div>`).join(''):'<p class="hint">Belum ada jadwal. Tambah lewat tombol ＋ Jadwal.</p>';
- return `<div class="hero rise" id="sc-top"><span class="hs">Semua lamaran dan rencana belajarmu, satu layar.</span>${addMenuHtml()}</div>
+ return `<div class="hero rise" id="sc-top"><span class="hs">Semua lamaran dan rencana belajarmu, satu layar.</span></div>
  ${lts()}
  <div class="card ov rise"><h3>Over View</h3><div class="ovg">${OV('Total lamaran',n,'list','all')}${OV('Sedang proses',act,'layers','act')}${OV('Offer & diterima',win,'trend','win')}${OV('Tidak lanjut',out,'ban','out','warn')}</div></div>
  ${tdDash()}
@@ -1960,7 +1989,7 @@ function sumBuild(key,c){
  case 'focus':{const it=[['today','#dc2626'],['fu','#d97706'],['ddl','#dc2626'],['stale','#d97706']].map(a=>[KX[a[0]].t,KX[a[0]].f().length,a[1],a[0]]),tt=it.reduce((a,x)=>a+x[1],0);
   return {t:tt?'Yang perlu kamu urus sekarang':'Semua terkendali',sub:'Ringkasan hal yang butuh perhatian hari ini.',
   stats:it.map(x=>[x[0],x[1],x[1]?x[2]:'#059669']),
-  notes:[tt?`Ada <b>${tt}</b> hal yang butuh perhatian. Ketuk salah satu daftar di bawah untuk langsung menanganinya.`:'Tidak ada yang mendesak. Waktu yang pas untuk mengirim lamaran baru.'],
+  notes:[tt?`Ada <b>${tt}</b> hal yang butuh perhatian. Ketuk salah satu daftar di bawah untuk langsung menanganinya.`:'Tidak ada yang mendesak. Tambahkan lamaran, jadwal seleksi, atau skill baru kapan saja lewat tombol Tambah.'],
   acts:it.filter(x=>x[1]).map(x=>sumKb(x[3])).concat(tt?[]:['<button class="btn" data-act="addjob">＋ Lamaran</button>'])}}
  }
  /* kotak lain (grafik, tabel, daftar): tampilkan versi lengkap yang diperbesar */
