@@ -1125,6 +1125,14 @@ html.tswap *,html.tswap *::before,html.tswap *::after{transition-duration:.6s!im
  .k b{font-size:clamp(16px,4.7vw,22px)!important;white-space:nowrap}
 }
 
+
+/* indikator live digabung ke pill sinkron (kanan atas) */
+.sy.ok i{animation:pulse 1.8s infinite}
+/* pill sinkron hanya ikon status (hijau = tersinkron, merah = gagal) */
+.sy span,.hd .sy span,#st{display:none!important}
+.sy,.hd .sy{min-width:0;max-width:none;width:44px;height:44px;padding:0;gap:0;justify-content:center;flex:none;border-radius:14px}
+@media(max-width:860px){.sy,.hd .sy{width:42px;height:42px}}
+.sy i{width:11px;height:11px}
 </style>
 </head>
 <body>
@@ -1409,7 +1417,7 @@ function cvm(id){const j=jobs.find(x=>x.id===id);if(!j)return;const P=cvParse(cv
  cvId=id;cvDirty=false;const r0=cvRefresh(j,1),sv=(j.cvx||'').trim();if(sv&&sv!==r0.txt){$('xcx').value=sv;cvDirty=true;cvRefresh(j)}
  cvPull().then(()=>{if($('xcx')&&cvId===id&&!cvDirty)cvRefresh(j)})}
 function undo(t,f){const e=$('ts');e.innerHTML=esc(t)+' <button id="tu" style="margin-left:10px;border:0;background:#fde68a;color:#1f2a2e;border-radius:99px;padding:4px 12px;font-weight:700;font-size:13px;font-family:inherit;cursor:pointer">Urungkan</button>';e.style.pointerEvents='auto';e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(()=>{e.classList.remove('on');e.style.pointerEvents=''},8000);$('tu').onclick=()=>{f();e.classList.remove('on');e.style.pointerEvents='';toast('Dikembalikan')}}
-function setSt(t,c){$('st').textContent=c==='ok'?t+' '+new Date().toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'}):t;$('sy').className='sy '+(c||'');$('sy').title=t}
+function setSt(t,c){$('st').textContent=c==='ok'?t+' '+new Date().toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'}):t;$('sy').className='sy '+(c||'');$('sy').title=t;$('sy').setAttribute('aria-label',t)}
 function store(){try{localStorage.setItem('jt_jobs',JSON.stringify(jobs));localStorage.setItem('jt_skills',JSON.stringify(skl));localStorage.setItem('jt_cfg',JSON.stringify(cfg))}catch(e){}}
 const cs=x=>JSON.stringify(Object.keys(x).filter(k=>k!=='u').sort().map(k=>[k,x[k]]));
 function stamp(){const sn=rd('jt_snap',{}),tb=rd('jt_tomb',{}),now=Date.now(),ns={};
@@ -1692,7 +1700,7 @@ const hh=()=>{const h=document.querySelector('.hd');if(h)document.documentElemen
 window.addEventListener('resize',hh);
 try{matchMedia('(max-width:760px)').addEventListener('change',()=>{if(!$('app').hidden&&view==='job')render()})}catch(e){}
 function lts(){const ch=(k,l,c,hot)=>{const v=KX[k].f().length;if(!v)return '';return `<button data-act="kpi" data-k="${k}" class="${hot&&v?'hot':''}" style="--c:${c}">${l}<b>${v}</b></button>`};
- return `<div class="lt" role="toolbar" aria-label="Pelacak langsung"><div class="lt-top"><span class="lv" title="${cfg.url?'Tersinkron dengan Google Sheets':'Mode lokal, belum tersambung'}"><i${cfg.url?'':' style="background:#94a3b8;animation:none"'}></i><span class="lvt">${cfg.url?'Live':'Lokal'}</span></span><button data-act="hub" class="hubb">☰ Semua pelacak</button><select id="jmp" class="jsel" aria-label="Loncat ke bagian"><option value="">Loncat ke…</option><option value="sc-prog">Progres</option><option value="sc-trip">Perjalanan</option><option value="sc-ana">Analitik</option><option value="sc-todo">Tindak lanjut</option></select></div><div class="lt-grid">${ch('today','Hari ini','#dc2626',1)}${ch('fu','Follow up','#d97706',1)}${ch('ddl','Deadline','#dc2626',1)}${ch('stale','Tanpa kabar','#d97706',1)}${ch('act','Proses','#0891b2')}${ch('win','Offer','#059669')}${ch('out','Tidak lanjut','#78858a')}${ch('up','Jadwal','#0d9488')}</div></div>`}
+ return `<div class="lt" role="toolbar" aria-label="Pelacak langsung"><div class="lt-top"><button data-act="hub" class="hubb">☰ Semua pelacak</button><select id="jmp" class="jsel" aria-label="Loncat ke bagian"><option value="">Loncat ke…</option><option value="sc-prog">Progres</option><option value="sc-trip">Perjalanan</option><option value="sc-ana">Analitik</option><option value="sc-todo">Tindak lanjut</option></select></div><div class="lt-grid">${ch('today','Hari ini','#dc2626',1)}${ch('fu','Follow up','#d97706',1)}${ch('ddl','Deadline','#dc2626',1)}${ch('stale','Tanpa kabar','#d97706',1)}${ch('act','Proses','#0891b2')}${ch('win','Offer','#059669')}${ch('out','Tidak lanjut','#78858a')}${ch('up','Jadwal','#0d9488')}</div></div>`}
 function hubm(){modal(`<h3>Pusat pelacak</h3><p class="hint" style="margin:0 0 4px">Semua daftar tracking di satu tempat. Ketuk kotak untuk melihat daftarnya; yang berwarna perlu perhatian.</p>
  <div class="hl">Loncat ke bagian Dashboard</div><div class="hj"><button class="btn s" data-act="jump" data-to="sc-top">Ringkasan</button><button class="btn s" data-act="jump" data-to="sc-prog">Progres</button><button class="btn s" data-act="jump" data-to="sc-trip">Perjalanan</button><button class="btn s" data-act="jump" data-to="sc-ana">Analitik</button><button class="btn s" data-act="jump" data-to="sc-todo">Tindak lanjut</button></div>
  ${HUB.map(g=>`<div class="hl">${g[0]}</div><div class="hg">${g[1].map(k=>{const K=KX[k],n=K.f().length;return `<button class="ht${HOT.includes(k)&&n?' hot':''}" data-act="kpi" data-k="${k}" style="--c:${K.c}"><b>${n}</b><span>${esc(K.t)}</span></button>`}).join('')}</div>`).join('')}`)}
