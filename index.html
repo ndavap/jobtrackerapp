@@ -927,8 +927,9 @@ html[data-theme=dark] .bg::after{opacity:1}
 
 /* ---------- cangkang aplikasi (laptop) ---------- */
 @media(min-width:861px){
- #app{width:calc(100% - 40px);max-width:1640px;margin:20px auto;min-height:calc(100vh - 40px);border-radius:32px;border:1px solid var(--g-bd);background:var(--g-noise),linear-gradient(180deg,var(--g-s1),var(--g-s2));box-shadow:0 40px 90px -40px rgba(20,16,70,.6);overflow:clip}
- .sb2,html[data-theme] .sb2{top:20px;height:calc(100vh - 40px)}
+ #app{width:100%;max-width:none;margin:0;min-height:100vh;border-radius:0;border:0;background:var(--g-noise),linear-gradient(180deg,var(--g-s1),var(--g-s2));box-shadow:none;overflow:clip}
+ .sb2,html[data-theme] .sb2{top:0;height:100vh}
+ main{max-width:none}
 }
 
 /* ---------- sidebar ---------- */
