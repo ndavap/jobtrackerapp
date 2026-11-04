@@ -754,7 +754,7 @@ html,body{background:var(--card)!important;min-height:100dvh}
 .bk .bslg{grid-column:1/-1;display:flex;align-items:center;gap:8px;margin:0;font:500 11.5px/1.2 var(--f-tag);letter-spacing:.015em;color:#b7d3e1;white-space:nowrap}
 .bk .bslg::before{content:"";flex:none;width:16px;height:2px;border-radius:2px;background:var(--cop-g)}
 /* login */
-.lc h1.wmk{font:800 34px/1.1 var(--f-brand);letter-spacing:-.035em;margin:22px 0 8px}
+.lc h1.wmk{font:800 34px/1.1 var(--f-brand);letter-spacing:-.035em;margin:22px 0 28px}
 .lc h1.wmk i{font-style:normal;background:var(--cop-g);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
 .lc h1.wmk span{display:block;margin-top:8px;font:500 14.5px/1.3 var(--f-tag);letter-spacing:.01em;color:var(--mut);-webkit-text-fill-color:var(--mut)}
 /* sidebar menyempit (ikon saja) */
@@ -1172,7 +1172,6 @@ html[data-theme] .fcs .addb svg{color:#3b3590}
  <div class="lc" id="lc">
   <svg class="lgo" viewBox="0 0 512 512" role="img" aria-label="Logo Job Tracker"><use href="#lgo"/></svg>
   <h1 class="wmk">Next<i>Step</i><span>Your Next Move Starts Here.</span></h1>
-  <p>Masukkan password untuk melanjutkan</p>
   <div class="pw"><input id="lp" type="password" placeholder="Password" autocomplete="current-password"><button id="lt" type="button">Lihat</button></div>
   <label class="rm"><input id="lr" type="checkbox" checked style="width:18px;min-height:0;accent-color:#6d64d1"> Ingat di perangkat ini</label>
   <button class="btn" id="lb">Masuk</button>
@@ -1834,7 +1833,7 @@ const A={
  savesch(){const d=$('xd').value;if(!d)return toast('Pilih tanggalnya dulu');const j=jobs.find(x=>x.id===$('zj').value);(j.hist=j.hist||[]).push({sc:1,id:uid(),s:'Jadwal',d,t:$('xt').value,k:$('xk').value,n:g('xn')});persist();closeM();render();toast('Jadwal tersimpan')},
  delsch(b){if(!confirm('Hapus jadwal ini?'))return;const j=jobs.find(x=>x.id===b.dataset.jid);j.hist=(j.hist||[]).filter(x=>x.id!==b.dataset.sid);persist();render()},
  popgo(){closeM();go('sch')},
- logout(){if(!confirm('Keluar dari akun? Data tetap aman di Google Sheets dan perangkat ini.'))return;ls('jt_auth',null);try{sessionStorage.removeItem('jt_auth')}catch(e){}cfg.pw='';store();location.reload()},
+ logout(){ls('jt_auth',null);try{sessionStorage.removeItem('jt_auth')}catch(e){}cfg.pw='';store();location.reload()},
  bak(){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify({v:2,jobs,skills:skl,todos:tds,tdc})],{type:'application/json'}));a.download='job-tracker-backup-'+today()+'.json';a.click()},
  rest(){const f=document.createElement('input');f.type='file';f.accept='.json,application/json';f.onchange=()=>{const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result),h=new Set(jobs.map(key));let n=0;(d.jobs||[]).forEach(j=>{if(!h.has(key(j))){jobs.push(Object.assign({},j,{id:uid()}));h.add(key(j));n++}});const sn=new Set(skl.map(x=>x.name));(d.skills||[]).forEach(x=>{if(!sn.has(x.name)){skl.push(Object.assign({},x,{id:uid()}));sn.add(x.name)}});const tn=tdRestore(d);persist();closeM();render();toast(n+' lamaran'+(tn?' dan '+tn+' tugas':'')+' dipulihkan')}catch(e){toast('File tidak valid')}};r.readAsText(f.files[0])};f.click()},
  cpl(){const v=$('cl').value;(navigator.clipboard?navigator.clipboard.writeText(v):Promise.reject()).then(()=>toast('Link disalin'),()=>{$('cl').select();toast('Salin manual dari kolom')})},
@@ -2210,29 +2209,24 @@ $('lb').onclick=login;$('lp').addEventListener('keydown',e=>{if(e.key==='Enter')
 $('lt').onclick=()=>{const i=$('lp'),s=i.type==='password';i.type=s?'text':'password';$('lt').textContent=s?'Sembunyi':'Lihat'};
 document.addEventListener('visibilitychange',()=>{if(!cfg.url||$('app').hidden)return;if(document.hidden){if(lg('jt_dirty'))push()}else if(!document.querySelector('.mo'))pull(true)});window.addEventListener('pageshow',()=>{if(cfg.url&&!$('app').hidden)pull(true)});window.addEventListener('focus',()=>{if(cfg.url&&!$('app').hidden&&!document.querySelector('.mo'))pull(true)});
 window.addEventListener('online',()=>{if(cfg.url&&!$('app').hidden)sync()});
-/* ---------- Logout otomatis: tidak ada aktivitas selama 3 menit ---------- */
-const IDLE=3*60*1000,WARN=20*1000;
-let lastAct=Date.now(),idleW=null,outing=0;
+/* ---------- Logout otomatis senyap: tidak ada aktivitas selama 5 menit ---------- */
+const IDLE=5*60*1000;
+let lastAct=Date.now(),outing=0;
 const shared=()=>+lg('jt_last')||0;
-function mark(){if(idleW)return;const n=Date.now();lastAct=n;if(n-shared()>3000)ls('jt_last',String(n))}
-function hideIdle(){if(idleW){idleW.remove();idleW=null}}
-function idleReset(){lastAct=Date.now();ls('jt_last',String(lastAct));hideIdle()}
-function showIdle(s){if(!idleW){idleW=document.createElement('div');idleW.style.cssText='position:fixed;inset:0;z-index:99999;display:grid;place-items:center;padding:24px;background:rgba(15,23,42,.5)';
-  idleW.innerHTML='<div class="card" role="alertdialog" aria-live="assertive" style="width:min(380px,100%);text-align:center;backdrop-filter:blur(18px)"><h3 style="margin:0 0 8px">Sesi hampir berakhir</h3><p class="hint" style="margin:0 0 16px">Tidak ada aktivitas. Anda akan keluar otomatis dalam <b id="idc"></b> detik.</p><div class="act"><button class="btn" id="idk">Tetap masuk</button><button class="btn s" id="ido">Keluar sekarang</button></div></div>';
-  document.body.appendChild(idleW);$('idk').onclick=idleReset;$('ido').onclick=()=>autoOut(0)}
- $('idc').textContent=s}
-async function autoOut(auto){if(outing)return;outing=1;hideIdle();
+function mark(){const n=Date.now();lastAct=n;if(n-shared()>3000)ls('jt_last',String(n))}
+function idleReset(){lastAct=Date.now();ls('jt_last',String(lastAct))}
+async function autoOut(auto){if(outing)return;outing=1;
  try{if(cfg.url&&lg('jt_dirty'))await Promise.race([run(),new Promise(r=>setTimeout(r,4000))])}catch(e){}
- if(auto)ls('jt_idle','1');ls('jt_last',null);A.lock()}
+ ls('jt_last',null);A.lock()}
 function idleTick(){if($('app').hidden||outing)return;const idle=Date.now()-Math.max(lastAct,shared());
- if(idle>=IDLE)autoOut(1);else if(idle>=IDLE-WARN)showIdle(Math.ceil((IDLE-idle)/1000));else hideIdle()}
+ if(idle>=IDLE)autoOut(1)}
 setInterval(idleTick,1000);
 ['pointerdown','pointermove','keydown','wheel','scroll','touchstart','input'].forEach(t=>document.addEventListener(t,mark,{capture:true,passive:true}));
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)idleTick()});
 let ok=lg('jt_auth')===H;try{ok=ok||sessionStorage.getItem('jt_auth')===H}catch(e){}
 if(ok){const lt=+lg('jt_last')||0;if(lt&&Date.now()-lt>IDLE){ok=false;ls('jt_auth',null);try{sessionStorage.removeItem('jt_auth')}catch(e){}}}
 if(ok&&cfg.pw){idleReset();$('lk').hidden=true;$('app').hidden=false;render();if(cfg.url)sync();else setSt('mode lokal');deep()}else $('lp').focus();
-if(lg('jt_idle')){ls('jt_idle',null);$('le').textContent='Anda keluar otomatis karena tidak ada aktivitas selama 3 menit.'}
+ls('jt_idle',null);
 
 function deep(){setTimeout(remind,800);const p=new URLSearchParams(location.search),n=p.get('new');if(!n)return;history.replaceState(null,'',location.pathname);
  if(n==='skill'){view='skill';render();openSkill()}else{view='job';render();openJob()}}
